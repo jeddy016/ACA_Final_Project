@@ -1,6 +1,6 @@
 angular.module('pitStop').controller('loginController', ['$scope', '$location', '$http', function($scope, $location, $http) {
 
-	$scope.email= $scope.email;
+	$scope.email;
 	$scope.password = $scope.password;
 
 	$scope.newPassword = $scope.newPassword;
@@ -15,21 +15,26 @@ angular.module('pitStop').controller('loginController', ['$scope', '$location', 
     };
 
     $scope.validate = function () {
+        var data = {
+                email: $scope.email,
+                password: $scope.password
+        }
+
         if ($scope.email == "admin" && $scope.password == "admin")
         {
             $http({
                 method: 'POST',
                 url: '/login',
-               //TODO: make sending data to java work
-                data: $scope.email,
+                data: JSON.stringify(data)
              })
             .then(function(response) {
                 if(response.status == 200){
-                    console.log("Authenticated");
                     $scope.goTo('/home');
-                };
+                }
+                else {
+                    $scope.error= "Username or Password Incorrect";
+                }
             })
-
         }
         else
         {

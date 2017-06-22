@@ -21,7 +21,7 @@
 
                 <li><input type="password"  class ="form-control" ng-model = "password" size ="18" placeholder=" password" ng-show="loginVisible" required></li>
 
-                <li><button class="btn login-submit" type="submit" form= "login-form" ng-show="loginVisible">Go</button></li>
+                <li><button class="btn login-submit" class="form-control" type="submit" form= "login-form" ng-show="loginVisible">Go</button></li>
             </ul>
 
             <span class="login-error" ng-bind="error"></span>
@@ -31,7 +31,7 @@
 
             <form id = "sign-up" ng-submit="goTo('/newUser')" class="form" name="sign-up-form">
                 <label>Email</label><br>
-                <input type="text" name = "email" ng-model="newEmail" size ="30" required autofocus><br>
+                <input type="text" name = "newEmail" ng-model="newEmail" size ="30" required autofocus><br>
                 <label>Password</label><br>
                 <input type="password" ng-model= "newPassword" size ="30" required><br>
                 <label>Confirm Password</label><br>
