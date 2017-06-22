@@ -1,0 +1,60 @@
+<div class="page-wrapper">
+    <div class="form-modal">
+
+        <form id= "new-vehicle-form" ng-submit="goTo('/home')">
+            <h1 class="modal-heading">Add a Vehicle</h1>
+            <hr class="modal-hr">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <label class ="form-modal-label">Make</label><br>
+                    <input class="modal-input" type="text" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label class ="form-modal-label">Model</label><br>
+                    <input class="modal-input" type="text" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label class ="form-modal-label">Year</label><br>
+                    <input class="modal-input" type="text" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label class ="form-modal-label">Engine</label><br>
+                    <input class="modal-input" type="text">
+                </div>
+
+                <div class="col-md-6">
+                    <label class ="form-modal-label">Odometer</label><br>
+                    <input class="modal-input" type="text" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label class ="form-modal-label">Nickname</label><br>
+                    <input class="modal-input" type="text" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <label class="services-heading form-modal-label">Select the services you would like to track</label>
+                    <hr>
+
+                    <div class="services-select">
+                        <label class="modal-checkbox-label form-modal-label" ng-repeat="service in services">
+                            {{service.id}}
+                            <input class="modal-input" type="checkbox" ng-model="service.checked">
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+
+            <button type="submit" class= "btn modal-submit-btn" form="new-vehicle-form">Done</button>
+
+        </form>
+    </div>
+</div>

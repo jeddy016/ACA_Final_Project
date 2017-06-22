@@ -1,0 +1,57 @@
+
+.container-fluid {
+    padding-top: 15vh;
+    padding-bottom: 2vh;
+}
+
+.form-modal-label {
+    font-size: 26px;
+}
+
+.vehicle-dropdown {
+    padding: 0 0 0 0 !important;
+    display: inline;
+    height: 33px;
+    width: 15vw;
+    font-size: 26px;
+    background: #222629;
+    border: none;
+    border: 1px solid white;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    color: #87C232;
+    font-weight: bold;
+}
+
+.modal-hr {
+    margin-bottom: 7vh !important;
+}
+
+.detail {
+    font-size: 20px;
+    margin-top: 4vh;
+    margin-bottom: 1vh !important;
+    color: #87C232;
+}
+
+label {
+    color: white;
+}
+
+
+
+.chart {
+    padding: 0;
+    height: 550px;
+    width: 800px;
+}
+.chart1 {
+    float: left;
+    height: 400px;
+    width: 700px;
+}
+.chart2 {
+    float: right;
+    height: 200px !important;
+    width: 600px !important;
+}

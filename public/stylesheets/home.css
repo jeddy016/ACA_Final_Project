@@ -1,0 +1,151 @@
+.container-fluid {
+    height: 100%;
+    width: 100%;
+    background: #222629;
+}
+
+.add-vehicle {
+    float: left;
+    margin-top: 8%;
+    margin-right: 1%;
+    margin-bottom: 1%;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    height: 21px;
+}
+
+.fa-plus {
+    font-size: 25px;
+}
+
+span {
+    margin-left: 2%;
+}
+
+.add-vehicle:hover {
+    color: #87C232;
+}
+
+.vehicleRow {
+    margin-top: 20vh !important;
+}
+
+.vehicleList {
+    display: table;
+    margin: 5px 0;
+    padding: 1%;
+    height: auto;
+    background-color: rgba(0, 0, 0, .4);
+    color: #87C232;
+    border-radius: 5px;
+}
+
+.vehicleList:last-child {
+    margin-bottom: 5%;
+}
+
+.nickname {
+    color: #87C232;
+    padding-top: 0;
+    margin-top: 0;
+    text-align: left;
+}
+
+hr {
+    margin-top: 0;
+}
+
+.vehicleInfo {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.infoColumn {
+    padding-left: 2%;
+}
+
+.odometerColumn {
+    text-align: right;
+}
+
+
+.detail {
+    font-size: 20px;
+    margin: 1% auto;
+}
+
+.update,
+.update:visited,
+.update:focus {
+    color: #87C232;
+    text-decoration: underline;
+}
+
+.update:hover {
+    text-decoration: underline;
+    color: white !important;
+}
+
+label {
+    color: white;
+    padding-right: 1%;
+}
+
+.buttons-column {
+    margin-top: -.5%;
+    text-align: right;
+}
+
+.btn {
+    width: 10vw;
+    border: none !important;
+}
+
+.odometer-input {
+    text-align: right;
+    color: black !important;
+    margin-left: 5%;
+}
+
+.odo-submit {
+    width: 5vw;
+    margin-top: -3vh;
+    background-color: #618930;
+    color: white !important;
+    font-size: 16px;
+}
+
+.odo-submit:hover,
+ .odo-submit:focus {
+    background-color: #87C232;
+    color: white !important;
+}
+
+.edit-btn,
+.edit-btn:visited {
+    background-color: #618930;
+    color: white !important;
+}
+
+.edit-btn:hover,
+ .edit-btn:focus {
+    background-color: #87C232;
+    color: white !important;
+}
+
+.log-service-btn,
+.log-service-btn:visited {
+    background-color: #618930;
+    color: white !important;
+}
+
+.log-service-btn:hover,
+ .log-service-btn:focus {
+    background-color: #87C232;
+    color: white !important;
+}
+
+.btn-danger {
+    background-color: #a30505;
+}

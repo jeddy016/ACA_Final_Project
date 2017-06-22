@@ -1,0 +1,22 @@
+<div class="header">
+    <h1 class="pageTitle">Find Service Nearby</h1>
+</div>
+
+<div class="container-fluid">
+
+    <div id="map"></div>
+
+    <div class="places-container">
+        <div class="row places-row">
+            <div class="col-md-12 shop" ng-repeat="place in placeDetails">
+                <h4>{{place.name}}</h4>
+                <p>{{place.formatted_address}}</p>
+                <p>{{place.formatted_phone_number}}</p>
+                <p ng-if="place.opening_hours.open_now">OPEN NOW</p>
+                <p ng-if="!place.opening_hours.open_now">CLOSED</p>
+                <a ng-href="{{place.website}}">Website</a>
+            </div>
+        </div>
+    </div>
+
+</div>

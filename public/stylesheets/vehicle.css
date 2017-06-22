@@ -1,0 +1,27 @@
+.form-modal {
+    height: 90vh !important;
+}
+
+.services-heading {
+    margin-top: 8%;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.services-label {
+    display: table;
+}
+
+.modal-checkbox-label {
+    display: table-cell;
+    text-align: left;
+}
+
+.modal-checkbox-label:nth-child(odd) {
+    float: left;
+    clear: right;
+}
+
+.modal-checkbox-label:nth-child(even) {
+    float: right;
+}

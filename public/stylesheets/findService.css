@@ -1,0 +1,38 @@
+.header {
+
+}
+
+.hr-modal {
+    margin-bottom: 6.8vh !important;
+}
+
+#map {
+    position: fixed !important;
+    right: 1%;
+    top: 23%;
+    height: 500px;
+    width: 700px;
+}
+
+.places-container {
+    position: absolute;
+    top: 18%;
+    overflow: auto;
+    width: 46vw;
+}
+
+.shop {
+    margin-bottom: 1vh;
+    background-color: rgba(0, 0, 0, .4);
+    border-radius: 5px;
+}
+
+h4 {
+    color: #87C232;
+    font-family: 'Roboto', sans-serif;
+}
+
+p {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}

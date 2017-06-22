@@ -1,0 +1,63 @@
+<div class="page-wrapper">
+
+    <div class="form-modal">
+
+        <form id="service-form" action="" method="">
+            <div class="wrapper">
+
+            <h1 class="modal-heading">Service Schedule for (Car Nickname)</h1>
+
+            <button class="btn" ng-show="!inputsVisible" ng-click="intervalsShowHide()">Edit Intervals</button>
+            <button class="btn submit" ng-show="inputsVisible" ng-click="intervalsShowHide()">Save Changes</button>
+
+
+                <div class = "row">
+                <div class="col-md-4">
+                    <label class="form-modal-label">Service</label>
+                </div>
+                <div class="col-md-2 center">
+                    <label class="form-modal-label">Miles til Due</label>
+                </div>
+                <div class="col-md-2 center">
+                    <label class="form-modal-label">Mileage Interval</label><br>
+                </div>
+                <div class="col-md-2 center">
+                    <label class="form-modal-label">Days til Due</label>
+                </div>
+                <div class="col-md-2 center">
+                    <label class="form-modal-label">Days Interval</label><br>
+
+                </div>
+            </div>
+            <hr class="modal-hr">
+            </div>
+
+
+            <div class="services-list" ng-repeat="service in services">
+
+                <div class = "row">
+                    <div class="col-md-4">
+                        <label class="form-modal-label service-id">{{ service.id }}</label>
+                    </div>
+                    <div class="col-md-2 center">
+                        <h5 class="form-modal-label">{{ service.milesDue | number }}</h5>
+                    </div>
+                    <div class="col-md-2 center">
+                        <h5 class="form-modal-label" ng-show="!inputsVisible">{{ service.milesInterval | number }}</h5>
+                        <input type="number" name="mile-interval" ng-show="inputsVisible" placeholder=" {{service.milesInterval}}" />
+                        <p class="recommended-interval" ng-show="inputsVisible">Recommended: {{service.recommendedMiles | number}}</p>
+                    </div>
+                    <div class="col-md-2 center">
+                        <h5 class="form-modal-label" ng-show="!inputsVisible">{{ service.daysDue | number }}</h5>
+                    </div>
+                    <div class="col-md-2 center">
+                        <h5 class="form-modal-label" ng-show="!inputsVisible">{{ service.daysInterval | number }}</h5>
+                        <input type="number" name="day-interval" ng-show="inputsVisible" placeholder=" {{service.daysInterval}}" />
+                        <p class="recommended-interval" ng-show="inputsVisible">Recommended: {{service.recommendedDays }}</p>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

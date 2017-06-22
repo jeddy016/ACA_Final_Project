@@ -1,0 +1,56 @@
+<div class="header">
+    <h1 class = pageTitle>Dashboard</h1>
+</div>
+
+<div class = "container-fluid">
+
+    <a href="" ng-click="goTo('/newVehicle')" ><p class="add-vehicle"><i class="fa fa-plus" aria-hidden="true"></i>
+    Add a Vehicle</p></a>
+
+    <div class= "row vehicleRow ">
+
+        <div class= "col-md-12 vehicleList" ng-repeat= "vehicle in vehicles">
+
+            <div class= "row vehicleInfo">
+
+                <div class="col-md-12">
+                    <h2 class="nickname">{{vehicle.nickname}}</h2>
+                    <hr>
+                </div>
+
+                <div class="col-md-3 infoColumn">
+                    <p class="detail"><label>Make:</label> {{vehicle.make}}</p>
+                    <p class="detail"><label>Model:</label> {{vehicle.model}}</p>
+                    <p class="detail"><label>Year:</label> {{vehicle.year}}</p>
+                    <p class="detail"><label>Engine:</label> {{vehicle.engine}}</p>
+                </div>
+
+                <div class="col-md-3 infoColumn">
+                    <p class="detail"><label>Next Service Due:</label> {{vehicle.nextService}}</p>
+                    <p class="detail"><label>Miles until next Service:</label> {{vehicle.milesToService | number}}</p>
+                    <p class="detail"><label>Days until next Service:</label> {{vehicle.daysToService}}</p>
+                    <a href = "" ng-click="goTo('services')" class="update detail"><i class="fa fa-wrench"></i><span>View Service Schedule</span></a>
+                </div>
+
+                <div class="col-md-3 odometerColumn">
+                    <h4 class="detail" ng-show="!vehicle.odometerIsVisible"><label>Odometer:</label> {{vehicle.odometer | number}}</h4>
+
+                    <a href="" class="update detail odo-update" ng-click = "odometerShowHide(vehicle)" ng-show="!vehicle.odometerIsVisible"><i class="fa fa-tachometer" aria-hidden="true"></i><span>Update Odometer</span></a>
+
+                    <form id="odometer-form" ng-show="vehicle.odometerIsVisible">
+                        <h4 class="detail"><label>Odometer:</label><input class="odometer-input" size="6" placeholder="{{vehicle.odometer | number}}"></h4>
+                        <br>
+                        <button class="btn odo-submit" type="submit" form="odometer-form" ng-click="odometerShowHide(vehicle)">Submit</button>
+                    </form>
+                </div>
+
+                <div class="col-md-3 buttons-column">
+                    <button class="btn edit-btn detail" ng-click="goTo('editVehicle')">Edit</button><br>
+                    <button class="btn log-service-btn detail" ng-click="goTo('/logService')">Log a Service</button><br>
+                    <button class="btn btn-danger detail" ng-click="remove(vehicle)">Delete</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

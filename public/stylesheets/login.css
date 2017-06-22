@@ -1,0 +1,102 @@
+.wrapper {
+    position: absolute;
+    z-index: 4;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    background: -moz-linear-gradient(left bottom, #222629, rgb(71, 74, 79));
+}
+
+#title-column {
+    padding-left: 8%;
+    padding-top: 19vh;
+}
+
+#login-column {
+    padding-left: 10%;
+    padding-top: 25vh;
+}
+
+a, a:visited, a:focus {
+    text-decoration: none;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    color: #87C232;
+}
+
+a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.login {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    list-style: none;
+}
+
+li {
+    display: inline-block;
+}
+
+h1 {
+    color: #87C232;
+    font-family: 'Days One', sans-serif;
+    font-size: 150px;
+    padding-bottom: 3%;
+}
+
+h3 {
+    padding-bottom: 3%;
+    font-family: 'Days One', sans-serif;
+    color: white;
+    font-size: 40px;
+}
+
+p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 40px;
+    color: white;
+}
+
+label {
+    padding-top: 5%;
+    margin-bottom: -3%;
+    color: #87C232;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    }
+
+.login-submit {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    color: white;
+    background-color: #618930;
+}
+
+.new-user-submit {
+    float: right;
+    margin-right: 34%;
+    margin-top: 10%;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    color: white;
+    background-color: #618930;
+}
+
+.btn:hover,
+ .btn:focus {
+    color: white;
+    background-color: #87C232;
+}
+
+span {
+    position: absolute;
+    top: 10%;
+    left: 21%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 19px;
+    color: red;
+}

@@ -1,0 +1,16 @@
+.form-modal {
+    height: 60vh !important;
+}
+
+.form-modal-label {
+    margin-top: 5%;
+}
+
+.modal-input {
+    text-align: center !important;
+    padding: 0 !important;
+}
+
+.service-dropdown {
+    text-align: center;
+}
