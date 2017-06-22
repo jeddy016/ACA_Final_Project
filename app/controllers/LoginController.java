@@ -7,6 +7,6 @@ public class LoginController extends Controller
 {
     public Result authenticate()
     {
-        return ok("blah");
+        return ok("blah ");
     }
 }
