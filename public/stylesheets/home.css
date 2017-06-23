@@ -1,7 +1,7 @@
 .container-fluid {
     height: 100%;
     width: 100%;
-    background: #222629;
+    background: #1F1F1F;
 }
 
 .add-vehicle {
@@ -19,8 +19,16 @@
     font-size: 25px;
 }
 
+.fa-tachometer {
+    color: white;
+}
+
 span {
     margin-left: 2%;
+}
+
+.odo-detail {
+    font-size:
 }
 
 .add-vehicle:hover {
@@ -36,24 +44,30 @@ span {
     margin: 5px 0;
     padding: 1%;
     height: auto;
-    background-color: rgba(0, 0, 0, .4);
-    color: #87C232;
-    border-radius: 5px;
+    border: 1px solid white;
+    color: #00BCD4;
 }
 
 .vehicleList:last-child {
     margin-bottom: 5%;
 }
 
+.name-col {
+    margin-bottom: 3vh;
+}
+
 .nickname {
-    color: #87C232;
+    display: inline;
+    font-size: 40px;
+    color: #00BCD4;
     padding-top: 0;
     margin-top: 0;
     text-align: left;
+    font-weight: bold;
 }
 
 hr {
-    margin-top: 0;
+    margin-top: 1%;
 }
 
 .vehicleInfo {
@@ -66,9 +80,17 @@ hr {
 }
 
 .odometerColumn {
-    text-align: right;
+    padding-left: 10vw;
+    text-align: center;
 }
 
+.odo-label {
+    margin-left: 2%;
+}
+
+.odo-detail {
+    font-size: 30px !important;
+}
 
 .detail {
     font-size: 20px;
@@ -78,7 +100,7 @@ hr {
 .update,
 .update:visited,
 .update:focus {
-    color: #87C232;
+    color: ##00BCD4;
     text-decoration: underline;
 }
 
@@ -98,7 +120,7 @@ label {
 }
 
 .btn {
-    width: 10vw;
+    width: 12.5vw;
     border: none !important;
 }
 
@@ -111,41 +133,51 @@ label {
 .odo-submit {
     width: 5vw;
     margin-top: -3vh;
-    background-color: #618930;
+    background-color: #00BCD4;
     color: white !important;
     font-size: 16px;
 }
 
 .odo-submit:hover,
  .odo-submit:focus {
-    background-color: #87C232;
+    background-color: #00BCD4;
     color: white !important;
 }
 
 .edit-btn,
 .edit-btn:visited {
-    background-color: #618930;
+    background-color: #00BCD4;
     color: white !important;
 }
 
 .edit-btn:hover,
  .edit-btn:focus {
-    background-color: #87C232;
+    background-color: #00BCD4;
     color: white !important;
 }
 
 .log-service-btn,
 .log-service-btn:visited {
-    background-color: #618930;
+    background-color: #00BCD4;
     color: white !important;
 }
 
 .log-service-btn:hover,
  .log-service-btn:focus {
-    background-color: #87C232;
+    background-color: #00BCD4;
     color: white !important;
 }
 
 .btn-danger {
-    background-color: #a30505;
+    background-color: #1F1F1F;
+    color: #a30505;
+}
+
+.delete-icon {
+    padding-top: 0;
+    margin-bottom: 0;
+    float: right;
+    font-size: 35px;
+    color: red;
+    cursor: pointer;
 }

@@ -3,7 +3,7 @@ html, body, .page-container {
     height: 100%;
     width: 100%;
     margin: 0;
-    background: #222629;
+    background: #1F1F1F;
 }
 
 .header {
@@ -11,7 +11,7 @@ html, body, .page-container {
     position: fixed;
     background-color: black;
     width: 100vw !important;
-    border-bottom: 1px solid #87C232;
+    border-bottom: 1px solid #00BCD4;
 }
 
 .row {
@@ -29,14 +29,14 @@ a:hover {
     top: 2%;
     right: 2%;
     font-size: 50px;
-    color: #87C232;
+    color: #00BCD4;
 }
 
 .fa-bars:hover {
     font-weight: bold;
 }
 
-.fa-times {
+.menu-exit {
     position: fixed;
     z-index: 4;
     top: 2%;
@@ -45,7 +45,7 @@ a:hover {
     color: #87C232;
 }
 
-.fa-times:hover {
+.menu-exit:hover {
     font-weight: bold;
 }
 
@@ -78,7 +78,7 @@ a:hover {
 
 .pageTitle {
     margin-top: .3%;
-    color: #87C232;
+    color: #00BCD4;
     font-family: 'Days One', sans-serif;
     font-size: 60px;
 }
