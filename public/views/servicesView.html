@@ -1,14 +1,19 @@
 <div class="page-wrapper">
 
+    <div class="header">
+        <h1 class="pageTitle">Service Schedule</h1>
+    </div>
+
     <div class="form-modal">
 
         <form id="service-form" action="" method="">
             <div class="wrapper">
 
-            <h1 class="modal-heading">Service Schedule for (Car Nickname)</h1>
 
-            <button class="btn" ng-show="!inputsVisible" ng-click="intervalsShowHide()">Edit Intervals</button>
-            <button class="btn submit" ng-show="inputsVisible" ng-click="intervalsShowHide()">Save Changes</button>
+            <h1 class="modal-heading">{{vehicle.nickname}}</h1>
+
+            <button class="btn" ng-show="!inputsVisible" ng-click="intervalsShowHide($event)">Edit Intervals</button>
+            <button class="btn submit" ng-show="inputsVisible" ng-click="intervalsShowHide($event)">Save Changes</button>
 
 
                 <div class = "row">

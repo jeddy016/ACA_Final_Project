@@ -5,7 +5,7 @@
     height: 100vh;
     width: 100vw;
     margin: 0;
-    background: -moz-linear-gradient(left bottom, #222629, rgb(71, 74, 79));
+    background: #1F1F1F;
 }
 
 #title-column {
@@ -22,7 +22,7 @@ a, a:visited, a:focus {
     text-decoration: none;
     font-size: 20px;
     font-family: 'Roboto', sans-serif;
-    color: #87C232;
+    color: #00BCD4;
 }
 
 a:hover {
@@ -42,7 +42,7 @@ li {
 }
 
 h1 {
-    color: #87C232;
+    color: #00BCD4;
     font-family: 'Days One', sans-serif;
     font-size: 150px;
     padding-bottom: 3%;
@@ -64,7 +64,7 @@ p {
 label {
     padding-top: 5%;
     margin-bottom: -3%;
-    color: #87C232;
+    color: #00BCD4;
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
     }
@@ -73,7 +73,7 @@ label {
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
     color: white;
-    background-color: #618930;
+    background-color: #0092a5;
 }
 
 .new-user-submit {
@@ -83,13 +83,13 @@ label {
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
     color: white;
-    background-color: #618930;
+    background-color: #0092a5;
 }
 
 .btn:hover,
  .btn:focus {
     color: white;
-    background-color: #87C232;
+    background-color: #00BCD4;
 }
 
 span {

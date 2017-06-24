@@ -15,11 +15,13 @@
 }
 
 .wrapper {
-    background-color: #618930;
+    background-color: #1F1F1F;
 }
 
 .modal-heading {
-    padding: 1% 0 3% 1% !important;
+    padding: 1% 0 1% 1% !important;
+    color: #00BCD4;
+    font-size: 40px;
 }
 
 .modal-hr {
@@ -28,11 +30,11 @@
 }
 
 .services-list:nth-child(even) {
-    background-color: #87C232;
+    background-color: #00BCD4;
 }
 
 .services-list:nth-child(odd) {
-    background-color: #618930;
+    background-color: #0092a5;
 }
 
 .services-list:nth-child(even) .form-modal-label {
@@ -54,15 +56,16 @@
 .btn, .btn:visited, .btn-focus {
     position: absolute;
     top: 7%;
-    right: 3%;
+    right: 0;
     background-color: rgb(71, 74, 79);
     font-family: 'Roboto', sans-serif;
     color: white !important;
+    border: 1px solid #00BCD4;
     box-shadow: 0 3px 3px 0 black;
 }
 
 .btn:hover {
-    background-color: #87C232 !important;
+    background-color: #00BCD4 !important;
     color: white !important;
 }
 

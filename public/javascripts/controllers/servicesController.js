@@ -2,6 +2,8 @@ angular.module('pitStop').controller('servicesController', ['$scope', function($
 
     $scope.inputsVisible = false;
 
+    $scope.vehicle = {nickname: "Farm Truck"};
+
 	$scope.services = [
             {
             id: "Oil Change",
@@ -41,7 +43,8 @@ angular.module('pitStop').controller('servicesController', ['$scope', function($
             }
         ]
 
-    $scope.intervalsShowHide= function() {
+    $scope.intervalsShowHide= function(event) {
+            event.preventDefault();
             $scope.inputsVisible= $scope.inputsVisible ? false : true;
         };
 

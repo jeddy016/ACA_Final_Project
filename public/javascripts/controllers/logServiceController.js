@@ -1,5 +1,7 @@
 angular.module('pitStop').controller('logServiceController', ['$scope', function($scope) {
 
+    $scope.vehicle = {nickname: "Kiley"};
+
 	$scope.services = [
             {
             id: "Oil Change",

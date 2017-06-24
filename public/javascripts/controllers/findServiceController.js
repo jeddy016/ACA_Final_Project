@@ -13,7 +13,7 @@ var initMap = function(location) {
 
     map = new google.maps.Map(document.getElementById('map'), {
       center: userLocation,
-      zoom: 13
+      zoom: 12
     });
 
     infowindow = new google.maps.InfoWindow();

@@ -10,11 +10,12 @@
         <div class="row places-row">
             <div class="col-md-12 shop" ng-repeat="place in placeDetails">
                 <h4>{{place.name}}</h4>
+                <a ng-href="{{place.website}}">Visit Website</a>
                 <p>{{place.formatted_address}}</p>
                 <p>{{place.formatted_phone_number}}</p>
-                <p ng-if="place.opening_hours.open_now">OPEN NOW</p>
-                <p ng-if="!place.opening_hours.open_now">CLOSED</p>
-                <a ng-href="{{place.website}}">Website</a>
+                <p class="open" ng-if="place.opening_hours.open_now">OPEN NOW</p>
+                <p class="open" ng-if="!place.opening_hours.open_now">CLOSED</p>
+
             </div>
         </div>
     </div>
