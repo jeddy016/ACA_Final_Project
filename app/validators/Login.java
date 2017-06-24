@@ -1,7 +1,7 @@
 package validators;
 
 
-public class LoginValidator
+public class Login
 {
     public static boolean passwordInvalid(String password)
     {

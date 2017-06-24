@@ -2,40 +2,32 @@
 <div class = "row wrapper">
 
     <div class = "col-md-8" id= "title-column">
-
         <h1>PitStop</h1>
-
-        <p>Schedule reminders for maintenance requirements, track your gas mileage,
-            <br> record maintenance costs, and even <br>find the nearest shop. <p>
-
+        <p>Schedule reminders for service requirements, track maintenance costs for all of your vehicles,
+            and even find the nearest shop. <p>
     </div>
 
     <div class = "col-md-4" id= "login-column">
-
-        <form id="login-form" ng-submit="validate()" class="form" name="login-form">
+        <form id="login-form" ng-submit="loginValidate()" class="form" name="login-form">
             <ul class = "login">
-
                 <li><a class= "log-in-link" href = "" ng-click="loginShowHide()" ng-show="!loginVisible">Login</a></li>
-
                 <li><input type="text" name= "email" class="form-control" type="email" ng-model = "email" size ="18" placeholder=" email" ng-show="loginVisible" required></li>
-
                 <li><input type="password"  class ="form-control" ng-model = "password" size ="18" placeholder=" password" ng-show="loginVisible" required></li>
-
                 <li><button class="btn login-submit" class="form-control" type="submit" form= "login-form" ng-show="loginVisible">Go</button></li>
-                <li><span class="login-error" ng-repeat="error in errors track by $index">{{error}}</span></li>
+                <li><span class="login-error" ng-repeat="error in loginErrors track by $index">{{error}}</span></li>
             </ul>
-
         </form>
 
         <h3>Sign Up</h3>
-
-            <form id = "sign-up" ng-submit="goTo('/newUser')" class="form" name="sign-up-form">
+            <form id = "sign-up" ng-submit="signUpValidate()" class="form" name="sign-up-form">
                 <label>Email</label><br>
-                <input type="text" name = "newEmail" ng-model="newEmail" size ="30" required autofocus><br>
+                <input type="text" name = "newEmail" ng-model="newEmail" ng-focus="hidePwdReqs()" size ="30" required autofocus><br>
                 <label>Password</label><br>
-                <input type="password" ng-model= "newPassword" size ="30" required><br>
+                <input type="password" ng-model= "newPassword" ng-focus="showPwdReqs()" size ="30" required><br>
+                <p class="pwd-reqs" ng-show="reqsVisible">**Password must be at least 8 characters long and contain a number.</p>
                 <label>Confirm Password</label><br>
-                <input type="password" name = "confirmPassword" size ="30" required><br>
+                <input type="password" name = "confirmPassword" ng-model="confirmPassword" ng-focus="hidePwdReqs()" size ="30" required><br>
+                <span class="login-error" ng-repeat="error in newUserErrors track by $index">{{error}}</span>
                 <button type="submit" class= "btn new-user-submit" form="sign-up">Submit</button>
             </form>
     </div>

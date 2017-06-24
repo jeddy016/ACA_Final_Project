@@ -11,6 +11,7 @@
 #title-column {
     padding-left: 8%;
     padding-top: 19vh;
+    padding-right: 10%;
 }
 
 #login-column {
@@ -77,7 +78,6 @@ label {
 }
 
 .new-user-submit {
-    float: right;
     margin-right: 34%;
     margin-top: 10%;
     font-family: 'Roboto', sans-serif;
@@ -92,11 +92,15 @@ label {
     background-color: #00BCD4;
 }
 
-span {
+.login-error {
     display: block;
-    top: 10%;
-    left: 21%;
     font-family: 'Roboto', sans-serif;
     font-size: 19px;
     color: red;
+}
+
+.pwd-reqs {
+    font-size: 14px !important;
+    margin: 0 !important;
+    padding-right: 100px;
 }
