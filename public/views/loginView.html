@@ -22,9 +22,9 @@
                 <li><input type="password"  class ="form-control" ng-model = "password" size ="18" placeholder=" password" ng-show="loginVisible" required></li>
 
                 <li><button class="btn login-submit" class="form-control" type="submit" form= "login-form" ng-show="loginVisible">Go</button></li>
+                <li><span class="login-error" ng-repeat="error in errors track by $index">{{error}}</span></li>
             </ul>
 
-            <span class="login-error" ng-bind="error"></span>
         </form>
 
         <h3>Sign Up</h3>

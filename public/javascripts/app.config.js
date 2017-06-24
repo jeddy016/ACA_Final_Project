@@ -1,5 +1,9 @@
-angular.module('pitStop').config(function ($routeProvider, $locationProvider) {
-	
+angular.module('pitStop').config(function ($routeProvider, $locationProvider, $qProvider) {
+
+
+    $qProvider.errorOnUnhandledRejections(false);
+
+
 	$routeProvider
 
 	.when('/', {
