@@ -11,9 +11,9 @@
         <form id="login-form" ng-submit="loginValidate()" class="form" name="login-form">
             <ul class = "login">
                 <li><a class= "log-in-link" href = "" ng-click="loginShowHide()" ng-show="!loginVisible">Login</a></li>
-                <li><input type="text" name= "email" class="form-control" type="email" ng-model = "email" size ="18" placeholder=" email" ng-show="loginVisible" required></li>
+                <li><input name= "email" class="form-control" type="email" ng-model = "email" size ="18" placeholder=" email" ng-show="loginVisible" required></li>
                 <li><input type="password"  class ="form-control" ng-model = "password" size ="18" placeholder=" password" ng-show="loginVisible" required></li>
-                <li><button class="btn login-submit" class="form-control" type="submit" form= "login-form" ng-show="loginVisible">Go</button></li>
+                <li><button class="btn login-submit form-control" type="submit" form= "login-form" ng-show="loginVisible">Go</button></li>
                 <li><span class="login-error" ng-repeat="error in loginErrors track by $index">{{error}}</span></li>
             </ul>
         </form>

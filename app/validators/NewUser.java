@@ -1,7 +1,5 @@
 package validators;
 
-import play.Logger;
-
 public class NewUser
 {
     public static boolean emailInvalid(String email)
