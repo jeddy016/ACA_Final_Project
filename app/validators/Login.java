@@ -3,6 +3,8 @@ package validators;
 
 public class Login
 {
+    //TODO: Write validation checks for email/pwd currently hard-coded
+
     public static boolean passwordInvalid(String password)
     {
         boolean invalid = true;
@@ -18,7 +20,7 @@ public class Login
     {
         boolean invalid = true;
 
-        if (email.equals("admin"))
+        if (email.equals("demo@example.com"))
         {
             invalid = false;
         }

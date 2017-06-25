@@ -9,10 +9,8 @@ import validators.Login;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class LoginController extends Controller
 {
-
     @BodyParser.Of(BodyParser.Json.class)
     public Result authenticate()
     {
