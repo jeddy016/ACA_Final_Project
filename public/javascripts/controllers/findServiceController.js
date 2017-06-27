@@ -1,6 +1,4 @@
 angular.module('pitStop').controller('findServiceController', ['$scope', '$http', function($scope, $http) {
-	
-	//Google Places web service API Key:  AIzaSyB-q9rUaYmRxp0xVXzsdY3EB9CZyGFOI1U
 
 $scope.placeIDs = [];
 $scope.placeDetails = [];
@@ -60,7 +58,6 @@ var getPlaceDetails = function() {
 
 }
 
-
 function createMarker(place) {
     var service = new google.maps.places.PlacesService(map);
     var marker = new google.maps.Marker({
@@ -78,7 +75,5 @@ $http.post('https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyB-q9rU
     .then(function(response) {
         var location= {lat: response.data.location.lat, lng: response.data.location.lng};
         initMap(location);
-    })
-
-
+    });
 }])

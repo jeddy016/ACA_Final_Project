@@ -1,16 +1,15 @@
 package models;
 
-//TODO: Delete comments when DB is wired up
-
-/*import javax.persistence.Column;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;*/
+import javax.persistence.Table;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
-//@Entity
-//@Table(name = "Completed_Service")
+@Entity
+@Table(name = "Completed_Service")
 public class CompletedService
 {
     public static final int MAX_LENGTH_SERVICEDATE = 8;
@@ -18,30 +17,29 @@ public class CompletedService
     public static final int MAX_LENGTH_PARTS_COST = 10;
     public static final int MAX_LENGTH_LABOR_COST = 10;
 
-    //@Id
-    //@Column(name = "completed_service_id")
+    @Id
+    @Column(name = "completed_service_id")
     private int completedServiceID;
 
-    //@Column(name = "vehicle_id")
+    @Column(name = "vehicle_id")
     private int vehicleID;
 
-    //@Column(name = "service_event_id")
+    @Column(name = "service_event_id")
     private int serviceEventID;
 
-    //@Column(name = "shop_id")
+    @Column(name = "shop_id")
     private int shopID;
 
-    //TODO: Make this a date type somehow
-    //@Column(name = "service_date")
-    private int date;
+    @Column(name = "service_date")
+    private LocalDate date;
 
-    //@Column(name = "total_cost")
+    @Column(name = "total_cost")
     private BigDecimal totalCost;
 
-    //@Column(name = "labor_cost")
+    @Column(name = "labor_cost")
     private BigDecimal laborCost;
 
-    //@Column(name = "parts_cost")
+    @Column(name = "parts_cost")
     private BigDecimal partsCost;
 
 
@@ -85,12 +83,12 @@ public class CompletedService
         this.shopID = shopID;
     }
 
-    public int getDate()
+    public LocalDate getDate()
     {
         return date;
     }
 
-    public void setDate(int date)
+    public void setDate(LocalDate date)
     {
         this.date = date;
     }

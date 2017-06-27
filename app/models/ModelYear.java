@@ -1,23 +1,21 @@
 package models;
 
-//TODO: Delete comments when DB is wired up
-
-/*import javax.persistence.Column;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;*/
+import javax.persistence.Table;
 
-//@Entity
-//@Table(name = "Model_Year")
+@Entity
+@Table(name = "Model_Year")
 public class ModelYear
 {
     private static int MAX_LENGTH_YEAR = 4;
 
-    //@Id
-    //@Column(name = "model_year_id")
+    @Id
+    @Column(name = "model_year_id")
     private int modelYearID;
 
-    //@Column(name = "model_year")
+    @Column(name = "model_year")
     private int year;
 
     public int getModelYearID()

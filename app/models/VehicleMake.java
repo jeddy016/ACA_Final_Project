@@ -1,23 +1,21 @@
 package models;
 
-//TODO: Delete comments when DB is wired up
-
-/*import javax.persistence.Column;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;*/
+import javax.persistence.Table;
 
-//@Entity
-//@Table(name = "Vehicle_Make")
+@Entity
+@Table(name = "Vehicle_Make")
 public class VehicleMake
 {
     private static int MAX_LENGTH_MAKE_NAME = 30;
 
-    //@Id
-    //@Column(name = "vehicle_make_id")
+    @Id
+    @Column(name = "vehicle_make_id")
     private int VehicleMakeID;
 
-    //@Column(name = "vehicle_make_name")
+    @Column(name = "vehicle_make_name")
     private String name;
 
     public int getVehicleMakeID()

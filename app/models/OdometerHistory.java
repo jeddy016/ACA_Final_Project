@@ -1,26 +1,24 @@
 package models;
 
-//TODO: Delete comments when DB is wired up
-
-/*import javax.persistence.Column;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;*/
+import javax.persistence.Table;
 
-//@Entity
-//@Table(name = "Odometer_History")
+@Entity
+@Table(name = "Odometer_History")
 public class OdometerHistory
 {
     private static int MAX_LENGTH_READING = 7;
 
-    //@Id
-    //@Column(name = "odometer_id")
+    @Id
+    @Column(name = "odometer_id")
     private int odometerID;
 
-    //@Column(name = "vehicle_id")
+    @Column(name = "vehicle_id")
     private int vehicleID;
 
-    //@Column(name = "odometer_reading")
+    @Column(name = "odometer_reading")
     private int reading;
 
     public int getOdometerID()

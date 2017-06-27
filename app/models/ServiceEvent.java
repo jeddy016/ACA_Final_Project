@@ -2,39 +2,39 @@ package models;
 
 //TODO: Delete comments when DB is wired up
 
-/*import javax.persistence.Column;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;*/
+import javax.persistence.Table;
 
-//@Entity
-//@Table(name = "Service_Event")
+@Entity
+@Table(name = "Service_Event")
 public class ServiceEvent
 {
     public static final int MAX_LENGTH_SERVICENAME = 80;
     public static final int MAX_LENGTH_MILES_INT = 7;
     public static final int MAX_LENGTH_DAYS_INT = 7;
 
-    //@Id
-    //@Column(name = "service_id")
+    @Id
+    @Column(name = "service_id")
     private int serviceID;
 
-    //@Column(name = "vehicle_id")
+    @Column(name = "vehicle_id")
     private int vehicleID;
 
-    //@Column(name = "day_interval_id")
+    @Column(name = "day_interval_id")
     private int dayIntervalID;
 
-    //@Column(name = "miles_interval_id")
+    @Column(name = "miles_interval_id")
     private int milesIntervalID;
 
-    //@Column(name = "service_name")
+    @Column(name = "service_name")
     private String name;
 
-    //@Column(name = "rec_days_interval")
+    @Column(name = "rec_days_interval")
     private int recommendedDaysInterval;
 
-    //@Column(name = "rec_miles_interval")
+    @Column(name = "rec_miles_interval")
     private int recommendedMilesInterval;
 
     public int getServiceID()

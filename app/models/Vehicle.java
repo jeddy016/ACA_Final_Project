@@ -1,39 +1,37 @@
 package models;
 
-//TODO: Delete comments when DB is wired up
-
-/*import javax.persistence.Column;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;*/
+import javax.persistence.Table;
 
-//@Entity
-//@Table(name = "Vehicle")
+@Entity
+@Table(name = "Vehicle")
 public class Vehicle
 {
     public static final int MAX_LENGTH_NICKNAME = 20;
     public static final int MAX_LENGTH_ODOMETER = 7;
 
-    //@Id
-    //@Column(name = "vehicle_id")
+    @Id
+    @Column(name = "vehicle_id")
     private int vehicleID;
 
-    //@Column(name = "vehicle_model_id")
+    @Column(name = "vehicle_model_id")
     private int modelID;
 
-    //@Column(name = "model_year_id")
+    @Column(name = "model_year_id")
     private int modelYear;
 
-    //@Column(name = "user_id")
+    @Column(name = "user_id")
     private int userID;
 
-    //@Column(name = "vehicle_nickname")
+    @Column(name = "vehicle_nickname")
     private String nickname;
 
-    //@Column(name = "next_service_due")
+    @Column(name = "next_service_due")
     private String nextServiceDue;
 
-    //@Column(name = "current_odometer_reading")
+    @Column(name = "current_odometer_reading")
     private int currentOdometer;
 
 
