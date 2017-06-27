@@ -1,66 +1,61 @@
 <div class="page-wrapper">
+
+    <label class="form-modal-label signed-up-link" ng-if="formID == 'new-user-form'">Already signed up?<a class="detail" ng-click="goTo('/')"><span>Log-in</span></a></label>
+
     <div class="form-modal">
+        <form id= "{{formID}}" method="POST" ng-submit="{{action))">
+            <h1 class="modal-heading">{{title}}</h1>
 
-    <form id= "{{formID}}" ng-submit="goTo('/home')">
-        <h1 class="modal-heading">{{title}}</h1>
+            <hr class="modal-hr">
 
-        <hr class="modal-hr">
+            <div class="row">
 
-        <div class="row">
-
-            <div class="col-md-6">
-                <label class="form-modal-label">First Name</label><br>
-                <input class="modal-input" type="text" required>
-            </div>
-
-            <div class="col-md-6">
-                <label class ="form-modal-label">Last Name</label><br>
-                <input class="modal-input" type="text" required>
-            </div>
-
-            <div class="col-md-6">
-                <label class ="form-modal-label">Cell Number</label><br>
-                <input class="modal-input" type="text" required>
-            </div>
-
-            <div class="col-md-6">
-                <label class ="form-modal-label">Zip</label><br>
-                <input class="modal-input" type="text" required>
-            </div>
-
-            <div class="col-md-12">
-                <label class="text-message-label form-modal-label">Enable text message reminders?</label><br>
-                <label class="radio-inline form-modal-label"><input class="modal-input" type="radio" name="optradio" ng-click="showTextOptions()"> Yes</label>
-                <label class="radio-inline form-modal-label"><input class="modal-input" type="radio" name="optradio" ng-click= "hideTextOptions()" > No</label>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12" ng-show="textOptionsVisible">
-
-                <label class ="form-modal-label">What time is best to send reminder texts?</label><br>
-
-                <div class="day-select">
-                    <label class="modal-checkbox-label form-modal-label" ng-repeat="day in days">{{day.id}}
-                        <input class="modal-input" type="checkbox" ng-model="day.checked">
-                    </label>
+                <div class="col-md-6">
+                    <label class="form-modal-label">First Name</label><br>
+                    <input class="modal-input" type="text" required>
                 </div>
 
-                <label class ="form-modal-label">Time: </label>
+                <div class="col-md-6">
+                    <label class ="form-modal-label">Last Name</label><br>
+                    <input class="modal-input" type="text" required>
+                </div>
 
-                <select ng-model="time">
-                    <option ng-repeat="time in times" value="{{time}}">{{time}}</option>
-                </select>
+                <div class="col-md-6">
+                    <label class ="form-modal-label">Cell Number</label><br>
+                    <input class="modal-input" type="text" required>
+                </div>
 
-                <select ng-model="amPm">
-                    <option value="">AM</option>
-                    <option value="" selected>PM</option>
-                </select>
+                <div class="col-md-6">
+                    <label class ="form-modal-label">Zip</label><br>
+                    <input class="modal-input" type="text" required>
+                </div>
+
+                <div class="col-md-12">
+                    <label class="text-message-label form-modal-label">Enable text message reminders?</label><br>
+                    <label class="radio-inline form-modal-label"><input class="modal-input" type="radio" name="optradio" ng-click="showTextOptions()"> Yes</label>
+                    <label class="radio-inline form-modal-label"><input class="modal-input" type="radio" name="optradio" ng-click= "hideTextOptions()" > No</label>
+                </div>
             </div>
-        </div>
-        <button type="submit" class= "btn modal-submit-btn" form= "{{formID}}">Done</button>
-    </form>
-</div>
 
-<label class="form-modal-label signed-up-link" ng-if="formID == 'new-user-form'">Already signed up?<a class="detail" ng-click="goTo('/')"><span>Log-in</span></a></label>
+            <div class="row">
+                <div class="col-md-12" ng-show="textOptionsVisible">
+
+                    <label class ="form-modal-label">What time is best to send reminder texts?</label><br>
+
+                    <select ng-model="time">
+                        <option ng-repeat="time in times" value="{{time}}">{{time}}</option>
+                    </select>
+
+                    <select ng-model="amPm">
+                        <option value="">AM</option>
+                        <option value="" selected>PM</option>
+                    </select>
+
+                    <label class="form-modal-label">How many days in advance should we remind you of service events?</label>
+                    <input type="number" class="modal-input interval-input" name="text-interval" />
+                </div>
+            </div>
+            <button type="submit" class= "btn modal-submit-btn" form= "{{formID}}">Done</button>
+        </form>
+    </div>
 </div>

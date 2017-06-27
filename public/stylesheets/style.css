@@ -93,6 +93,7 @@ h2 {
     display: table;
     height: 65vh;
     width: 40vw;
+    padding: 1%;
     background-color: #0092a5;
     border-radius: 3px;
     border: 2px solid #00BCD4;
@@ -155,10 +156,6 @@ h2 {
     box-shadow: none;
 }
 
-.day-select {
-    margin-left: 5%;
-}
-
 .text-message-label {
     padding-top: 2%;
 }
@@ -166,4 +163,8 @@ h2 {
 .modal-hr {
     margin-top: 0 !important;
     margin-bottom: 3% !important;
+}
+
+.interval-input {
+    text-align: center;
 }

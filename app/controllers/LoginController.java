@@ -23,6 +23,7 @@ public class LoginController extends Controller
         String email = request.findPath("email").textValue();
         String password = request.findPath("password").textValue();
 
+
         if(Login.passwordInvalid(password) || Login.emailInvalid(email))
         {
             errorList.add("- Email or Password incorrect");
@@ -33,8 +34,6 @@ public class LoginController extends Controller
 
         if(valid)
         {
-
-            //TODO(maybe) send user id back to browser to validate further requests
 
             return ok(Json.toJson("success"));
         }
