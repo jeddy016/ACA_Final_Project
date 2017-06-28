@@ -13,7 +13,7 @@ angular.module('pitStop').config(function ($routeProvider, $locationProvider, $q
 	})
 
 	.when('/newUser', {
-    		templateUrl: 'assets/views/profileView.html',
+    		templateUrl: 'assets/views/newUserView.html',
     		controller: 'newUserController',
     		css: 'assets/stylesheets/newUser.css'
     })

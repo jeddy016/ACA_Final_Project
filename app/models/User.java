@@ -30,8 +30,14 @@ public class User
     @Column(name = "password")
     private String password;
 
+    @Column(name = "phone_number")
+    private long phoneNumber;
+
+    @Column(name = "zipcode")
+    private int zipCode;
+
     @Column(name = "notifications_opt_in")
-    private Boolean notificationsOptIn;
+    private int notificationsOptIn;
 
     @Column(name = "notifications_hour")
     private int notificationsHour;
@@ -89,12 +95,32 @@ public class User
         this.password = password;
     }
 
-    public Boolean getNotificationsOptIn()
+    public long getPhoneNumber()
+    {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(long phoneNumber)
+    {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public int getZipCode()
+    {
+        return zipCode;
+    }
+
+    public void setZipCode(int zipCode)
+    {
+        this.zipCode = zipCode;
+    }
+
+    public int getNotificationsOptIn()
     {
         return notificationsOptIn;
     }
 
-    public void setNotificationsOptIn(Boolean notificationsOptIn)
+    public void setNotificationsOptIn(int notificationsOptIn)
     {
         this.notificationsOptIn = notificationsOptIn;
     }

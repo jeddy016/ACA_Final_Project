@@ -1,7 +1,7 @@
 angular.module('pitStop').controller('profileController', ['$scope', function($scope) {
 
 	$scope.formID = "profile-form";
-	$scope.action = "updateProfile";
+	$scope.action = "updateProfile()";
 	$scope.title = "Edit Your Profile";
 	$scope.time= $scope.time;
     $scope.textOptionsVisible = false;

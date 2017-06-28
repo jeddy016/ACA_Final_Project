@@ -2,6 +2,7 @@ package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import models.User;
+import play.Logger;
 import play.db.jpa.Transactional;
 import play.db.jpa.JPAApi;
 import play.libs.Json;
@@ -25,7 +26,6 @@ public class SignUpController extends Controller
         this.jpaApi = jpaApi;
     }
 
-    @Transactional
     @BodyParser.Of(BodyParser.Json.class)
     public Result signUp()
     {
@@ -61,16 +61,52 @@ public class SignUpController extends Controller
 
         if(valid)
         {
+            session().put("email", email);
+            session().put("password", password);
+
+            return ok(Json.toJson("success"));
+        }
+        else
+        {
+            return ok(Json.toJson(errorList));
+        }
+    }
+
+    @Transactional
+    @BodyParser.Of(BodyParser.Json.class)
+    public Result addUser()
+    {
+        //TODO: test auto increment for User ID's
+        //TODO: form validation
+
+        boolean valid = true;
+        List<String> errorList = new ArrayList<>();
+        JsonNode request = request().body().asJson();
+
+        String email = session().get("email");
+        String password = session().get("password");
+        String firstName = request.findPath("firstName").textValue();
+        String lastName = request.findPath("lastName").textValue();
+        long phoneNumber = request.findPath("phoneNumber").asLong();
+        int zipCode = request.findPath("zipCode").asInt();
+        int notificationsOptIn = request.findPath("notificationsOptIn").asInt();
+        int notificationsHour = request.findPath("notificationsHour").asInt();
+        int notificationsDaysAhead = request.findPath("notificationsDaysAhead").asInt();
+
+        if(valid)
+        {
             User user = new User();
 
-            user.setUserID(1);
+            //user.setUserID(1);
             user.setEmail(email);
             user.setPassword(password);
-            user.setFirstName("Jordan");
-            user.setLastName("Eddy");
-            user.setNotificationsHour(1);
-            user.setNotificationsDaysAhead(1);
-            user.setNotificationsOptIn(true);
+            user.setFirstName(firstName);
+            user.setLastName(lastName);
+            user.setZipCode(zipCode);
+            user.setPhoneNumber(phoneNumber);
+            user.setNotificationsHour(notificationsHour);
+            user.setNotificationsDaysAhead(notificationsDaysAhead);
+            user.setNotificationsOptIn(notificationsOptIn);
 
             jpaApi.em().persist(user);
 
@@ -82,21 +118,4 @@ public class SignUpController extends Controller
         }
     }
 
-    public Result addUser()
-    {
-        User user = new User();
-
-        user.setUserID(1);
-       // user.setEmail(email);
-        //user.setPassword(password);
-        user.setFirstName("Jordan");
-        user.setLastName("Eddy");
-        user.setNotificationsHour(1);
-        user.setNotificationsDaysAhead(1);
-        user.setNotificationsOptIn(true);
-
-        jpaApi.em().persist(user);
-
-        return ok(Json.toJson("success"));
-    }
 }

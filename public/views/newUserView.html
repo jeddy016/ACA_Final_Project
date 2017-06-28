@@ -1,10 +1,10 @@
 <div class="page-wrapper">
 
-    <label class="form-modal-label signed-up-link" ng-if="formID == 'new-user-form'">Already signed up?<a class="detail" ng-click="goTo('/')"><span>Log-in</span></a></label>
+    <label class="form-modal-label signed-up-link">Already signed up?<a class="detail" ng-click="goTo('/')"><span>Log-in</span></a></label>
 
     <div class="form-modal">
-        <form id= "{{formID}}" method="POST" ng-submit="{{action}}">
-            <h1 class="modal-heading">{{title}}</h1>
+        <form id= "new-user-form" method="POST" ng-submit="addUser()">
+            <h1 class="modal-heading">Complete Your Profile</h1>
 
             <hr class="modal-hr">
 
@@ -42,8 +42,8 @@
 
                     <label class ="form-modal-label">What time is best to send reminder texts?</label><br>
 
-                    <select ng-model="time">
-                        <option ng-repeat="time in times" ng-model="notificationTime" value="{{time}}">{{time}}</option>
+                    <select ng-model="notificationsHour">
+                        <option ng-repeat="time in times" value="{{time}}">{{time}}</option>
                     </select>
 
                     <select ng-model="amPm">
@@ -52,10 +52,11 @@
                     </select>
 
                     <label class="form-modal-label">How many days in advance should we remind you of service events?</label>
-                    <input type="number" class="modal-input interval-input" name="text-interval" ng-model="textInterval"/>
+                    <input type="number" class="modal-input interval-input" name="text-interval" ng-model="notificationsDaysAhead"/>
                 </div>
             </div>
-            <button type="submit" class= "btn modal-submit-btn" form= "{{formID}}">Done</button>
+
+            <button type="submit" class= "btn modal-submit-btn" form= "new-user-form">Done</button>
         </form>
     </div>
 </div>
