@@ -10,5 +10,8 @@ POST    /login                      controllers.LoginController.authenticate
 POST    /signup                     controllers.SignUpController.signUp
 POST    /addUser                    controllers.SignUpController.addUser
 
+#Vehicle
+POST    /addVehicle                 controllers.VehicleController.addVehicle
+
 # Re-direct any user-inputted URL path and refresh back to Angular to handle routing
 GET     /*any                       controllers.AppController.index(any)

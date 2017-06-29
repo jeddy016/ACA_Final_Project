@@ -97,7 +97,6 @@ public class SignUpController extends Controller
         {
             User user = new User();
 
-            //user.setUserID(1);
             user.setEmail(email);
             user.setPassword(password);
             user.setFirstName(firstName);
@@ -109,6 +108,9 @@ public class SignUpController extends Controller
             user.setNotificationsOptIn(notificationsOptIn);
 
             jpaApi.em().persist(user);
+
+           /* int userId = user.getUserID();
+            session().put("userId", userId + ""); */
 
             return ok(Json.toJson("success"));
         }

@@ -1,9 +1,10 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.databind.JsonNode;
+import play.db.jpa.JPAApi;
+
+import javax.inject.Inject;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Vehicle_Model")
@@ -12,6 +13,7 @@ public class VehicleModel
     public static final int MAX_LENGTH_MODEL_NAME = 20;
 
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "vehicle_model_id")
     private int vehicleModelID;
 
@@ -23,6 +25,7 @@ public class VehicleModel
 
     @Column(name = "vehicle_model_name")
     private String name;
+
 
     public int getVehicleModelID()
     {
@@ -63,4 +66,5 @@ public class VehicleModel
     {
         this.name = name;
     }
+
 }

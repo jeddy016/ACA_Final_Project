@@ -1,16 +1,30 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import models.User;
+import play.db.jpa.JPAApi;
+import play.db.jpa.Transactional;
 import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
 import validators.Login;
+
+import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
 public class LoginController extends Controller
 {
+    private final JPAApi jpaApi;
+
+    @Inject
+    public LoginController(JPAApi jpaApi)
+    {
+        this.jpaApi = jpaApi;
+    }
+
+    @Transactional(readOnly = true)
     @BodyParser.Of(BodyParser.Json.class)
     public Result authenticate()
     {
@@ -34,6 +48,11 @@ public class LoginController extends Controller
 
         if(valid)
         {
+            User user = jpaApi.em().createQuery("SELECT u FROM User u WHERE u.email = :email", User.class)
+                    .setParameter("email", email)
+                    .getSingleResult();
+
+            session().put("userId", "" + user.getUserID());
 
             return ok(Json.toJson("success"));
         }

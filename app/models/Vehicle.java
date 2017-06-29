@@ -19,7 +19,7 @@ public class Vehicle
     @Column(name = "vehicle_model_id")
     private int modelID;
 
-    @Column(name = "model_year_id")
+    @Column(name = "model_year")
     private int modelYear;
 
     @Column(name = "user_id")
