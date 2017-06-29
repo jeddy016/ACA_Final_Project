@@ -1,9 +1,6 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Service_Day_Interval")
@@ -12,6 +9,7 @@ public class DayInterval
     private static int MAX_LENGTH_INTERVAL = 5;
 
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "day_interval_id")
     private int dayIntervalID;
 

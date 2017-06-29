@@ -1,9 +1,6 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Times_To_Text")
@@ -12,6 +9,7 @@ public class TimeToText
     private static int MAX_LENGTH_TIME = 4;
 
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "time_id")
     private int timeID;
 

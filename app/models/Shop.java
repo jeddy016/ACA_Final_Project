@@ -1,9 +1,6 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Shop")
@@ -12,6 +9,7 @@ public class Shop
     private static int MAX_LENGTH_SHOP_NAME = 50;
 
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "shop_id")
     private int shopID;
 

@@ -1,9 +1,6 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Vehicle")
@@ -13,6 +10,7 @@ public class Vehicle
     public static final int MAX_LENGTH_ODOMETER = 7;
 
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "vehicle_id")
     private int vehicleID;
 

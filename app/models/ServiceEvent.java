@@ -2,10 +2,7 @@ package models;
 
 //TODO: Delete comments when DB is wired up
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Service_Event")
@@ -16,6 +13,7 @@ public class ServiceEvent
     public static final int MAX_LENGTH_DAYS_INT = 7;
 
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "service_id")
     private int serviceID;
 

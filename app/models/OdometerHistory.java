@@ -1,9 +1,6 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Odometer_History")
@@ -12,6 +9,7 @@ public class OdometerHistory
     private static int MAX_LENGTH_READING = 7;
 
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "odometer_id")
     private int odometerID;
 

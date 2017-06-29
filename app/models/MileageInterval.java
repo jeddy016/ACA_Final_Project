@@ -1,9 +1,6 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Service_Mileage_Interval")
@@ -12,6 +9,7 @@ public class MileageInterval
     private static int MAX_LENGTH_INTERVAL = 6;
 
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "mileage_interval_id")
     private int mileageIntervalID;
 

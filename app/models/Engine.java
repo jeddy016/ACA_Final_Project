@@ -1,9 +1,6 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Engine")
@@ -12,6 +9,7 @@ public class Engine
     private static int MAX_LENGTH_ENGINE_NAME = 10;
 
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "engine_id")
     private int engineID;
 

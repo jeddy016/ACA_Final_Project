@@ -1,9 +1,6 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Model_Year")
@@ -12,6 +9,7 @@ public class ModelYear
     private static int MAX_LENGTH_YEAR = 4;
 
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "model_year_id")
     private int modelYearID;
 
