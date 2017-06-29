@@ -38,8 +38,9 @@ public class VehicleController extends Controller
 
         Vehicle vehicle = new Vehicle();
 
-        int modelId = getModelId(request);
+        String modelName = request.findPath("model").textValue();
         int userId = Integer.parseInt(session().get("userId"));
+        int modelId = getModelId(modelName);
         int year = request.findPath("year").asInt();
         int currentOdometer = request.findPath("odometerReading").asInt();
         String nickname = request.findPath("nickname").textValue();
@@ -63,31 +64,32 @@ public class VehicleController extends Controller
     }
 
     @Transactional
-    public int getModelId(JsonNode request)
+    private int getModelId(String modelName)
     {
         int id = 0;
-        String name= request.findPath("model").textValue();
 
         Long modelExists = jpaApi.em().
                 createQuery("SELECT COUNT(*) FROM VehicleModel t WHERE  name = :name", Long.class)
-                .setParameter("name", name)
+                .setParameter("name", modelName)
                 .getSingleResult();
 
         if(modelExists == 1)
         {
             VehicleModel model = jpaApi.em().
                     createQuery("SELECT m FROM VehicleModel m WHERE  name = :name", VehicleModel.class)
-                    .setParameter("name", name)
+                    .setParameter("name", modelName)
                     .getSingleResult();
 
             id = model.getVehicleModelID();
         }
         else
         {
+            //TODO: wire up the rest of the "getID" methods
+
             VehicleModel model = new VehicleModel();
             model.setEngineID(1);
             model.setVehicleMakeID(1);
-            model.setName(name);
+            model.setName(modelName);
 
             jpaApi.em().persist(model);
 
@@ -96,4 +98,19 @@ public class VehicleController extends Controller
         return id;
     }
 
+    @Transactional
+    private int getEngineId(String engineName)
+    {
+        int id = 0;
+
+        return id;
+    }
+
+    @Transactional
+    private int getMakeId(String makeName)
+    {
+        int id = 0;
+
+        return id;
+    }
 }
