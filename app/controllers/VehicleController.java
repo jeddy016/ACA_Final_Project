@@ -14,7 +14,6 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class VehicleController extends Controller
 {
     private final JPAApi jpaApi;
@@ -38,9 +37,8 @@ public class VehicleController extends Controller
 
         Vehicle vehicle = new Vehicle();
 
-        String modelName = request.findPath("model").textValue();
         int userId = Integer.parseInt(session().get("userId"));
-        int modelId = getModelId(modelName);
+        int modelId = request.findPath("model").asInt();
         int year = request.findPath("year").asInt();
         int currentOdometer = request.findPath("odometerReading").asInt();
         String nickname = request.findPath("nickname").textValue();
@@ -54,7 +52,9 @@ public class VehicleController extends Controller
 
         if(valid)
         {
-            jpaApi.em().persist(vehicle);
+            Logger.debug(vehicle.toString());
+
+            //jpaApi.em().persist(vehicle);
             return ok(Json.toJson("success"));
         }
         else
@@ -63,54 +63,4 @@ public class VehicleController extends Controller
         }
     }
 
-    @Transactional
-    private int getModelId(String modelName)
-    {
-        int id = 0;
-
-        Long modelExists = jpaApi.em().
-                createQuery("SELECT COUNT(*) FROM VehicleModel t WHERE  name = :name", Long.class)
-                .setParameter("name", modelName)
-                .getSingleResult();
-
-        if(modelExists == 1)
-        {
-            VehicleModel model = jpaApi.em().
-                    createQuery("SELECT m FROM VehicleModel m WHERE  name = :name", VehicleModel.class)
-                    .setParameter("name", modelName)
-                    .getSingleResult();
-
-            id = model.getVehicleModelID();
-        }
-        else
-        {
-            //TODO: wire up the rest of the "getID" methods
-
-            VehicleModel model = new VehicleModel();
-            model.setEngineID(1);
-            model.setVehicleMakeID(1);
-            model.setName(modelName);
-
-            jpaApi.em().persist(model);
-
-            id = model.getVehicleModelID();
-        }
-        return id;
-    }
-
-    @Transactional
-    private int getEngineId(String engineName)
-    {
-        int id = 0;
-
-        return id;
-    }
-
-    @Transactional
-    private int getMakeId(String makeName)
-    {
-        int id = 0;
-
-        return id;
-    }
 }

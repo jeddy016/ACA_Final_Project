@@ -1,12 +1,15 @@
 package controllers;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import models.VehicleMake;
 import play.db.jpa.JPAApi;
 import play.db.jpa.Transactional;
+import play.libs.Json;
 import play.mvc.Controller;
+import play.mvc.Result;
 
 import javax.inject.Inject;
+import java.util.List;
+
 
 public class MakeController extends Controller
 {
@@ -18,13 +21,11 @@ public class MakeController extends Controller
         this.jpaApi = jpaApi;
     }
 
-    @Transactional
-    public VehicleMake set(JsonNode request)
+    @Transactional(readOnly = true)
+    public Result getMakes()
     {
-        VehicleMake make = new VehicleMake();
+        List<VehicleMake> makeList = jpaApi.em().createQuery("SELECT m FROM VehicleMake m ORDER BY name", VehicleMake.class).getResultList();
 
-
-
-        return make;
+        return ok(Json.toJson(makeList));
     }
 }

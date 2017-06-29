@@ -109,8 +109,8 @@ public class SignUpController extends Controller
 
             jpaApi.em().persist(user);
 
-           /* int userId = user.getUserID();
-            session().put("userId", userId + ""); */
+            int userId = user.getUserID();
+            session().put("userId", userId + ""); 
 
             return ok(Json.toJson("success"));
         }
