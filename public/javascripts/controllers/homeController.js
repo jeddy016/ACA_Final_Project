@@ -1,5 +1,7 @@
 angular.module('pitStop').controller('homeController', ['$scope', '$window', '$http', '$route', function($scope, $window, $http, $route) {
 
+    $scope.overviewVisible = true;
+
     $scope.vehicles = [];
     $scope.selectedVehicle = $scope.selectedVehicle;
 
@@ -17,6 +19,10 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
 
     $scope.remove = function(item) {
       //TODO: wire me up bro
+    }
+
+    $scope.overviewShowHide = function() {
+        $scope.overviewVisible == true ? $scope.overviewVisible = false : $scope.overviewVisible = true;
     }
 
     $scope.odometerShow= function(vehicle) {

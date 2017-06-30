@@ -30,20 +30,25 @@
     font-size: 30px;
 }
 
+.dropdown-col {
+    padding: 0 !important;
+}
+
 .vehicle-dropdown {
-    padding: 0 0 0 0 !important;
+    padding: 0 1% !important;
     margin-bottom: 3%;
-    height: 33px;
-    width: 15vw !important;
-    font-size: 26px;
+    height: auto;
+    width: auto !important;
+    font-size: 29px;
     background: #1F1F1F;
     border: none;
-    border-bottom: 2px solid white;
+    border: 1px solid white;
     text-align: center;
     font-family: 'Roboto', sans-serif;
     color: #00BCD4;
     font-weight: bold;
 }
+
 
 .overview-row {
     margin-top: 1% !important;
@@ -66,12 +71,12 @@
 }
 
 .odometerColumn {
-    padding-top: 1.5%;
+    padding-top: 1%;
     text-align: center;
 }
 
 .odo-detail {
-    font-size: 30px !important;
+    font-size: 40px !important;
 }
 
 .detail {
@@ -163,20 +168,21 @@ label {
 .overview {
     padding: 0 !important;
     background-color: #00BCD4 !important;
-    border-bottom: 2px solid black;
+
 }
 
 .section-label {
     margin-left: 1%;
-    padding-top: .5%;
-    font-size: 20px;
+    margin-bottom: 0 !important;
+    padding: .15%;
+    font-size: 25px;
     font-family: 'Roboto', sans-serif;
     color: black !important;
 }
 
 .vehicle-edit {
     float: right;
-    padding-right: 1%;
+    padding: 0 1%;
     cursor: pointer;
     font-family: 'Roboto', sans-serif;
     color: black !important;
@@ -196,4 +202,10 @@ label {
 
 .service-nearby-link:hover {
     color: white;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    outline: none;
+    border: 2px solid white;
 }
