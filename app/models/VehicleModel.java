@@ -20,9 +20,6 @@ public class VehicleModel
     @Column(name = "vehicle_make_id")
     private int vehicleMakeID;
 
-    @Column(name = "engine_id")
-    private int engineID;
-
     @Column(name = "vehicle_model_name")
     private String name;
 
@@ -45,16 +42,6 @@ public class VehicleModel
     public void setVehicleMakeID(int vehicleMakeID)
     {
         this.vehicleMakeID = vehicleMakeID;
-    }
-
-    public int getEngineID()
-    {
-        return engineID;
-    }
-
-    public void setEngineID(int engineID)
-    {
-        this.engineID = engineID;
     }
 
     public String getName()

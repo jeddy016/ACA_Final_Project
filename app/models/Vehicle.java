@@ -32,6 +32,9 @@ public class Vehicle
     @Column(name = "current_odometer_reading")
     private int currentOdometer;
 
+    @Column(name = "engine")
+    private String engine;
+
 
     public int getVehicleID()
     {
@@ -101,5 +104,15 @@ public class Vehicle
     public void setCurrentOdometer(int currentOdometer)
     {
         this.currentOdometer = currentOdometer;
+    }
+
+    public String getEngine()
+    {
+        return engine;
+    }
+
+    public void setEngine(String engine)
+    {
+        this.engine = engine;
     }
 }

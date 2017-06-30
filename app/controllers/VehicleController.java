@@ -42,6 +42,7 @@ public class VehicleController extends Controller
         int year = request.findPath("year").asInt();
         int currentOdometer = request.findPath("odometerReading").asInt();
         String nickname = request.findPath("nickname").textValue();
+        String engine = request.findPath("engine").textValue();
 
         vehicle.setUserID(userId);
         vehicle.setModelID(modelId);
@@ -49,12 +50,13 @@ public class VehicleController extends Controller
         vehicle.setModelYear(year);
         vehicle.setNextServiceDue("Oil Change");
         vehicle.setNickname(nickname);
+        vehicle.setEngine(engine);
 
         if(valid)
         {
             Logger.debug(vehicle.toString());
 
-            //jpaApi.em().persist(vehicle);
+            jpaApi.em().persist(vehicle);
             return ok(Json.toJson("success"));
         }
         else

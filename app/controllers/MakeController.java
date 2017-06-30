@@ -25,7 +25,6 @@ public class MakeController extends Controller
     public Result getMakes()
     {
         List<VehicleMake> makeList = jpaApi.em().createQuery("SELECT m FROM VehicleMake m ORDER BY name", VehicleMake.class).getResultList();
-
         return ok(Json.toJson(makeList));
     }
 }
