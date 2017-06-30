@@ -1,7 +1,6 @@
-GET     /                           controllers.AppController.index(any = "none")
 
-# Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+#Route to login page if URL query string is empty
+GET     /                           controllers.AppController.index(any = "none")
 
 #Login
 POST    /login                      controllers.LoginController.authenticate
@@ -22,5 +21,9 @@ GET     /getMakes                   controllers.MakeController.getMakes
 GET     /getModels                  controllers.ModelController.getModels
 
 
-# Re-direct any user-inputted URL path and refresh back to Angular to handle routing
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+# Re-direct any un-recognized URL query string back to Angular to handle routing
 GET     /*any                       controllers.AppController.index(any)

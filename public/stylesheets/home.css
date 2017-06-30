@@ -5,10 +5,9 @@
 }
 
 .add-vehicle {
-    float: left;
-    margin-top: 8%;
+    float: right;
     margin-right: 1%;
-    margin-bottom: 1%;
+    margin-top: 1%;
     color: white;
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
@@ -19,55 +18,41 @@
     font-size: 25px;
 }
 
-.fa-tachometer {
-    color: white;
-}
-
-span {
-    margin-left: 2%;
-}
-
-.odo-detail {
-    font-size:
-}
-
 .add-vehicle:hover {
     color: #00BCD4;
 }
 
-.vehicleRow {
-    margin-top: 20vh !important;
+.select-row {
+    margin-top: 14vh !important;
 }
 
-.vehicleList {
-    display: table;
-    margin: 5px 0;
-    padding: 1%;
-    height: auto;
-    border: 1px solid white;
+.select-label {
+    font-size: 30px;
+}
+
+.vehicle-dropdown {
+    padding: 0 0 0 0 !important;
+    margin-bottom: 3%;
+    height: 33px;
+    width: 15vw !important;
+    font-size: 26px;
+    background: #1F1F1F;
+    border: none;
+    border-bottom: 2px solid white;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
     color: #00BCD4;
-}
-
-.vehicleList:last-child {
-    margin-bottom: 5%;
-}
-
-.name-col {
-    margin-bottom: 3vh;
-}
-
-.nickname {
-    display: inline;
-    font-size: 40px;
-    color: #00BCD4;
-    padding-top: 0;
-    margin-top: 0;
-    text-align: left;
     font-weight: bold;
 }
 
-hr {
-    margin-top: 1%;
+.overview-row {
+    margin-top: 1% !important;
+    padding-bottom: 1% !important;
+    display: table;
+    width: 100% !important;
+    height: auto;
+    border: 1px solid white;
+    color: #00BCD4;
 }
 
 .vehicleInfo {
@@ -75,17 +60,14 @@ hr {
     vertical-align: middle;
 }
 
-.infoColumn {
-    padding-left: 2%;
+.info-column {
+    padding-left: 5%;
+    padding-top: 1%;
 }
 
 .odometerColumn {
-    padding-left: 10vw;
+    padding-top: 1.5%;
     text-align: center;
-}
-
-.odo-label {
-    margin-left: 2%;
 }
 
 .odo-detail {
@@ -94,7 +76,7 @@ hr {
 
 .detail {
     font-size: 20px;
-    margin: 1% auto;
+    margin: 0 !important;
 }
 
 .update,
@@ -112,11 +94,7 @@ hr {
 label {
     color: white;
     padding-right: 1%;
-}
-
-.buttons-column {
-    margin-top: -.5%;
-    text-align: right;
+    margin-bottom: 1% !important;
 }
 
 .btn {
@@ -180,4 +158,42 @@ label {
     font-size: 35px;
     color: red;
     cursor: pointer;
+}
+
+.overview {
+    padding: 0 !important;
+    background-color: #00BCD4 !important;
+    border-bottom: 2px solid black;
+}
+
+.section-label {
+    margin-left: 1%;
+    padding-top: .5%;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    color: black !important;
+}
+
+.vehicle-edit {
+    float: right;
+    padding-right: 1%;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    color: black !important;
+    text-decoration: underline;
+}
+
+.vehicle-edit:hover {
+    color: white !important;
+}
+
+.service-nearby-link {
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.service-nearby-link:hover {
+    color: white;
 }

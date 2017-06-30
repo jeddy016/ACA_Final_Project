@@ -1,64 +1,44 @@
-angular.module('pitStop').controller('homeController', ['$scope', '$window', '$http', function($scope, $window, $http) {
+angular.module('pitStop').controller('homeController', ['$scope', '$window', '$http', '$route', function($scope, $window, $http, $route) {
+
+    $scope.vehicles = [];
+    $scope.selectedVehicle = $scope.selectedVehicle;
+
+    $http({
+        method: 'GET',
+        url: '/getVehicles'
+    })
+    .then(function(response) {
+        $scope.vehicles = response.data;
+        $scope.selectedVehicle = $scope.vehicles[0];
+    })
 
     $scope.odoForm = {};
     $scope.odoForm.newOdometerReading = "";
 
-    $scope.vehicles =
-    [{
-        id: 1,
-        nickname: "Kiley",
-        make : "Ford",
-        model : "Mustang",
-        year : 2014,
-        engine: "v8",
-        odometer: 25000,
-        nextService: "Oil Change",
-        daysToService: 12,
-        milesToService: 2034,
-        odometerIsVisible: false
-    },
-    {
-        id : 2,
-        nickname: "Farm Truck",
-        make : "Chevrolet",
-        model : "Silverado",
-        year : 2017,
-        engine: "i4",
-        odometer: 100000,
-        nextService: "Rotate Tires",
-        daysToService: 37,
-        milesToService: 10374,
-        odometerIsVisible: false
-    },
-    {
-        id : 3,
-        nickname: "Bike",
-        make : "Suzuki",
-        model : "GSXR-750",
-        year : 2011,
-        engine: "4cyl",
-        odometer: 1000,
-        nextService: "Lube Chain",
-        daysToService: 10,
-        milesToService: 74,
-        odometerIsVisible: false
-    }];
-
     $scope.remove = function(item) {
-      var index = $scope.vehicles.indexOf(item);
-      $scope.vehicles.splice(index, 1);
+      //TODO: wire me up bro
     }
 
-    $scope.odometerShowHide= function(vehicle) {
+    $scope.odometerShow= function(vehicle) {
         var index = $scope.vehicles.indexOf(vehicle);
-        $scope.vehicles[index].odometerIsVisible = $scope.vehicles[index].odometerIsVisible ? false : true;
+        $scope.selectedVehicle.odometerIsVisible = true;
     };
 
-    $scope.updateOdometer = function(vehicle){
-        var id = $scope.vehicles.indexOf(vehicle)
+    $scope.odometerHide= function(vehicle) {
+            var index = $scope.vehicles.indexOf(vehicle);
+            $scope.selectedVehicle.odometerIsVisible = false;
+
+            if($scope.selectedVehicle.currentOdometer != $scope.newOdometerReading) {
+                $scope.selectedVehicle.currentOdometer = $scope.selectedVehicle.currentOdometer;
+            }
+        };
+
+    $scope.updateOdometer = function(){
+        $scope.id = $scope.selectedVehicle.vehicleID;
+
         var data= {
-            vehicleID : id,
-            reading : $scope.odoForm.newOdometerReading
+            vehicleID : $scope.id,
+            reading : $scope.selectedVehicle.currentOdometer
         }
         $http({
             method: 'POST',
@@ -67,7 +47,7 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         })
         .then(function(response) {
             if(response.data == 'success'){
-                console.log("success");
+                console.log("odometer updated");
             }
             else {
                 alert("Error updating odometer. " /*+ display whatever error comes back from DB*/);

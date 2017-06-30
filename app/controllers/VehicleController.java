@@ -25,11 +25,17 @@ public class VehicleController extends Controller
     }
 
     @Transactional
-    @BodyParser.Of(BodyParser.Json.class)
     public Result getVehicles()
     {
+        int userId = Integer.parseInt(session().get("userId"));
 
-        return ok(Json.toJson("success"));
+        List<Vehicle> vehicles = jpaApi.em().createQuery("SELECT v from Vehicle v WHERE user_id = :id ORDER BY vehicle_id", Vehicle.class)
+                .setParameter("id", userId)
+                .getResultList();
+
+        Logger.debug(vehicles.toString());
+
+        return ok(Json.toJson(vehicles));
     }
 
     @Transactional
@@ -85,7 +91,10 @@ public class VehicleController extends Controller
         int vehicleID = request.findPath("vehicleID").asInt();
         int reading = request.findPath("reading").asInt();
 
-        jpaApi.em().createNativeQuery("UPDATE vehicle SET current_odometer_reading = :reading WHERE vehicle_id = :id")
+        Logger.debug(vehicleID + "");
+        Logger.debug(reading + "");
+
+        jpaApi.em().createQuery("UPDATE Vehicle v SET v.currentOdometer = :reading WHERE vehicle_id = :id")
                 .setParameter("reading", reading)
                 .setParameter("id", vehicleID)
                 .executeUpdate();
