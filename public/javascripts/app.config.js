@@ -30,7 +30,7 @@ angular.module('pitStop').config(function ($routeProvider, $locationProvider, $q
 		css: 'assets/stylesheets/vehicle.css'
 	})
 
-	.when('/editVehicle', {
+	.when('/editVehicle/:vehicle_id', {
     		templateUrl: 'assets/views/editVehicleView.html',
     		controller: 'editVehicleController',
     		css: 'assets/stylesheets/vehicle.css'

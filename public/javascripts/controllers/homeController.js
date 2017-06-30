@@ -1,8 +1,11 @@
-angular.module('pitStop').controller('homeController', ['$scope', '$window', function($scope, $window) {
+angular.module('pitStop').controller('homeController', ['$scope', '$window', '$http', function($scope, $window, $http) {
+
+    $scope.odoForm = {};
+    $scope.odoForm.newOdometerReading = "";
 
     $scope.vehicles =
     [{
-        id: 0,
+        id: 1,
         nickname: "Kiley",
         make : "Ford",
         model : "Mustang",
@@ -15,7 +18,7 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', fun
         odometerIsVisible: false
     },
     {
-        id : 1,
+        id : 2,
         nickname: "Farm Truck",
         make : "Chevrolet",
         model : "Silverado",
@@ -28,7 +31,7 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', fun
         odometerIsVisible: false
     },
     {
-        id : 2,
+        id : 3,
         nickname: "Bike",
         make : "Suzuki",
         model : "GSXR-750",
@@ -49,8 +52,33 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', fun
     $scope.odometerShowHide= function(vehicle) {
         var index = $scope.vehicles.indexOf(vehicle);
         $scope.vehicles[index].odometerIsVisible = $scope.vehicles[index].odometerIsVisible ? false : true;
-
     };
+
+    $scope.updateOdometer = function(vehicle){
+        var id = $scope.vehicles.indexOf(vehicle)
+        var data= {
+            vehicleID : id,
+            reading : $scope.odoForm.newOdometerReading
+        }
+        $http({
+            method: 'POST',
+            url: '/updateOdometer',
+            data: JSON.stringify(data)
+        })
+        .then(function(response) {
+            if(response.data == 'success'){
+                console.log("success");
+            }
+            else {
+                alert("Error updating odometer. " /*+ display whatever error comes back from DB*/);
+            }
+        })
+    }
+
+    $scope.goToEditPage = function(vehicle) {
+          var id = $scope.vehicles.indexOf(vehicle);
+          $scope.goTo('/editVehicle/' + id);
+        }
 
     $window.scroll( function() {
             if($(this).scrollTop() > 60) {

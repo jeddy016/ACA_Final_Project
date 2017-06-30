@@ -26,6 +26,14 @@ public class VehicleController extends Controller
 
     @Transactional
     @BodyParser.Of(BodyParser.Json.class)
+    public Result getVehicles()
+    {
+
+        return ok(Json.toJson("success"));
+    }
+
+    @Transactional
+    @BodyParser.Of(BodyParser.Json.class)
     public Result addVehicle()
     {
         //TODO: form validation
@@ -57,6 +65,33 @@ public class VehicleController extends Controller
             Logger.debug(vehicle.toString());
 
             jpaApi.em().persist(vehicle);
+            return ok(Json.toJson("success"));
+        }
+        else
+        {
+            return ok(Json.toJson(errorList));
+        }
+    }
+
+    @Transactional
+    @BodyParser.Of(BodyParser.Json.class)
+    public Result updateOdometer()
+    {
+        boolean valid = true;
+        List<String> errorList = new ArrayList<>();
+
+        JsonNode request = request().body().asJson();
+
+        int vehicleID = request.findPath("vehicleID").asInt();
+        int reading = request.findPath("reading").asInt();
+
+        jpaApi.em().createNativeQuery("UPDATE vehicle SET current_odometer_reading = :reading WHERE vehicle_id = :id")
+                .setParameter("reading", reading)
+                .setParameter("id", vehicleID)
+                .executeUpdate();
+
+        if(valid)
+        {
             return ok(Json.toJson("success"));
         }
         else

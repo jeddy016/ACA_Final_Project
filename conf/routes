@@ -11,13 +11,16 @@ POST    /signup                     controllers.SignUpController.signUp
 POST    /addUser                    controllers.SignUpController.addUser
 
 #Vehicle
+GET     /getVehicles                controllers.VehicleController.getVehicles
 POST    /addVehicle                 controllers.VehicleController.addVehicle
+POST    /updateOdometer             controllers.VehicleController.updateOdometer
 
 #Make
 GET     /getMakes                   controllers.MakeController.getMakes
 
 #Model
 GET     /getModels                  controllers.ModelController.getModels
+
 
 # Re-direct any user-inputted URL path and refresh back to Angular to handle routing
 GET     /*any                       controllers.AppController.index(any)

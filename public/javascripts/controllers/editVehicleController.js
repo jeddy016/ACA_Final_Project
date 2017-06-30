@@ -1,5 +1,7 @@
-angular.module('pitStop').controller('editVehicleController', ['$scope', function($scope) {
-	
+angular.module('pitStop').controller('editVehicleController', ['$scope', '$routeParams', function($scope, $routeParams) {
+
+	console.log($routeParams.vehicle_id);
+
 	$scope.services = [
             {id: "Oil Change", checked: false},
             {id: "Rotate Tires", checked: false},

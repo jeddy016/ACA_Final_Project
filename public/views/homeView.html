@@ -31,7 +31,6 @@
                     <p class="detail"><label>Next Service Due:</label> {{vehicle.nextService}}</p>
                     <p class="detail"><label>Miles until next Service:</label> {{vehicle.milesToService | number}}</p>
                     <p class="detail"><label>Days until next Service:</label> {{vehicle.daysToService}}</p>
-                    <!--<a href = "" ng-click="goTo('services')" class="update detail"><i class="fa fa-wrench"></i><span>View Service Schedule</span></a>-->
                 </div>
 
                 <div class="col-md-3 odometerColumn">
@@ -39,15 +38,15 @@
 
                     <a href="" class="update detail odo-update" ng-click = "odometerShowHide(vehicle)" ng-show="!vehicle.odometerIsVisible"><span>Update</span></a>
 
-                    <form id="odometer-form" ng-show="vehicle.odometerIsVisible">
-                        <h4 class="detail odo-detail"><label>Odometer</label><input class="odometer-input" size="6" placeholder="{{vehicle.odometer | number}}"></h4>
+                    <form id="odometer-form" ng-show="vehicle.odometerIsVisible" ng-submit="updateOdometer(vehicle)">
+                        <h4 class="detail odo-detail"><label>Odometer</label><input class="odometer-input" size="6" placeholder="{{vehicle.odometer | number}}" ng-model="odoForm.newOdometerReading"></h4>
                         <br>
                         <button class="btn odo-submit" type="submit" form="odometer-form" ng-click="odometerShowHide(vehicle)">Submit</button>
                     </form>
                 </div>
 
                 <div class="col-md-3 buttons-column">
-                    <button class="btn edit-btn detail" ng-click="goTo('editVehicle')">Edit Vehicle</button><br>
+                    <button class="btn edit-btn detail" ng-click="goToEditPage(vehicle)">Edit Vehicle</button><br>
                     <button class="btn log-service-btn detail" ng-click="goTo('/logService')">Log a Service</button><br>
                     <button class="btn log-service-btn detail" ng-click="goTo('/services')">Service Schedule</button><br>
                 </div>

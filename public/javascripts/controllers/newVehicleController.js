@@ -88,7 +88,7 @@ angular.module('pitStop').controller('newVehicleController', ['$scope', '$http',
         })
         .then(function(response) {
             if(response.data == 'success'){
-                //$scope.goTo('/home');
+                $scope.goTo('/home');
             }
             else {
                 $scope.loginErrors = [];
