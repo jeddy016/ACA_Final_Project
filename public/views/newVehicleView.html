@@ -42,12 +42,15 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <label class="services-heading form-modal-label">Select the services you would like to track</label>
+                    <label class="services-heading form-modal-label">Select the Services You Would Like to Track</label>
                     <hr>
                     <div class="services-select">
                         <label class="modal-checkbox-label form-modal-label" ng-repeat="service in serviceTypes">
+                            <input class="modal-input"
+                                   ng-if="serviceTypes.indexOf(service) % 2 == 0" type="checkbox" ng-model="service.checked" >
                             {{service.name}}
-                            <input class="modal-input" type="checkbox" ng-model="service.checked" >
+                            <input class="modal-input"
+                                   ng-if="serviceTypes.indexOf(service) % 2 != 0" type="checkbox" ng-model="service.checked" >
                         </label>
                     </div>
                 </div>

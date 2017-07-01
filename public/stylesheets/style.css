@@ -26,9 +26,9 @@ a:hover {
 .fa-bars {
     z-index: 4;
     position: fixed;
-    top: 2%;
+    top: 1%;
     right: 2%;
-    font-size: 50px;
+    font-size: 40px;
     color: #00BCD4;
 }
 
@@ -81,7 +81,7 @@ a:hover {
     margin-left: 1%;
     color: #00BCD4;
     font-family: 'Days One', sans-serif;
-    font-size: 60px;
+    font-size: 35px;
 }
 
 h2 {

@@ -29,7 +29,6 @@ input::-webkit-inner-spin-button {
 
 .modal-checkbox-label {
     display: table-cell;
-    text-align: left;
 }
 
 .modal-checkbox-label:nth-child(odd) {
@@ -39,6 +38,7 @@ input::-webkit-inner-spin-button {
 
 .modal-checkbox-label:nth-child(even) {
     float: right;
+    text-align: left;
 }
 
 .error {
@@ -48,5 +48,5 @@ input::-webkit-inner-spin-button {
         -1px 1px 0 red,
          1px 1px 0 red;
     font-size: 20px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Days One', sans-serif;
 }

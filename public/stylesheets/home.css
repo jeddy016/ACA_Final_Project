@@ -5,17 +5,14 @@
 }
 
 .add-vehicle {
-    float: right;
-    margin-right: 1%;
-    margin-top: 1%;
+    margin-top: 3%;
     color: white;
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
-    height: 21px;
 }
 
 .fa-plus {
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .add-vehicle:hover {
@@ -23,11 +20,11 @@
 }
 
 .select-row {
-    margin-top: 14vh !important;
+    margin-top: 10vh !important;
 }
 
 .select-label {
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .dropdown-col {
@@ -36,25 +33,21 @@
 
 .vehicle-dropdown {
     padding: 0 1% !important;
-    margin-bottom: 3%;
     height: auto;
-    width: auto !important;
-    font-size: 29px;
-    background: #1F1F1F;
-    border: none;
+    width: 15vw !important;
+    font-size: 30px;
+    background: white;
     border: 1px solid white;
     text-align: center;
     font-family: 'Roboto', sans-serif;
-    color: #00BCD4;
+    color: #1F1F1F;
     font-weight: bold;
 }
 
-
 .overview-row {
-    margin-top: 1% !important;
-    padding-bottom: 1% !important;
+    width: 72% !important;
+    padding: 0 !important;
     display: table;
-    width: 100% !important;
     height: auto;
     border: 1px solid white;
     color: #00BCD4;
@@ -66,28 +59,31 @@
 }
 
 .info-column {
-    padding-left: 7%;
     padding-top: 1%;
+    padding-left: 5%;
 }
 
 .odometerColumn {
-    padding-top: 1%;
+    padding-top: 3vh;
     text-align: center;
 }
 
+.service-column {
+    padding-top: 1%;
+}
+
 .odo-detail {
-    font-size: 40px !important;
+    font-size: 20px !important;
 }
 
 .detail {
-    font-size: 20px;
+    font-size: 17px;
     margin: 0 !important;
 }
 
 .update,
 .update:visited,
 .update:focus {
-    color: ##00BCD4;
     text-decoration: underline;
 }
 
@@ -103,22 +99,27 @@ label {
 }
 
 .btn {
-    width: 12.5vw;
+    width: 15vw;
     border: none !important;
 }
 
 .odometer-input {
+    width: 7vw;
+    font-size: 17px;
     text-align: right;
     color: black !important;
-    margin-left: 5%;
+}
+
+#odometer-form {
+    margin-top: -4.5vh;
 }
 
 .odo-submit {
     width: 5vw;
-    margin-top: -3vh;
+    margin-top: 1vh;
     background-color: #00BCD4;
     color: white !important;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .odo-submit:hover,
@@ -129,6 +130,7 @@ label {
 
 .edit-btn,
 .edit-btn:visited {
+    margin-top: 2vh;
     background-color: #00BCD4;
     color: white !important;
 }
@@ -151,31 +153,16 @@ label {
     color: white !important;
 }
 
-.btn-danger {
-    background-color: #1F1F1F;
-    color: #a30505;
-}
-
-.delete-icon {
-    padding-top: 0;
-    margin-bottom: 0;
-    float: right;
-    font-size: 35px;
-    color: red;
-    cursor: pointer;
-}
-
 .overview {
     padding: 0 !important;
     background-color: #00BCD4 !important;
-
 }
 
 .section-label {
     margin-left: 1%;
     margin-bottom: 0 !important;
     padding: .15%;
-    font-size: 25px;
+    font-size: 19px;
     font-family: 'Roboto', sans-serif;
     color: black !important;
 }
@@ -194,7 +181,7 @@ label {
 }
 
 .service-nearby-link {
-    font-size: 20px;
+    font-size: 17px;
     font-family: 'Roboto', sans-serif;
     cursor: pointer;
     text-decoration: underline;
@@ -204,8 +191,15 @@ label {
     color: white;
 }
 
+.expand {
+    cursor: pointer;
+    padding-left: 38%;
+    font-size: 17px;
+    margin-left: .1%;
+}
+
 .form-control:focus {
     box-shadow: none;
     outline: none;
-    border: 2px solid white;
+    border: 1px solid white;
 }

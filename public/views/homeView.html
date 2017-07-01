@@ -5,59 +5,56 @@
 <div class = "container-fluid">
 
     <div class = "row select-row">
-
-        <div class="col-md-8 dropdown-col">
-            <select class="form-control vehicle-dropdown" ng-model="selectedVehicle" ng-options="vehicle.nickname for vehicle in vehicles">
-            </select>
+        <div class="col-md-3">
+            <div class="col-md-6 dropdown-col">
+                <select class="form-control vehicle-dropdown" ng-model="selectedVehicle" ng-options="vehicle.nickname for vehicle in vehicles">
+                </select>
+                <a href="" ng-click="goTo('/newVehicle')" >
+                    <button class="btn edit-btn add-vehicle">
+                        <i class="fa fa-plus" aria-hidden="true"></i>Add a Vehicle
+                    </button>
+                </a>
+            </div>
         </div>
-        <div class = "col-md-4 dropdown-col">
-            <a href="" ng-click="goTo('/newVehicle')" >
-                <p class="add-vehicle">
-                    <i class="fa fa-plus" aria-hidden="true"></i>
-                        Add a Vehicle</p></a>
+
+        <div class="col-md-9 overview-row">
+            <div class = "col-md-12 overview">
+                <label class="section-label">Overview</label>
+                <label class="section-label expand" ng-show="!overviewVisible" ng-click="overviewShowHide()"> <i class="fa fa-chevron-down"></i></label>
+                <label class="section-label expand" ng-show="overviewVisible" ng-click="overviewShowHide()"> <i class="fa fa-chevron-up"></i></label>
+                <a class="section-label vehicle-edit" ng-click="goToEditPage(vehicle)" ng-show="overviewVisible">Edit Info</a>
+            </div>
+            <div class="col-md-4 info-column" ng-show="overviewVisible">
+                <p class="detail"><label>Make:</label> {{selectedVehicle.make}}</p>
+                <p class="detail"><label>Model:</label> {{selectedVehicle.model}}</p>
+                <p class="detail"><label>Year:</label> {{selectedVehicle.modelYear}}</p>
+                <p class="detail"><label>Engine:</label> {{selectedVehicle.engine}}</p>
+            </div>
+            <div class="col-md-5 service-column" ng-show="overviewVisible">
+                <p class="detail"><label>Next Service Due:</label> {{selectedVehicle.nextServiceDue}}</p>
+                <p class="detail"><label>Miles until Due:</label> {{selectedVehicle.milesToService | number}}</p>
+                <p class="detail"><label>Days until Due:</label> {{selectedVehicle.daysToService}}</p>
+                <label><a class="service-nearby-link" ng-click="goTo('/findService')">Find a Shop Nearby</a></label>
+            </div>
+            <div class="col-md-3 odometerColumn" ng-show="overviewVisible">
+                <h4 class="detail odo-detail" ng-show="!selectedVehicle.odometerIsVisible"><label class="odo-label">Odometer</label> <br>{{selectedVehicle.currentOdometer | number}}</h4>
+                <label>
+                    <a href="" class="update detail odo-update" ng-click = "odometerShow(selectedVehicle)" ng-show="!selectedVehicle.odometerIsVisible">Update</a>
+                </label>
+                <form id="odometer-form" ng-show="selectedVehicle.odometerIsVisible" ng-submit="updateOdometer()">
+                    <h4 class="detail odo-detail"><label>Odometer</label></h4>
+                    <input class="odometer-input" size="6" ng-model="selectedVehicle.currentOdometer">
+                    <br>
+                    <button class="btn odo-submit" type="submit" form="odometer-form" ng-click="odometerHide(selectedVehicle)">Save</button>
+                </form>
+            </div>
         </div>
     </div>
 
-    <div class= "row overview-row">
-        <div class = "col-md-12 overview" ng-click="overviewShowHide()">
-            <label class="section-label">Overview</label>
-            <a class="section-label vehicle-edit" ng-click="goToEditPage(vehicle)">Edit Info</a>
-        </div>
-        <div class="col-md-4 info-column" ng-show="overviewVisible">
-            <p class="detail"><label>Make:</label> {{selectedVehicle.make}}</p>
-            <p class="detail"><label>Model:</label> {{selectedVehicle.model}}</p>
-            <p class="detail"><label>Year:</label> {{selectedVehicle.modelYear}}</p>
-            <p class="detail"><label>Engine:</label> {{selectedVehicle.engine}}</p>
-        </div>
-        <div class="col-md-4 info-column" ng-show="overviewVisible">
-            <p class="detail"><label>Next Service Due:</label> {{selectedVehicle.nextServiceDue}}</p>
-            <p class="detail"><label>Miles until next Service:</label> {{selectedVehicle.milesToService | number}}</p>
-            <p class="detail"><label>Days until next Service:</label> {{selectedVehicle.daysToService}}</p>
-            <label><a class="service-nearby-link" ng-click="goTo('/findService')">Find a Shop Nearby</a></label>
-        </div>
-        <div class="col-md-4 odometerColumn" ng-show="overviewVisible">
-            <h4 class="detail odo-detail" ng-show="!selectedVehicle.odometerIsVisible"><label class="odo-label">Odometer</label> <br>{{selectedVehicle.currentOdometer | number}}</h4>
-            <label>
-                <a href="" class="update detail odo-update" ng-click = "odometerShow(selectedVehicle)" ng-show="!selectedVehicle.odometerIsVisible">Update</a>
-            </label>
-            <form id="odometer-form" ng-show="selectedVehicle.odometerIsVisible" ng-submit="updateOdometer()">
-                <h4 class="detail odo-detail"><label>Odometer</label><input class="odometer-input" size="6" ng-model="selectedVehicle.currentOdometer"></h4>
-                <br>
-                <button class="btn odo-submit" type="submit" form="odometer-form" ng-click="odometerHide(selectedVehicle)">Submit</button>
-            </form>
-        </div>
-    </div>
-
-
-
-            <!--</div>
+    <!--</div>
                 <div class="col-md-3 buttons-column">
                     <!--<button class="btn edit-btn detail" ng-click="goToEditPage(vehicle)">Edit Vehicle</button><br>-->
                   <!--  <button class="btn log-service-btn detail" ng-click="goTo('/logService')">Log a Service</button><br>
                     <button class="btn log-service-btn detail" ng-click="goTo('/services')">Service Schedule</button><br>
                 </div> -->
-
-
-        <!-- </div>
-    </div> -->
 </div>
