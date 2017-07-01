@@ -5,7 +5,7 @@
 }
 
 .add-vehicle {
-    margin-top: 3%;
+    margin-top: 1%;
     color: white;
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
@@ -19,12 +19,26 @@
     color: #00BCD4;
 }
 
-.select-row {
+.snapshot-row {
     margin-top: 10vh !important;
+    width: 100% !important;
+    padding: 0 !important;
+    display: table;
+    height: auto;
+    border: 1px solid white;
+    color: #00BCD4;
+}
+
+.select-row {
+    margin-top: 5vh !important;
 }
 
 .select-label {
     font-size: 20px;
+}
+
+.dropdown-container {
+    padding-left: 0 !important;
 }
 
 .dropdown-col {
@@ -35,7 +49,7 @@
     padding: 0 1% !important;
     height: auto;
     width: 15vw !important;
-    font-size: 30px;
+    font-size: 20px;
     background: white;
     border: 1px solid white;
     text-align: center;
@@ -45,12 +59,27 @@
 }
 
 .overview-row {
-    width: 72% !important;
+    width: 70% !important;
+    margin-top: 1vh;
     padding: 0 !important;
     display: table;
     height: auto;
     border: 1px solid white;
     color: #00BCD4;
+}
+
+.tools-row {
+    margin-top: 1vh;
+    float: right;
+    padding: 0 !important;
+    display: table;
+    height: auto;
+    border: 1px solid white;
+    color: #00BCD4;
+}
+
+.bottom-button-row {
+    margin-bottom: 2vh !important;
 }
 
 .vehicleInfo {
@@ -60,7 +89,7 @@
 
 .info-column {
     padding-top: 1%;
-    padding-left: 5%;
+
 }
 
 .odometerColumn {
@@ -99,8 +128,10 @@ label {
 }
 
 .btn {
-    width: 15vw;
+    margin-top: 1.7vh;
     border: none !important;
+    padding-top: 1vh;
+    font-size: 18px;
 }
 
 .odometer-input {
@@ -130,8 +161,9 @@ label {
 
 .edit-btn,
 .edit-btn:visited {
-    margin-top: 2vh;
-    background-color: #00BCD4;
+    width: 10vw !important;
+    background-color: black;
+    border: 1px solid #00BCD4 !important;
     color: white !important;
 }
 
@@ -194,6 +226,13 @@ label {
 .expand {
     cursor: pointer;
     padding-left: 38%;
+    font-size: 17px;
+    margin-left: .1%;
+}
+
+.tools-expand {
+    cursor: pointer;
+    padding-left: 31%;
     font-size: 17px;
     margin-left: .1%;
 }

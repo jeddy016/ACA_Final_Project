@@ -4,16 +4,34 @@
 
 <div class = "container-fluid">
 
+    <div class="row snapshot-row">
+        <div class = "col-md-12 overview">
+            <label class="section-label">At a Glance</label>
+            <label class="section-label expand" ng-show="!snapshotVisible" ng-click="snapshotShowHide()"> <i class="fa fa-chevron-down"></i></label>
+            <label class="section-label expand" ng-show="snapshotVisible" ng-click="snapshotShowHide()"> <i class="fa fa-chevron-up"></i></label>
+        </div>
+        <div class="col-md-4 info-column" ng-show="snapshotVisible">
+            <p class="detail"><label>Total Cost YTD:</label> </p>
+            <p class="detail"><label>AVG Service Cost:</label> </p>
+            <p class="detail"><label>Highest Cost to Maintain:</label> </p>
+        </div>
+        <div class="col-md-4 service-column" ng-show="snapshotVisible">
+            <p class="detail"><label>Next Vehicle Due for Service:</label> </p>
+            <p class="detail"><label>Next Service Due:</label> </p>
+            <p class="detail"><label>Days until Due:</label> </p>
+        </div>
+        <div class="col-md-4 info-column" ng-show="snapshotVisible">
+            <p class="detail"><label>Total Overdue Services:</label> </p>
+            <p class="detail"><label>Total Services due this month:</label> </p>
+            <p class="detail"><label>Total Services due this year:</label> </p>
+        </div>
+    </div>
+
     <div class = "row select-row">
-        <div class="col-md-3">
-            <div class="col-md-6 dropdown-col">
+        <div class="col-md-12 dropdown-container">
+            <div class="col-md-2 dropdown-col">
                 <select class="form-control vehicle-dropdown" ng-model="selectedVehicle" ng-options="vehicle.nickname for vehicle in vehicles">
                 </select>
-                <a href="" ng-click="goTo('/newVehicle')" >
-                    <button class="btn edit-btn add-vehicle">
-                        <i class="fa fa-plus" aria-hidden="true"></i>Add a Vehicle
-                    </button>
-                </a>
             </div>
         </div>
 
@@ -47,6 +65,22 @@
                     <br>
                     <button class="btn odo-submit" type="submit" form="odometer-form" ng-click="odometerHide(selectedVehicle)">Save</button>
                 </form>
+            </div>
+        </div>
+
+        <div class="col-md-3 tools-row">
+            <div class="col-md-12 overview">
+                <label class="section-label">Tools</label>
+                <label class="section-label tools-expand" ng-show="!toolsVisible" ng-click="toolsShowHide()"> <i class="fa fa-chevron-down"></i></label>
+                <label class="section-label tools-expand" ng-show="toolsVisible" ng-click="toolsShowHide()"> <i class="fa fa-chevron-up"></i></label>
+            </div>
+            <div class="col-md-6 tools" ng-show="toolsVisible">
+                <button class="btn edit-btn" ng-click="goToEditPage(selectedVehicle)">Edit Vehicle</button>
+                <button class="btn edit-btn bottom-button-row" ng-click="goTo('/newVehicle')">Add Vehicle</button>
+            </div>
+            <div class="col-md-6 tools" ng-show="toolsVisible">
+                <button class="btn edit-btn">Log Service</button>
+                <button class="btn edit-btn bottom-button-row">Delete Vehicle</button>
             </div>
         </div>
     </div>
