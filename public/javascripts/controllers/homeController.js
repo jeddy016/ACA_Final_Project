@@ -2,6 +2,7 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
 
     $scope.overviewVisible = true;
     $scope.snapshotVisible = true;
+    $scope.spotlightVisible = true;
     $scope.toolsVisible = true;
 
     $scope.vehicles = [];
@@ -33,6 +34,10 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
     
     $scope.toolsShowHide = function() {
         $scope.toolsVisible == true ? $scope.toolsVisible = false : $scope.toolsVisible = true;
+    }
+    
+    $scope.spotlightShowHide = function() {
+        $scope.spotlightVisible == true ? $scope.spotlightVisible = false : $scope.spotlightVisible = true;
     }
 
     $scope.odometerShow= function(vehicle) {
@@ -279,7 +284,7 @@ var drawTotalByServiceChart = function() {
             position: 'bottom'
         },
         pieceLabel: {
-                    mode: 'percentage',
+                    mode: 'value',
                     fontSize: 15,
                     fontColor: 'white',
                     fontFamily: "Roboto",

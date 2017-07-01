@@ -58,6 +58,7 @@
     padding: 0 !important;
     height: auto;
     width: 15vw !important;
+    margin-left: 2vw;
     font-size: 18px;
     background: white;
     text-align: center;
@@ -110,7 +111,11 @@
 
 .info-column {
     padding-top: 1%;
+}
 
+.glance-column {
+    padding-top: 1%;
+    padding-left: 3vw !important;
 }
 
 .odometerColumn {
@@ -151,7 +156,6 @@ label {
 .btn {
     margin-top: 1.7vh;
     border: none !important;
-    padding-top: 1vh;
     font-size: 18px;
 }
 
@@ -192,6 +196,10 @@ label {
  .edit-btn:focus {
     background-color: #00BCD4;
     color: white !important;
+}
+
+.odo-update {
+    width: 6vw !important;
 }
 
 .log-service-btn,
@@ -236,6 +244,7 @@ label {
 .service-nearby-link {
     font-size: 17px;
     font-family: 'Roboto', sans-serif;
+    color: white;
     cursor: pointer;
     text-decoration: underline;
 }
@@ -246,15 +255,25 @@ label {
 
 .expand {
     cursor: pointer;
-    padding-left: 38%;
-    font-size: 17px;
+    float: right;
+    padding-right: 1vw;
+    font-size: 20px;
+    margin-left: .1%;
+}
+
+.spotlight-expand {
+    cursor: pointer;
+    float: right;
+    padding-right: 1vw;
+    font-size: 20px;
     margin-left: .1%;
 }
 
 .tools-expand {
     cursor: pointer;
-    padding-left: 31%;
-    font-size: 17px;
+    float: right;
+    padding-right: 1vw;
+    font-size: 20px;
     margin-left: .1%;
 }
 
