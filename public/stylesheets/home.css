@@ -29,6 +29,15 @@
     color: #00BCD4;
 }
 
+.vehicle-detail-container {
+    margin-top: 3vh !important;
+    border: 1px solid white;
+}
+
+.vehicle-detail-row {
+    padding: 1vw !important;
+}
+
 .select-row {
     margin-top: 5vh !important;
 }
@@ -46,12 +55,11 @@
 }
 
 .vehicle-dropdown {
-    padding: 0 1% !important;
+    padding: 0 !important;
     height: auto;
     width: 15vw !important;
-    font-size: 20px;
+    font-size: 18px;
     background: white;
-    border: 1px solid white;
     text-align: center;
     font-family: 'Roboto', sans-serif;
     color: #1F1F1F;
@@ -60,7 +68,21 @@
 
 .overview-row {
     width: 70% !important;
+    margin-top: 3vh;
+    margin-bottom: 2vh;
+    display: table;
+    height: auto;
+    color: #00BCD4;
+}
+
+.overview {
+    padding: 0 !important;
+    background-color: #00BCD4 !important;
+}
+
+.tools-row {
     margin-top: 1vh;
+    float: right;
     padding: 0 !important;
     display: table;
     height: auto;
@@ -68,9 +90,8 @@
     color: #00BCD4;
 }
 
-.tools-row {
+.charts-row {
     margin-top: 1vh;
-    float: right;
     padding: 0 !important;
     display: table;
     height: auto;
@@ -93,7 +114,7 @@
 }
 
 .odometerColumn {
-    padding-top: 3vh;
+    padding-top: 1vh;
     text-align: center;
 }
 
@@ -102,7 +123,7 @@
 }
 
 .odo-detail {
-    font-size: 20px !important;
+    font-size: 30px !important;
 }
 
 .detail {
@@ -135,8 +156,8 @@ label {
 }
 
 .odometer-input {
-    width: 7vw;
-    font-size: 17px;
+    width: 8vw;
+    font-size: 20px;
     text-align: right;
     color: black !important;
 }
@@ -185,9 +206,9 @@ label {
     color: white !important;
 }
 
-.overview {
-    padding: 0 !important;
-    background-color: #00BCD4 !important;
+
+.chart {
+    margin-bottom: 2vh !important;
 }
 
 .section-label {
@@ -241,4 +262,18 @@ label {
     box-shadow: none;
     outline: none;
     border: 1px solid white;
+}
+
+.charts-container {
+    margin: 5vh 0 !important;
+}
+
+.chart1 {
+    float: left;
+
+}
+
+.chart2 {
+    float: right;
+
 }
