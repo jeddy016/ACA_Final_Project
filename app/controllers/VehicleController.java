@@ -2,6 +2,7 @@ package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import models.Vehicle;
+import models.VehicleList;
 import models.VehicleModel;
 import play.Logger;
 import play.db.jpa.JPAApi;
@@ -29,11 +30,15 @@ public class VehicleController extends Controller
     {
         int userId = Integer.parseInt(session().get("userId"));
 
-        List<Vehicle> vehicles = jpaApi.em().createQuery("SELECT v from Vehicle v WHERE user_id = :id ORDER BY vehicle_id", Vehicle.class)
+        List<VehicleList> vehicles = jpaApi.em().createNativeQuery("SELECT v.vehicle_id as id, v.vehicle_nickname as nickname, v.next_service_due as nextService, v.current_odometer_reading as currentOdometer, v.engine as engine, v.model_year as modelYear, " +
+                "mo.vehicle_model_name as model, ma.vehicle_make_name as make " +
+                "FROM vehicle v " +
+                "JOIN vehicle_model mo ON v.vehicle_model_id = mo.vehicle_model_id " +
+                "JOIN vehicle_make ma ON mo.vehicle_make_id = ma.vehicle_make_id "  +
+                "WHERE user_id = :id " +
+                "ORDER BY v.vehicle_nickname", VehicleList.class)
                 .setParameter("id", userId)
                 .getResultList();
-
-        Logger.debug(vehicles.toString());
 
         return ok(Json.toJson(vehicles));
     }

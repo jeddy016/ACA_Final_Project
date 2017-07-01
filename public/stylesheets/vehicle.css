@@ -1,11 +1,26 @@
 .form-modal {
-    height: 90vh !important;
+    height: 85vh !important;
+    width: 45vw !important;
+}
+
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
 }
 
 .services-heading {
     margin-top: 8%;
     font-size: 25px;
     font-weight: bold;
+}
+
+.modal-hr {
+    margin-bottom: 1% !important;
+    padding-bottom: 0 !important;
 }
 
 .services-label {
@@ -24,4 +39,14 @@
 
 .modal-checkbox-label:nth-child(even) {
     float: right;
+}
+
+.error {
+    color: white;
+    text-shadow: -1px -1px 0 red,
+        1px -1px 0 red,
+        -1px 1px 0 red,
+         1px 1px 0 red;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
 }

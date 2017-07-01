@@ -40,7 +40,7 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         };
 
     $scope.updateOdometer = function(){
-        $scope.id = $scope.selectedVehicle.vehicleID;
+        $scope.id = $scope.selectedVehicle.id;
 
         var data= {
             vehicleID : $scope.id,
