@@ -1,6 +1,6 @@
 angular.module('pitStop').controller('indexController', ['$scope', '$rootScope', '$location', function($scope, $rootScope, $location) {
 
-    $rootScope.userLocation = null;
+    $rootScope.location = null;
 
     $scope.isVisible= false;
     $scope.menuVisible= false;

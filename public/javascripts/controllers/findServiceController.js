@@ -1,15 +1,7 @@
-angular.module('pitStop').controller('findServiceController', ['$scope', '$http', '$window', function($scope, $http, $window) {
+angular.module('pitStop').controller('findServiceController', ['$scope', '$rootScope', '$http', '$window', function($scope, $rootScope, $http, $window) {
 
 $scope.placeIDs = [];
 $scope.placeDetails = [];
-
-$http({
-    method: 'GET',
-    url: '/getUserLocation'
-}).then(function(response) {
-    console.log(response.data);
-    initMap(response.data);
-})
 
 var map;
 var infowindow;
@@ -74,4 +66,14 @@ function createMarker(place) {
       infowindow.open(map, this);
     });
 }
+
+$http({
+    method: 'GET',
+    url: '/getUserLocation'
+}).then(function(response) {
+    console.log(response.data);
+    initMap(response.data);
+})
+
+
 }])

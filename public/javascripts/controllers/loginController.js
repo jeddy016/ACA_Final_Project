@@ -1,4 +1,4 @@
-angular.module('pitStop').controller('loginController', ['$scope', '$location', '$http', function($scope, $location, $http) {
+angular.module('pitStop').controller('loginController', ['$scope', '$rootScope', '$location', '$http', function($scope, $rootScope, $location, $http) {
 
 	$scope.email = $scope.email;
 	$scope.password = $scope.password;
@@ -20,7 +20,6 @@ angular.module('pitStop').controller('loginController', ['$scope', '$location', 
         };
 
     $scope.loginValidate = function () {
-
         //TODO: Validate form data before sending to server to prevent unnecessary DB trips
 
         $scope.loginData = {
@@ -38,7 +37,6 @@ angular.module('pitStop').controller('loginController', ['$scope', '$location', 
                 $http.post('https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyB-q9rUaYmRxp0xVXzsdY3EB9CZyGFOI1U')
                     .then(function(response) {
                         $scope.userLocation = response.data.location;
-                        console.log($scope.userLocation);
                         $http({
                             method: 'POST',
                             url: '/setUserLocation',
@@ -73,10 +71,10 @@ angular.module('pitStop').controller('loginController', ['$scope', '$location', 
                     $scope.goTo('/newUser');
                 }
                 else {
-                    	$scope.newPassword = "";
-                    	$scope.confirmPassword = "";
-
+                    $scope.newPassword = "";
+                    $scope.confirmPassword = "";
                     $scope.newUserErrors = [];
+
                     response.data.forEach(function(error) {
                         $scope.newUserErrors.push(error);
                     });

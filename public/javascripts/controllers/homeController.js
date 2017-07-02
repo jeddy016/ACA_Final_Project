@@ -2,6 +2,9 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
 
     $scope.snapshotVisible = true;
     $scope.spotlightVisible = false;
+    $scope.scheduleVisible = false;
+    $scope.inputsVisible = false;
+    $scope.logVisible = false;
 
     $scope.vehicles = [];
     $scope.selectedVehicle = $scope.selectedVehicle;
@@ -26,13 +29,15 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         $scope.overviewVisible = true;
         $scope.snapshotVisible = true;
         $scope.spotlightVisible = true;
-        $scope.toolsVisible = true;
+        $scope.scheduleVisible = true;
+        $scope.logVisible = true;
     };
     $scope.hideAll = function() {
         $scope.overviewVisible = false;
         $scope.snapshotVisible = false;
         $scope.spotlightVisible = false;
-        $scope.toolsVisible = false;
+        $scope.scheduleVisible = false;
+        $scope.logVisible = false;
     };
     $scope.overviewShowHide = function() {
         $scope.overviewVisible == true ? $scope.overviewVisible = false : $scope.overviewVisible = true;
@@ -46,6 +51,16 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
     $scope.spotlightShowHide = function() {
         $scope.spotlightVisible == true ? $scope.spotlightVisible = false : $scope.spotlightVisible = true;
     };
+    $scope.scheduleShowHide = function() {
+            $scope.scheduleVisible == true ? $scope.scheduleVisible = false : $scope.scheduleVisible = true;
+    };
+    $scope.logShowHide = function() {
+                $scope.logVisible == true ? $scope.logVisible = false : $scope.logVisible = true;
+    };
+    $scope.intervalsShowHide= function(event) {
+            event.preventDefault();
+            $scope.inputsVisible = $scope.inputsVisible ? false : true;
+    };
     $scope.odometerShow= function(vehicle) {
         var index = $scope.vehicles.indexOf(vehicle);
         $scope.selectedVehicle.odometerIsVisible = true;
@@ -58,6 +73,7 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
                 $scope.selectedVehicle.currentOdometer = $scope.selectedVehicle.currentOdometer;
             }
         };
+
     $scope.updateOdometer = function(){
         $scope.id = $scope.selectedVehicle.id;
 
@@ -79,9 +95,51 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
             }
         })
     };
+
     $scope.goToEditPage = function(vehicle) {
           var id = $scope.vehicles.indexOf(vehicle);
           $scope.goTo('/editVehicle/' + id);
         };
+
+    //TODO: make this actually work for each vehicle
+    $scope.services = [
+                {
+                id: "Oil Change",
+                milesDue: 3250,
+                milesInterval: 5000,
+                recommendedMiles: 5000,
+                daysDue: 17,
+                daysInterval: 30,
+                recommendedDays: 60
+                },
+                {
+                id: "Change Spark Plugs",
+                milesDue: 5637,
+                milesInterval: 7000,
+                recommendedMiles: 10000,
+                daysDue: 50,
+                daysInterval: 80,
+                recommendedDays: 90
+                },
+                {
+                id: "Change Brake Pads",
+                milesDue: 5,
+                milesInterval: 15000,
+                recommendedMiles: 15000,
+                daysDue: 1,
+                daysInterval: 120,
+                recommendedDays: 90
+                },
+                {
+                id: "Tire Rotation",
+                milesDue: 7500,
+                milesInterval: 10000,
+                recommendedMiles: 10000,
+                daysDue: 34,
+                daysInterval: 120,
+                recommendedDays: 120
+                }
+            ]
+
 
 }])
