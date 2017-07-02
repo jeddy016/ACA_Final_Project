@@ -3,6 +3,8 @@
 </div>
 
 <div class = "container-fluid">
+    <label class="section-label all-control" ng-click="hideAll()"><i class="fa fa-chevron-up"></i>Collapse All </label>
+    <label class="section-label all-control"  ng-click="showAll()"><i class="fa fa-chevron-down"></i>Expand All</label>
 
     <div class="row snapshot-row">
         <div class = "col-md-12 overview">
@@ -10,7 +12,6 @@
             <label class="section-label expand" ng-show="!snapshotVisible" ng-click="snapshotShowHide()"> <i class="fa fa-chevron-down"></i></label>
             <label class="section-label expand" ng-show="snapshotVisible" ng-click="snapshotShowHide()"> <i class="fa fa-chevron-up"></i></label>
         </div>
-
         <div class="col-md-4 glance-column" ng-show="snapshotVisible">
             <p class="detail"><label>Next Vehicle Due for Service:</label> </p>
             <p class="detail"><label>Next Service Due:</label> </p>
@@ -27,14 +28,12 @@
             <p class="detail"><label>Highest Cost to Maintain:</label> </p>
         </div>
     </div>
-
      <div class="row vehicle-detail-container">
          <div class = "col-md-12 overview">
              <label class="section-label">Vehicle Spotlight</label>
              <label class="section-label spotlight-expand" ng-show="!spotlightVisible" ng-click="spotlightShowHide()"> <i class="fa fa-chevron-down"></i></label>
              <label class="section-label spotlight-expand" ng-show="spotlightVisible" ng-click="spotlightShowHide()"> <i class="fa fa-chevron-up"></i></label>
          </div>
-         
          <div class="vehicle-detail-row" ng-show="spotlightVisible">
              <div class = "row select-row">
     
@@ -44,21 +43,20 @@
                         </select>
                     </div>
                 </div>
-    
                 <div class="col-md-9 overview-row">
-                    <div class="col-md-4 info-column" ng-show="overviewVisible">
+                    <div class="col-md-4 info-column">
                         <p class="detail"><label>Make:</label> {{selectedVehicle.make}}</p>
                         <p class="detail"><label>Model:</label> {{selectedVehicle.model}}</p>
                         <p class="detail"><label>Year:</label> {{selectedVehicle.modelYear}}</p>
                         <p class="detail"><label>Engine:</label> {{selectedVehicle.engine}}</p>
                     </div>
-                    <div class="col-md-5 service-column" ng-show="overviewVisible">
+                    <div class="col-md-5 service-column">
                         <p class="detail"><label>Next Service Due:</label> {{selectedVehicle.nextServiceDue}}Replace Spark Plugs</p>
                         <p class="detail"><label>Miles until Due:</label> {{selectedVehicle.milesToService | number}}</p>
                         <p class="detail"><label>Days until Due:</label> {{selectedVehicle.daysToService}}</p>
                         <label><a class="service-nearby-link" ng-click="goTo('/findService')">Find a Shop Nearby</a></label>
                     </div>
-                    <div class="col-md-3 odometerColumn" ng-show="overviewVisible">
+                    <div class="col-md-3 odometerColumn">
                         <h4 class="detail odo-detail" ng-show="!selectedVehicle.odometerIsVisible"><label class="odo-label">Odometer</label> <br>{{selectedVehicle.currentOdometer | number}}</h4>
                         <label>
                             <button class="btn edit-btn odo-update" ng-click = "odometerShow(selectedVehicle)" ng-show="!selectedVehicle.odometerIsVisible">Update</button>
@@ -88,7 +86,6 @@
                     </div>
                 </div>
             </div>
-    
             <div class="row charts-container">
                 <div class="col-md-6 chart1">
                     <canvas id="totalByMonth"></canvas>
@@ -97,10 +94,11 @@
                     <canvas id="totalByService"></canvas>
                 </div>
             </div>
-             
         </div>
     </div>
-    <!--</div>
+
+
+            <!--</div>
                 <div class="col-md-3 buttons-column">
                     <!--<button class="btn edit-btn detail" ng-click="goToEditPage(vehicle)">Edit Vehicle</button><br>-->
                   <!--  <button class="btn log-service-btn detail" ng-click="goTo('/logService')">Log a Service</button><br>

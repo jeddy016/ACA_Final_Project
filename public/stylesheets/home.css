@@ -1,6 +1,7 @@
 .container-fluid {
     height: 100%;
     width: 100%;
+    padding-bottom: 2vh;
     background: #1F1F1F;
 }
 
@@ -20,7 +21,6 @@
 }
 
 .snapshot-row {
-    margin-top: 10vh !important;
     width: 100% !important;
     padding: 0 !important;
     display: table;
@@ -214,7 +214,6 @@ label {
     color: white !important;
 }
 
-
 .chart {
     margin-bottom: 2vh !important;
 }
@@ -251,6 +250,15 @@ label {
 
 .service-nearby-link:hover {
     color: white;
+}
+
+.all-control {
+    float: right;
+    cursor: pointer;
+    margin-top: 9vh;;
+    margin-bottom: 2vh !important;
+    color: white !important;
+    font-size: 20px;
 }
 
 .expand {

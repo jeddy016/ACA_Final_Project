@@ -1,9 +1,8 @@
 angular.module('pitStop').controller('homeController', ['$scope', '$window', '$http', '$route', function($scope, $window, $http, $route) {
 
-    $scope.overviewVisible = true;
     $scope.snapshotVisible = true;
-    $scope.spotlightVisible = true;
-    $scope.toolsVisible = true;
+    $scope.spotlightVisible = false;
+    $scope.toolsVisible = false;
 
     $scope.vehicles = [];
     $scope.selectedVehicle = $scope.selectedVehicle;
@@ -22,6 +21,20 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
 
     $scope.remove = function(item) {
       //TODO: wire me up bro
+    }
+
+    $scope.showAll = function() {
+        $scope.overviewVisible = true;
+        $scope.snapshotVisible = true;
+        $scope.spotlightVisible = true;
+        $scope.toolsVisible = true;
+    }
+
+     $scope.hideAll = function() {
+        $scope.overviewVisible = false;
+        $scope.snapshotVisible = false;
+        $scope.spotlightVisible = false;
+        $scope.toolsVisible = false;
     }
 
     $scope.overviewShowHide = function() {

@@ -6,7 +6,7 @@
 #map {
     position: fixed !important;
     right: 1%;
-    top: 23%;
+    top: 22%;
     height: 500px;
     width: 700px;
     border: 3px solid #00BCD4;
@@ -14,7 +14,7 @@
 
 .places-container {
     position: absolute;
-    top: 18%;
+    top: 12%;
     overflow: auto;
     width: 46vw;
 }
