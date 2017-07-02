@@ -1,7 +1,15 @@
-angular.module('pitStop').controller('findServiceController', ['$scope', '$http', function($scope, $http) {
+angular.module('pitStop').controller('findServiceController', ['$scope', '$http', '$window', function($scope, $http, $window) {
 
 $scope.placeIDs = [];
 $scope.placeDetails = [];
+
+$http({
+    method: 'GET',
+    url: '/getUserLocation'
+}).then(function(response) {
+    console.log(response.data);
+    initMap(response.data);
+})
 
 var map;
 var infowindow;
@@ -11,7 +19,7 @@ var initMap = function(location) {
 
     map = new google.maps.Map(document.getElementById('map'), {
       center: userLocation,
-      zoom: 12
+      zoom: 13
     });
 
     infowindow = new google.maps.InfoWindow();
@@ -27,25 +35,22 @@ var initMap = function(location) {
 
 var callback = function(results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
-
         var getPlaceIds = $scope.$apply(function() {
           results.forEach(function (place) {
               $scope.placeIDs.push({placeId: place.place_id});
           });
         });
-
         $scope.$apply(function(getPlaceIds) {
            getPlaceDetails();
         });
-    }
-}
+    };
+};
 
 var getPlaceDetails = function() {
      var service = new google.maps.places.PlacesService(map);
 
     $scope.placeIDs.forEach(function(id) {
      service.getDetails(id, callback);
-
        function callback(loc, status) {
          if (status == google.maps.places.PlacesServiceStatus.OK) {
              $scope.$apply(function() {
@@ -55,7 +60,6 @@ var getPlaceDetails = function() {
          }
        }
     })
-
 }
 
 function createMarker(place) {
@@ -70,10 +74,4 @@ function createMarker(place) {
       infowindow.open(map, this);
     });
 }
-
-$http.post('https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyB-q9rUaYmRxp0xVXzsdY3EB9CZyGFOI1U')
-    .then(function(response) {
-        var location= {lat: response.data.location.lat, lng: response.data.location.lng};
-        initMap(location);
-    });
 }])

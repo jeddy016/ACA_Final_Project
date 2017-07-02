@@ -1,92 +1,4 @@
-angular.module('pitStop').controller('reportsController', ['$scope', function($scope) {
-
-$scope.vehicles =
-    [{
-        id: 0,
-        nickname: "All Vehicles",
-        totalServices: 20,
-        servicesMissed: 3,
-        totalCostYTD: 3350,
-        avgServiceCost: 167.50,
-        services: []
-    },
-    {
-        id : 1,
-        nickname: "Farm Truck",
-        totalServices: 3,
-        servicesMissed: 0,
-        totalCostYTD: 150,
-        avgServiceCost: 50.00,
-        services: [
-            {
-            id: "Oil Change",
-            totalCostYTD: 200
-            },
-            {
-            id: "Change Spark Plugs",
-            totalCostYTD: 50
-            },
-            {
-            id: "Change Brake Pads",
-            totalCostYTD: 150
-            },
-            {
-            id: "Tire Rotation",
-            totalCostYTD: 30
-            }]
-    },
-    {
-        id : 2,
-        nickname: "Bike",
-        totalServices: 2,
-        servicesMissed: 1,
-        totalCostYTD: 200,
-        avgServiceCost: 100.00,
-        services: [
-            {
-            id: "Oil Change",
-            totalCostYTD: 100
-            },
-            {
-            id: "Change Spark Plugs",
-            totalCostYTD: 75
-            },
-            {
-            id: "Change Brake Pads",
-            totalCostYTD: 150
-            },
-            {
-            id: "New Tires",
-            totalCostYTD: 300
-            }]
-    },
-    {
-        id : 3,
-        nickname: "Kiley",
-        totalServices: 15,
-        servicesMissed: 2,
-        totalCostYTD: 3000,
-        avgServiceCost: 200.00,
-        services: [
-            {
-            id: "Oil Change",
-            totalCostYTD: 250
-            },
-            {
-            id: "Replace Brake Fluid",
-            totalCostYTD: 50
-            },
-            {
-            id: "New Wipers",
-            totalCostYTD: 25
-            },
-            {
-            id: "Tire Rotation",
-            totalCostYTD: 30
-            }]
-    }];
-
-$scope.selectedVehicle = $scope.vehicles[0];
+angular.module('pitStop').controller('chartsController', ['$scope', '$route', function($scope, $route) {
 
 Chart.defaults.global.defaultFontFamily = "Roboto";
 Chart.defaults.global.defaultFontColor = "white";
@@ -106,18 +18,18 @@ var drawTotalByMonthChart = function () {
                 label: 'Total Maintenance Cost',
                 data: [90, 30, 5, 0, 75, 0, 0, 100, 50, 0, 120, 40],
                 backgroundColor: [
-                    'rgba(94, 180, 217, 1)',
-                    'rgba(94, 180, 217, 1)',
-                    'rgba(94, 180, 217, 1)',
-                    'rgba(94, 180, 217, 1)',
-                    'rgba(94, 180, 217, 1)',
-                    'rgba(94, 180, 217, 1)',
-                    'rgba(94, 180, 217, 1)',
-                    'rgba(94, 180, 217, 1)',
-                    'rgba(94, 180, 217, 1)',
-                    'rgba(94, 180, 217, 1)',
-                    'rgba(94, 180, 217, 1)',
-                    'rgba(94, 180, 217, 1)'
+                    '#33c2ff',
+                    '#33c2ff',
+                    '#33c2ff',
+                    '#33c2ff',
+                    '#33c2ff',
+                    '#33c2ff',
+                    '#33c2ff',
+                    '#33c2ff',
+                    '#33c2ff',
+                    '#33c2ff',
+                    '#33c2ff',
+                    '#33c2ff'
                 ]
             }]
         },
@@ -146,9 +58,9 @@ var drawTotalByMonthChart = function () {
                 }]
             },
             title: {
-                display: true,
+                 display: true,
                 text: "Total Maintenance Cost YTD by Month",
-                fontSize: 20,
+                fontSize: 25,
                 fontFamily: "'Roboto', 'sans-serif'",
                 fontColor: 'white'
             },
@@ -167,7 +79,7 @@ else {
     drawTotalByMonthChart();
 }
 
-var totalByCarData = [];
+/*var totalByCarData = [];
 $scope.vehicles.forEach(function(vehicle){
     if(vehicle.id != 0){
         totalByCarData.push(vehicle.totalCostYTD);
@@ -228,51 +140,51 @@ if (typeof totalByVehicleChart != 'undefined') {
 }
 else {
     drawTotalByVehicleChart();
-}
+}*/
+
 
 var serviceData = [];
 var serviceLabels = [];
-
-$scope.selectedVehicle.services.forEach(function(service){
-    serviceData.push(service.totalCostYTD);
-});
-
-$scope.selectedVehicle.services.forEach(function(service){
-    serviceLabels.push(service.id);
-});
-
 
 var ctx3 = document.getElementById("totalByService");
 ctx3.height = 325;
 ctx3.width = 400;
 
-var drawTotalByServiceChart = function() {
-    totalByServiceChart = new Chart(ctx3, {
-    type: "doughnut",
-    data: {
-        labels: serviceLabels,
-        datasets: [{
-            label: 'Total Maintenance Cost',
-            data: serviceData,
-            backgroundColor: [
+data = {
+    datasets: [{
+        data: [100, 50, 30, 150],
+        backgroundColor: [
                 'rgba(251, 161, 0, 0.75)',
                 'rgba(94, 180, 217, 0.75)',
                 'rgba(134, 195, 50, 0.7)',
                 'rgba(220, 9, 9, 0.75)'
-            ],
-            borderColor: [
-                '#ff9a1f',
-                '#33c2ff',
-                '#97ff05',
-                'rgba(255, 10, 10, 1)'
-            ]
-        }]
-    },
+        ],
+        borderColor: [
+            '#ff9a1f',
+            '#33c2ff',
+            '#97ff05',
+            'rgba(255, 10, 10, 1)'
+        ]
+    }],
+    labels: [
+        'Replace Spark Plugs',
+        'Oil Change',
+        'Tire Rotation',
+        'Tune-Up'
+    ]
+
+};
+
+
+var drawTotalByServiceChart = function() {
+    totalByServiceChart = new Chart(ctx3, {
+    type: "doughnut",
+    data: data,
     options: {
         title: {
             display: true,
             text: "Total Maintenance Cost YTD by Service",
-            fontSize: 20,
+            fontSize: 25,
             fontFamily: "'Roboto', 'sans-serif'",
             fontColor: 'white'
         },
@@ -281,7 +193,7 @@ var drawTotalByServiceChart = function() {
             position: 'bottom'
         },
         pieceLabel: {
-                    mode: 'percentage',
+                    mode: 'value',
                     fontSize: 15,
                     fontColor: 'white',
                     fontFamily: "Roboto",
@@ -298,10 +210,11 @@ var drawTotalByServiceChart = function() {
 if (typeof totalByServiceChart != 'undefined') {
          totalByServiceChart.destroy();
          drawTotalByServiceChart();
-    }
-    else {
-        drawTotalByServiceChart();
-    }
+}
+else {
+    drawTotalByServiceChart();
+}
 
 });
+
 }])

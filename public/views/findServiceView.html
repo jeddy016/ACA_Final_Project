@@ -3,9 +3,7 @@
 </div>
 
 <div class="container-fluid">
-
     <div id="map"></div>
-
     <div class="places-container">
         <div class="row places-row">
             <div class="col-md-12 shop" ng-repeat="place in placeDetails">
@@ -15,9 +13,7 @@
                 <p>{{place.formatted_phone_number}}</p>
                 <p class="open" ng-if="place.opening_hours.open_now">OPEN NOW</p>
                 <p class="open" ng-if="!place.opening_hours.open_now">CLOSED</p>
-
             </div>
         </div>
     </div>
-
 </div>

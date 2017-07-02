@@ -34,6 +34,17 @@ angular.module('pitStop').controller('loginController', ['$scope', '$location', 
          })
         .then(function(response) {
             if(response.data == 'success'){
+
+                $http.post('https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyB-q9rUaYmRxp0xVXzsdY3EB9CZyGFOI1U')
+                    .then(function(response) {
+                        $scope.userLocation = response.data.location;
+                        console.log($scope.userLocation);
+                        $http({
+                            method: 'POST',
+                            url: '/setUserLocation',
+                            data: JSON.stringify($scope.userLocation)
+                         }); //TODO: error handling
+                });
                 $scope.goTo('/home');
             }
             else {
@@ -41,16 +52,16 @@ angular.module('pitStop').controller('loginController', ['$scope', '$location', 
                 response.data.forEach(function(error) {
                     $scope.loginErrors.push(error);
                 });
-            }
-        })
-    }
+            };
+        });
+    };
 
     $scope.signUpValidate = function () {
             $scope.newUserData = {
                 email: $scope.newEmail,
                 password: $scope.newPassword,
                 passwordConfirm: $scope.confirmPassword
-            }
+            };
 
             $http({
                 method: 'POST',

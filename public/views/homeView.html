@@ -73,20 +73,18 @@
                 <div class="col-md-3 tools-row">
                     <div class="col-md-12 overview">
                         <label class="section-label">Tools</label>
-                        <label class="section-label tools-expand" ng-show="!toolsVisible" ng-click="toolsShowHide()"> <i class="fa fa-chevron-down"></i></label>
-                        <label class="section-label tools-expand" ng-show="toolsVisible" ng-click="toolsShowHide()"> <i class="fa fa-chevron-up"></i></label>
                     </div>
-                    <div class="col-md-6 tools" ng-show="toolsVisible">
+                    <div class="col-md-6 tools" >
                         <button class="btn edit-btn" ng-click="goToEditPage(selectedVehicle)">Edit Vehicle</button>
                         <button class="btn edit-btn bottom-button-row" ng-click="goTo('/newVehicle')">Add Vehicle</button>
                     </div>
-                    <div class="col-md-6 tools" ng-show="toolsVisible">
+                    <div class="col-md-6 tools" >
                         <button class="btn edit-btn">Log Service</button>
                         <button class="btn edit-btn bottom-button-row">Delete Vehicle</button>
                     </div>
                 </div>
             </div>
-            <div class="row charts-container">
+            <div class="row charts-container" ng-controller="chartsController">
                 <div class="col-md-6 chart1">
                     <canvas id="totalByMonth"></canvas>
                 </div>

@@ -1,4 +1,6 @@
-angular.module('pitStop').controller('indexController', ['$scope', '$location', function($scope, $location) {
+angular.module('pitStop').controller('indexController', ['$scope', '$rootScope', '$location', function($scope, $rootScope, $location) {
+
+    $rootScope.userLocation = null;
 
     $scope.isVisible= false;
     $scope.menuVisible= false;
@@ -22,5 +24,4 @@ angular.module('pitStop').controller('indexController', ['$scope', '$location', 
     $scope.goTo = function(path) {
         $location.url(path);
     };
-
 }])
