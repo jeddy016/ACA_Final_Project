@@ -48,6 +48,11 @@
     margin-top: 1vh !important;
 }
 
+log-service-container {
+    background: #00BCD4;
+    margin-left: 5vw;
+}
+
 .vehicle-detail-row {
     padding: 1vw !important;
 }
@@ -98,6 +103,7 @@
 }
 
 .overview {
+    height: 33px !important;
     text-align: left;
     padding: 0 !important;
     background-color: #00BCD4 !important;
@@ -181,6 +187,8 @@ label {
 }
 
 .odometer-input {
+    margin-bottom: 2vh !important;
+    margin-top: -2vh !important;
     width: 8vw;
     font-size: 20px;
     text-align: right;
@@ -214,7 +222,13 @@ label {
 }
 
 .odo-submit {
-    margin-top: 5vh;
+    margin-top: 0 !important;
+    margin-bottom: 1vh !important;
+    width: 6vw !important;
+}
+
+.odo-input {
+    margin-bottom: 2vh !important;
 }
 
 .log-service-btn,
@@ -374,8 +388,8 @@ label {
     margin-left: 7.5vw;
 }
 
-.log-row {
-    padding-left: 2vw;
+#log-service {
+    margin-left: 3.5vw !important;
 }
 
 .log-input {

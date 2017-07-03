@@ -145,52 +145,51 @@
                  </div>
              </div>
 
-             <div class="row log-service-row">
-                 <div class = "col-md-12 overview">
-                     <label class="section-label">Log Completed Service</label>
-                     <label class="section-label expand" ng-show="!logVisible" ng-click="logShowHide()"> <i class="fa fa-chevron-down"></i></label>
-                     <label class="section-label expand" ng-show="logVisible" ng-click="logShowHide()"> <i class="fa fa-chevron-up"></i></label>
-                 </div>
-                 <div class="col-md-12">
-                     <div class="log-row">
-                         <form id= "log-service" ng-submit="" ng-show="logVisible">
-                             <div class="col-md-6">
-                                 <label class ="schedule-label log-label">Service</label><br>
-                                 <select class="log-input" required>
-                                     <option ng-repeat="service in services">{{service.id}}</option>
-                                 </select>
-                             </div>
-
-                             <div class="col-md-6">
-                                 <label class ="schedule-label log-label">Shop</label><br>
-                                 <input class="log-input" type="text" />
-                             </div>
-
-                             <div class="col-md-6">
-                                 <label class ="schedule-label log-label">Total Cost</label><br>
-                                 <input class="log-input" type="text" min="1" step="any" required />
-                             </div>
-
-                             <div class="col-md-6">
-                                 <label class ="schedule-label log-label">Labor Cost</label><br>
-                                 <input type="text" min="1" step="any" class="log-input" />
-                             </div>
-
-                             <div class="col-md-6">
-                                 <label class ="schedule-label log-label">Parts Cost</label><br>
-                                 <input type="text" min="1" step="any" class="log-input"  />
-                             </div>
-
-                             <div class="col-md-6">
-                                 <label class ="schedule-label log-label">Odometer</label><br>
-                                 <input class="log-input" type="text" required />
-                             </div>
-                             <div class="col-md-3 log-service-save">
-                                 <button type="submit" class= "btn edit-btn" form="log-service">Save</button>
-                             </div>
-                         </form>
+             <div class="row log-service-container">
+                 <div class="col-md-12 log-service-row">
+                     <div class = "col-md-12 overview">
+                         <label class="section-label">Log Completed Service</label>
+                         <label class="section-label expand" ng-show="!logVisible" ng-click="logShowHide()"> <i class="fa fa-chevron-down"></i></label>
+                         <label class="section-label expand" ng-show="logVisible" ng-click="logShowHide()"> <i class="fa fa-chevron-up"></i></label>
                      </div>
+                     <form id= "log-service" ng-submit="" ng-show="logVisible">
+                         <div class="col-md-6">
+                             <label class ="schedule-label log-label">Service</label><br>
+                             <select class="log-input" required>
+                                 <option ng-repeat="service in services">{{service.id}}</option>
+                             </select>
+                         </div>
+
+                         <div class="col-md-6">
+                             <label class ="schedule-label log-label">Shop</label><br>
+                             <input class="log-input" type="text" />
+                         </div>
+
+                         <div class="col-md-6">
+                             <label class ="schedule-label log-label">Total Cost</label><br>
+                             <input class="log-input" type="text" min="1" step="any" required />
+                         </div>
+
+                         <div class="col-md-6">
+                             <label class ="schedule-label log-label">Labor Cost</label><br>
+                             <input type="text" min="1" step="any" class="log-input" />
+                         </div>
+
+                         <div class="col-md-6">
+                             <label class ="schedule-label log-label">Parts Cost</label><br>
+                             <input type="text" min="1" step="any" class="log-input"  />
+                         </div>
+
+                         <div class="col-md-6">
+                             <label class ="schedule-label log-label">Odometer</label><br>
+                             <input class="log-input" type="text" required />
+                         </div>
+                         <div class="col-md-3 log-service-save">
+                             <button type="submit" class= "btn edit-btn" form="log-service">Save</button>
+                         </div>
+                     </form>
                  </div>
+
              </div>
         </div>
     </div>
