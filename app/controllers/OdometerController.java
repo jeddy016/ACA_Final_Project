@@ -40,7 +40,7 @@ public class OdometerController extends Controller
                 .setParameter("id", vehicleID)
                 .getSingleResult();
 
-        List<ServiceDetail> serviceList = jpaApi.em().createQuery("SELECT s FROM Service s WHERE vehicleID = :id")
+        List<Service> serviceList = jpaApi.em().createQuery("SELECT s FROM Service s WHERE vehicleID = :id")
                 .setParameter("id", vehicleID)
                 .getResultList();
 
@@ -48,12 +48,14 @@ public class OdometerController extends Controller
         int newReading = request.findPath("reading").asInt();
         int difference = newReading - currentReading;
 
-        for(ServiceDetail service : serviceList)
+        for(Service service : serviceList)
         {
-            int newMilesTilDue = service.updateMilesTilDue(service, difference);
-            jpaApi.em().createQuery("UPDATE Service s SET s.milesTilDue = :newMilesTilDue WHERE vehicle_id = :id")
+            int serviceID = service.getServiceID();
+            int newMilesTilDue = service.getMilesTilDue() - difference;
+
+            jpaApi.em().createQuery("UPDATE Service s SET s.milesTilDue = :newMilesTilDue WHERE service_id = :id")
                     .setParameter("newMilesTilDue", newMilesTilDue)
-                    .setParameter("id", vehicleID)
+                    .setParameter("id", serviceID)
                     .executeUpdate();
         }
 
@@ -62,10 +64,11 @@ public class OdometerController extends Controller
                 .setParameter("id", vehicleID)
                 .executeUpdate();
 
+//TODO:send back an error if the new odometer reading is less than the old one
 
         if(valid)
         {
-            return ok(Json.toJson("success"));
+            return ok(Json.toJson(difference));
         }
         else
         {

@@ -16,6 +16,9 @@ public class ServiceType
     @Column(name="type_name")
     private String typeName;
 
+    @Column(name="rec_miles_interval")
+    private int recMilesInterval;
+
     public int getServiceTypeID()
     {
         return serviceTypeID;
@@ -34,5 +37,15 @@ public class ServiceType
     public void setTypeName(String typeName)
     {
         this.typeName = typeName;
+    }
+
+    public int getRecommendedMilesinterval()
+    {
+        return recMilesInterval;
+    }
+
+    public void setRecommendedMilesinterval(int recommendedMilesinterval)
+    {
+        this.recMilesInterval = recommendedMilesinterval;
     }
 }

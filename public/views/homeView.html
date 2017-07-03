@@ -49,13 +49,11 @@
                         <p class="detail"><label>Make:</label> {{selectedVehicle.make}}</p>
                         <p class="detail"><label>Model:</label> {{selectedVehicle.model}}</p>
                         <p class="detail"><label>Year:</label> {{selectedVehicle.modelYear}}</p>
-                        <p class="detail"><label>Engine:</label> {{selectedVehicle.engine}}</p>
                     </div>
                     <div class="col-md-5 service-column">
+                        <p class="detail"><label>Engine:</label> {{selectedVehicle.engine}}</p>
                         <p class="detail"><label>Next Service Due:</label> {{vehicleServices[0].name}}</p>
                         <p class="detail"><label>Miles until Due:</label> {{vehicleServices[0].milesTilDue | number}}</p>
-                        <p class="detail"><label>Days until Due:</label> {{vehicleServices[0].daysTilDue}}</p>
-                        <label><a class="service-nearby-link" ng-click="goTo('/findService')">Find a Shop Nearby</a></label>
                     </div>
                     <div class="col-md-3 odometerColumn">
                         <div class = "col-md-12 overview">
@@ -84,8 +82,8 @@
                         <button class="btn edit-btn bottom-button-row" ng-click="goTo('/newVehicle')">Add Vehicle</button>
                     </div>
                     <div class="col-md-6 tools" >
-                        <button class="btn edit-btn">Log Service</button>
-                        <button class="btn edit-btn bottom-button-row">Delete Vehicle</button>
+                        <button class="btn edit-btn">Delete Vehicle</button>
+                        <button class="btn edit-btn bottom-button-row" ng-click="goTo('/findService')">Find Service</button>
                     </div>
                 </div>
             </div>
@@ -105,13 +103,10 @@
                          <label class="schedule-label">Miles til Due</label>
                      </div>
                      <div class="col-md-2 center">
-                         <label class="schedule-label">Mile Interval</label><br>
+                         <label class="schedule-label">Mileage Interval</label><br>
                      </div>
                      <div class="col-md-2 center">
-                         <label class="schedule-label">Days til Due</label>
-                     </div>
-                     <div class="col-md-2 center">
-                         <label class="schedule-label">Day Interval</label><br>
+                         <label class="schedule-label">Rec. Mileage Interval</label><br>
                      </div>
                  </div>
                  <hr class="schedule-hr">
@@ -125,15 +120,11 @@
                              <label class="schedule-data">{{ service.milesTilDue | number }}</label>
                          </div>
                          <div class="col-md-2 data-col">
-                             <label class="schedule-data" ng-show="!inputsVisible">{{ service.mileageInterval | number }}</label>
+                             <label class="schedule-data" ng-show="!inputsVisible">{{ service.milesInterval | number }}</label>
                              <input type="text" class ="interval-input" ng-show="inputsVisible" placeholder=" {{service.milesInterval}}" />
                          </div>
                          <div class="col-md-2 data-col">
-                             <label class="schedule-data">{{ service.daysTilDue | number }}</label>
-                         </div>
-                         <div class="col-md-2 data-col">
-                             <label class="schedule-data" ng-show="!inputsVisible">{{ service.dayInterval | number }}</label>
-                             <input type="text" class ="interval-input" ng-show="inputsVisible" placeholder=" {{service.daysInterval}}" />
+                             <label class="schedule-data">{{ service.recMilesInterval | number }}</label>
                          </div>
                      </div>
                  </div>
@@ -156,7 +147,7 @@
                          <div class="col-md-6">
                              <label class ="schedule-label log-label">Service</label><br>
                              <select class="log-input" required>
-                                 <option ng-repeat="service in services">{{service.id}}</option>
+                                 <option ng-repeat="service in vehicleServices">{{service.name}}</option>
                              </select>
                          </div>
 

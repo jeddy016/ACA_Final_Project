@@ -26,7 +26,8 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
             params: {"vehicleID": $scope.selectedVehicle.id}
         })
         .then(function(response) {
-
+            $scope.vehicleServices = response.data;
+            console.log(response.data);
         });
     });
 
@@ -38,7 +39,6 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         })
         .then(function(response) {
             $scope.vehicleServices = response.data;
-            console.log($scope.vehicleServices);
         });
     };
 
@@ -107,20 +107,25 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         var data= {
             vehicleID : $scope.id,
             reading : $scope.selectedVehicle.currentOdometer
-        }
+        };
         $http({
             method: 'POST',
             url: '/updateOdometer',
             data: JSON.stringify(data)
         })
         .then(function(response) {
-            if(response.data == 'success'){
-                console.log("odometer updated");
-            }
+           //if(response.data == 'success'){
+                $scope.vehicleServices.forEach(function(service){
+                    service.milesTilDue -= response.data;
+                })
+
+
+               // $scope.getServices();
+          /*  }
             else {
-                alert("Error updating odometer. " /*+ display whatever error comes back from DB*/);
-            }
-        })
+                alert("Error updating odometer. " /*+ display whatever error comes back from DB);
+            };*/
+        });
     };
 
     $scope.goToEditPage = function(vehicle) {

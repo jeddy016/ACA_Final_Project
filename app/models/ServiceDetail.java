@@ -16,19 +16,10 @@ public class ServiceDetail
     private String name;
 
     @Column
-    private int dayInterval;
-
-    @Column
-    private int mileageInterval;
-
-    @Column
-    private int recDaysInterval;
+    private int milesInterval;
 
     @Column
     private int recMilesInterval;
-
-    @Column
-    private int daysTilDue;
 
     @Column
     private int milesTilDue;
@@ -54,34 +45,14 @@ public class ServiceDetail
         this.name = name;
     }
 
-    public int getDayInterval()
+    public int getMilesInterval()
     {
-        return dayInterval;
+        return milesInterval;
     }
 
-    public void setDayInterval(int dayInterval)
+    public void setMilesInterval(int mileageInterval)
     {
-        this.dayInterval = dayInterval;
-    }
-
-    public int getMileageInterval()
-    {
-        return mileageInterval;
-    }
-
-    public void setMileageInterval(int mileageInterval)
-    {
-        this.mileageInterval = mileageInterval;
-    }
-
-    public int getRecDaysInterval()
-    {
-        return recDaysInterval;
-    }
-
-    public void setRecDaysInterval(int recDaysInterval)
-    {
-        this.recDaysInterval = recDaysInterval;
+        this.milesInterval = mileageInterval;
     }
 
     public int getRecMilesInterval()
@@ -94,16 +65,6 @@ public class ServiceDetail
         this.recMilesInterval = recMilesInterval;
     }
 
-    public int getDaysTilDue()
-    {
-        return daysTilDue;
-    }
-
-    public void setDaysTilDue(int daysTilDue)
-    {
-        this.daysTilDue = daysTilDue;
-    }
-
     public int getMilesTilDue()
     {
         return milesTilDue;
@@ -114,9 +75,4 @@ public class ServiceDetail
         this.milesTilDue = milesTilDue;
     }
 
-    public int updateMilesTilDue (ServiceDetail service, int difference)
-    {
-        int currentValue = service.getMilesTilDue();
-        return currentValue - difference;
-    }
 }

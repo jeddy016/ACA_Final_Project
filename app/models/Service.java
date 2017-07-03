@@ -20,23 +20,8 @@ public class Service
     @Column(name = "vehicle_id")
     private int vehicleID;
 
-    @Column(name = "day_interval_id")
-    private int dayIntervalID;
-
-    @Column(name = "miles_interval_id")
+    @Column(name = "mileage_interval_id")
     private int milesIntervalID;
-
-    @Column(name = "service_name")
-    private String name;
-
-    @Column(name = "rec_days_interval")
-    private int recommendedDaysInterval;
-
-    @Column(name = "rec_miles_interval")
-    private int recommendedMilesInterval;
-
-    @Column(name = "days_til_due")
-    private int daysTilDue;
 
     @Column(name = "miles_til_due")
     private int milesTilDue;
@@ -61,16 +46,6 @@ public class Service
         this.vehicleID = vehicleID;
     }
 
-    public int getDayIntervalID()
-    {
-        return dayIntervalID;
-    }
-
-    public void setDayIntervalID(int dayIntervalID)
-    {
-        this.dayIntervalID = dayIntervalID;
-    }
-
     public int getMilesIntervalID()
     {
         return milesIntervalID;
@@ -79,46 +54,6 @@ public class Service
     public void setMilesIntervalID(int milesIntervalID)
     {
         this.milesIntervalID = milesIntervalID;
-    }
-
-    public String getName()
-    {
-        return name;
-    }
-
-    public void setName(String name)
-    {
-        this.name = name;
-    }
-
-    public int getRecommendedDaysInterval()
-    {
-        return recommendedDaysInterval;
-    }
-
-    public void setRecommendedDaysInterval(int recommendedDaysInterval)
-    {
-        this.recommendedDaysInterval = recommendedDaysInterval;
-    }
-
-    public int getRecommendedMilesInterval()
-    {
-        return recommendedMilesInterval;
-    }
-
-    public void setRecommendedMilesInterval(int recommendedMilesInterval)
-    {
-        this.recommendedMilesInterval = recommendedMilesInterval;
-    }
-
-    public int getDaysTilDue()
-    {
-        return daysTilDue;
-    }
-
-    public void setDaysTilDue(int daysTilDue)
-    {
-        this.daysTilDue = daysTilDue;
     }
 
     public int getMilesTilDue()
