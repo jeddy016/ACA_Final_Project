@@ -87,7 +87,7 @@ log-service-container {
 }
 
 .odometerColumn {
-    height: 150px;
+    height: 155px;
     padding: 0 0 1vh 0 !important;
     text-align: center;
     margin-top: -7vh !important;
@@ -110,13 +110,13 @@ log-service-container {
 }
 
 .tools-row {
-    height: 150px;
+    height: 150px !important;
     margin: -4vh 0 3vh 0;
     float: right;
     padding: 0 !important;
     display: table;
     height: auto;
-    border: 1px solid white;
+    border: 1px solid #00BCD4;
     color: #00BCD4;
 }
 
