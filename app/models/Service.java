@@ -5,8 +5,8 @@ package models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Service_Event")
-public class ServiceEvent
+@Table(name = "Service")
+public class Service
 {
     public static final int MAX_LENGTH_SERVICENAME = 80;
     public static final int MAX_LENGTH_MILES_INT = 7;
@@ -34,6 +34,12 @@ public class ServiceEvent
 
     @Column(name = "rec_miles_interval")
     private int recommendedMilesInterval;
+
+    @Column(name = "days_til_due")
+    private int daysTilDue;
+
+    @Column(name = "miles_til_due")
+    private int milesTilDue;
 
     public int getServiceID()
     {
@@ -103,5 +109,25 @@ public class ServiceEvent
     public void setRecommendedMilesInterval(int recommendedMilesInterval)
     {
         this.recommendedMilesInterval = recommendedMilesInterval;
+    }
+
+    public int getDaysTilDue()
+    {
+        return daysTilDue;
+    }
+
+    public void setDaysTilDue(int daysTilDue)
+    {
+        this.daysTilDue = daysTilDue;
+    }
+
+    public int getMilesTilDue()
+    {
+        return milesTilDue;
+    }
+
+    public void setMilesTilDue(int milesTilDue)
+    {
+        this.milesTilDue = milesTilDue;
     }
 }

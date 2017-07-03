@@ -2,8 +2,7 @@ package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import models.Vehicle;
-import models.VehicleList;
-import models.VehicleModel;
+import models.VehicleDetail;
 import play.Logger;
 import play.db.jpa.JPAApi;
 import play.db.jpa.Transactional;
@@ -30,13 +29,13 @@ public class VehicleController extends Controller
     {
         int userId = Integer.parseInt(session().get("userId"));
 
-        List<VehicleList> vehicles = jpaApi.em().createNativeQuery("SELECT v.vehicle_id as id, v.vehicle_nickname as nickname, v.next_service_due as nextService, v.current_odometer_reading as currentOdometer, v.engine as engine, v.model_year as modelYear, " +
+        List<VehicleDetail> vehicles = jpaApi.em().createNativeQuery("SELECT v.vehicle_id as id, v.vehicle_nickname as nickname, v.next_service_due as nextService, v.current_odometer_reading as currentOdometer, v.engine as engine, v.model_year as modelYear, " +
                 "mo.vehicle_model_name as model, ma.vehicle_make_name as make " +
                 "FROM vehicle v " +
                 "JOIN vehicle_model mo ON v.vehicle_model_id = mo.vehicle_model_id " +
                 "JOIN vehicle_make ma ON mo.vehicle_make_id = ma.vehicle_make_id "  +
                 "WHERE user_id = :id " +
-                "ORDER BY v.vehicle_nickname", VehicleList.class)
+                "ORDER BY v.vehicle_nickname", VehicleDetail.class)
                 .setParameter("id", userId)
                 .getResultList();
 
@@ -76,36 +75,6 @@ public class VehicleController extends Controller
             Logger.debug(vehicle.toString());
 
             jpaApi.em().persist(vehicle);
-            return ok(Json.toJson("success"));
-        }
-        else
-        {
-            return ok(Json.toJson(errorList));
-        }
-    }
-
-    @Transactional
-    @BodyParser.Of(BodyParser.Json.class)
-    public Result updateOdometer()
-    {
-        boolean valid = true;
-        List<String> errorList = new ArrayList<>();
-
-        JsonNode request = request().body().asJson();
-
-        int vehicleID = request.findPath("vehicleID").asInt();
-        int reading = request.findPath("reading").asInt();
-
-        Logger.debug(vehicleID + "");
-        Logger.debug(reading + "");
-
-        jpaApi.em().createQuery("UPDATE Vehicle v SET v.currentOdometer = :reading WHERE vehicle_id = :id")
-                .setParameter("reading", reading)
-                .setParameter("id", vehicleID)
-                .executeUpdate();
-
-        if(valid)
-        {
             return ok(Json.toJson("success"));
         }
         else

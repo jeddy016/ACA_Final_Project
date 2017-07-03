@@ -12,7 +12,9 @@ POST    /addUser                    controllers.SignUpController.addUser
 #Vehicle
 GET     /getVehicles                controllers.VehicleController.getVehicles
 POST    /addVehicle                 controllers.VehicleController.addVehicle
-POST    /updateOdometer             controllers.VehicleController.updateOdometer
+
+#Odometer
+POST    /updateOdometer             controllers.OdometerController.updateOdometer
 
 #Make
 GET     /getMakes                   controllers.MakeController.getMakes
@@ -20,8 +22,9 @@ GET     /getMakes                   controllers.MakeController.getMakes
 #Model
 GET     /getModels                  controllers.ModelController.getModels
 
-#Service Types
-GET     /getServiceTypes            controllers.ServiceTypeController.getServiceTypes
+#Service
+GET     /getServiceTypes            controllers.ServiceController.getServiceTypes
+GET     /getServices                controllers.ServiceController.getServices
 
 #User Location
 POST    /setUserLocation            controllers.LocationController.setUserLocation
