@@ -1,7 +1,7 @@
 angular.module('pitStop').controller('homeController', ['$scope', '$window', '$http', '$route', '$rootScope', function($scope, $window, $http, $route, $rootScope) {
 
     $scope.snapshotVisible = true;
-    $scope.spotlightVisible = false;
+    $scope.spotlightVisible = true;
     $scope.scheduleVisible = false;
     $scope.inputsVisible = false;
     $scope.logVisible = false;

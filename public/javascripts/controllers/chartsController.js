@@ -7,8 +7,8 @@ Chart.defaults.global.defaultFontColor = "white";
 $scope.$watch('selectedVehicle', function() {
 
 var ctx = document.getElementById("totalByMonth");
-ctx.height= 550;
-ctx.width= 800;
+ctx.height= 400;
+ctx.width= 650;
 var drawTotalByMonthChart = function () {
     var totalByMonthChart = new Chart(ctx, {
         type: 'bar',
@@ -147,8 +147,8 @@ var serviceData = [];
 var serviceLabels = [];
 
 var ctx3 = document.getElementById("totalByService");
-ctx3.height = 325;
-ctx3.width = 400;
+ctx3.height = 175;
+ctx3.width = 250;
 
 data = {
     datasets: [{

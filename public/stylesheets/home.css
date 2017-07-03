@@ -25,24 +25,27 @@
     padding: 0 !important;
     display: table;
     height: auto;
-    border: 1px solid white;
     color: #00BCD4;
 }
 
-.vehicle-detail-container, .service-schedule-row, .log-service-row {
+.vehicle-detail-container, .service-schedule-row, .log-service-row, .odometerColumn, .tools-row, .snapshot-row {
     margin-top: 3vh !important;
-    border: 1px solid white;
+    border: 1px solid #00BCD4;
 }
 
 .service-schedule-row {
     float: left;
     width: 64% !important;
+    margin-bottom: 2vh !important;
+    margin-top: 1vh !important;
 }
 
 .log-service-row {
+    padding: 0 !important;
     width: 34% !important;
     float: right;
-    margin-bottom: 1vh;
+    margin-bottom: 2vh !important;
+    margin-top: 1vh !important;
 }
 
 .vehicle-detail-row {
@@ -78,6 +81,13 @@
     font-weight: bold;
 }
 
+.odometerColumn {
+    height: 150px;
+    padding: 0 0 1vh 0 !important;
+    text-align: center;
+    margin-top: -7vh !important;
+}
+
 .overview-row {
     width: 70% !important;
     margin-top: 3vh;
@@ -88,12 +98,14 @@
 }
 
 .overview {
+    text-align: left;
     padding: 0 !important;
     background-color: #00BCD4 !important;
 }
 
 .tools-row {
-    margin: 1vh 0 3vh 0;
+    height: 150px;
+    margin: -4vh 0 3vh 0;
     float: right;
     padding: 0 !important;
     display: table;
@@ -121,7 +133,7 @@
 }
 
 .info-column {
-    padding-top: 1%;
+
 }
 
 .glance-column {
@@ -129,22 +141,20 @@
     padding-left: 3vw !important;
 }
 
-.odometerColumn {
-    padding-top: 1vh;
-    text-align: center;
-}
-
 .service-column {
-    padding-top: 1%;
-}
 
-.odo-detail {
-    font-size: 30px !important;
 }
 
 .detail {
     font-size: 17px;
     margin: 0 !important;
+}
+
+.odo-detail {
+    color: white !important;
+    margin-top: 6vh !important;
+    margin-bottom: 0 !important;
+    font-size: 30px !important;
 }
 
 .update,
@@ -171,23 +181,10 @@ label {
 }
 
 .odometer-input {
-    margin-top: .9vh;
     width: 8vw;
     font-size: 20px;
     text-align: right;
     color: black !important;
-}
-
-#odometer-form {
-    margin-top: -4.5vh;
-}
-
-.odo-submit {
-    width: 5vw;
-    margin-top: 1vh;
-    background-color: #00BCD4;
-    color: white !important;
-    font-size: 15px;
 }
 
 .odo-submit:hover,
@@ -211,7 +208,13 @@ label {
 }
 
 .odo-update {
+    margin-top: 2vh !important;
+    margin-bottom: 1vh !important;
     width: 6vw !important;
+}
+
+.odo-submit {
+    margin-top: 5vh;
 }
 
 .log-service-btn,
@@ -304,7 +307,7 @@ label {
 }
 
 .charts-container {
-    margin-top: 3vh !important;
+    margin-top: 1vh !important;
 }
 
 .chart1 {
@@ -356,7 +359,7 @@ label {
 
 .interval-btn {
     float: right;
-    margin-top: -3.6vh;
+    margin: 1vh 0;
 }
 
 .interval-input {
@@ -376,6 +379,7 @@ label {
 
 .log-input {
     width: 10vw;
+    height: 3vh;
 }
 
 .log-label {
