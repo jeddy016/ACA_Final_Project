@@ -28,7 +28,7 @@
     color: #00BCD4;
 }
 
-.vehicle-detail-container, .service-schedule-row, .log-service-row, .odometerColumn, .tools-row, .snapshot-row {
+.vehicle-detail-container, .service-schedule-row, .log-service-row, .odometerColumn, .snapshot-row, .charts-container {
     margin-top: 3vh !important;
     border: 1px solid #00BCD4;
 }
@@ -307,7 +307,8 @@ label {
 }
 
 .charts-container {
-    margin-top: 1vh !important;
+    padding: 0 !important;
+    margin-top: 3vh !important;
 }
 
 .chart1 {
@@ -385,4 +386,15 @@ label {
 .log-label {
     margin-top: 2vh;
     color: #00BCD4;
+}
+
+.chart1, .chart2 {
+    margin-top: 2vh !important;
+    margin-bottom: 3vh !important;
+}
+
+.overview {
+    text-align: left;
+    padding: 0 !important;
+    background-color: #00BCD4 !important;
 }

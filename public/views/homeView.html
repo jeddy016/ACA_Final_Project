@@ -192,126 +192,20 @@
                      </div>
                  </div>
              </div>
-
-            <!--<div class="row charts-container" ng-controller="chartsController">
-                <div class="col-md-6 chart1">
-                    <canvas id="totalByMonth"></canvas>
-                </div>
-                <div class="col-md-5 chart2">
-                    <canvas id="totalByService"></canvas>
-                </div>
-            </div> -->
         </div>
     </div>
 
-   <!-- <div class="row service-schedule-row">
-        <div class = "col-md-12 overview">
-            <label class="section-label">Maintenance Schedule</label>
-            <label class="section-label expand" ng-show="!scheduleVisible" ng-click="scheduleShowHide()"> <i class="fa fa-chevron-down"></i></label>
-            <label class="section-label expand" ng-show="scheduleVisible" ng-click="scheduleShowHide()"> <i class="fa fa-chevron-up"></i></label>
+    <div class="row charts-container" ng-controller="chartsController">
+        <div class = "col-md-12 overview charts">
+            <label class="section-label">Charts</label>
+            <label class="section-label expand" ng-show="!chartsVisible" ng-click="chartsShowHide()"> <i class="fa fa-chevron-down"></i></label>
+            <label class="section-label expand" ng-show="chartsVisible" ng-click="chartsShowHide()"> <i class="fa fa-chevron-up"></i></label>
         </div>
-        <div class="col-md-12 schedule-dropdown" ng-show="scheduleVisible">
-            <div class="col-md-12 dropdown-col">
-                <select class="form-control vehicle-dropdown" ng-model="selectedVehicle" ng-options="vehicle.nickname for vehicle in vehicles">
-                </select>
-                <button class="btn edit-btn interval-btn" ng-show="!inputsVisible" ng-click="intervalsShowHide($event)">Edit Intervals</button>
-                <button class="btn edit-btn interval-btn" ng-show="inputsVisible" ng-click="intervalsShowHide($event)">Save Changes</button>
-            </div>
+        <div class="col-md-6 chart1" ng-show="chartsVisible">
+            <canvas id="totalByMonth" ng-show="chartsVisible"></canvas>
         </div>
-
-        <div class = "row  schedule-row" ng-show="scheduleVisible">
-            <div class="col-md-4">
-                <label class="schedule-label">Service</label>
-            </div>
-            <div class="col-md-2 center">
-                <label class="schedule-label">Miles til Due</label>
-            </div>
-            <div class="col-md-2 center">
-                <label class="schedule-label">Mile Interval</label><br>
-            </div>
-            <div class="col-md-2 center">
-                <label class="schedule-label">Days til Due</label>
-            </div>
-            <div class="col-md-2 center">
-                <label class="schedule-label">Day Interval</label><br>
-            </div>
-        </div>
-        <hr class="schedule-hr">
-
-        <div class="services-list" ng-repeat="service in services" ng-show="scheduleVisible">
-            <div class = "row">
-                <div class="col-md-4">
-                    <label class="service-label schedule-data">{{ service.id }}</label>
-                </div>
-                <div class="col-md-2 data-col">
-                    <label class="schedule-data">{{ service.milesDue | number }}</label>
-                </div>
-                <div class="col-md-2 data-col">
-                    <label class="schedule-data" ng-show="!inputsVisible">{{ service.milesInterval | number }}</label>
-                    <input type="text" class ="interval-input" ng-show="inputsVisible" placeholder=" {{service.milesInterval}}" />
-                </div>
-                <div class="col-md-2 data-col">
-                    <label class="schedule-data">{{ service.daysDue | number }}</label>
-                </div>
-                <div class="col-md-2 data-col">
-                    <label class="schedule-data" ng-show="!inputsVisible">{{ service.daysInterval | number }}</label>
-                    <input type="text" class ="interval-input" ng-show="inputsVisible" placeholder=" {{service.daysInterval}}" />
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row log-service-row">
-        <div class = "col-md-12 overview">
-            <label class="section-label">Log Completed Service</label>
-            <label class="section-label expand" ng-show="!logVisible" ng-click="logShowHide()"> <i class="fa fa-chevron-down"></i></label>
-            <label class="section-label expand" ng-show="logVisible" ng-click="logShowHide()"> <i class="fa fa-chevron-up"></i></label>
-        </div>
-        <div class="col-md-12 schedule-dropdown" ng-show="logVisible">
-            <div class="col-md-9 dropdown-col">
-                <select class="form-control vehicle-dropdown" ng-model="selectedVehicle" ng-options="vehicle.nickname for vehicle in vehicles">
-                </select>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="log-row">
-            <form id= "log-service" ng-submit="" ng-show="logVisible">
-                <div class="col-md-6">
-                    <label class ="schedule-label log-label">Service</label><br>
-                    <select class="log-input" required>
-                        <option ng-repeat="service in services">{{service.id}}</option>
-                    </select>
-                </div>
-
-                <div class="col-md-6">
-                    <label class ="schedule-label log-label">Shop</label><br>
-                    <input class="log-input" type="text" />
-                </div>
-
-                <div class="col-md-6">
-                    <label class ="schedule-label log-label">Total Cost</label><br>
-                    <input class="log-input" type="text" min="1" step="any" required />
-                </div>
-
-                <div class="col-md-6">
-                    <label class ="schedule-label log-label">Labor Cost</label><br>
-                    <input type="text" min="1" step="any" class="log-input" />
-                </div>
-
-                <div class="col-md-6">
-                    <label class ="schedule-label log-label">Parts Cost</label><br>
-                    <input type="text" min="1" step="any" class="log-input"  />
-                </div>
-
-                <div class="col-md-6">
-                    <label class ="schedule-label log-label">Odometer</label><br>
-                    <input class="log-input" type="text" required />
-                </div>
-                <div class="col-md-3 log-service-save">
-                    <button type="submit" class= "btn edit-btn" form="log-service">Save</button>
-                </div>
-            </form>
-            </div>
+        <div class="col-md-5 chart2" ng-show="chartsVisible">
+            <canvas id="totalByService" ng-show="chartsVisible"></canvas>
         </div>
     </div>
 

@@ -5,6 +5,7 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
     $scope.scheduleVisible = false;
     $scope.inputsVisible = false;
     $scope.logVisible = false;
+    $scope.chartsVisible = false;
 
     $scope.vehicles = [];
     $scope.selectedVehicle = $scope.selectedVehicle;
@@ -31,6 +32,7 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         $scope.spotlightVisible = true;
         $scope.scheduleVisible = true;
         $scope.logVisible = true;
+        $scope.chartsVisible = true;
     };
     $scope.hideAll = function() {
         $scope.overviewVisible = false;
@@ -38,6 +40,7 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         $scope.spotlightVisible = false;
         $scope.scheduleVisible = false;
         $scope.logVisible = false;
+        $scope.chartsVisible = false;
     };
     $scope.overviewShowHide = function() {
         $scope.overviewVisible == true ? $scope.overviewVisible = false : $scope.overviewVisible = true;
@@ -52,10 +55,10 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         $scope.spotlightVisible == true ? $scope.spotlightVisible = false : $scope.spotlightVisible = true;
     };
     $scope.scheduleShowHide = function() {
-            $scope.scheduleVisible == true ? $scope.scheduleVisible = false : $scope.scheduleVisible = true;
+        $scope.scheduleVisible == true ? $scope.scheduleVisible = false : $scope.scheduleVisible = true;
     };
     $scope.logShowHide = function() {
-                $scope.logVisible == true ? $scope.logVisible = false : $scope.logVisible = true;
+        $scope.logVisible == true ? $scope.logVisible = false : $scope.logVisible = true;
     };
     $scope.intervalsShowHide= function(event) {
             event.preventDefault();
@@ -65,14 +68,18 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         var index = $scope.vehicles.indexOf(vehicle);
         $scope.selectedVehicle.odometerIsVisible = true;
     };
-    $scope.odometerHide= function(vehicle) {
-            var index = $scope.vehicles.indexOf(vehicle);
-            $scope.selectedVehicle.odometerIsVisible = false;
 
-            if($scope.selectedVehicle.currentOdometer != $scope.newOdometerReading) {
-                $scope.selectedVehicle.currentOdometer = $scope.selectedVehicle.currentOdometer;
-            }
-        };
+    $scope.chartsShowHide = function() {
+        $scope.chartsVisible == true ? $scope.chartsVisible = false : $scope.chartsVisible = true;
+    };
+    $scope.odometerHide= function(vehicle) {
+        var index = $scope.vehicles.indexOf(vehicle);
+        $scope.selectedVehicle.odometerIsVisible = false;
+
+        if($scope.selectedVehicle.currentOdometer != $scope.newOdometerReading) {
+            $scope.selectedVehicle.currentOdometer = $scope.selectedVehicle.currentOdometer;
+        }
+    };
 
     $scope.updateOdometer = function(){
         $scope.id = $scope.selectedVehicle.id;
