@@ -35,7 +35,7 @@
 
 .service-schedule-row {
     float: left;
-    width: 64% !important;
+    width: 59% !important;
     margin-bottom: 2vh !important;
     margin-top: 1vh !important;
 }
@@ -153,6 +153,11 @@ log-service-container {
 
 .detail {
     font-size: 17px;
+    margin: 0 !important;
+}
+
+.spotlight-detail {
+    font-size: 20px;
     margin: 0 !important;
 }
 

@@ -46,14 +46,14 @@
                 </div>
                 <div class="col-md-9 overview-row">
                     <div class="col-md-4 info-column">
-                        <p class="detail"><label>Make:</label> {{selectedVehicle.make}}</p>
-                        <p class="detail"><label>Model:</label> {{selectedVehicle.model}}</p>
-                        <p class="detail"><label>Year:</label> {{selectedVehicle.modelYear}}</p>
+                        <p class="spotlight-detail"><label>Make:</label> {{selectedVehicle.make}}</p>
+                        <p class="spotlight-detail"><label>Model:</label> {{selectedVehicle.model}}</p>
+                        <p class="spotlight-detail"><label>Year:</label> {{selectedVehicle.modelYear}}</p>
                     </div>
                     <div class="col-md-5 service-column">
-                        <p class="detail"><label>Engine:</label> {{selectedVehicle.engine}}</p>
-                        <p class="detail"><label>Next Service Due:</label> {{vehicleServices[0].name}}</p>
-                        <p class="detail"><label>Miles until Due:</label> {{vehicleServices[0].milesTilDue | number}}</p>
+                        <p class="spotlight-detail"><label>Engine:</label> {{selectedVehicle.engine}}</p>
+                        <p class="spotlight-detail"><label>Next Service Due:</label> {{vehicleServices[0].name}}</p>
+                        <p class="spotlight-detail"><label>Miles until Due:</label> {{vehicleServices[0].milesTilDue | number}}</p>
                     </div>
                     <div class="col-md-3 odometerColumn">
                         <div class = "col-md-12 overview">
@@ -96,34 +96,34 @@
                  </div>
 
                  <div class = "row  schedule-row" ng-show="scheduleVisible">
-                     <div class="col-md-4">
+                     <div class="col-md-3">
                          <label class="schedule-label">Service</label>
                      </div>
-                     <div class="col-md-2 center">
-                         <label class="schedule-label">Miles til Due</label>
+                     <div class="col-md-3 center">
+                         <label class="schedule-label">Miles until Due</label>
                      </div>
-                     <div class="col-md-2 center">
+                     <div class="col-md-3 center">
                          <label class="schedule-label">Mileage Interval</label><br>
                      </div>
-                     <div class="col-md-2 center">
-                         <label class="schedule-label">Rec. Mileage Interval</label><br>
+                     <div class="col-md-3 center">
+                         <label class="schedule-label">Recommended</label><br>
                      </div>
                  </div>
                  <hr class="schedule-hr">
 
                  <div class="row services-list" ng-repeat="service in vehicleServices" ng-show="scheduleVisible">
                      <div class = "row">
-                         <div class="col-md-4">
+                         <div class="col-md-3">
                              <label class="service-label schedule-data">{{ service.name }}</label>
                          </div>
-                         <div class="col-md-2 data-col">
+                         <div class="col-md-3 data-col">
                              <label class="schedule-data">{{ service.milesTilDue | number }}</label>
                          </div>
-                         <div class="col-md-2 data-col">
+                         <div class="col-md-3 data-col">
                              <label class="schedule-data" ng-show="!inputsVisible">{{ service.milesInterval | number }}</label>
                              <input type="text" class ="interval-input" ng-show="inputsVisible" placeholder=" {{service.milesInterval}}" />
                          </div>
-                         <div class="col-md-2 data-col">
+                         <div class="col-md-3 data-col">
                              <label class="schedule-data">{{ service.recMilesInterval | number }}</label>
                          </div>
                      </div>

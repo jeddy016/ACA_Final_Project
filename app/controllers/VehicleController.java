@@ -29,7 +29,7 @@ public class VehicleController extends Controller
     {
         int userId = Integer.parseInt(session().get("userId"));
 
-        List<VehicleDetail> vehicles = jpaApi.em().createNativeQuery("SELECT v.vehicle_id as id, v.vehicle_nickname as nickname, v.next_service_due as nextService, v.current_odometer_reading as currentOdometer, v.engine as engine, v.model_year as modelYear, " +
+        List<VehicleDetail> vehicles = jpaApi.em().createNativeQuery("SELECT v.vehicle_id as id, v.vehicle_nickname as nickname, v.current_odometer_reading as currentOdometer, v.engine as engine, v.model_year as modelYear, " +
                 "mo.vehicle_model_name as model, ma.vehicle_make_name as make " +
                 "FROM vehicle v " +
                 "JOIN vehicle_model mo ON v.vehicle_model_id = mo.vehicle_model_id " +
@@ -66,7 +66,6 @@ public class VehicleController extends Controller
         vehicle.setModelID(modelId);
         vehicle.setCurrentOdometer(currentOdometer);
         vehicle.setModelYear(year);
-        vehicle.setNextServiceDue("Oil Change");
         vehicle.setNickname(nickname);
         vehicle.setEngine(engine);
 

@@ -15,9 +15,6 @@ public class VehicleDetail
     private String nickname;
 
     @Column
-    private String nextService;
-
-    @Column
     private int currentOdometer;
 
     @Column
@@ -50,16 +47,6 @@ public class VehicleDetail
     public void setNickname(String nickname)
     {
         this.nickname = nickname;
-    }
-
-    public String getNextService()
-    {
-        return nextService;
-    }
-
-    public void setNextService(String nextService)
-    {
-        this.nextService = nextService;
     }
 
     public int getCurrentOdometer()
