@@ -37,19 +37,17 @@ public class LoginController extends Controller
         String email = request.findPath("email").textValue();
         String password = request.findPath("password").textValue();
 
-
         if(Login.passwordInvalid(password) || Login.emailInvalid(email))
         {
             errorList.add("- Email or Password incorrect");
             valid = false;
         }
 
-        //TODO find user matching u/n & p/w, put their id in session
-
         if(valid)
         {
-            User user = jpaApi.em().createQuery("SELECT u FROM User u WHERE u.email = :email", User.class)
+            User user = jpaApi.em().createQuery("SELECT u FROM User u WHERE u.email = :email AND u.password = :password", User.class)
                     .setParameter("email", email)
+                    .setParameter("password", password)
                     .getSingleResult();
 
             session().put("userId", "" + user.getUserID());

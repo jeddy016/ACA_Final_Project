@@ -27,7 +27,7 @@ angular.module('pitStop').controller('profileController', ['$scope', '$http', fu
        // if(response.data == 'success'){
             console.log(response.data);
             $scope.user = response.data;
-            if ($scope.user.notificationsHour > 12 && < 24) {
+            if ($scope.user.notificationsHour > 12 && $scope.notificationsHour < 24) {
                 $scope.notificationsHour = $scope.user.notificationsHour - 12;
                 $scope.meridian = 2;
             }

@@ -3,27 +3,21 @@ package validators;
 
 public class Login
 {
-    //TODO: Write validation checks for email/pwd currently hard-coded
+    //TODO: Write validation checks for email/pwd
 
     public static boolean passwordInvalid(String password)
     {
-        boolean invalid = true;
+        boolean invalid = false;
 
-        if (password.equals("admin"))
-        {
-            invalid = false;
-        }
+
         return invalid;
     }
 
     public static boolean emailInvalid(String email)
     {
-        boolean invalid = true;
+        boolean invalid = false;
 
-        if (email.equals("demo@example.com"))
-        {
-            invalid = false;
-        }
+
         return invalid;
     }
 }

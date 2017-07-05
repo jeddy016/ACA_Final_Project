@@ -4,13 +4,10 @@ public class NewUser
 {
     public static boolean emailInvalid(String email)
     {
-        boolean invalid = true;
+        boolean invalid = false;
 
         //TODO: find out how to validate email addresses
-        if (email.matches("demo@example.com"))
-        {
-            invalid = false;
-        }
+
         return invalid;
     }
 

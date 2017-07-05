@@ -76,7 +76,6 @@ public class UserController extends Controller
     @BodyParser.Of(BodyParser.Json.class)
     public Result addUser()
     {
-        //TODO: test auto increment for User ID's
         //TODO: form validation
 
         boolean valid = true;
