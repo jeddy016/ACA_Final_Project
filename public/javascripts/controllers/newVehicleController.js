@@ -5,6 +5,7 @@ angular.module('pitStop').controller('newVehicleController', ['$scope', '$http',
 	$scope.engine = $scope.engine;
 	$scope.odometerReading = $scope.odometerReading;
 	$scope.nickname = $scope.nickname;
+	$scope.years = [];
     $scope.makeList = [];
     $scope.serviceTypes = [];
 
@@ -43,7 +44,6 @@ angular.module('pitStop').controller('newVehicleController', ['$scope', '$http',
         });
     };
 
-    $scope.years = [];
     for(var i = 2018; i >= 1960; i--){
         $scope.years.push(i);
     };
@@ -83,7 +83,7 @@ angular.module('pitStop').controller('newVehicleController', ['$scope', '$http',
             })
             .then(function(response) {
                 if(response.data == 'success'){
-                   // $scope.goTo('/home');
+                    $scope.goTo('/home');
                 }
                 else {
                     $scope.loginErrors = [];
