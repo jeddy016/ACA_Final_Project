@@ -10,8 +10,11 @@ POST    /signup                     controllers.SignUpController.signUp
 POST    /addUser                    controllers.SignUpController.addUser
 
 #Vehicle
+GET     /getVehicle                 controllers.VehicleController.getVehicle
 GET     /getVehicles                controllers.VehicleController.getVehicles
 POST    /addVehicle                 controllers.VehicleController.addVehicle
+POST    /updateVehicle              controllers.VehicleController.updateVehicle
+
 
 #Odometer
 POST    /updateOdometer             controllers.OdometerController.updateOdometer

@@ -1,48 +1,44 @@
 <div class="page-wrapper">
     <div class="form-modal">
 
-        <form id= "edit-vehicle-form" ng-submit="goTo('/home')">
+        <form id= "edit-vehicle-form" ng-submit="updateVehicle()">
             <h1 class="modal-heading">Edit Vehicle Info</h1>
             <hr class="modal-hr">
-
             <div class="row">
                 <div class="col-md-6">
                     <label class ="form-modal-label">Make</label><br>
-                    <input class="modal-input" type="text" required>
+                    <select name = "make-select" class="modal-input modal-select" ng-model="vehicle.makeID" ng-change="getModels()"
+                            ng-options="make.id as make.name for make in makeList" required>
+                    </select>
                 </div>
-
                 <div class="col-md-6">
                     <label class ="form-modal-label">Model</label><br>
-                    <input class="modal-input" type="text" required>
+                    <select required class="modal-input modal-select" ng-model="vehicle.modelID"
+                            ng-options="model.id as model.name for model in modelList" >
+                    </select>
                 </div>
-
                 <div class="col-md-6">
                     <label class ="form-modal-label">Year</label><br>
-                    <input class="modal-input" type="text" required>
+                    <select class="modal-input modal-select" ng-model="vehicle.modelYear" ng-options="year as year for year in years" required>
+                    </select>
                 </div>
-
                 <div class="col-md-6">
                     <label class ="form-modal-label">Engine</label><br>
-                    <input class="modal-input" type="text">
+                    <input class="modal-input" type="text" ng-model="vehicle.engine">
                 </div>
-
                 <div class="col-md-6">
                     <label class ="form-modal-label">Odometer</label><br>
-                    <input class="modal-input" type="text" required>
+                    <input class="modal-input" type="text" ng-model="vehicle.currentOdometer" required>
                 </div>
-
                 <div class="col-md-6">
                     <label class ="form-modal-label">Nickname</label><br>
-                    <input class="modal-input" type="text" required>
+                    <input class="modal-input" type="text" ng-model="vehicle.nickname" required>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-md-12">
-
                     <label class="services-heading form-modal-label">Select the services you would like to track</label>
                     <hr>
-
                     <div class="services-select">
                     <label class="modal-checkbox-label form-modal-label" ng-repeat="service in services">
                         {{service.id}}
@@ -51,9 +47,7 @@
                     </div>
                 </div>
             </div>
-
             <button type="submit" class= "btn modal-submit-btn" form="edit-vehicle-form">Done</button>
-
         </form>
     </div>
 </div>

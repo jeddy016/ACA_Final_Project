@@ -78,7 +78,7 @@
                         <label class="section-label">Tools</label>
                     </div>
                     <div class="col-md-6 tools" >
-                        <button class="btn edit-btn" ng-click="goToEditPage(selectedVehicle)">Edit Vehicle</button>
+                        <button class="btn edit-btn" ng-click="goToEditPage()">Edit Vehicle</button>
                         <button class="btn edit-btn bottom-button-row" ng-click="goTo('/newVehicle')">Add Vehicle</button>
                     </div>
                     <div class="col-md-6 tools" >
@@ -187,7 +187,7 @@
 
     <div class="row charts-container" ng-controller="chartsController">
         <div class = "col-md-12 overview charts">
-            <label class="section-label">Charts</label>
+            <label class="section-label">Graphs</label>
             <label class="section-label expand" ng-show="!chartsVisible" ng-click="chartsShowHide()"> <i class="fa fa-chevron-down"></i></label>
             <label class="section-label expand" ng-show="chartsVisible" ng-click="chartsShowHide()"> <i class="fa fa-chevron-up"></i></label>
         </div>

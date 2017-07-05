@@ -27,7 +27,13 @@ public class VehicleDetail
     private String make;
 
     @Column
+    private int makeID;
+
+    @Column
     private String model;
+
+    @Column
+    private int modelID;
 
     public int getId()
     {
@@ -89,6 +95,16 @@ public class VehicleDetail
         this.make = make;
     }
 
+    public int getMakeID()
+    {
+        return makeID;
+    }
+
+    public void setMakeID(int makeID)
+    {
+        this.makeID = makeID;
+    }
+
     public String getModel()
     {
         return model;
@@ -97,5 +113,15 @@ public class VehicleDetail
     public void setModel(String model)
     {
         this.model = model;
+    }
+
+    public int getModelID()
+    {
+        return modelID;
+    }
+
+    public void setModelID(int modelID)
+    {
+        this.modelID = modelID;
     }
 }

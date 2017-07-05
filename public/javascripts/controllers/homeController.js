@@ -131,8 +131,8 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         });
     };
 
-    $scope.goToEditPage = function(vehicle) {
-          var id = $scope.vehicles.indexOf(vehicle);
+    $scope.goToEditPage = function() {
+          var id = $scope.selectedVehicle.id;
           $scope.goTo('/editVehicle/' + id);
         };
 
