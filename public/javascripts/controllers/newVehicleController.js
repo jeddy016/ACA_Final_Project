@@ -97,4 +97,5 @@ angular.module('pitStop').controller('newVehicleController', ['$scope', '$http',
             console.log("nope");
         };
     };
+
 }])

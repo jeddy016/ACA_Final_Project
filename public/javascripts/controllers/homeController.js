@@ -62,6 +62,7 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         $scope.logVisible = false;
         $scope.chartsVisible = false;
     };
+
     $scope.overviewShowHide = function() {
         $scope.overviewVisible == true ? $scope.overviewVisible = false : $scope.overviewVisible = true;
     };
@@ -84,14 +85,15 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
             event.preventDefault();
             $scope.inputsVisible = $scope.inputsVisible ? false : true;
     };
+    $scope.chartsShowHide = function() {
+        $scope.chartsVisible == true ? $scope.chartsVisible = false : $scope.chartsVisible = true;
+    };
+
     $scope.odometerShow= function(vehicle) {
         var index = $scope.vehicles.indexOf(vehicle);
         $scope.selectedVehicle.odometerIsVisible = true;
     };
 
-    $scope.chartsShowHide = function() {
-        $scope.chartsVisible == true ? $scope.chartsVisible = false : $scope.chartsVisible = true;
-    };
     $scope.odometerHide= function(vehicle) {
         var index = $scope.vehicles.indexOf(vehicle);
         $scope.selectedVehicle.odometerIsVisible = false;
