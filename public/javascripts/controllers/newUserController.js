@@ -29,8 +29,8 @@ angular.module('pitStop').controller('newUserController', ['$scope', '$http', fu
             $scope.notificationsHour = parseInt($scope.notificationsHour) + 12;
         }
         if($scope.notificationsHour == 12 && $scope.amPm == 1){
-                    $scope.notificationsHour = 24;
-                }
+            $scope.notificationsHour = 24;
+        }
 
         $scope.user = {
             firstName: $scope.firstName,

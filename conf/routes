@@ -5,16 +5,17 @@ GET     /                           controllers.AppController.index(any = "none"
 #Login
 POST    /login                      controllers.LoginController.authenticate
 
-#Sign-Up
-POST    /signup                     controllers.SignUpController.signUp
-POST    /addUser                    controllers.SignUpController.addUser
+#User
+POST    /signup                     controllers.UserController.signUp
+POST    /addUser                    controllers.UserController.addUser
+POST    /updateProfile              controllers.UserController.updateProfile
+GET     /getUser                    controllers.UserController.getUser
 
 #Vehicle
 GET     /getVehicle                 controllers.VehicleController.getVehicle
 GET     /getVehicles                controllers.VehicleController.getVehicles
 POST    /addVehicle                 controllers.VehicleController.addVehicle
 POST    /updateVehicle              controllers.VehicleController.updateVehicle
-
 
 #Odometer
 POST    /updateOdometer             controllers.OdometerController.updateOdometer

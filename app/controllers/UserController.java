@@ -16,12 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class SignUpController extends Controller
+public class UserController extends Controller
 {
     private final JPAApi jpaApi;
 
     @Inject
-    public SignUpController(JPAApi jpaApi)
+    public UserController(JPAApi jpaApi)
     {
         this.jpaApi = jpaApi;
     }
@@ -120,4 +120,64 @@ public class SignUpController extends Controller
         }
     }
 
+    @Transactional
+    public Result getUser()
+    {
+        int id = Integer.parseInt(session().get("userId"));
+
+        User user = jpaApi.em().createQuery("SELECT u FROM User u WHERE userID = :id", User.class)
+                .setParameter("id", id).getSingleResult();
+
+        return ok(Json.toJson(user));
+    }
+
+    @Transactional
+    @BodyParser.Of(BodyParser.Json.class)
+    public Result updateProfile()
+    {
+        //TODO: form validation
+        boolean valid = true;
+        List<String> errorList = new ArrayList<>();
+
+        JsonNode request = request().body().asJson();
+
+        int id = Integer.parseInt(session().get("userId"));
+        String firstName = request.findPath("firstName").textValue();
+        String lastName = request.findPath("lastName").textValue();
+        long phoneNumber = request.findPath("phoneNumber").asLong();
+        int zipCode = request.findPath("zipCode").asInt();
+        int notificationsOptIn = request.findPath("notificationsOptIn").asInt();
+        int notificationsHour = request.findPath("notificationsHour").asInt();
+        int notificationsDaysAhead = request.findPath("notificationsDaysAhead").asInt();
+
+        Logger.debug("" + notificationsOptIn);
+
+        if(valid)
+        {
+            jpaApi.em().createQuery("UPDATE User u SET " +
+                    "u.firstName = :firstName, " +
+                    "u.lastName = :lastName, " +
+                    "u.phoneNumber = :phoneNumber, " +
+                    "u.zipCode = :zipCode, " +
+                    "u.notificationsOptIn = :notificationsOptIn, " +
+                    "u.notificationsHour = :notificationsHour, " +
+                    "u.notificationsDaysAhead = :notificationsDaysAhead " +
+                    "WHERE u.userID = :id")
+                    .setParameter("firstName", firstName)
+                    .setParameter("id", id)
+                    .setParameter("lastName", lastName)
+                    .setParameter("phoneNumber", phoneNumber)
+                    .setParameter("zipCode", zipCode)
+                    .setParameter("notificationsOptIn", notificationsOptIn)
+                    .setParameter("notificationsHour", notificationsHour)
+                    .setParameter("notificationsDaysAhead", notificationsDaysAhead)
+                    .executeUpdate();
+
+            return ok(Json.toJson("success"));
+        }
+        else
+        {
+            return ok(Json.toJson(errorList));
+        }
+    }
 }
