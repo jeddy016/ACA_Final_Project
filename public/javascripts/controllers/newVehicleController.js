@@ -6,7 +6,6 @@ angular.module('pitStop').controller('newVehicleController', ['$scope', '$http',
 	$scope.odometerReading = $scope.odometerReading;
 	$scope.nickname = $scope.nickname;
     $scope.makeList = [];
-    $scope.modelList = [];
     $scope.serviceTypes = [];
 
     $http({
@@ -37,7 +36,7 @@ angular.module('pitStop').controller('newVehicleController', ['$scope', '$http',
             params: {"makeID": $scope.make}
         })
         .then(function(response) {
-            console.log(response.data);
+            $scope.modelList = [];
             response.data.forEach(function(model){
                 $scope.modelList.push({name: model.name , id: '' + model.vehicleModelID});
             });
@@ -84,7 +83,7 @@ angular.module('pitStop').controller('newVehicleController', ['$scope', '$http',
             })
             .then(function(response) {
                 if(response.data == 'success'){
-                    $scope.goTo('/home');
+                   // $scope.goTo('/home');
                 }
                 else {
                     $scope.loginErrors = [];

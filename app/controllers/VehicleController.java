@@ -1,6 +1,11 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.JsonNodeCreator;
+import models.Service;
+import models.ServiceType;
 import models.Vehicle;
 import models.VehicleDetail;
 import play.Logger;
@@ -10,6 +15,8 @@ import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
+
+
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,9 +54,8 @@ public class VehicleController extends Controller
     public Result addVehicle()
     {
         //TODO: form validation
-        //TODO: figure out how to find the next service due
-
         boolean valid = true;
+
         List<String> errorList = new ArrayList<>();
         JsonNode request = request().body().asJson();
 
@@ -71,9 +77,24 @@ public class VehicleController extends Controller
 
         if(valid)
         {
-            Logger.debug(vehicle.toString());
-
             jpaApi.em().persist(vehicle);
+
+            JsonNode serviceTypeIDs = request.get("services");
+
+            for(JsonNode id : serviceTypeIDs)
+            {
+                ServiceType serviceType = jpaApi.em().createQuery("SELECT s FROM ServiceType s WHERE serviceTypeID = :id", ServiceType.class)
+                        .setParameter("id", id.asInt())
+                        .getSingleResult();
+
+                Service service = new Service();
+                service.setMilesInterval(serviceType.getRecommendedMilesinterval());
+                service.setMilesTilDue(serviceType.getRecommendedMilesinterval());
+                service.setVehicleID(vehicle.getVehicleID());
+                service.setServiceTypeID(id.asInt());
+
+                jpaApi.em().persist(service);
+            }
             return ok(Json.toJson("success"));
         }
         else

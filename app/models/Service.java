@@ -20,11 +20,14 @@ public class Service
     @Column(name = "vehicle_id")
     private int vehicleID;
 
-    @Column(name = "mileage_interval_id")
-    private int milesIntervalID;
+    @Column(name = "mileage_interval")
+    private int milesInterval;
 
     @Column(name = "miles_til_due")
     private int milesTilDue;
+
+    @Column(name = "service_type_id")
+    private int serviceTypeID;
 
     public int getServiceID()
     {
@@ -46,14 +49,14 @@ public class Service
         this.vehicleID = vehicleID;
     }
 
-    public int getMilesIntervalID()
+    public int getMilesInterval()
     {
-        return milesIntervalID;
+        return milesInterval;
     }
 
-    public void setMilesIntervalID(int milesIntervalID)
+    public void setMilesInterval(int milesInterval)
     {
-        this.milesIntervalID = milesIntervalID;
+        this.milesInterval = milesInterval;
     }
 
     public int getMilesTilDue()
@@ -64,5 +67,15 @@ public class Service
     public void setMilesTilDue(int milesTilDue)
     {
         this.milesTilDue = milesTilDue;
+    }
+
+    public int getServiceTypeID()
+    {
+        return serviceTypeID;
+    }
+
+    public void setServiceTypeID(int serviceTypeID)
+    {
+        this.serviceTypeID = serviceTypeID;
     }
 }

@@ -38,11 +38,10 @@ public class ServiceController extends Controller
     {
         int vehicleID = Integer.parseInt(request().getQueryString("vehicleID"));
 
-        List<ServiceDetail> serviceList = jpaApi.em().createNativeQuery("SELECT s.service_id as id, st.type_name as name, sm.mileage_interval as milesInterval, " +
+        List<ServiceDetail> serviceList = jpaApi.em().createNativeQuery("SELECT s.service_id as id, st.type_name as name, s.mileage_interval as milesInterval, " +
                 "st.rec_miles_interval as recMilesInterval, " +
                 "s.miles_til_due as milesTilDue FROM service s " +
                 "JOIN service_type st ON st.service_type_id = s.service_type_id " +
-                "JOIN service_mileage_interval sm on sm.mileage_interval_id = s.mileage_interval_id " +
                 "WHERE vehicle_id = :vehicleID " +
                 "ORDER BY s.miles_til_due", ServiceDetail.class)
                 .setParameter("vehicleID", vehicleID)
@@ -50,7 +49,6 @@ public class ServiceController extends Controller
 
         return ok(Json.toJson(serviceList));
     }
-
 
 
 }
