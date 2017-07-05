@@ -46,6 +46,7 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
       //TODO: wire me up bro
     };
 
+
     $scope.showAll = function() {
         $scope.overviewVisible = true;
         $scope.snapshotVisible = true;
