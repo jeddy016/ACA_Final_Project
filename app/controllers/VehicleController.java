@@ -179,14 +179,40 @@ public class VehicleController extends Controller
     @Transactional
     public Result deleteVehicle(Integer id)
     {
+        boolean valid = false;
+        String response = "";
 
-        Logger.debug(id + "");
+        int userID = Integer.parseInt(session().get("userId"));
+        JsonNode request = request().body().asJson();
 
-        jpaApi.em().createNativeQuery("DELETE FROM completed_services WHERE vehicle_id = :id").setParameter("id", id).executeUpdate();
-        jpaApi.em().createNativeQuery("DELETE FROM service WHERE vehicle_id = :id").setParameter("id", id).executeUpdate();
-        jpaApi.em().createNativeQuery("DELETE FROM vehicle WHERE vehicle_id = :id").setParameter("id", id).executeUpdate();
+        User user = jpaApi.em().createQuery("SELECT u FROM User u WHERE userID = :id", User.class)
+                .setParameter("id", userID)
+                .getSingleResult();
 
-        return ok(Json.toJson("vehicle deleted"));
+        String password = user.getPassword();
+        String inputPassword = request.findPath("password").textValue();
+
+        if(password.equals(inputPassword))
+        {
+            valid = true;
+        }
+
+        if(valid)
+        {
+            Logger.debug(id + "");
+
+            jpaApi.em().createNativeQuery("DELETE FROM completed_services WHERE vehicle_id = :id").setParameter("id", id).executeUpdate();
+            jpaApi.em().createNativeQuery("DELETE FROM service WHERE vehicle_id = :id").setParameter("id", id).executeUpdate();
+            jpaApi.em().createNativeQuery("DELETE FROM vehicle WHERE vehicle_id = :id").setParameter("id", id).executeUpdate();
+
+            response = "success";
+        }
+        else
+        {
+            response = "fail";
+        }
+
+        return ok(Json.toJson(response));
     }
 
 }

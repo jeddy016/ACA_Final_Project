@@ -82,7 +82,7 @@
                         <button class="btn edit-btn bottom-button-row" ng-click="goTo('/newVehicle')">Add Vehicle</button>
                     </div>
                     <div class="col-md-6 tools" >
-                        <button class="btn edit-btn" ng-click="deleteVehicle()">Delete Vehicle</button>
+                        <button class="btn edit-btn" data-toggle="modal" data-target="#deleteModal">Delete Vehicle</button>
                         <button class="btn edit-btn bottom-button-row" ng-click="goTo('/findService')">Find Service</button>
                     </div>
                 </div>
@@ -196,6 +196,30 @@
         </div>
         <div class="col-md-5 chart2" ng-show="chartsVisible">
             <canvas id="totalByService" ng-show="chartsVisible"></canvas>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h3 class="modal-title" id="exampleModalLabel">Are you sure you want to delete {{selectedVehicle.nickname}}?</h3>
+                </div>
+                <form ng-submit="deleteVehicle()" id="delete-form">
+                    <div class="modal-body">
+                        <label for="password" class="modal-label">Please enter your password to confirm:</label>
+                        <input type="password" id="password" ng-model="deletePassword"/>
+                        <span class="no-match" ng-show="passwordErrorVisible">Password Incorrect</span>
+                     </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger" form="delete-form">Delete</button>
+                </div>
+                </form>
+            </div>
         </div>
     </div>
 

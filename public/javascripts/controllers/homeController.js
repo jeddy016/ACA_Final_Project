@@ -6,12 +6,15 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
     $scope.inputsVisible = false;
     $scope.logVisible = false;
     $scope.chartsVisible = false;
+    $scope.passwordErrorVisible = false;
 
     $scope.vehicles = [];
     $scope.selectedVehicle = $scope.selectedVehicle;
     $scope.odoForm = {};
     $scope.odoForm.newOdometerReading = "";
     $scope.vehicleServices = [];
+
+    $scope.deletePassword = $scope.deletePassword;
 
     $http({
         method: 'GET',
@@ -138,27 +141,37 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
     $scope.deleteVehicle = function() {
         $http({
             method: 'POST',
-            url: '/deleteVehicle/' + $scope.selectedVehicle.id
+            url: '/deleteVehicle/' + $scope.selectedVehicle.id,
+            data: {password: $scope.deletePassword}
         })
-        .then(function(){
-            $http({
-                method: 'GET',
-                url: '/getVehicles'
-            })
-            .then(function(response) {
-                $scope.vehicles = response.data;
-                $scope.selectedVehicle = $scope.vehicles[0];
+        .then(function(response){
+            if(response.data == "success") {
                 $http({
                     method: 'GET',
-                    url: '/getServices',
-                    params: {"vehicleID": $scope.selectedVehicle.id}
+                    url: '/getVehicles'
                 })
                 .then(function(response) {
-                    $scope.vehicleServices = response.data;
-                    console.log(response.data);
+                    $scope.vehicles = response.data;
+                    $scope.selectedVehicle = $scope.vehicles[0];
+                    $('#deleteModal').modal('toggle');
+                    $http({
+                        method: 'GET',
+                        url: '/getServices',
+                        params: {"vehicleID": $scope.selectedVehicle.id}
+                    })
+                    .then(function(response) {
+                        $scope.vehicleServices = response.data;
+                        console.log(response.data);
+                    });
                 });
-            });
-        })
-    }
+            }
+            else {
+                $scope.passwordErrorVisible = true;
+            };
+        });
+    };
 
+    $('#deleteModal').on('shown.bs.modal', function () {
+      $('#password').focus()
+    })
 }])

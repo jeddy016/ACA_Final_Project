@@ -207,15 +207,15 @@ label {
 }
 
 .edit-btn,
-.edit-btn:visited {
+.edit-btn:visited,
+ .edit-btn:focus {
     width: 10vw !important;
     background-color: black;
     border: 1px solid #00BCD4 !important;
     color: white !important;
 }
 
-.edit-btn:hover,
- .edit-btn:focus {
+.edit-btn:hover {
     background-color: #00BCD4;
     color: white !important;
 }
@@ -416,4 +416,15 @@ label {
     text-align: left;
     padding: 0 !important;
     background-color: #00BCD4 !important;
+}
+
+.modal-label {
+    color: black;
+}
+
+.no-match {
+    font-size: 18px;
+    margin-left: 50%;
+    display: block;
+    color: red;
 }
