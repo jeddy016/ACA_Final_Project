@@ -46,7 +46,6 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
       //TODO: wire me up bro
     };
 
-
     $scope.showAll = function() {
         $scope.overviewVisible = true;
         $scope.snapshotVisible = true;
@@ -135,5 +134,31 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
           var id = $scope.selectedVehicle.id;
           $scope.goTo('/editVehicle/' + id);
         };
+
+    $scope.deleteVehicle = function() {
+        $http({
+            method: 'POST',
+            url: '/deleteVehicle/' + $scope.selectedVehicle.id
+        })
+        .then(function(){
+            $http({
+                method: 'GET',
+                url: '/getVehicles'
+            })
+            .then(function(response) {
+                $scope.vehicles = response.data;
+                $scope.selectedVehicle = $scope.vehicles[0];
+                $http({
+                    method: 'GET',
+                    url: '/getServices',
+                    params: {"vehicleID": $scope.selectedVehicle.id}
+                })
+                .then(function(response) {
+                    $scope.vehicleServices = response.data;
+                    console.log(response.data);
+                });
+            });
+        })
+    }
 
 }])

@@ -82,7 +82,7 @@ angular.module('pitStop').controller('editVehicleController', ['$scope', '$route
         };
     };
 
-    $scope.updateVehicle = function (){
+    $scope.updateVehicle = function(){
         var valid = true;
         //TODO: Error handling
         //TODO: Update services functionality

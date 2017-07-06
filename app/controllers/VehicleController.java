@@ -176,4 +176,17 @@ public class VehicleController extends Controller
         }
     }
 
+    @Transactional
+    public Result deleteVehicle(Integer id)
+    {
+
+        Logger.debug(id + "");
+
+        jpaApi.em().createNativeQuery("DELETE FROM completed_services WHERE vehicle_id = :id").setParameter("id", id).executeUpdate();
+        jpaApi.em().createNativeQuery("DELETE FROM service WHERE vehicle_id = :id").setParameter("id", id).executeUpdate();
+        jpaApi.em().createNativeQuery("DELETE FROM vehicle WHERE vehicle_id = :id").setParameter("id", id).executeUpdate();
+
+        return ok(Json.toJson("vehicle deleted"));
+    }
+
 }

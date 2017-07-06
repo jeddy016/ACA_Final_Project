@@ -16,6 +16,7 @@ GET     /getVehicle                 controllers.VehicleController.getVehicle
 GET     /getVehicles                controllers.VehicleController.getVehicles
 POST    /addVehicle                 controllers.VehicleController.addVehicle
 POST    /updateVehicle              controllers.VehicleController.updateVehicle
+POST    /deleteVehicle/:id          controllers.VehicleController.deleteVehicle(id:Integer)
 
 #Odometer
 POST    /updateOdometer             controllers.OdometerController.updateOdometer

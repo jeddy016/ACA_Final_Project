@@ -74,7 +74,11 @@ public class ServiceController extends Controller
         int vehicleID = request.get("id").asInt();
         JsonNode serviceTypeIDs = request.get("services");
 
-        Logger.debug(vehicleID + "");
+        List<Integer> trackedServiceTypes = jpaApi.em().createNativeQuery("SELECT s.service_type_id as id " +
+                "FROM service s " +
+                "JOIN vehicle v ON s.vehicle_id = v.vehicle_id " +
+                "WHERE v.vehicle_id = :id").setParameter("id", vehicleID)
+                .getResultList();
 
         jpaApi.em().createNativeQuery("DELETE FROM service WHERE vehicle_id = :id").setParameter("id", vehicleID).executeUpdate();
 
