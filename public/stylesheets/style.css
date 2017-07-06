@@ -12,6 +12,7 @@ html, body, .page-container {
     background-color: black;
     width: 100vw !important;
     border-bottom: 1px solid #00BCD4;
+    border-radius: 0 !important;
 }
 
 .row {
@@ -26,7 +27,7 @@ a:hover {
 .fa-bars {
     z-index: 4;
     position: fixed;
-    top: 1%;
+    top: .7%;
     right: 2%;
     font-size: 40px;
     color: #00BCD4;
@@ -39,10 +40,10 @@ a:hover {
 .menu-exit {
     position: fixed;
     z-index: 4;
-    top: 2%;
+
     right: 2%;
-    font-size: 40px;
-    color: ;
+    font-size: 50px;
+    color: #00BCD4;
 }
 
 .menu-exit:hover {

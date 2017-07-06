@@ -5,6 +5,12 @@
     background: #1F1F1F;
 }
 
+div {
+    border-radius: 3px;
+}
+
+
+
 .add-vehicle {
     margin-top: 1%;
     color: white;
@@ -31,6 +37,9 @@
 .vehicle-detail-container, .service-schedule-row, .log-service-row, .odometerColumn, .snapshot-row, .charts-container {
     margin-top: 3vh !important;
     border: 1px solid white;
+    -webkit-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
+    box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
 }
 
 .service-schedule-row {
@@ -118,6 +127,9 @@ log-service-container {
     height: auto;
     border: 1px solid white;
     color: #00BCD4;
+    -webkit-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
+    box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
 }
 
 .charts-row {
@@ -420,6 +432,23 @@ label {
 
 .modal-label {
     color: black;
+}
+
+.modal-close {
+    color: red;
+    font-size: 55px;
+}
+
+.modal-header {
+    border-bottom: 1px solid #00BCD4 !important;
+}
+
+.modal-footer {
+    border-top: 1px solid #00BCD4 !important;
+}
+
+.btn-info, .btn-danger {
+    margin-top: 0 !important;
 }
 
 .no-match {

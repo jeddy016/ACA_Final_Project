@@ -34,18 +34,6 @@ angular.module('pitStop').config(function ($routeProvider, $locationProvider, $q
                 css: 'assets/stylesheets/vehicle.css'
         })
 
-        .when('/services', {
-                    templateUrl: 'assets/views/servicesView.html',
-                    controller: 'servicesController',
-                    css: 'assets/stylesheets/services.css'
-        })
-
-        .when('/logService', {
-                        templateUrl: 'assets/views/logServiceView.html',
-                        controller: 'logServiceController',
-                        css: 'assets/stylesheets/logService.css'
-        })
-
         .when('/findService', {
             templateUrl: 'assets/views/findServiceView.html',
             controller: 'findServiceController',
