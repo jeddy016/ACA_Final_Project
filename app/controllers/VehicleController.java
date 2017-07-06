@@ -50,6 +50,7 @@ public class VehicleController extends Controller
     {
         int userId = Integer.parseInt(session().get("userId"));
 
+        @SuppressWarnings("unchecked")
         List<VehicleDetail> vehicles = jpaApi.em().createNativeQuery("SELECT v.vehicle_id as id, v.vehicle_nickname as nickname, v.current_odometer_reading as currentOdometer, v.engine as engine, v.model_year as modelYear, " +
                 "mo.vehicle_model_id as modelID, mo.vehicle_model_name as model, ma.vehicle_make_id as makeID, ma.vehicle_make_name as make " +
                 "FROM vehicle v " +

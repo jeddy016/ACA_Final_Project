@@ -40,6 +40,7 @@ public class OdometerController extends Controller
                 .setParameter("id", vehicleID)
                 .getSingleResult();
 
+        @SuppressWarnings("unchecked")
         List<Service> serviceList = jpaApi.em().createQuery("SELECT s FROM Service s WHERE vehicleID = :id")
                 .setParameter("id", vehicleID)
                 .getResultList();

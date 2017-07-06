@@ -5,6 +5,21 @@ angular.module('pitStop').controller('editVehicleController', ['$scope', '$route
 	$scope.years = [];
     $scope.makeList = [];
 
+    $scope.serviceTypes = [
+        {id: 1, name: "Oil Change", checked: false},
+        {id: 2, name: "Replace Air Filter", checked: false},
+        {id: 3, name: "Trans Fluid Change", checked: false},
+        {id: 4, name: "Replace Coolant", checked: false},
+        {id: 5, name: "Change Brake Pads", checked: false},
+        {id: 6, name: "Change Spark Plugs", checked: false},
+        {id: 7, name: "Change Brake Fluid", checked: false},
+        {id: 8, name: "Change Power Steering Fluid", checked: false},
+        {id: 9, name: "Change Washer Fluid", checked: false},
+        {id: 10, name: "Replace Engine Belts", checked: false},
+        {id: 11, name: "Rotate Tires", checked: false},
+        {id: 12, name: "Tune-Up", checked: false}
+    ]
+
     $http({
         method: 'GET',
         url: '/getVehicle',
@@ -14,6 +29,7 @@ angular.module('pitStop').controller('editVehicleController', ['$scope', '$route
         $scope.vehicle = response.data;
         $scope.getYears();
         $scope.getMakes();
+        $scope.getTrackedServices();
     });
 
     $scope.getMakes = function() {
@@ -43,6 +59,23 @@ angular.module('pitStop').controller('editVehicleController', ['$scope', '$route
         });
     };
 
+    $scope.getTrackedServices = function() {
+        $http({
+        method: 'GET',
+        url: '/getTrackedServices',
+        params: {"vehicleID": $scope.vehicleID}
+    })
+        .then(function(response) {
+            for(var i = 0; i < $scope.serviceTypes.length; i++){
+                response.data.forEach(function(type){
+                      if($scope.serviceTypes[i].id == type) {
+                            $scope.serviceTypes[i].checked = true;
+                      }
+                })
+            }
+        });
+    };
+
     $scope.getYears = function() {
         for(var i = 2018; i >= 1960; i--){
             $scope.years.push(i);
@@ -55,13 +88,13 @@ angular.module('pitStop').controller('editVehicleController', ['$scope', '$route
         //TODO: Update services functionality
 
         if(valid) {
-            //$scope.selectedServices = [];
+            $scope.selectedServices = [];
 
-           /* $scope.serviceTypes.forEach(function(service){
+            $scope.serviceTypes.forEach(function(service){
                 if(service.checked == true){
                     $scope.selectedServices.push(service.id);
                 };
-            });*/
+            });
 
             $http({
                 method: 'POST',
@@ -79,26 +112,24 @@ angular.module('pitStop').controller('editVehicleController', ['$scope', '$route
                     });
                 };
             });
+
+            $scope.data = {
+                id: $scope.vehicleID,
+                services : $scope.selectedServices
+            }
+
+            $http({
+                method: 'POST',
+                url:'/updateTrackedServices',
+                data: JSON.stringify($scope.data)
+            })
+            .then(function(response){
+                console.log($scope.data);
+            })
         }
         else {
             console.log("nope");
         };
     };
-
-	$scope.services = [
-            {id: "Oil Change", checked: false},
-            {id: "Rotate Tires", checked: false},
-            {id: "Replace Air Filter", checked: false},
-            {id: "Tune-Up", checked: false},
-            {id: "Trans Fluid Change", checked: false},
-            {id: "Flush/Replace Coolant", checked: false},
-            {id: "Change Brake Pads", checked: false},
-            {id: "Change Spark Plugs", checked: false},
-            {id: "Change Brake Fluid", checked: false},
-            {id: "Change Power Steering Fluid", checked: false},
-            {id: "Change Washer Fluid", checked: false},
-            {id: "Replace Engine Belts", checked: false}
-    ]
-
 
 }])

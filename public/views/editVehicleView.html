@@ -40,8 +40,8 @@
                     <label class="services-heading form-modal-label">Select the services you would like to track</label>
                     <hr>
                     <div class="services-select">
-                    <label class="modal-checkbox-label form-modal-label" ng-repeat="service in services">
-                        {{service.id}}
+                    <label class="modal-checkbox-label form-modal-label" ng-repeat="service in serviceTypes">
+                        {{service.name}}
                         <input class="modal-input" type="checkbox" ng-model="service.checked">
                     </label>
                     </div>

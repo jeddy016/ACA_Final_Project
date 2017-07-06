@@ -9,15 +9,20 @@ angular.module('pitStop').controller('newVehicleController', ['$scope', '$http',
     $scope.makeList = [];
     $scope.serviceTypes = [];
 
-    $http({
-        method: 'GET',
-        url: '/getServiceTypes'
-    })
-    .then(function(response) {
-        response.data.forEach(function(service){
-            $scope.serviceTypes.push({id : service.serviceTypeID, name : service.typeName, checked : false})
-        });
-    });
+    $scope.serviceTypes = [
+        {id: 1, name: "Oil Change", checked: false},
+        {id: 2, name: "Replace Air Filter", checked: false},
+        {id: 3, name: "Trans Fluid Change", checked: false},
+        {id: 4, name: "Replace Coolant", checked: false},
+        {id: 5, name: "Change Brake Pads", checked: false},
+        {id: 6, name: "Change Spark Plugs", checked: false},
+        {id: 7, name: "Change Brake Fluid", checked: false},
+        {id: 8, name: "Change Power Steering Fluid", checked: false},
+        {id: 9, name: "Change Washer Fluid", checked: false},
+        {id: 10, name: "Replace Engine Belts", checked: false},
+        {id: 11, name: "Rotate Tires", checked: false},
+        {id: 12, name: "Tune-Up", checked: false}
+    ]
 
     $http({
         method: 'GET',
