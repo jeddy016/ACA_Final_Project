@@ -97,7 +97,7 @@
 
                  <div class = "row  schedule-row" ng-show="scheduleVisible">
                      <div class="col-md-3">
-                         <label class="schedule-label">Service</label>
+                         <label class="schedule-label"></label>
                      </div>
                      <div class="col-md-3 center">
                          <label class="schedule-label">Miles until Due</label>
@@ -143,38 +143,43 @@
                          <label class="section-label expand" ng-show="!logVisible" ng-click="logShowHide()"> <i class="fa fa-chevron-down"></i></label>
                          <label class="section-label expand" ng-show="logVisible" ng-click="logShowHide()"> <i class="fa fa-chevron-up"></i></label>
                      </div>
-                     <form id= "log-service" ng-submit="" ng-show="logVisible">
+                     <form id= "log-service" ng-submit="logService()" ng-show="logVisible">
                          <div class="col-md-6">
                              <label class ="schedule-label log-label">Service</label><br>
-                             <select class="log-input" required>
-                                 <option ng-repeat="service in vehicleServices">{{service.name}}</option>
+                             <select class="log-input" ng-model="selectedService" ng-options="service.id as service.name for service in vehicleServices">
                              </select>
                          </div>
 
                          <div class="col-md-6">
+                             <label class ="schedule-label log-label">Date</label><br>
+                             <input type="text" ng-click="open1()" class="log-input" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                         </div>
+
+                         <div class="col-md-6">
                              <label class ="schedule-label log-label">Shop</label><br>
-                             <input class="log-input" type="text" />
+                             <input class="log-input" ng-model="shop" type="text" />
                          </div>
 
                          <div class="col-md-6">
                              <label class ="schedule-label log-label">Total Cost</label><br>
-                             <input class="log-input" type="text" min="1" step="any" required />
+                             <input class="log-input" ng-model="totalCost" type="text" min="1" step="any" required />
                          </div>
 
                          <div class="col-md-6">
                              <label class ="schedule-label log-label">Labor Cost</label><br>
-                             <input type="text" min="1" step="any" class="log-input" />
+                             <input type="text" ng-model="laborCost" class="log-input" />
                          </div>
 
                          <div class="col-md-6">
                              <label class ="schedule-label log-label">Parts Cost</label><br>
-                             <input type="text" min="1" step="any" class="log-input"  />
+                             <input type="text" ng-model="partsCost" class="log-input"  />
                          </div>
 
                          <div class="col-md-6">
                              <label class ="schedule-label log-label">Odometer</label><br>
-                             <input class="log-input" type="text" required />
+                             <input class="log-input" ng-model="serviceOdometer" type="text" required />
                          </div>
+
                          <div class="col-md-3 log-service-save">
                              <button type="submit" class= "btn edit-btn" form="log-service">Save</button>
                          </div>

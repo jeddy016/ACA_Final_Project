@@ -1,6 +1,7 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import models.CompletedService;
 import models.Service;
 import models.ServiceDetail;
 import models.ServiceType;
@@ -12,7 +13,13 @@ import play.mvc.Controller;
 import play.mvc.Result;
 
 import javax.inject.Inject;
+import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
+import static controllers.routes.OdometerController;
 
 public class ServiceController extends Controller
 {
@@ -23,17 +30,6 @@ public class ServiceController extends Controller
     {
         this.jpaApi = jpaApi;
     }
-
-    /*@Transactional
-    public Result getServiceTypes()
-    {
-        int userId = Integer.parseInt(session().get("userId"));
-
-        List<ServiceType> serviceTypeList = jpaApi.em().createQuery("SELECT t FROM ServiceType t ORDER BY t.typeName", ServiceType.class)
-                .getResultList();
-
-        return ok(Json.toJson(serviceTypeList));
-    }*/
 
     @Transactional
     public Result getServices()
@@ -99,4 +95,44 @@ public class ServiceController extends Controller
         return ok(Json.toJson("success"));
     }
 
+    @Transactional
+    public Result logService() throws Exception
+    {
+        JsonNode request = request().body().asJson();
+        boolean valid = true;
+        JsonNode response = null;
+
+        int vehicleID = request.findPath("vehicleID").asInt();
+        int serviceID = request.findPath("serviceID").asInt();
+        String shop = request.findPath("shop").textValue();
+        BigDecimal partsCost = new BigDecimal(request.findPath("partsCost").textValue());
+        BigDecimal laborCost = new BigDecimal(request.findPath("laborCost").textValue());
+        BigDecimal totalCost = new BigDecimal(request.findPath("totalCost").textValue());
+        String date = request.findPath("date").textValue();
+
+        if(valid)
+        {
+            CompletedService service = new CompletedService();
+
+            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            Date serviceDate = formatter.parse(date);
+
+            service.setCompletedServiceDate(serviceDate);
+            service.setLaborCost(laborCost);
+            service.setPartsCost(partsCost);
+            service.setTotalCost(totalCost);
+            service.setShop(shop);
+            service.setVehicleID(vehicleID);
+            service.setServiceID(serviceID);
+
+            jpaApi.em().persist(service);
+
+            response = Json.toJson("service logged");
+        }
+        else
+        {
+            response= Json.toJson("Error logging service");
+        }
+        return ok(response);
+    }
 }

@@ -1,4 +1,4 @@
-angular.module('pitStop').controller('homeController', ['$scope', '$window', '$http', '$route', '$rootScope', function($scope, $window, $http, $route, $rootScope) {
+angular.module('pitStop').controller('homeController', ['$scope', '$window', '$http', '$route', '$rootScope', '$filter', function($scope, $window, $http, $route, $rootScope, $filter) {
 
     $scope.snapshotVisible = true;
     $scope.spotlightVisible = true;
@@ -13,6 +13,13 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
     $scope.odoForm = {};
     $scope.odoForm.newOdometerReading = "";
     $scope.vehicleServices = [];
+
+    $scope.selectedService = $scope.vehicleServices[0];
+    $scope.serviceOdometer = $scope.serviceOdometer;
+    $scope.shop = $scope.shop;
+    $scope.partsCost = $scope.partsCost;
+    $scope.laborCost = $scope.laborCost;
+    $scope.totalCost = $scope.totalCost;
 
     $scope.deletePassword = $scope.deletePassword;
 
@@ -31,6 +38,7 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         .then(function(response) {
             $scope.vehicleServices = response.data;
             console.log(response.data);
+            $scope.selectedService = $scope.vehicleServices[0].id;
         });
     });
 
@@ -43,10 +51,6 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         .then(function(response) {
             $scope.vehicleServices = response.data;
         });
-    };
-
-    $scope.remove = function(item) {
-      //TODO: wire me up bro
     };
 
     $scope.showAll = function() {
@@ -124,7 +128,6 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
                     service.milesTilDue -= response.data;
                 })
 
-
                // $scope.getServices();
           /*  }
             else {
@@ -161,7 +164,6 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
                     })
                     .then(function(response) {
                         $scope.vehicleServices = response.data;
-                        console.log(response.data);
                     });
                 });
             }
@@ -171,7 +173,122 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         });
     };
 
+    $scope.logService = function() {
+        $scope.data = {
+            vehicleID: $scope.selectedVehicle.id,
+            serviceID: $scope.selectedService,
+            date: $scope.formattedDate = $filter('date')($scope.dt, "yyyy-MM-dd"),
+            odometer: $scope.serviceOdometer,
+            shop: $scope.shop,
+            partsCost: $scope.partsCost,
+            laborCost: $scope.laborCost,
+            totalCost: $scope.totalCost
+        };
+
+        $scope.selectedVehicle.currentOdometer = $scope.serviceOdometer;
+
+        $http({
+            method: 'POST',
+            url: '/logService',
+            data: JSON.stringify($scope.data)
+        })
+        .then(function(response) {
+            if(response.data == "service logged") {
+                $scope.updateOdometer();
+                $scope.selectedService = null;
+                $scope.serviceOdometer = null;
+                $scope.shop = null;
+                $scope.partsCost = null;
+                $scope.laborCost = null;
+                $scope.totalCost = null;
+            }
+            else {
+                console.log(response.data);
+            };
+        });
+    };
+
     $('#deleteModal').on('shown.bs.modal', function () {
       $('#password').focus()
-    })
+    });
+
+
+//DatePicker code//
+    $scope.today = function() {
+        $scope.dt = new Date();
+      };
+      $scope.today();
+
+      $scope.clear = function() {
+        $scope.dt = null;
+      };
+
+      $scope.inlineOptions = {
+        customClass: getDayClass,
+        minDate: new Date(),
+        showWeeks: false
+      };
+
+      $scope.dateOptions = {
+        formatYear: 'yyyy',
+        maxDate: new Date(2020, 5, 22),
+        minDate: new Date(),
+        startingDay: 1
+      };
+
+      $scope.toggleMin = function() {
+        $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
+        $scope.dateOptions.minDate = $scope.inlineOptions.minDate;
+      };
+
+      $scope.toggleMin();
+
+      $scope.open1 = function() {
+        $scope.popup1.opened = true;
+      };
+
+      $scope.setDate = function(year, month, day) {
+        $scope.dt = new Date(year, month, day);
+      };
+
+      $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+      $scope.format = $scope.formats[1];
+      $scope.altInputFormats = ['M!/d!/yyyy'];
+
+      $scope.popup1 = {
+        opened: false
+      };
+
+      var tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      var afterTomorrow = new Date();
+      afterTomorrow.setDate(tomorrow.getDate() + 1);
+      $scope.events = [
+        {
+          date: tomorrow,
+          status: 'full'
+        },
+        {
+          date: afterTomorrow,
+          status: 'partially'
+        }
+      ];
+
+      function getDayClass(data) {
+        var date = data.date,
+          mode = data.mode;
+        if (mode === 'day') {
+          var dayToCheck = new Date(date).setHours(0,0,0,0);
+
+          for (var i = 0; i < $scope.events.length; i++) {
+            var currentDay = new Date($scope.events[i].date).setHours(0,0,0,0);
+
+            if (dayToCheck === currentDay) {
+              return $scope.events[i].status;
+            }
+          }
+        }
+
+        return '';
+      }
 }])

@@ -93,6 +93,9 @@ log-service-container {
     font-family: 'Roboto', sans-serif;
     color: #1F1F1F;
     font-weight: bold;
+    -webkit-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
+    box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
 }
 
 .odometerColumn {
@@ -210,6 +213,9 @@ label {
     font-size: 20px;
     text-align: right;
     color: black !important;
+    -webkit-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
+    box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
 }
 
 .odo-submit:hover,
@@ -225,6 +231,9 @@ label {
     background-color: black;
     border: 1px solid #00BCD4 !important;
     color: white !important;
+    -webkit-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
+        box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
 }
 
 .edit-btn:hover {
@@ -305,6 +314,7 @@ label {
     margin-bottom: 2vh !important;
     color: white !important;
     font-size: 20px;
+    text-shadow: -1px 2px 2px rgba(0, 0, 0, 0.75);
 }
 
 .expand {
@@ -412,6 +422,9 @@ label {
 .log-input {
     width: 10vw;
     height: 3vh;
+    -webkit-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
+    box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
 }
 
 .log-label {

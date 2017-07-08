@@ -3,10 +3,10 @@ package models;
 import javax.persistence.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
-@Table(name = "Completed_Service")
+@Table(name = "completed_service")
 public class CompletedService
 {
     public static final int MAX_LENGTH_SERVICEDATE = 8;
@@ -22,14 +22,15 @@ public class CompletedService
     @Column(name = "vehicle_id")
     private int vehicleID;
 
-    @Column(name = "service_event_id")
-    private int serviceEventID;
+    @Column(name = "service_id")
+    private int serviceID;
 
-    @Column(name = "shop_id")
-    private int shopID;
+    @Column(name = "shop")
+    private String shop;
 
+    //TODO: change to LocalDate
     @Column(name = "service_date")
-    private LocalDate date;
+    private Date date;
 
     @Column(name = "total_cost")
     private BigDecimal totalCost;
@@ -61,32 +62,22 @@ public class CompletedService
         this.vehicleID = vehicleID;
     }
 
-    public int getServiceEventID()
+    public String getShop()
     {
-        return serviceEventID;
+        return shop;
     }
 
-    public void setServiceEventID(int serviceEventID)
+    public void setShop(String shop)
     {
-        this.serviceEventID = serviceEventID;
+        this.shop = shop;
     }
 
-    public int getShopID()
-    {
-        return shopID;
-    }
-
-    public void setShopID(int shopID)
-    {
-        this.shopID = shopID;
-    }
-
-    public LocalDate getDate()
+    public Date getCompletedServiceDate()
     {
         return date;
     }
 
-    public void setDate(LocalDate date)
+    public void setCompletedServiceDate(Date date)
     {
         this.date = date;
     }
@@ -119,5 +110,15 @@ public class CompletedService
     public void setPartsCost(BigDecimal partsCost)
     {
         this.partsCost = partsCost;
+    }
+
+    public int getServiceID()
+    {
+        return serviceID;
+    }
+
+    public void setServiceID(int serviceID)
+    {
+        this.serviceID = serviceID;
     }
 }

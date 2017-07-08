@@ -28,10 +28,10 @@ GET     /getMakes                   controllers.MakeController.getMakes
 GET     /getModels                  controllers.ModelController.getModels
 
 #Service
-#GET     /getServiceTypes            controllers.ServiceController.getServiceTypes
 GET     /getServices                controllers.ServiceController.getServices
 GET     /getTrackedServices         controllers.ServiceController.getTrackedServices
-POST    /updateTrackedServices     controllers.ServiceController.updateTrackedServices
+POST    /updateTrackedServices      controllers.ServiceController.updateTrackedServices
+POST    /logService                 controllers.ServiceController.logService
 
 #User Location
 POST    /setUserLocation            controllers.LocationController.setUserLocation
