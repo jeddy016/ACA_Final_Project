@@ -89,7 +89,6 @@ log-service-container {
     padding: 0 !important;
     height: auto;
     width: 15vw !important;
-    margin-left: 2vw;
     font-size: 18px;
     background: white;
     text-align: center;
@@ -112,6 +111,7 @@ log-service-container {
     width: 70% !important;
     margin-top: 3vh;
     margin-bottom: 0;
+    padding-left: 0;
     display: table;
     height: auto;
     color: #00BCD4;
@@ -157,7 +157,7 @@ log-service-container {
 }
 
 .info-column {
-
+    padding-left: 0 !important;
 }
 
 .glance-column {
@@ -415,7 +415,7 @@ label {
 
 .log-service-save {
     margin-bottom: 1vh;
-    margin-left: 18.5vw;
+    margin-left: 19vw;
 }
 
 #log-service {

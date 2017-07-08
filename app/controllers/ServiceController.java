@@ -109,6 +109,7 @@ public class ServiceController extends Controller
         BigDecimal laborCost = new BigDecimal(request.findPath("laborCost").textValue());
         BigDecimal totalCost = new BigDecimal(request.findPath("totalCost").textValue());
         String date = request.findPath("date").textValue();
+        int odometerDifference = request.findPath("odometerDifference").asInt();
 
         if(valid)
         {
@@ -124,6 +125,17 @@ public class ServiceController extends Controller
             service.setShop(shop);
             service.setVehicleID(vehicleID);
             service.setServiceID(serviceID);
+
+            int interval = (Integer)jpaApi.em().createNativeQuery("SELECT mileage_interval FROM service WHERE service_id = :id")
+                    .setParameter("id", serviceID).getSingleResult();
+
+            //Add the odometer difference to the interval so that when updateOdometer is called it zeroes out the difference
+            int paddedInterval = interval + odometerDifference;
+
+            jpaApi.em().createQuery("UPDATE Service s SET s.milesTilDue = :newMilesTilDue WHERE service_id = :id")
+                    .setParameter("newMilesTilDue", paddedInterval)
+                    .setParameter("id", serviceID)
+                    .executeUpdate();
 
             jpaApi.em().persist(service);
 

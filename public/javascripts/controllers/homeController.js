@@ -173,7 +173,10 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
     };
 
     $scope.logService = function() {
-        $scope.data = {
+        $scope.odometerDifference = $scope.serviceOdometer - $scope.selectedVehicle.currentOdometer;
+        $scope.selectedVehicle.currentOdometer = $scope.serviceOdometer;
+
+         $scope.data = {
             vehicleID: $scope.selectedVehicle.id,
             serviceID: $scope.selectedService,
             date: $scope.formattedDate = $filter('date')($scope.dt, "yyyy-MM-dd"),
@@ -181,10 +184,9 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
             shop: $scope.shop,
             partsCost: $scope.partsCost,
             laborCost: $scope.laborCost,
-            totalCost: $scope.totalCost
+            totalCost: $scope.totalCost,
+            odometerDifference: $scope.odometerDifference
         };
-
-        $scope.selectedVehicle.currentOdometer = $scope.serviceOdometer;
 
         $http({
             method: 'POST',
@@ -194,6 +196,7 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         .then(function(response) {
             if(response.data == "service logged") {
                 $scope.updateOdometer();
+                $scope.getServices();
                 $scope.selectedService = null;
                 $scope.serviceOdometer = null;
                 $scope.shop = null;
