@@ -2,14 +2,12 @@
     height: 100%;
     width: 100%;
     padding-bottom: 2vh;
-    background: #1F1F1F;
+    background: #232323;
 }
 
 div {
     border-radius: 3px;
 }
-
-
 
 .add-vehicle {
     margin-top: 1%;
@@ -33,15 +31,17 @@ div {
     display: table;
     height: auto;
     color: #00BCD4;
-    border: 1px solid white;
+    border: 1px solid #666666;
     -webkit-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
     box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
+    background: #181818;
 }
 
 .vehicle-detail-container, .service-schedule-row, .log-service-row, .odometerColumn, .charts-container {
     margin-top: 3vh !important;
-    border: 1px solid white;
+    border: 1px solid #666666;
+    background: #181818;
     -webkit-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
     box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
@@ -122,6 +122,11 @@ log-service-container {
     text-align: left;
     padding: 0 !important;
     background-color: #00BCD4 !important;
+    border-radius: 0 !important;
+}
+
+.nested {
+    background-color: #353535 !important;
 }
 
 .tools-row {
@@ -131,7 +136,7 @@ log-service-container {
     padding: 0 !important;
     display: table;
     height: auto;
-    border: 1px solid white;
+    border: 1px solid #666666;
     color: #00BCD4;
     -webkit-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
@@ -143,7 +148,7 @@ log-service-container {
     padding: 0 !important;
     display: table;
     height: auto;
-    border: 1px solid white;
+    border: 1px solid #666666;
     color: #00BCD4;
 }
 
@@ -163,10 +168,6 @@ log-service-container {
 .glance-column {
     padding-top: 1%;
     padding-left: 3vw !important;
-}
-
-.service-column {
-
 }
 
 .detail {

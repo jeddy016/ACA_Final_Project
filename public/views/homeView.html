@@ -55,7 +55,7 @@
                         <p class="spotlight-detail"><label>Next Service:</label> {{vehicleServices[0].name}}</p>
                         <p class="spotlight-detail"><label>Miles until Due:</label> {{vehicleServices[0].milesTilDue | number}}</p>
                     </div>
-                    <div class="col-md-3 odometerColumn">
+                    <div class="col-md-3 odometerColumn nested">
                         <div class = "col-md-12 overview">
                             <label class="section-label">Current Odometer</label>
                         </div>
@@ -73,7 +73,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-3 tools-row">
+                <div class="col-md-3 tools-row nested">
                     <div class="col-md-12 overview">
                         <label class="section-label">Tools</label>
                     </div>
@@ -88,7 +88,7 @@
                 </div>
             </div>
 
-             <div class="row service-schedule-row">
+             <div class="row service-schedule-row nested">
                  <div class = "col-md-12 overview">
                      <label class="section-label">Maintenance Schedule</label>
                      <label class="section-label expand" ng-show="!scheduleVisible" ng-click="scheduleShowHide()"> <i class="fa fa-chevron-down"></i></label>
@@ -137,7 +137,7 @@
              </div>
 
              <div class="row log-service-container">
-                 <div class="col-md-12 log-service-row">
+                 <div class="col-md-12 log-service-row nested">
                      <div class = "col-md-12 overview">
                          <label class="section-label">Log Completed Service</label>
                          <label class="section-label expand" ng-show="!logVisible" ng-click="logShowHide()"> <i class="fa fa-chevron-down"></i></label>
