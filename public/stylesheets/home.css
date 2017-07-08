@@ -27,14 +27,19 @@ div {
 }
 
 .snapshot-row {
-    width: 100% !important;
+    width: 75% !important;
+    margin-top: 9vh !important;
     padding: 0 !important;
     display: table;
     height: auto;
     color: #00BCD4;
+    border: 1px solid white;
+    -webkit-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
+    box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
 }
 
-.vehicle-detail-container, .service-schedule-row, .log-service-row, .odometerColumn, .snapshot-row, .charts-container {
+.vehicle-detail-container, .service-schedule-row, .log-service-row, .odometerColumn, .charts-container {
     margin-top: 3vh !important;
     border: 1px solid white;
     -webkit-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
@@ -45,7 +50,6 @@ div {
 .service-schedule-row {
     float: left;
     width: 59% !important;
-    margin-bottom: 2vh !important;
     margin-top: 1vh !important;
 }
 
@@ -53,7 +57,6 @@ div {
     padding: 0 !important;
     width: 34% !important;
     float: right;
-    margin-bottom: 2vh !important;
     margin-top: 1vh !important;
 }
 
@@ -232,8 +235,8 @@ label {
     border: 1px solid #00BCD4 !important;
     color: white !important;
     -webkit-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
-        -moz-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
-        box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
+    box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
 }
 
 .edit-btn:hover {
@@ -310,11 +313,11 @@ label {
 .all-control {
     float: right;
     cursor: pointer;
-    margin-top: 9vh;;
-    margin-bottom: 2vh !important;
+    margin-top: 10vh;
+    margin-left: 2vw;
+    margin-bottom: 2vh;
     color: white !important;
     font-size: 20px;
-    text-shadow: -1px 2px 2px rgba(0, 0, 0, 0.75);
 }
 
 .expand {
@@ -350,6 +353,7 @@ label {
 .charts-container {
     padding: 0 !important;
     margin-top: 3vh !important;
+    margin-bottom: 3vh !important;
 }
 
 .chart1 {
@@ -410,17 +414,16 @@ label {
 }
 
 .log-service-save {
-    margin-top: 2vh;
     margin-bottom: 1vh;
-    margin-left: 7.5vw;
+    margin-left: 18.5vw;
 }
 
 #log-service {
-    margin-left: 3.5vw !important;
+    margin-left: 1vw !important;
 }
 
 .log-input {
-    width: 10vw;
+    width: 13vw;
     height: 3vh;
     -webkit-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
@@ -428,7 +431,7 @@ label {
 }
 
 .log-label {
-    margin-top: 2vh;
+    margin-top: 1vh;
     color: #00BCD4;
 }
 

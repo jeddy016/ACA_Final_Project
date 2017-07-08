@@ -37,7 +37,6 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         })
         .then(function(response) {
             $scope.vehicleServices = response.data;
-            console.log(response.data);
             $scope.selectedService = $scope.vehicleServices[0].id;
         });
     });
@@ -208,12 +207,13 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         });
     };
 
+//Delete modal//
     $('#deleteModal').on('shown.bs.modal', function () {
       $('#password').focus()
     });
 
 
-//DatePicker code//
+//DatePicker//
     $scope.today = function() {
         $scope.dt = new Date();
       };
