@@ -4,7 +4,7 @@ Chart.defaults.global.defaultFontFamily = "Roboto";
 Chart.defaults.global.defaultFontColor = "white";
 
 //Update charts when selectedVechicle changes//
-$scope.$watch('selectedVehicle', function() {
+$scope.$watch('completedServices', function() {
 
 var ctx = document.getElementById("totalByMonth");
 ctx.height= 400;
@@ -59,7 +59,7 @@ var drawTotalByMonthChart = function () {
             },
             title: {
                  display: true,
-                text: "Total Maintenance Cost YTD by Month",
+                text: "Maintenance Cost YTD by Month",
                 fontSize: 25,
                 fontFamily: "'Roboto', 'sans-serif'",
                 fontColor: 'white'
@@ -183,7 +183,7 @@ var drawTotalByServiceChart = function() {
     options: {
         title: {
             display: true,
-            text: "Total Maintenance Cost YTD by Service",
+            text: "Maintenance Cost YTD by Service",
             fontSize: 25,
             fontFamily: "'Roboto', 'sans-serif'",
             fontColor: 'white'
