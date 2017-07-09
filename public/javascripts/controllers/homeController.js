@@ -9,6 +9,8 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
     $scope.passwordErrorVisible = false;
     $scope.historyVisible = false;
 
+    $scope.nextDue = {};
+
     $scope.vehicles = [];
     $scope.selectedVehicle = $scope.selectedVehicle;
     $scope.odoForm = {};
@@ -33,7 +35,19 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         $scope.vehicles = response.data;
         $scope.selectedVehicle = $scope.vehicles[0];
         $scope.getServices();
+        $scope.getNextDue();
     });
+
+    $scope.getNextDue = function() {
+        $http({
+             method: 'GET',
+             url: '/getNextDue'
+         })
+         .then(function(response) {
+             $scope.nextDue = response.data;
+             console.log($scope.nextDue);
+         });
+     }
 
     $scope.getServices = function() {
         $http({
@@ -49,84 +63,109 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
                 params: {"vehicleID": $scope.selectedVehicle.id}
             })
             .then(function(response) {
-                console.log(response.data)
                 $scope.completedServices = response.data;
             });
         });
     };
 
     $scope.deleteVehicle = function() {
-            $http({
-                method: 'POST',
-                url: '/deleteVehicle/' + $scope.selectedVehicle.id,
-                data: {password: $scope.deletePassword}
-            })
-            .then(function(response){
-                if(response.data == "success") {
+        $http({
+            method: 'POST',
+            url: '/deleteVehicle/' + $scope.selectedVehicle.id,
+            data: {password: $scope.deletePassword}
+        })
+        .then(function(response){
+            if(response.data == "success") {
+                $http({
+                    method: 'GET',
+                    url: '/getVehicles'
+                })
+                .then(function(response) {
+                    $scope.vehicles = response.data;
+                    $scope.selectedVehicle = $scope.vehicles[0];
+                    $('#deleteModal').modal('toggle');
                     $http({
                         method: 'GET',
-                        url: '/getVehicles'
+                        url: '/getServices',
+                        params: {"vehicleID": $scope.selectedVehicle.id}
                     })
                     .then(function(response) {
-                        $scope.vehicles = response.data;
-                        $scope.selectedVehicle = $scope.vehicles[0];
-                        $('#deleteModal').modal('toggle');
-                        $http({
-                            method: 'GET',
-                            url: '/getServices',
-                            params: {"vehicleID": $scope.selectedVehicle.id}
-                        })
-                        .then(function(response) {
-                            $scope.vehicleServices = response.data;
-                        });
+                        $scope.vehicleServices = response.data;
                     });
-                }
-                else {
-                    $scope.passwordErrorVisible = true;
-                };
-            });
-        };
+                });
+            }
+            else {
+                $scope.passwordErrorVisible = true;
+            };
+        });
+    };
 
     $scope.logService = function() {
-            $scope.odometerDifference = $scope.serviceOdometer - $scope.selectedVehicle.currentOdometer;
-            $scope.selectedVehicle.currentOdometer = $scope.serviceOdometer;
+        $scope.odometerDifference = $scope.serviceOdometer - $scope.selectedVehicle.currentOdometer;
+        $scope.selectedVehicle.currentOdometer = $scope.serviceOdometer;
 
-             $scope.data = {
-                vehicleID: $scope.selectedVehicle.id,
-                serviceID: $scope.selectedService,
-                date: $scope.formattedDate = $filter('date')($scope.dt, "yyyy-MM-dd"),
-                odometer: $scope.serviceOdometer,
-                shop: $scope.shop,
-                partsCost: $scope.partsCost,
-                laborCost: $scope.laborCost,
-                totalCost: $scope.totalCost,
-                odometerDifference: $scope.odometerDifference
+         $scope.data = {
+            vehicleID: $scope.selectedVehicle.id,
+            serviceID: $scope.selectedService,
+            date: $scope.formattedDate = $filter('date')($scope.dt, "yyyy-MM-dd"),
+            odometer: $scope.serviceOdometer,
+            shop: $scope.shop,
+            partsCost: $scope.partsCost,
+            laborCost: $scope.laborCost,
+            totalCost: $scope.totalCost,
+            odometerDifference: $scope.odometerDifference
+        };
+
+        $http({
+            method: 'POST',
+            url: '/logService',
+            data: JSON.stringify($scope.data)
+        })
+        .then(function(response) {
+            if(response.data == "service logged") {
+                $scope.updateOdometer();
+                $scope.getServices();
+                $scope.selectedService = null;
+                $scope.serviceOdometer = null;
+                $scope.shop = null;
+                $scope.partsCost = null;
+                $scope.laborCost = null;
+                $scope.totalCost = null;
+            }
+            else {
+                console.log(response.data);
             };
+        });
+    };
 
+    $scope.updateOdometer = function(){
+            $scope.id = $scope.selectedVehicle.id;
+
+            var data= {
+                vehicleID : $scope.id,
+                reading : $scope.selectedVehicle.currentOdometer
+            };
             $http({
                 method: 'POST',
-                url: '/logService',
-                data: JSON.stringify($scope.data)
+                url: '/updateOdometer',
+                data: JSON.stringify(data)
             })
             .then(function(response) {
-                if(response.data == "service logged") {
-                    $scope.updateOdometer();
-                    $scope.getServices();
-                    $scope.selectedService = null;
-                    $scope.serviceOdometer = null;
-                    $scope.shop = null;
-                    $scope.partsCost = null;
-                    $scope.laborCost = null;
-                    $scope.totalCost = null;
-                }
+               //if(response.data == 'success'){
+                    $scope.vehicleServices.forEach(function(service){
+                        service.milesTilDue -= response.data;
+                        $scope.getNextDue();
+                    })
+
+                   // $scope.getServices();
+              /*  }
                 else {
-                    console.log(response.data);
-                };
+                    alert("Error updating odometer. " /*+ display whatever error comes back from DB);
+                };*/
             });
         };
 
-
-    $scope.showAll = function() {
+    /*$scope.showAll = function() {
         $scope.overviewVisible = true;
         $scope.snapshotVisible = true;
         $scope.spotlightVisible = true;
@@ -141,7 +180,7 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         $scope.scheduleVisible = false;
         $scope.logVisible = false;
         $scope.chartsVisible = false;
-    };
+    };*/
 
     $scope.overviewShowHide = function() {
         $scope.overviewVisible == true ? $scope.overviewVisible = false : $scope.overviewVisible = true;
@@ -184,32 +223,6 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         if($scope.selectedVehicle.currentOdometer != $scope.newOdometerReading) {
             $scope.selectedVehicle.currentOdometer = $scope.selectedVehicle.currentOdometer;
         }
-    };
-
-    $scope.updateOdometer = function(){
-        $scope.id = $scope.selectedVehicle.id;
-
-        var data= {
-            vehicleID : $scope.id,
-            reading : $scope.selectedVehicle.currentOdometer
-        };
-        $http({
-            method: 'POST',
-            url: '/updateOdometer',
-            data: JSON.stringify(data)
-        })
-        .then(function(response) {
-           //if(response.data == 'success'){
-                $scope.vehicleServices.forEach(function(service){
-                    service.milesTilDue -= response.data;
-                })
-
-               // $scope.getServices();
-          /*  }
-            else {
-                alert("Error updating odometer. " /*+ display whatever error comes back from DB);
-            };*/
-        });
     };
 
     $scope.goToEditPage = function() {

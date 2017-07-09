@@ -6,21 +6,21 @@
     <!--<label class=" all-control" ng-click="hideAll()"><i class="fa fa-chevron-up"></i>Collapse All </label>
     <label class=" all-control"  ng-click="showAll()"><i class="fa fa-chevron-down"></i>Expand All</label>-->
 
-    <div class="row snapshot-row">
+    <div class="row snapshot-row" ng-controller="snapShotController">
         <div class = "col-md-12 overview">
             <label class="section-label">At a Glance</label>
             <!--<label class="section-label expand" ng-show="!snapshotVisible" ng-click="snapshotShowHide()"> <i class="fa fa-chevron-down"></i></label>
             <label class="section-label expand" ng-show="snapshotVisible" ng-click="snapshotShowHide()"> <i class="fa fa-chevron-up"></i></label>-->
         </div>
         <div class="col-md-6 glance-column" ng-show="snapshotVisible">
-            <p class="detail"><label>Next Vehicle Due for Service:</label> </p>
-            <p class="detail"><label>Next Service Due:</label> </p>
-            <p class="detail"><label>Days until Due:</label> </p>
+            <p class="detail"><label>Next Vehicle Due for Service:</label>{{ nextDue.vehicleName }}</p>
+            <p class="detail"><label>Next Service Due:</label>{{ nextDue.serviceName }}</p>
+            <p class="detail"><label>Miles until Due:</label>{{ nextDue.milesTilDue }} </p>
         </div>
         <div class="col-md-6 glance-column" ng-show="snapshotVisible">
-            <p class="detail"><label>Total Cost YTD:</label> </p>
-            <p class="detail"><label>AVG Service Cost:</label> </p>
-            <p class="detail"><label>Highest Cost to Maintain:</label> </p>
+            <p class="detail" ng-model="totalYTD"><label>Total Cost YTD:</label> </p>
+            <p class="detail" ng-model="avgCost"><label>AVG Service Cost:</label> </p>
+            <p class="detail" ng-model="highestCost"><label>Highest Cost to Maintain:</label> </p>
         </div>
     </div>
 

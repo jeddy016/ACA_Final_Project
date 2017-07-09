@@ -30,6 +30,7 @@ GET     /getModels                  controllers.ModelController.getModels
 #Service
 GET     /getServices                controllers.ServiceController.getServices
 GET     /getTrackedServices         controllers.ServiceController.getTrackedServices
+GET     /getNextDue                 controllers.ServiceController.getNextDue
 POST    /updateTrackedServices      controllers.ServiceController.updateTrackedServices
 POST    /logService                 controllers.ServiceController.logService
 
