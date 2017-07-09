@@ -16,7 +16,7 @@ var drawTotalByMonthChart = function () {
             labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
             datasets: [{
                 label: 'Total Maintenance Cost',
-                data: [90, 30, 5, 0, 75, 0, 0, 100, 50, 0, 120, 40],
+                data: $scope.costByMonthValues,
                 backgroundColor: [
                     'rgba(134, 195, 50, 1)',
                     'rgba(134, 195, 50, 1)',

@@ -9,7 +9,9 @@ import play.mvc.Controller;
 import play.mvc.Result;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 
 public class StatsController extends Controller
@@ -36,4 +38,18 @@ public class StatsController extends Controller
         return ok(Json.toJson(data));
     }
 
+    @Transactional
+    public Result getTotalCostByMonth()
+    {
+        int vehicleID = Integer.parseInt(request().getQueryString("vehicleID"));
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+
+        List<Integer> values = jpaApi.em().createNativeQuery("SELECT MONTH(service_date) as month, SUM(total_cost) as total FROM completed_service c JOIN vehicle v on v.vehicle_id = c.vehicle_id WHERE v.vehicle_id = :id AND YEAR(c.service_date) = :year GROUP BY MONTH(c.service_date)")
+                .setParameter("id", vehicleID)
+                .setParameter("year", year)
+                .getResultList();
+
+
+        return ok(Json.toJson(values));
+    }
 }

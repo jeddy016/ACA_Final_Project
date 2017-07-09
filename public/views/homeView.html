@@ -12,12 +12,12 @@
             <!--<label class="section-label expand" ng-show="!snapshotVisible" ng-click="snapshotShowHide()"> <i class="fa fa-chevron-down"></i></label>
             <label class="section-label expand" ng-show="snapshotVisible" ng-click="snapshotShowHide()"> <i class="fa fa-chevron-up"></i></label>-->
         </div>
-        <div class="col-md-6 glance-column" ng-show="snapshotVisible">
+        <div class="col-md-7 glance-column" ng-show="snapshotVisible">
             <p class="detail"><label>Next Vehicle Due for Service:</label> {{ nextDue.vehicleName }}</p>
             <p class="detail"><label>Next Service Due:</label> {{ nextDue.serviceName }}</p>
             <p class="detail"><label>Miles until Due:</label> {{ nextDue.milesTilDue | number}} </p>
         </div>
-        <div class="col-md-6 glance-column" ng-show="snapshotVisible">
+        <div class="col-md-5 glance-column" ng-show="snapshotVisible">
             <p class="detail" ng-model="totalYTD"><label>Total Cost YTD:</label> {{aggValues.totalCost | currency }} </p>
             <p class="detail" ng-model="avgCost"><label>AVG Service Cost:</label> {{aggValues.avgCost | currency }} </p>
             <!--<p class="detail" ng-model="highestCost"><label>Highest Cost to Maintain:</label> </p>-->
@@ -35,7 +35,7 @@
 
                  <div class="col-md-12 dropdown-container">
                     <div class="col-md-2 dropdown-col">
-                        <select class="form-control vehicle-dropdown" ng-change="getServices()" ng-model="selectedVehicle" ng-options="vehicle.nickname for vehicle in vehicles">
+                        <select class="form-control vehicle-dropdown" ng-change="getServices(); getCostByMonth()" ng-model="selectedVehicle" ng-options="vehicle.nickname for vehicle in vehicles">
                         </select>
                     </div>
                 </div>
