@@ -38,7 +38,7 @@ div {
     background: #181818;
 }
 
-.vehicle-detail-container, .service-schedule-row, .log-service-row, .odometerColumn, .charts-container {
+.vehicle-detail-container, .service-schedule-row, .log-service-row, .odometerColumn {
     margin-top: 3vh !important;
     border: 1px solid #666666;
     background: #181818;
@@ -277,6 +277,8 @@ label {
     margin-bottom: 2vh !important;
 }
 
+
+
 .section-label {
     margin-left: 1%;
     margin-bottom: 0 !important;
@@ -353,16 +355,22 @@ label {
 
 .charts-container {
     padding: 0 !important;
-    margin-top: 3vh !important;
+    margin-top: 1vh !important;
     margin-bottom: 3vh !important;
 }
 
 .chart1 {
     float: left;
+    width: 49% !important;
+    border: 1px solid #666666;
+    background: #181818;
 }
 
 .chart2 {
     float: right;
+        width: 49% !important;
+    border: 1px solid #666666;
+    background: #181818;
 }
 
 .schedule-dropdown {

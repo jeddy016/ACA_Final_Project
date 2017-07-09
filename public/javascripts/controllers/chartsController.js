@@ -18,18 +18,18 @@ var drawTotalByMonthChart = function () {
                 label: 'Total Maintenance Cost',
                 data: [90, 30, 5, 0, 75, 0, 0, 100, 50, 0, 120, 40],
                 backgroundColor: [
-                    '#33c2ff',
-                    '#33c2ff',
-                    '#33c2ff',
-                    '#33c2ff',
-                    '#33c2ff',
-                    '#33c2ff',
-                    '#33c2ff',
-                    '#33c2ff',
-                    '#33c2ff',
-                    '#33c2ff',
-                    '#33c2ff',
-                    '#33c2ff'
+                    'rgba(134, 195, 50, 1)',
+                    'rgba(134, 195, 50, 1)',
+                    'rgba(134, 195, 50, 1)',
+                    'rgba(134, 195, 50, 1)',
+                    'rgba(134, 195, 50, 1)',
+                    'rgba(134, 195, 50, 1)',
+                    'rgba(134, 195, 50, 1)',
+                    'rgba(134, 195, 50, 1)',
+                    'rgba(134, 195, 50, 1)',
+                    'rgba(134, 195, 50, 1)',
+                    'rgba(134, 195, 50, 1)',
+                    'rgba(134, 195, 50, 1)'
                 ]
             }]
         },
@@ -190,7 +190,7 @@ var drawTotalByServiceChart = function() {
         },
         legend: {
             display: true,
-            position: 'bottom'
+            position: 'left'
         },
         pieceLabel: {
                     mode: 'value',

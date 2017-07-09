@@ -3,14 +3,14 @@
 </div>
 
 <div class = "container-fluid">
-    <label class=" all-control" ng-click="hideAll()"><i class="fa fa-chevron-up"></i>Collapse All </label>
-    <label class=" all-control"  ng-click="showAll()"><i class="fa fa-chevron-down"></i>Expand All</label>
+    <!--<label class=" all-control" ng-click="hideAll()"><i class="fa fa-chevron-up"></i>Collapse All </label>
+    <label class=" all-control"  ng-click="showAll()"><i class="fa fa-chevron-down"></i>Expand All</label>-->
 
     <div class="row snapshot-row">
         <div class = "col-md-12 overview">
             <label class="section-label">At a Glance</label>
-            <label class="section-label expand" ng-show="!snapshotVisible" ng-click="snapshotShowHide()"> <i class="fa fa-chevron-down"></i></label>
-            <label class="section-label expand" ng-show="snapshotVisible" ng-click="snapshotShowHide()"> <i class="fa fa-chevron-up"></i></label>
+            <!--<label class="section-label expand" ng-show="!snapshotVisible" ng-click="snapshotShowHide()"> <i class="fa fa-chevron-down"></i></label>
+            <label class="section-label expand" ng-show="snapshotVisible" ng-click="snapshotShowHide()"> <i class="fa fa-chevron-up"></i></label>-->
         </div>
         <div class="col-md-6 glance-column" ng-show="snapshotVisible">
             <p class="detail"><label>Next Vehicle Due for Service:</label> </p>
@@ -32,10 +32,10 @@
     <div class="row vehicle-detail-container">
          <div class = "col-md-12 overview">
              <label class="section-label">Vehicle Spotlight</label>
-             <label class="section-label spotlight-expand" ng-show="!spotlightVisible" ng-click="spotlightShowHide()"> <i class="fa fa-chevron-down"></i></label>
-             <label class="section-label spotlight-expand" ng-show="spotlightVisible" ng-click="spotlightShowHide()"> <i class="fa fa-chevron-up"></i></label>
+            <!-- <label class="section-label spotlight-expand" ng-show="!spotlightVisible" ng-click="spotlightShowHide()"> <i class="fa fa-chevron-down"></i></label>
+             <label class="section-label spotlight-expand" ng-show="spotlightVisible" ng-click="spotlightShowHide()"> <i class="fa fa-chevron-up"></i></label>-->
          </div>
-         <div class="vehicle-detail-row" ng-show="spotlightVisible">
+         <div class="vehicle-detail-row">
              <div class = "row select-row">
 
                  <div class="col-md-12 dropdown-container">
@@ -191,16 +191,11 @@
     </div>
 
     <div class="row charts-container" ng-controller="chartsController">
-        <div class = "col-md-12 overview charts">
-            <label class="section-label">Graphs</label>
-            <label class="section-label expand" ng-show="!chartsVisible" ng-click="chartsShowHide()"> <i class="fa fa-chevron-down"></i></label>
-            <label class="section-label expand" ng-show="chartsVisible" ng-click="chartsShowHide()"> <i class="fa fa-chevron-up"></i></label>
+        <div class="col-md-6 chart1" >
+            <canvas id="totalByMonth" ></canvas>
         </div>
-        <div class="col-md-6 chart1" ng-show="chartsVisible">
-            <canvas id="totalByMonth" ng-show="chartsVisible"></canvas>
-        </div>
-        <div class="col-md-5 chart2" ng-show="chartsVisible">
-            <canvas id="totalByService" ng-show="chartsVisible"></canvas>
+        <div class="col-md-5 chart2" >
+            <canvas id="totalByService" ></canvas>
         </div>
     </div>
 
