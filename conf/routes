@@ -37,6 +37,9 @@ POST    /logService                 controllers.ServiceController.logService
 #Completed Service
 GET     /getCompletedServices       controllers.CompletedServiceController.getCompletedServices
 
+#Stats
+GET     /getTotalAndAVG             controllers.StatsController.getTotalAndAVG
+
 #User Location
 POST    /setUserLocation            controllers.LocationController.setUserLocation
 GET    /getUserLocation            controllers.LocationController.getUserLocation

@@ -10,6 +10,7 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
     $scope.historyVisible = false;
 
     $scope.nextDue = {};
+    $scope.aggValues = {};
 
     $scope.vehicles = [];
     $scope.selectedVehicle = $scope.selectedVehicle;
@@ -36,6 +37,7 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         $scope.selectedVehicle = $scope.vehicles[0];
         $scope.getServices();
         $scope.getNextDue();
+        $scope.getAggValues();
     });
 
     $scope.getNextDue = function() {
@@ -45,7 +47,16 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
          })
          .then(function(response) {
              $scope.nextDue = response.data;
-             console.log($scope.nextDue);
+         });
+     }
+
+     $scope.getAggValues = function() {
+        $http({
+             method: 'GET',
+             url: '/getTotalAndAVG'
+         })
+         .then(function(response) {
+             $scope.aggValues = response.data;
          });
      }
 
