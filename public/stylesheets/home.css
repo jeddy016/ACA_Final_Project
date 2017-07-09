@@ -38,7 +38,7 @@ div {
     background: #181818;
 }
 
-.vehicle-detail-container, .service-schedule-row, .log-service-row, .odometerColumn {
+.vehicle-detail-container, .service-schedule-row, .log-service-row, .service-history-row, .odometerColumn {
     margin-top: 3vh !important;
     border: 1px solid #666666;
     background: #181818;
@@ -64,6 +64,7 @@ log-service-container {
     background: #00BCD4;
     margin-left: 5vw;
 }
+
 
 .vehicle-detail-row {
     padding: 1vw !important;
@@ -384,6 +385,7 @@ label {
     color: white;
     font-size: 19px;
     font-family: 'Roboto', sans-serif;
+    text-align: left !important:
 }
 
 .schedule-row {
@@ -400,7 +402,6 @@ label {
     margin: 0 !important;
     color: #00BCD4;
     font-size: 17px;
-
 }
 
 .data-col{
@@ -481,4 +482,8 @@ label {
     margin-left: 50%;
     display: block;
     color: red;
+}
+
+.align-left {
+    text-align: left !important;
 }

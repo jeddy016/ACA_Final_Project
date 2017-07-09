@@ -17,11 +17,6 @@
             <p class="detail"><label>Next Service Due:</label> </p>
             <p class="detail"><label>Days until Due:</label> </p>
         </div>
-        <!--<div class="col-md-4 glance-column" ng-show="snapshotVisible">
-            <p class="detail"><label>Total Overdue Services:</label> </p>
-            <p class="detail"><label>Total Services due this month:</label> </p>
-            <p class="detail"><label>Total Services due this year:</label> </p>
-        </div>-->
         <div class="col-md-6 glance-column" ng-show="snapshotVisible">
             <p class="detail"><label>Total Cost YTD:</label> </p>
             <p class="detail"><label>AVG Service Cost:</label> </p>
@@ -111,7 +106,7 @@
                  </div>
                  <hr class="schedule-hr">
 
-                 <div class="row services-list" ng-repeat="service in vehicleServices" ng-show="scheduleVisible">
+                 <div class="row" ng-repeat="service in vehicleServices" ng-show="scheduleVisible">
                      <div class = "row">
                          <div class="col-md-3">
                              <label class="service-label schedule-data">{{ service.name }}</label>
@@ -185,7 +180,59 @@
                          </div>
                      </form>
                  </div>
+             </div>
 
+             <div class="row service-history-row nested">
+                 <div class = "col-md-12 overview">
+                     <label class="section-label">Service History</label>
+                     <label class="section-label expand" ng-show="!historyVisible" ng-click="historyShowHide()"> <i class="fa fa-chevron-down"></i></label>
+                     <label class="section-label expand" ng-show="historyVisible" ng-click="historyShowHide()"> <i class="fa fa-chevron-up"></i></label>
+                 </div>
+
+                 <div class="row schedule-row" ng-show="historyVisible">
+                     <div class="col-md-2 center" ng-show="historyVisible">
+                         <label class="schedule-label"></label>
+                     </div>
+                     <div class="col-md-2">
+                         <label class="schedule-label">Date</label><br>
+                     </div>
+                     <div class="col-md-2">
+                         <label class="schedule-label">Total Cost</label><br>
+                     </div>
+                     <div class="col-md-2">
+                         <label class="schedule-label">Parts Cost</label>
+                     </div>
+                     <div class="col-md-2">
+                         <label class="schedule-label">Labor Cost</label><br>
+                     </div>
+                     <div class="col-md-2">
+                         <label class="schedule-label">Shop</label><br>
+                     </div>
+                 </div>
+                 <hr class="schedule-hr">
+
+                 <div class="service-history-list schedule-row" ng-repeat="service in completedServices">
+                     <div class="row">
+                         <div class="col-md-2 align-left" ng-show="historyVisible">
+                             <label class="service-label schedule-data">{{service.name}}</label>
+                         </div>
+                         <div class="col-md-2" ng-show="historyVisible">
+                             <label class="schedule-data">{{service.date | date}}</label><br>
+                         </div>
+                         <div class="col-md-2" ng-show="historyVisible">
+                             <label class="schedule-data">{{service.totalCost | currency}}</label><br>
+                         </div>
+                         <div class="col-md-2" ng-show="historyVisible">
+                             <label class="schedule-data">{{service.partsCost | currency}}</label>
+                         </div>
+                         <div class="col-md-2" ng-show="historyVisible">
+                             <label class="schedule-data">{{service.laborCost | currency}}</label><br>
+                         </div>
+                         <div class="col-md-2" ng-show="historyVisible">
+                             <label class="schedule-data">{{service.shop}}</label><br>
+                         </div>
+                     </div>
+                 </div>
              </div>
         </div>
     </div>
@@ -222,10 +269,4 @@
         </div>
     </div>
 
-            <!--</div>
-                <div class="col-md-3 buttons-column">
-                    <!--<button class="btn edit-btn detail" ng-click="goToEditPage(vehicle)">Edit Vehicle</button><br>-->
-                  <!--  <button class="btn log-service-btn detail" ng-click="goTo('/logService')">Log a Service</button><br>
-                    <button class="btn log-service-btn detail" ng-click="goTo('/services')">Service Schedule</button><br>
-                </div> -->
 </div>

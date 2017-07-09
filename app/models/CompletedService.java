@@ -16,7 +16,7 @@ public class CompletedService
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name = "completed_service_id")
+    @Column(name ="completed_service_id")
     private int completedServiceID;
 
     @Column(name = "vehicle_id")
@@ -28,7 +28,6 @@ public class CompletedService
     @Column(name = "shop")
     private String shop;
 
-    //TODO: change to LocalDate
     @Column(name = "service_date")
     private Date date;
 

@@ -7,12 +7,14 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
     $scope.logVisible = false;
     $scope.chartsVisible = false;
     $scope.passwordErrorVisible = false;
+    $scope.historyVisible = false;
 
     $scope.vehicles = [];
     $scope.selectedVehicle = $scope.selectedVehicle;
     $scope.odoForm = {};
     $scope.odoForm.newOdometerReading = "";
     $scope.vehicleServices = [];
+    $scope.completedServices = [];
 
     $scope.selectedService = $scope.vehicleServices[0];
     $scope.serviceOdometer = $scope.serviceOdometer;
@@ -30,15 +32,7 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
     .then(function(response) {
         $scope.vehicles = response.data;
         $scope.selectedVehicle = $scope.vehicles[0];
-        $http({
-            method: 'GET',
-            url: '/getServices',
-            params: {"vehicleID": $scope.selectedVehicle.id}
-        })
-        .then(function(response) {
-            $scope.vehicleServices = response.data;
-            $scope.selectedService = $scope.vehicleServices[0].id;
-        });
+        $scope.getServices();
     });
 
     $scope.getServices = function() {
@@ -49,8 +43,88 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         })
         .then(function(response) {
             $scope.vehicleServices = response.data;
+            $http({
+                method: 'GET',
+                url: '/getCompletedServices',
+                params: {"vehicleID": $scope.selectedVehicle.id}
+            })
+            .then(function(response) {
+                console.log(response.data)
+                $scope.completedServices = response.data;
+            });
         });
     };
+
+    $scope.deleteVehicle = function() {
+            $http({
+                method: 'POST',
+                url: '/deleteVehicle/' + $scope.selectedVehicle.id,
+                data: {password: $scope.deletePassword}
+            })
+            .then(function(response){
+                if(response.data == "success") {
+                    $http({
+                        method: 'GET',
+                        url: '/getVehicles'
+                    })
+                    .then(function(response) {
+                        $scope.vehicles = response.data;
+                        $scope.selectedVehicle = $scope.vehicles[0];
+                        $('#deleteModal').modal('toggle');
+                        $http({
+                            method: 'GET',
+                            url: '/getServices',
+                            params: {"vehicleID": $scope.selectedVehicle.id}
+                        })
+                        .then(function(response) {
+                            $scope.vehicleServices = response.data;
+                        });
+                    });
+                }
+                else {
+                    $scope.passwordErrorVisible = true;
+                };
+            });
+        };
+
+    $scope.logService = function() {
+            $scope.odometerDifference = $scope.serviceOdometer - $scope.selectedVehicle.currentOdometer;
+            $scope.selectedVehicle.currentOdometer = $scope.serviceOdometer;
+
+             $scope.data = {
+                vehicleID: $scope.selectedVehicle.id,
+                serviceID: $scope.selectedService,
+                date: $scope.formattedDate = $filter('date')($scope.dt, "yyyy-MM-dd"),
+                odometer: $scope.serviceOdometer,
+                shop: $scope.shop,
+                partsCost: $scope.partsCost,
+                laborCost: $scope.laborCost,
+                totalCost: $scope.totalCost,
+                odometerDifference: $scope.odometerDifference
+            };
+
+            $http({
+                method: 'POST',
+                url: '/logService',
+                data: JSON.stringify($scope.data)
+            })
+            .then(function(response) {
+                if(response.data == "service logged") {
+                    $scope.updateOdometer();
+                    $scope.getServices();
+                    $scope.selectedService = null;
+                    $scope.serviceOdometer = null;
+                    $scope.shop = null;
+                    $scope.partsCost = null;
+                    $scope.laborCost = null;
+                    $scope.totalCost = null;
+                }
+                else {
+                    console.log(response.data);
+                };
+            });
+        };
+
 
     $scope.showAll = function() {
         $scope.overviewVisible = true;
@@ -86,6 +160,9 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
     };
     $scope.logShowHide = function() {
         $scope.logVisible == true ? $scope.logVisible = false : $scope.logVisible = true;
+    };
+    $scope.historyShowHide = function() {
+        $scope.historyVisible == true ? $scope.historyVisible = false : $scope.historyVisible = true;
     };
     $scope.intervalsShowHide= function(event) {
             event.preventDefault();
@@ -140,81 +217,10 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
           $scope.goTo('/editVehicle/' + id);
         };
 
-    $scope.deleteVehicle = function() {
-        $http({
-            method: 'POST',
-            url: '/deleteVehicle/' + $scope.selectedVehicle.id,
-            data: {password: $scope.deletePassword}
-        })
-        .then(function(response){
-            if(response.data == "success") {
-                $http({
-                    method: 'GET',
-                    url: '/getVehicles'
-                })
-                .then(function(response) {
-                    $scope.vehicles = response.data;
-                    $scope.selectedVehicle = $scope.vehicles[0];
-                    $('#deleteModal').modal('toggle');
-                    $http({
-                        method: 'GET',
-                        url: '/getServices',
-                        params: {"vehicleID": $scope.selectedVehicle.id}
-                    })
-                    .then(function(response) {
-                        $scope.vehicleServices = response.data;
-                    });
-                });
-            }
-            else {
-                $scope.passwordErrorVisible = true;
-            };
-        });
-    };
-
-    $scope.logService = function() {
-        $scope.odometerDifference = $scope.serviceOdometer - $scope.selectedVehicle.currentOdometer;
-        $scope.selectedVehicle.currentOdometer = $scope.serviceOdometer;
-
-         $scope.data = {
-            vehicleID: $scope.selectedVehicle.id,
-            serviceID: $scope.selectedService,
-            date: $scope.formattedDate = $filter('date')($scope.dt, "yyyy-MM-dd"),
-            odometer: $scope.serviceOdometer,
-            shop: $scope.shop,
-            partsCost: $scope.partsCost,
-            laborCost: $scope.laborCost,
-            totalCost: $scope.totalCost,
-            odometerDifference: $scope.odometerDifference
-        };
-
-        $http({
-            method: 'POST',
-            url: '/logService',
-            data: JSON.stringify($scope.data)
-        })
-        .then(function(response) {
-            if(response.data == "service logged") {
-                $scope.updateOdometer();
-                $scope.getServices();
-                $scope.selectedService = null;
-                $scope.serviceOdometer = null;
-                $scope.shop = null;
-                $scope.partsCost = null;
-                $scope.laborCost = null;
-                $scope.totalCost = null;
-            }
-            else {
-                console.log(response.data);
-            };
-        });
-    };
-
 //Delete modal//
     $('#deleteModal').on('shown.bs.modal', function () {
       $('#password').focus()
     });
-
 
 //DatePicker//
     $scope.today = function() {

@@ -19,7 +19,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import static controllers.routes.OdometerController;
 
 public class ServiceController extends Controller
 {
