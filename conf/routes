@@ -34,6 +34,7 @@ GET     /getTrackedServices         controllers.ServiceController.getTrackedServ
 GET     /getNextDue                 controllers.ServiceController.getNextDue
 POST    /updateTrackedServices      controllers.ServiceController.updateTrackedServices
 POST    /logService                 controllers.ServiceController.logService
+POST    /updateIntervals            controllers.ServiceController.updateIntervals
 
 #Completed Service
 GET     /getCompletedServices       controllers.CompletedServiceController.getCompletedServices

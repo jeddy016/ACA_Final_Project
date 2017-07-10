@@ -228,6 +228,24 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         });
     };
 
+    $scope.updateIntervals = function() {
+        var data= [];
+
+        $scope.vehicleServices.forEach(function(service){
+            data.push({serviceID: service.id, interval: service.milesInterval})
+        })
+
+        console.log(JSON.stringify(data))
+        $http({
+            method: 'POST',
+            url: '/updateIntervals',
+            data: JSON.stringify(data)
+        })
+        .then(function(response) {
+            console.log(response.data);
+        });
+    };
+
     /*$scope.showAll = function() {
         $scope.overviewVisible = true;
         $scope.snapshotVisible = true;

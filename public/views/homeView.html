@@ -98,7 +98,9 @@
                          <label class="schedule-label">Miles until Due</label>
                      </div>
                      <div class="col-md-3 center">
-                         <label class="schedule-label">Mileage Interval</label><br>
+                         <label class="schedule-label">Interval</label>
+                         <span class="schedule-edit" ng-show="!inputsVisible" ng-click="intervalsShowHide($event)">Edit</span>
+                         <span class="schedule-edit" ng-show="inputsVisible" ng-click="intervalsShowHide($event)">Cancel</span>
                      </div>
                      <div class="col-md-3 center">
                          <label class="schedule-label">Recommended</label><br>
@@ -115,8 +117,10 @@
                              <label class="schedule-data">{{ service.milesTilDue | number }}</label>
                          </div>
                          <div class="col-md-3 data-col">
+                             <form id="interval-form">
                              <label class="schedule-data" ng-show="!inputsVisible">{{ service.milesInterval | number }}</label>
-                             <input type="text" class ="interval-input" ng-show="inputsVisible" placeholder=" {{service.milesInterval}}" />
+                             <input type="text" class ="interval-input" ng-show="inputsVisible" placeholder=" {{service.milesInterval}}" ng-model="service.milesInterval" />
+                             </form>
                          </div>
                          <div class="col-md-3 data-col">
                              <label class="schedule-data">{{ service.recMilesInterval | number }}</label>
@@ -125,8 +129,7 @@
                  </div>
                  <div class="row" ng-show="scheduleVisible">
                      <div class="col-md-12">
-                     <button class="btn edit-btn interval-btn" ng-show="!inputsVisible" ng-click="intervalsShowHide($event)">Edit Intervals</button>
-                     <button class="btn edit-btn interval-btn" ng-show="inputsVisible" ng-click="intervalsShowHide($event)">Save Changes</button>
+                         <button type="submit" form="interval-form" class="btn edit-btn interval-btn" ng-show="inputsVisible" ng-click="updateIntervals(); intervalsShowHide($event)">Save</button>
                      </div>
                  </div>
              </div>

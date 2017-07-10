@@ -1,6 +1,7 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import models.*;
 import play.Logger;
 import play.db.jpa.JPAApi;
@@ -13,6 +14,7 @@ import javax.inject.Inject;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -152,5 +154,27 @@ public class ServiceController extends Controller
         NextDueResponse data = (NextDueResponse)jpaApi.em().createNativeQuery("SELECT v.vehicle_nickname as vehicleName, s.miles_til_due as milesTilDue, s.service_id as id, st.type_name serviceName FROM vehicle v JOIN service s ON v.vehicle_id = s.vehicle_id JOIN service_type st ON st.service_type_id = s.service_type_id WHERE v.user_id = :id ORDER BY s.miles_til_due LIMIT 1", NextDueResponse.class).setParameter("id", userID).getSingleResult();
 
         return ok(Json.toJson(data));
+    }
+
+    @Transactional
+    public Result updateIntervals() throws Exception
+    {
+        JsonNode request = request().body().asJson();
+        ObjectMapper mapper = new ObjectMapper();
+
+        Interval[] intervals = mapper.convertValue(request, Interval[].class);
+
+        for(Interval interval : intervals)
+        {
+            int id = interval.getServiceID();
+            int serviceInterval = interval.getInterval();
+
+            jpaApi.em().createQuery("UPDATE Service s SET s.milesInterval = :interval WHERE service_id = :id")
+                    .setParameter("id", id)
+                    .setParameter("interval", serviceInterval)
+                    .executeUpdate();
+        }
+
+        return ok(Json.toJson("Intervals updated"));
     }
 }

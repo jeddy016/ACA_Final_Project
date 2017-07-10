@@ -102,7 +102,7 @@ log-service-container {
 }
 
 .odometerColumn {
-    height: 155px;
+    height: 156px;
     padding: 0 0 1vh 0 !important;
     text-align: center;
     margin-top: -7vh !important;
@@ -123,7 +123,7 @@ log-service-container {
 }
 
 .tools-row {
-    height: 150px !important;
+    height: 156px !important;
     margin: -4vh 0 1vh 0;
     float: right;
     padding: 0 !important;
@@ -380,6 +380,12 @@ label {
     text-align: left !important:
 }
 
+.schedule-edit {
+    color: #00BCD4;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 .schedule-row {
     text-align: center;
 }
@@ -407,7 +413,7 @@ label {
 
 .interval-btn {
     float: right;
-    margin: 1vh 0;
+    margin: 1vh;
 }
 
 .interval-input {
