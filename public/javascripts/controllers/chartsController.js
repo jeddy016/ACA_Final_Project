@@ -7,7 +7,7 @@ Chart.defaults.global.defaultFontColor = "white";
 $scope.$watch('completedServices', function() {
 
 var ctx = document.getElementById("totalByMonth");
-ctx.height= 400;
+ctx.height= 455;
 ctx.width= 650;
 var drawTotalByMonthChart = function () {
     var totalByMonthChart = new Chart(ctx, {
@@ -184,7 +184,7 @@ var drawTotalByServiceChart = function() {
         },
         legend: {
             display: true,
-            position: 'left'
+            position: 'right'
         },
         pieceLabel: {
             mode: 'value',
@@ -197,7 +197,6 @@ var drawTotalByServiceChart = function() {
             }
          }
     }
-
 })};
 
 //Destroy old chart and replace with new values

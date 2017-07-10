@@ -235,16 +235,17 @@
                  </div>
              </div>
         </div>
+        <div class="row charts-container" ng-controller="chartsController">
+            <div class="col-md-6 chart1" >
+                <canvas id="totalByMonth" ></canvas>
+            </div>
+            <div class="col-md-5 chart2" >
+                <canvas id="totalByService" ></canvas>
+            </div>
+        </div>
     </div>
 
-    <div class="row charts-container" ng-controller="chartsController">
-        <div class="col-md-6 chart1" >
-            <canvas id="totalByMonth" ></canvas>
-        </div>
-        <div class="col-md-5 chart2" >
-            <canvas id="totalByService" ></canvas>
-        </div>
-    </div>
+
 
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">

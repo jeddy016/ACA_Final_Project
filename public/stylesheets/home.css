@@ -50,14 +50,14 @@ div {
 .service-schedule-row {
     float: left;
     width: 59% !important;
-    margin-top: 1vh !important;
+    margin-top: 2vh !important;
 }
 
 .log-service-row {
     padding: 0 !important;
     width: 34% !important;
     float: right;
-    margin-top: 1vh !important;
+    margin-top: 2vh !important;
 }
 
 log-service-container {
@@ -116,14 +116,6 @@ log-service-container {
     display: table;
     height: auto;
     color: #00BCD4;
-}
-
-.overview {
-    height: 33px !important;
-    text-align: left;
-    padding: 0 !important;
-    background-color: #00BCD4 !important;
-    border-radius: 0 !important;
 }
 
 .nested {
@@ -185,6 +177,7 @@ log-service-container {
     margin-top: 6vh !important;
     margin-bottom: 0 !important;
     font-size: 30px !important;
+    text-shadow: -2px 1px 3px #000000;
 }
 
 .update,
@@ -277,13 +270,12 @@ label {
     margin-bottom: 2vh !important;
 }
 
-
-
 .section-label {
-    margin-left: 1%;
     margin-bottom: 0 !important;
-    padding: .15%;
-    font-size: 19px;
+    padding: .30vh 0;
+    margin-top: 0;
+    font-size: 19px !important;
+    height: 30px !important;
     font-family: 'Roboto', sans-serif;
     color: black !important;
 }
@@ -355,7 +347,6 @@ label {
 
 .charts-container {
     padding: 0 !important;
-    margin-top: 1vh !important;
     margin-bottom: 3vh !important;
 }
 
@@ -363,7 +354,7 @@ label {
     float: left;
     padding: 1%;
     width: 49% !important;
-    border: 1px solid #666666;
+    margin-top: 0 !important;
     background: #181818;
 }
 
@@ -371,7 +362,7 @@ label {
     float: right;
     padding: 1%;
     width: 49% !important;
-    border: 1px solid #666666;
+    margin: 0 !important;
     background: #181818;
 }
 
@@ -452,9 +443,10 @@ label {
 }
 
 .overview {
+    height: 33px !important;
     text-align: left;
-    padding: 0 !important;
     background-color: #00BCD4 !important;
+    border-radius: 0 !important;
 }
 
 .modal-label {
