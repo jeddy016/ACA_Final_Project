@@ -147,6 +147,9 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
                 $scope.updateOdometer();
                 $scope.getServices();
                 $scope.getAggValues();
+                $scope.getCostByMonth();
+                $scope.getCostByService();
+
                 $scope.selectedService = null;
                 $scope.serviceOdometer = null;
                 $scope.shop = null;
