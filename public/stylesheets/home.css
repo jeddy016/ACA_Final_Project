@@ -168,7 +168,6 @@ log-service-container {
 
 .glance-column {
     padding-top: 1%;
-
 }
 
 .detail {
@@ -362,6 +361,7 @@ label {
 
 .chart1 {
     float: left;
+    padding: 1%;
     width: 49% !important;
     border: 1px solid #666666;
     background: #181818;
@@ -369,7 +369,8 @@ label {
 
 .chart2 {
     float: right;
-        width: 49% !important;
+    padding: 1%;
+    width: 49% !important;
     border: 1px solid #666666;
     background: #181818;
 }
