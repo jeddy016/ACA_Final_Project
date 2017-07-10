@@ -1,4 +1,4 @@
-angular.module('pitStop').controller('indexController', ['$scope', '$rootScope', '$location', function($scope, $rootScope, $location) {
+angular.module('pitStop').controller('indexController', ['$scope', '$rootScope', '$location', '$http', function($scope, $rootScope, $location, $http) {
 
     $rootScope.location = null;
 
@@ -23,5 +23,16 @@ angular.module('pitStop').controller('indexController', ['$scope', '$rootScope',
 
     $scope.goTo = function(path) {
         $location.url(path);
+    };
+
+    $scope.logout = function() {
+        $http({
+            method: 'GET',
+            url: '/logout'
+        })
+        .then(function(response) {
+            $scope.goTo('/');
+            console.log('logged out');
+        });
     };
 }])

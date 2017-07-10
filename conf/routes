@@ -4,6 +4,7 @@ GET     /                           controllers.AppController.index(any = "none"
 
 #Login
 POST    /login                      controllers.LoginController.authenticate
+GET     /logout                     controllers.LoginController.logout
 
 #User
 POST    /signup                     controllers.UserController.signUp

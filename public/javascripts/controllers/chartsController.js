@@ -154,10 +154,10 @@ data = {
     datasets: [{
         data: [100, 50, 30, 150],
         backgroundColor: [
-                'rgba(251, 161, 0, 0.75)',
-                'rgba(94, 180, 217, 0.75)',
-                'rgba(134, 195, 50, 0.7)',
-                'rgba(220, 9, 9, 0.75)'
+            'rgba(251, 161, 0, 0.75)',
+            'rgba(94, 180, 217, 0.75)',
+            'rgba(134, 195, 50, 0.7)',
+            'rgba(220, 9, 9, 0.75)'
         ],
         borderColor: [
             '#ff9a1f',
@@ -193,14 +193,14 @@ var drawTotalByServiceChart = function() {
             position: 'left'
         },
         pieceLabel: {
-                    mode: 'value',
-                    fontSize: 15,
-                    fontColor: 'white',
-                    fontFamily: "Roboto",
-                    position: 'inside',
-                    format: function (value) {
-                            return '$' + value;
-                    }
+            mode: 'value',
+            fontSize: 15,
+            fontColor: 'white',
+            fontFamily: "Roboto",
+            position: 'inside',
+            format: function (value) {
+                    return '$' + value;
+            }
          }
     }
 

@@ -59,4 +59,11 @@ public class LoginController extends Controller
             return ok(Json.toJson(errorList));
         }
     }
+
+    public Result logout()
+    {
+        session().remove("userId");
+
+        return ok(Json.toJson("logged out"));
+    }
 }
