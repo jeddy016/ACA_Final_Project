@@ -41,6 +41,7 @@ GET     /getCompletedServices       controllers.CompletedServiceController.getCo
 #Stats
 GET     /getTotalAndAVG             controllers.StatsController.getTotalAndAVG
 GET     /getTotalCostByMonth        controllers.StatsController.getTotalCostByMonth
+GET     /getCostByService           controllers.StatsController.getCostByService
 
 #User Location
 POST    /setUserLocation            controllers.LocationController.setUserLocation

@@ -1,5 +1,6 @@
 package controllers;
 
+import models.CostByService;
 import models.TotalAndAVG;
 import play.Logger;
 import play.db.jpa.JPAApi;
@@ -49,6 +50,19 @@ public class StatsController extends Controller
                 .setParameter("year", year)
                 .getResultList();
 
+        return ok(Json.toJson(values));
+    }
+
+    @Transactional
+    public Result getCostByService()
+    {
+        int vehicleID = Integer.parseInt(request().getQueryString("vehicleID"));
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+
+        List<CostByService> values = jpaApi.em().createNativeQuery("SELECT st.type_name AS name, SUM(cs.total_cost) AS cost FROM completed_service cs  JOIN service s ON s.service_id = cs.service_id JOIN service_type st ON st.service_type_id = s.service_type_id WHERE cs.vehicle_id = :id AND YEAR(cs.service_date) = :year GROUP BY st.type_name")
+                .setParameter("id", vehicleID)
+                .setParameter("year", year)
+                .getResultList();
 
         return ok(Json.toJson(values));
     }

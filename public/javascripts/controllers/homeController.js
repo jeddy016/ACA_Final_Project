@@ -29,6 +29,8 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
     $scope.deletePassword = $scope.deletePassword;
 
     $scope.costByMonthValues = [];
+    $scope.serviceLabels = [];
+    $scope.serviceValues = [];
 
     $http({
         method: 'GET',
@@ -41,6 +43,7 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         $scope.getNextDue();
         $scope.getAggValues();
         $scope.getCostByMonth();
+        $scope.getCostByService();
     });
 
     $scope.getNextDue = function() {
@@ -191,7 +194,6 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
             params: {"vehicleID": $scope.selectedVehicle.id}
         })
         .then(function(response) {
-            console.log(response.data)
             $scope.costByMonthValues = [];
             var values = response.data;
             for(var i = 0; i < 12; i++){
@@ -203,6 +205,23 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
                 })
                 $scope.costByMonthValues.push(cost);
             };
+        });
+    };
+
+    $scope.getCostByService = function() {
+        $http({
+            method: 'GET',
+            url: '/getCostByService',
+            params: {"vehicleID": $scope.selectedVehicle.id}
+        })
+        .then(function(response) {
+            $scope.serviceLabels = [];
+            $scope.serviceValues = [];
+
+            response.data.forEach(function(val){
+                $scope.serviceLabels.push(val[0]);
+                $scope.serviceValues.push(val[1]);
+            });
         });
     };
 

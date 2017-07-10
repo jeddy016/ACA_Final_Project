@@ -152,7 +152,7 @@ ctx3.width = 250;
 
 data = {
     datasets: [{
-        data: [100, 50, 30, 150],
+        data: $scope.serviceValues,
         backgroundColor: [
             'rgba(251, 161, 0, 0.75)',
             'rgba(94, 180, 217, 0.75)',
@@ -166,13 +166,7 @@ data = {
             'rgba(255, 10, 10, 1)'
         ]
     }],
-    labels: [
-        'Replace Spark Plugs',
-        'Oil Change',
-        'Tire Rotation',
-        'Tune-Up'
-    ]
-
+    labels: $scope.serviceLabels
 };
 
 

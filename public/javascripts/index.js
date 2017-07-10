@@ -32,7 +32,7 @@ angular.module('pitStop').controller('indexController', ['$scope', '$rootScope',
         })
         .then(function(response) {
             $scope.goTo('/');
-            console.log('logged out');
+            $scope.menuShowHide();
         });
     };
 }])
