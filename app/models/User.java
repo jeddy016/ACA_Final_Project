@@ -28,20 +28,11 @@ public class User
     @Column(name = "password")
     private String password;
 
-    @Column(name = "phone_number")
-    private long phoneNumber;
-
-    @Column(name = "zipcode")
-    private int zipCode;
-
     @Column(name = "notifications_opt_in")
     private int notificationsOptIn;
 
-    @Column(name = "notifications_hour")
-    private int notificationsHour;
-
-    @Column(name = "notifications_days_ahead")
-    private int notificationsDaysAhead;
+    @Column(name = "notifications_miles_ahead")
+    private int notificationsMilesAhead;
 
     public int getUserID()
     {
@@ -93,26 +84,6 @@ public class User
         this.password = password;
     }
 
-    public long getPhoneNumber()
-    {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(long phoneNumber)
-    {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public int getZipCode()
-    {
-        return zipCode;
-    }
-
-    public void setZipCode(int zipCode)
-    {
-        this.zipCode = zipCode;
-    }
-
     public int getNotificationsOptIn()
     {
         return notificationsOptIn;
@@ -123,23 +94,13 @@ public class User
         this.notificationsOptIn = notificationsOptIn;
     }
 
-    public int getNotificationsHour()
+    public int getNotificationsMilesAhead()
     {
-        return notificationsHour;
+        return notificationsMilesAhead;
     }
 
-    public void setNotificationsHour(int notificationsHour)
+    public void setNotificationsMilesAhead(int notificationsDaysAhead)
     {
-        this.notificationsHour = notificationsHour;
-    }
-
-    public int getNotificationsDaysAhead()
-    {
-        return notificationsDaysAhead;
-    }
-
-    public void setNotificationsDaysAhead(int notificationsDaysAhead)
-    {
-        this.notificationsDaysAhead = notificationsDaysAhead;
+        this.notificationsMilesAhead = notificationsDaysAhead;
     }
 }

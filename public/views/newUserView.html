@@ -20,18 +20,8 @@
                     <input class="modal-input" type="text" ng-model="lastName" required>
                 </div>
 
-                <div class="col-md-6">
-                    <label class ="form-modal-label">Cell Number</label><br>
-                    <input class="modal-input" type="text" ng-model="phoneNumber" required>
-                </div>
-
-                <div class="col-md-6">
-                    <label class ="form-modal-label">Zip</label><br>
-                    <input class="modal-input" type="text" ng-model="zipCode">
-                </div>
-
                 <div class="col-md-12">
-                    <label class="text-message-label form-modal-label">Enable text message reminders?</label><br>
+                    <label class="text-message-label form-modal-label">Enable email reminders?</label><br>
                     <label class="radio-inline form-modal-label"><input class="modal-input" type="radio" name="optradio" ng-click="showTextOptions()"> Yes</label>
                     <label class="radio-inline form-modal-label"><input class="modal-input" type="radio" name="optradio" ng-click= "hideTextOptions()" > No</label>
                 </div>
@@ -39,20 +29,8 @@
 
             <div class="row">
                 <div class="col-md-12" ng-show="textOptionsVisible">
-
-                    <label class ="form-modal-label">What time is best to send reminder texts?</label><br>
-
-                    <select ng-model="notificationsHour">
-                        <option ng-repeat="time in times" value="{{time}}">{{time}}</option>
-                    </select>
-
-                    <select ng-model="amPm">
-                        <option value="1">AM</option>
-                        <option value="2" selected>PM</option>
-                    </select>
-
                     <label class="form-modal-label">How many miles in advance should we remind you of service events?</label>
-                    <input type="number" class="modal-input interval-input" name="text-interval" ng-model="notificationsDaysAhead"/>
+                    <input type="number" class="modal-input interval-input" name="text-interval" ng-model="notificationsMilesAhead"/>
                 </div>
             </div>
 

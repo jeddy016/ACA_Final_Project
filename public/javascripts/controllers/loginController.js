@@ -71,6 +71,7 @@ angular.module('pitStop').controller('loginController', ['$scope', '$rootScope',
                     $scope.goTo('/newUser');
                 }
                 else {
+                    $scope.newEmail = "";
                     $scope.newPassword = "";
                     $scope.confirmPassword = "";
                     $scope.newUserErrors = [];

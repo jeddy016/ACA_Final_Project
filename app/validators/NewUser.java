@@ -1,12 +1,25 @@
 package validators;
 
+import play.db.jpa.JPAApi;
+
+import javax.inject.Inject;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class NewUser
 {
     public static boolean emailInvalid(String email)
     {
         boolean invalid = false;
+        final Pattern VALID_EMAIL_ADDRESS_REGEX =
+                Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
-        //TODO: find out how to validate email addresses
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(email);
+
+        if(!matcher.find())
+        {
+            invalid = true;
+        }
 
         return invalid;
     }
@@ -30,15 +43,6 @@ public class NewUser
         {
             valid = false;
         }
-
-        return valid;
-    }
-
-    public static boolean alreadyExists(String email)
-    {
-        boolean valid = false;
-
-        //TODO: check DB to see if email already exists for another user
 
         return valid;
     }

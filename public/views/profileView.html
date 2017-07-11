@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="col-md-12">
-                    <label class="text-message-label form-modal-label">Enable text message reminders?</label><br>
+                    <label class="text-message-label form-modal-label">Enable email reminders?</label><br>
                     <label class="radio-inline form-modal-label"><input class="modal-input" type="radio" ng-value="1" name="optradio" ng-click="showTextOptions()" ng-model="user.notificationsOptIn"> Yes</label>
                     <label class="radio-inline form-modal-label"><input class="modal-input" type="radio" ng-value="2" name="optradio" ng-click= "hideTextOptions()" ng-model="user.notificationsOptIn"> No</label>
                 </div>
@@ -39,15 +39,6 @@
 
             <div class="row">
                 <div class="col-md-12" ng-show="textOptionsVisible">
-
-                    <label class ="form-modal-label">What time is best to send reminder texts?</label><br>
-
-                    <select ng-model="notificationsHour" ng-options="time as time for time in times">
-                    </select>
-
-                    <select ng-model="meridian" ng-options="amPm.id as amPm.name for amPm in amPm">
-
-                    </select>
 
                     <label class="form-modal-label">How many miles in advance should we remind you of service events?</label>
                     <input type="number" class="modal-input interval-input" name="text-interval" ng-model="user.notificationsDaysAhead"/>

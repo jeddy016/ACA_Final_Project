@@ -26,6 +26,7 @@ public class UserController extends Controller
         this.jpaApi = jpaApi;
     }
 
+    @Transactional
     @BodyParser.Of(BodyParser.Json.class)
     public Result signUp()
     {
@@ -43,9 +44,9 @@ public class UserController extends Controller
             errorList.add("-Email Invalid");
             valid = false;
         }
-        if(!NewUser.emailInvalid(email) && NewUser.alreadyExists(email))
+        if(!NewUser.emailInvalid(email) && alreadyExists(email))
         {
-            errorList.add("-Email address taken");
+            errorList.add("-Email address in use");
             valid = false;
         }
         if(NewUser.passwordInvalid(password))
@@ -76,8 +77,6 @@ public class UserController extends Controller
     @BodyParser.Of(BodyParser.Json.class)
     public Result addUser()
     {
-        //TODO: form validation
-
         boolean valid = true;
         List<String> errorList = new ArrayList<>();
         JsonNode request = request().body().asJson();
@@ -86,11 +85,8 @@ public class UserController extends Controller
         String password = session().get("password");
         String firstName = request.findPath("firstName").textValue();
         String lastName = request.findPath("lastName").textValue();
-        long phoneNumber = request.findPath("phoneNumber").asLong();
-        int zipCode = request.findPath("zipCode").asInt();
         int notificationsOptIn = request.findPath("notificationsOptIn").asInt();
-        int notificationsHour = request.findPath("notificationsHour").asInt();
-        int notificationsDaysAhead = request.findPath("notificationsDaysAhead").asInt();
+        int notificationsMilesAhead = request.findPath("notificationsMilesAhead").asInt();
 
         if(valid)
         {
@@ -100,10 +96,7 @@ public class UserController extends Controller
             user.setPassword(password);
             user.setFirstName(firstName);
             user.setLastName(lastName);
-            user.setZipCode(zipCode);
-            user.setPhoneNumber(phoneNumber);
-            user.setNotificationsHour(notificationsHour);
-            user.setNotificationsDaysAhead(notificationsDaysAhead);
+            user.setNotificationsMilesAhead(notificationsMilesAhead);
             user.setNotificationsOptIn(notificationsOptIn);
 
             jpaApi.em().persist(user);
@@ -178,5 +171,21 @@ public class UserController extends Controller
         {
             return ok(Json.toJson(errorList));
         }
+    }
+
+    @Transactional
+    private boolean alreadyExists(String email)
+    {
+        boolean exists = false;
+
+        List<User> users = jpaApi.em().createQuery("SELECT u FROM User u WHERE email = :email", User.class)
+                .setParameter("email", email).getResultList();
+
+        if(users.size() > 0)
+        {
+            exists = true;
+        }
+
+        return exists;
     }
 }
