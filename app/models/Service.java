@@ -8,10 +8,6 @@ import javax.persistence.*;
 @Table(name = "Service")
 public class Service
 {
-    public static final int MAX_LENGTH_SERVICENAME = 80;
-    public static final int MAX_LENGTH_MILES_INT = 7;
-    public static final int MAX_LENGTH_DAYS_INT = 7;
-
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "service_id")
@@ -28,6 +24,9 @@ public class Service
 
     @Column(name = "service_type_id")
     private int serviceTypeID;
+
+    @Column(name= "tracked")
+    private int tracked;
 
     public int getServiceID()
     {
@@ -77,5 +76,15 @@ public class Service
     public void setServiceTypeID(int serviceTypeID)
     {
         this.serviceTypeID = serviceTypeID;
+    }
+
+    public int getTracked()
+    {
+        return tracked;
+    }
+
+    public void setTracked(int tracked)
+    {
+        this.tracked = tracked;
     }
 }

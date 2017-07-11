@@ -143,6 +143,7 @@ public class VehicleController extends Controller
                 service.setMilesTilDue(serviceType.getRecommendedMilesinterval());
                 service.setVehicleID(vehicle.getVehicleID());
                 service.setServiceTypeID(id.asInt());
+                service.setTracked(1);
 
                 jpaApi.em().persist(service);
             }
