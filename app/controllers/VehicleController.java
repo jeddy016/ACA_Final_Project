@@ -138,6 +138,7 @@ public class VehicleController extends Controller
                         .getSingleResult();
 
                 Service service = new Service();
+
                 service.setMilesInterval(serviceType.getRecommendedMilesinterval());
                 service.setMilesTilDue(serviceType.getRecommendedMilesinterval());
                 service.setVehicleID(vehicle.getVehicleID());
@@ -186,22 +187,6 @@ public class VehicleController extends Controller
                     .setParameter("engine", engine)
                     .executeUpdate();
 
-            /*JsonNode serviceTypeIDs = request.get("services");
-
-            for(JsonNode id : serviceTypeIDs)
-            {
-                ServiceType serviceType = jpaApi.em().createQuery("SELECT s FROM ServiceType s WHERE serviceTypeID = :id", ServiceType.class)
-                        .setParameter("id", id.asInt())
-                        .getSingleResult();
-
-                Service service = new Service();
-                service.setMilesInterval(serviceType.getRecommendedMilesinterval());
-                service.setMilesTilDue(serviceType.getRecommendedMilesinterval());
-                service.setVehicleID(vehicle.getVehicleID());
-                service.setServiceTypeID(id.asInt());
-
-                jpaApi.em().persist(service);
-            }*/
             return ok(Json.toJson("success"));
         }
         else

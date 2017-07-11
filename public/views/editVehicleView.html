@@ -4,6 +4,8 @@
         <form id= "edit-vehicle-form" ng-submit="updateVehicle()">
             <h1 class="modal-heading">Edit {{vehicle.nickname}}</h1>
             <hr class="modal-hr">
+            <p class="userError" ng-repeat="error in errorList">{{error}}</p>
+
             <div class="row">
                 <div class="col-md-6">
                     <label class ="form-modal-label">Make</label><br>

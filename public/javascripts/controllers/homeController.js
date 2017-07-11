@@ -145,6 +145,7 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         })
         .then(function(response) {
             if(response.data == "service logged") {
+                $scope.updatedReading = $scope.serviceOdometer;
                 $scope.updateOdometer();
                 $scope.getServices();
                 $scope.getAggValues();

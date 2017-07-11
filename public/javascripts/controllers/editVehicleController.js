@@ -83,53 +83,44 @@ angular.module('pitStop').controller('editVehicleController', ['$scope', '$route
     };
 
     $scope.updateVehicle = function(){
-        var valid = true;
-        //TODO: Error handling
-        //TODO: Update services functionality
-
-        if(valid) {
-            $scope.selectedServices = [];
-
-            $scope.serviceTypes.forEach(function(service){
-                if(service.checked == true){
-                    $scope.selectedServices.push(service.id);
-                };
-            });
-
-            $http({
-                method: 'POST',
-                url: '/updateVehicle',
-                data: JSON.stringify($scope.vehicle)
-            })
-            .then(function(response) {
-                if(response.data == 'success'){
-                    $scope.goTo('/home');
-                }
-                else {
-                    $scope.loginErrors = [];
-                    response.data.forEach(function(error) {
-                        $scope.loginErrors.push(error);
-                    });
-                };
-            });
-
-            $scope.data = {
-                id: $scope.vehicleID,
-                services : $scope.selectedServices
+        $http({
+            method: 'POST',
+            url: '/updateVehicle',
+            data: JSON.stringify($scope.vehicle)
+        })
+        .then(function(response) {
+            if(response.data == 'success'){
+                $scope.updateTrackedServices();
+                $scope.goTo('/home');
             }
-
-            $http({
-                method: 'POST',
-                url:'/updateTrackedServices',
-                data: JSON.stringify($scope.data)
-            })
-            .then(function(response){
-                console.log($scope.data);
-            })
-        }
-        else {
-            console.log("nope");
-        };
+            else {
+                $scope.errorList = [];
+                response.data.forEach(function(error) {
+                    $scope.errorList.push(error);
+                });
+            };
+        });
     };
+
+    $scope.updateTrackedServices = function() {
+        $scope.selectedServices = [];
+
+        $scope.serviceTypes.forEach(function(service){
+            if(service.checked == true){
+                $scope.selectedServices.push(service.id);
+            };
+        });
+
+        $scope.data = {
+            id: $scope.vehicleID,
+            services : $scope.selectedServices
+        }
+
+        $http({
+            method: 'POST',
+            url:'/updateTrackedServices',
+            data: JSON.stringify($scope.data)
+        });
+    }
 
 }])

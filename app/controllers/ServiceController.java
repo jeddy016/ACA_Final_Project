@@ -83,6 +83,7 @@ public class ServiceController extends Controller
                     .getSingleResult();
 
             Service service = new Service();
+
             service.setMilesInterval(serviceType.getRecommendedMilesinterval());
             service.setMilesTilDue(serviceType.getRecommendedMilesinterval());
             service.setVehicleID(vehicleID);

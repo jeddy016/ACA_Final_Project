@@ -37,7 +37,7 @@ public class OdometerController extends Controller
 
         int vehicleID = request.findPath("vehicleID").asInt();
 
-        Vehicle vehicle = jpaApi.em().createQuery("SELECT v FROM VehicleValidator v WHERE vehicleID = :id", Vehicle.class)
+        Vehicle vehicle = jpaApi.em().createQuery("SELECT v FROM Vehicle v WHERE vehicleID = :id", Vehicle.class)
                 .setParameter("id", vehicleID)
                 .getSingleResult();
 
@@ -78,7 +78,7 @@ public class OdometerController extends Controller
                         .executeUpdate();
             }
 
-            jpaApi.em().createQuery("UPDATE VehicleValidator v SET v.currentOdometer = :reading WHERE vehicle_id = :id")
+            jpaApi.em().createQuery("UPDATE Vehicle v SET v.currentOdometer = :reading WHERE vehicle_id = :id")
                     .setParameter("reading", Integer.parseInt(newReading))
                     .setParameter("id", vehicleID)
                     .executeUpdate();
