@@ -1,12 +1,13 @@
 <div class="page-wrapper">
 
-    <label class="form-modal-label signed-up-link">Already signed up?<a class="detail" ng-click="goTo('/')"><span>Log-in</span></a></label>
+    <label class="form-modal-label signed-up-link">Already signed up?<a class="detail" ng-click="goTo('/')"><span class="login">Login</span></a></label>
 
     <div class="form-modal">
         <form id= "new-user-form" method="POST" ng-submit="addUser()">
             <h1 class="modal-heading">Complete Your Profile</h1>
 
             <hr class="modal-hr">
+            <span class="error" ng-repeat="error in errorList">**{{error}}<br></span>
 
             <div class="row">
 
@@ -33,7 +34,6 @@
                     <input type="number" class="modal-input interval-input" name="text-interval" ng-model="notificationsMilesAhead"/>
                 </div>
             </div>
-
             <button type="submit" class= "btn modal-submit-btn" form= "new-user-form">Done</button>
         </form>
     </div>

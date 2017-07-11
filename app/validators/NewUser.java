@@ -1,13 +1,17 @@
 package validators;
 
-import play.db.jpa.JPAApi;
+import play.Logger;
 
-import javax.inject.Inject;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class NewUser
 {
+    public static final int MAX_LENGTH_NAME = 20;
+    public static final int MAX_LENGTH_EMAIL = 40;
+    public static final int MAX_LENGTH_PASSWORD = 20;
+    public static final int MAX_MILES = 65000;
+
     public static boolean emailInvalid(String email)
     {
         boolean invalid = false;
@@ -20,6 +24,10 @@ public class NewUser
         {
             invalid = true;
         }
+        if(email.length() > MAX_LENGTH_EMAIL)
+        {
+            invalid = true;
+        }
 
         return invalid;
     }
@@ -28,7 +36,7 @@ public class NewUser
     {
         boolean invalid = true;
 
-        if (password.length() >= 8 && password.matches(".*\\d+.*"))
+        if (password.length() >= 8 && password.matches(".*\\d+.*") && password.length() <= MAX_LENGTH_PASSWORD)
         {
             invalid = false;
         }
@@ -42,6 +50,43 @@ public class NewUser
         if (!password.equals(confirm))
         {
             valid = false;
+        }
+
+        return valid;
+    }
+
+    public static boolean nameValid(String name)
+    {
+        boolean valid = false;
+
+        String regx = "^[\\p{L} .'-]+$";
+        Pattern pattern = Pattern.compile(regx,Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(name);
+
+        if(name != null && name.length() <= MAX_LENGTH_NAME && matcher.find())
+        {
+            valid = true;
+        }
+
+        return valid;
+    }
+
+    public static boolean milesValid(String miles)
+    {
+        boolean valid = false;
+
+        try
+        {
+            int mileTest = Integer.parseInt(miles);
+
+            if(mileTest > 0 && mileTest <= MAX_MILES)
+            {
+                valid = true;
+            }
+
+        }catch (NumberFormatException e)
+        {
+            Logger.error("Miles entered not a number");
         }
 
         return valid;

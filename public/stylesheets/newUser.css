@@ -20,6 +20,13 @@
     color: white !important;
 }
 
-span {
-    margin-left: 1%;
+.login {
+    cursor: pointer;
+    margin-left: .5vw;
+}
+
+.error {
+    font-weight: bold;
+    font-size: 16px;
+    color: orange;
 }

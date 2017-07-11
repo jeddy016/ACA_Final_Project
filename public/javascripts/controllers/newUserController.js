@@ -47,10 +47,11 @@ angular.module('pitStop').controller('newUserController', ['$scope', '$http', fu
                 $scope.goTo('/home');
             }
             else {
-                $scope.loginErrors = [];
+                $scope.errorList = [];
                 response.data.forEach(function(error) {
-                    $scope.loginErrors.push(error);
+                    $scope.errorList.push(error);
                 });
+                console.log(errorList);
             }
         })
         console.log($scope.user);

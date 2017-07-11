@@ -6,11 +6,6 @@ import javax.persistence.*;
 @Table(name = "User")
 public class User
 {
-    public static final int MAX_LENGTH_FIRSTNAME = 20;
-    public static final int MAX_LENGTH_LASTNAME = 30;
-    public static final int MAX_LENGTH_EMAIL = 40;
-    public static final int MAX_LENGTH_PASSWORD = 20;
-
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "user_id")

@@ -77,7 +77,8 @@ public class UserController extends Controller
     @BodyParser.Of(BodyParser.Json.class)
     public Result addUser()
     {
-        boolean valid = true;
+        boolean namesValid = false;
+        boolean milesValid = false;
         List<String> errorList = new ArrayList<>();
         JsonNode request = request().body().asJson();
 
@@ -86,9 +87,27 @@ public class UserController extends Controller
         String firstName = request.findPath("firstName").textValue();
         String lastName = request.findPath("lastName").textValue();
         int notificationsOptIn = request.findPath("notificationsOptIn").asInt();
-        int notificationsMilesAhead = request.findPath("notificationsMilesAhead").asInt();
+        String notificationsMilesAhead = request.findPath("notificationsMilesAhead").textValue();
 
-        if(valid)
+        if (NewUser.nameValid(firstName) && NewUser.nameValid(lastName))
+        {
+            namesValid = true;
+        }
+        else
+        {
+            errorList.add("Names cannot contain special characters or exceed 20 characters");
+        }
+
+        if(NewUser.milesValid(notificationsMilesAhead))
+        {
+            milesValid = true;
+        }
+        else
+        {
+            errorList.add("Please enter a number between 1 and 65,000 miles. Default 100");
+        }
+
+        if(namesValid && milesValid)
         {
             User user = new User();
 
@@ -96,7 +115,7 @@ public class UserController extends Controller
             user.setPassword(password);
             user.setFirstName(firstName);
             user.setLastName(lastName);
-            user.setNotificationsMilesAhead(notificationsMilesAhead);
+            user.setNotificationsMilesAhead(Integer.parseInt(notificationsMilesAhead));
             user.setNotificationsOptIn(notificationsOptIn);
 
             jpaApi.em().persist(user);
