@@ -30,30 +30,40 @@ public class StatsController extends Controller
     public Result getTotalAndAVG()
     {
         int userID = Integer.parseInt(session().get("userId"));
-        LocalDate date = LocalDate.now();
-        int year = date.getYear();
 
-        TotalAndAVG data = (TotalAndAVG)jpaApi.em().createNativeQuery("SELECT v.user_id as id, SUM(c.total_cost) as totalCost, AVG(c.total_cost) as avgCost FROM completed_service c JOIN vehicle v ON v.vehicle_id = c.vehicle_id WHERE v.user_id = :id AND YEAR(c.service_date) = :year ", TotalAndAVG.class)
-                .setParameter("id", userID)
-                .setParameter("year", year)
-                .getSingleResult();
+        int year = Calendar.getInstance().get(Calendar.YEAR);
 
-        return ok(Json.toJson(data));
+        try
+        {
+            TotalAndAVG data = (TotalAndAVG) jpaApi.em().createNativeQuery("SELECT v.user_id as id, SUM(c.total_cost) as totalCost, AVG(c.total_cost) as avgCost FROM completed_service c JOIN vehicle v ON v.vehicle_id = c.vehicle_id WHERE v.user_id = :id AND YEAR(c.service_date) = :year ", TotalAndAVG.class)
+                    .setParameter("id", userID)
+                    .setParameter("year", year)
+                    .getSingleResult();
+
+            return ok(Json.toJson(data));
+        }catch(Exception e)
+        {}
+
+        return ok();
     }
 
     @Transactional
     public Result getTotalCostByMonth()
     {
         int vehicleID = Integer.parseInt(request().getQueryString("vehicleID"));
-        LocalDate date = LocalDate.now();
-        int year = date.getYear();
+        int year = Calendar.getInstance().get(Calendar.YEAR);
 
-        List<Integer> values = jpaApi.em().createNativeQuery("SELECT MONTH(service_date) as month, SUM(total_cost) as total FROM completed_service c JOIN vehicle v on v.vehicle_id = c.vehicle_id WHERE v.vehicle_id = :id AND YEAR(c.service_date) = :year GROUP BY MONTH(c.service_date)")
-                .setParameter("id", vehicleID)
-                .setParameter("year", year)
-                .getResultList();
+        try
+        {
+            List<Integer> values = jpaApi.em().createNativeQuery("SELECT MONTH(service_date) as month, SUM(total_cost) as total FROM completed_service c JOIN vehicle v on v.vehicle_id = c.vehicle_id WHERE v.vehicle_id = :id AND YEAR(c.service_date) = :year GROUP BY MONTH(c.service_date)")
+                    .setParameter("id", vehicleID)
+                    .setParameter("year", year)
+                    .getResultList();
+            return ok(Json.toJson(values));
+        }catch(Exception e)
+        {}
 
-        return ok(Json.toJson(values));
+        return ok();
     }
 
     @Transactional

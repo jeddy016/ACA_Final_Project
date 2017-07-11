@@ -1,5 +1,6 @@
 package controllers;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import models.*;
@@ -14,6 +15,7 @@ import javax.inject.Inject;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -55,42 +57,56 @@ public class ServiceController extends Controller
         List<Integer> trackedServiceTypes = jpaApi.em().createNativeQuery("SELECT s.service_type_id as id " +
                 "FROM service s " +
                 "JOIN vehicle v ON s.vehicle_id = v.vehicle_id " +
-                "WHERE v.vehicle_id = :id").setParameter("id", vehicleID)
+                "WHERE v.vehicle_id = :id AND s.tracked = 1").setParameter("id", vehicleID)
                 .getResultList();
 
         return ok(Json.toJson(trackedServiceTypes));
     }
 
     @Transactional
-    public Result updateTrackedServices()
+    public Result updateTrackedServices(Integer id)
     {
         JsonNode request = request().body().asJson();
-        int vehicleID = request.get("id").asInt();
-        JsonNode serviceTypeIDs = request.get("services");
 
-        List<Integer> trackedServiceTypes = jpaApi.em().createNativeQuery("SELECT s.service_type_id as id " +
-                "FROM service s " +
-                "JOIN vehicle v ON s.vehicle_id = v.vehicle_id " +
-                "WHERE v.vehicle_id = :id").setParameter("id", vehicleID)
+        ObjectMapper mapper = new ObjectMapper();
+
+        List<Integer> serviceTypes = Arrays.asList(mapper.convertValue(request, Integer[].class));
+
+        List<Integer> newServiceTypes = new ArrayList<>();
+
+        List<Integer> existingServices = jpaApi.em().createQuery("SELECT s.serviceTypeID " +
+                "FROM Service s " +
+                "WHERE vehicle_id = :id", Integer.class).setParameter("id", id)
                 .getResultList();
 
-        jpaApi.em().createNativeQuery("DELETE FROM service WHERE vehicle_id = :id").setParameter("id", vehicleID).executeUpdate();
+        jpaApi.em().createNativeQuery("UPDATE Service s SET s.tracked = 2 WHERE vehicle_id = :id").setParameter("id", id).executeUpdate();
 
-        for(JsonNode id : serviceTypeIDs)
+        for(int type : serviceTypes)
         {
-            ServiceType serviceType = jpaApi.em().createQuery("SELECT s FROM ServiceType s WHERE serviceTypeID = :id", ServiceType.class)
-                    .setParameter("id", id.asInt())
-                    .getSingleResult();
+            if(existingServices.contains(type))
+            {
+                jpaApi.em().createQuery("UPDATE Service s SET s.tracked = 1 WHERE service_type_id = :id")
+                        .setParameter("id", type)
+                        .executeUpdate();
+            }
+            else
+            {
+                ServiceType serviceType = jpaApi.em().createQuery("SELECT s FROM ServiceType s WHERE serviceTypeID = :id", ServiceType.class)
+                        .setParameter("id", type)
+                        .getSingleResult();
 
-            Service service = new Service();
+                Service service = new Service();
 
-            service.setMilesInterval(serviceType.getRecommendedMilesinterval());
-            service.setMilesTilDue(serviceType.getRecommendedMilesinterval());
-            service.setVehicleID(vehicleID);
-            service.setServiceTypeID(id.asInt());
+                service.setMilesInterval(serviceType.getRecommendedMilesinterval());
+                service.setMilesTilDue(serviceType.getRecommendedMilesinterval());
+                service.setVehicleID(id);
+                service.setServiceTypeID(type);
+                service.setTracked(1);
 
-            jpaApi.em().persist(service);
+                jpaApi.em().persist(service);
+            }
         }
+
         return ok(Json.toJson("success"));
     }
 
@@ -152,9 +168,15 @@ public class ServiceController extends Controller
     {
         int userID = Integer.parseInt(session().get("userId"));
 
-        NextDueResponse data = (NextDueResponse)jpaApi.em().createNativeQuery("SELECT v.vehicle_nickname as vehicleName, s.miles_til_due as milesTilDue, s.service_id as id, st.type_name serviceName FROM vehicle v JOIN service s ON v.vehicle_id = s.vehicle_id JOIN service_type st ON st.service_type_id = s.service_type_id WHERE v.user_id = :id AND s.tracked = 1 ORDER BY s.miles_til_due LIMIT 1", NextDueResponse.class).setParameter("id", userID).getSingleResult();
+        try
+        {
+            NextDueResponse data = (NextDueResponse) jpaApi.em().createNativeQuery("SELECT v.vehicle_nickname as vehicleName, s.miles_til_due as milesTilDue, s.service_id as id, st.type_name serviceName FROM vehicle v JOIN service s ON v.vehicle_id = s.vehicle_id JOIN service_type st ON st.service_type_id = s.service_type_id WHERE v.user_id = :id AND s.tracked = 1 ORDER BY s.miles_til_due LIMIT 1", NextDueResponse.class).setParameter("id", userID).getSingleResult();
 
-        return ok(Json.toJson(data));
+            return ok(Json.toJson(data));
+        }catch(Exception e)
+        {}
+
+        return ok();
     }
 
     @Transactional

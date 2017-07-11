@@ -111,15 +111,10 @@ angular.module('pitStop').controller('editVehicleController', ['$scope', '$route
             };
         });
 
-        $scope.data = {
-            id: $scope.vehicleID,
-            services : $scope.selectedServices
-        }
-
         $http({
             method: 'POST',
-            url:'/updateTrackedServices',
-            data: JSON.stringify($scope.data)
+            url:'/updateTrackedServices/' + $scope.vehicleID,
+            data: JSON.stringify($scope.selectedServices)
         });
     }
 
