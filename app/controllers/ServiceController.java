@@ -152,7 +152,7 @@ public class ServiceController extends Controller
     {
         int userID = Integer.parseInt(session().get("userId"));
 
-        NextDueResponse data = (NextDueResponse)jpaApi.em().createNativeQuery("SELECT v.vehicle_nickname as vehicleName, s.miles_til_due as milesTilDue, s.service_id as id, st.type_name serviceName FROM vehicle v JOIN service s ON v.vehicle_id = s.vehicle_id JOIN service_type st ON st.service_type_id = s.service_type_id WHERE v.user_id = :id ORDER BY s.miles_til_due LIMIT 1", NextDueResponse.class).setParameter("id", userID).getSingleResult();
+        NextDueResponse data = (NextDueResponse)jpaApi.em().createNativeQuery("SELECT v.vehicle_nickname as vehicleName, s.miles_til_due as milesTilDue, s.service_id as id, st.type_name serviceName FROM vehicle v JOIN service s ON v.vehicle_id = s.vehicle_id JOIN service_type st ON st.service_type_id = s.service_type_id WHERE v.user_id = :id AND s.tracked = 1 ORDER BY s.miles_til_due LIMIT 1", NextDueResponse.class).setParameter("id", userID).getSingleResult();
 
         return ok(Json.toJson(data));
     }
