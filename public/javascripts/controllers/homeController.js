@@ -16,6 +16,7 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
     $scope.selectedVehicle = $scope.selectedVehicle;
     $scope.odoForm = {};
     $scope.odoForm.newOdometerReading = "";
+    $scope.updatedReading = $scope.updatedReading;
     $scope.vehicleServices = [];
     $scope.completedServices = [];
 
@@ -168,7 +169,7 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
 
             var data= {
                 vehicleID : $scope.id,
-                reading : $scope.selectedVehicle.currentOdometer
+                reading : $scope.updatedReading
             };
             $http({
                 method: 'POST',
@@ -176,17 +177,16 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
                 data: JSON.stringify(data)
             })
             .then(function(response) {
-               //if(response.data == 'success'){
-                    $scope.vehicleServices.forEach(function(service){
-                        service.milesTilDue -= response.data;
-                        $scope.getNextDue();
-                    })
-
-                   // $scope.getServices();
-              /*  }
-                else {
-                    alert("Error updating odometer. " /*+ display whatever error comes back from DB);
-                };*/
+               if(response.data == 'error'){
+                    alert("New Reading must be a number higher than Current Odometer and less than 5 million miles");
+               }
+               else {
+                   $scope.vehicleServices.forEach(function(service){
+                       $scope.selectedVehicle.currentOdometer = $scope.updatedReading;
+                       service.milesTilDue -= response.data;
+                       $scope.getNextDue();
+                   });
+               };
             });
         };
 

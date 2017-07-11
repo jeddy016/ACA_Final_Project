@@ -10,6 +10,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 
 import javax.inject.Inject;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -29,7 +30,8 @@ public class StatsController extends Controller
     public Result getTotalAndAVG()
     {
         int userID = Integer.parseInt(session().get("userId"));
-        int year = Calendar.getInstance().get(Calendar.YEAR);
+        LocalDate date = LocalDate.now();
+        int year = date.getYear();
 
         TotalAndAVG data = (TotalAndAVG)jpaApi.em().createNativeQuery("SELECT v.user_id as id, SUM(c.total_cost) as totalCost, AVG(c.total_cost) as avgCost FROM completed_service c JOIN vehicle v ON v.vehicle_id = c.vehicle_id WHERE v.user_id = :id AND YEAR(c.service_date) = :year ", TotalAndAVG.class)
                 .setParameter("id", userID)
@@ -43,7 +45,8 @@ public class StatsController extends Controller
     public Result getTotalCostByMonth()
     {
         int vehicleID = Integer.parseInt(request().getQueryString("vehicleID"));
-        int year = Calendar.getInstance().get(Calendar.YEAR);
+        LocalDate date = LocalDate.now();
+        int year = date.getYear();
 
         List<Integer> values = jpaApi.em().createNativeQuery("SELECT MONTH(service_date) as month, SUM(total_cost) as total FROM completed_service c JOIN vehicle v on v.vehicle_id = c.vehicle_id WHERE v.vehicle_id = :id AND YEAR(c.service_date) = :year GROUP BY MONTH(c.service_date)")
                 .setParameter("id", vehicleID)
