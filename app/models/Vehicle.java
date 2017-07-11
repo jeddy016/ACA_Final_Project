@@ -6,9 +6,6 @@ import javax.persistence.*;
 @Table(name = "Vehicle")
 public class Vehicle
 {
-    public static final int MAX_LENGTH_NICKNAME = 20;
-    public static final int MAX_LENGTH_ODOMETER = 7;
-
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "vehicle_id")

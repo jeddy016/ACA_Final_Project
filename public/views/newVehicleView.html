@@ -3,7 +3,7 @@
         <form id= "new-vehicle-form" ng-submit="addVehicle()">
             <h1 class="modal-heading">Add a Vehicle</h1>
             <hr class="modal-hr">
-            <p class="error" ng-show="error">Fields marked with ( * ) are required</p>
+            <p class="userError" ng-repeat="error in errorList">{{error}}</p>
 
             <div class="row">
                 <div class="col-md-4">

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeCreator;
 import models.*;
+import models.Vehicle;
 import play.Logger;
 import play.db.jpa.JPAApi;
 import play.db.jpa.Transactional;
@@ -12,6 +13,7 @@ import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
+import validators.*;
 
 
 import javax.inject.Inject;
@@ -68,8 +70,9 @@ public class VehicleController extends Controller
     @BodyParser.Of(BodyParser.Json.class)
     public Result addVehicle()
     {
-        //TODO: form validation
-        boolean valid = true;
+        boolean odometerValid = false;
+        boolean nicknameValid = false;
+        boolean engineValid = false;
 
         List<String> errorList = new ArrayList<>();
         JsonNode request = request().body().asJson();
@@ -77,21 +80,53 @@ public class VehicleController extends Controller
         Vehicle vehicle = new Vehicle();
 
         int userId = Integer.parseInt(session().get("userId"));
-        int modelId = request.findPath("model").asInt();
-        int year = request.findPath("year").asInt();
-        int currentOdometer = request.findPath("odometerReading").asInt();
+        String modelId = request.findPath("model").asText();
+        String year = request.findPath("year").asText();
+        String currentOdometer = request.findPath("odometerReading").asText();
         String nickname = request.findPath("nickname").textValue();
         String engine = request.findPath("engine").textValue();
 
-        vehicle.setUserID(userId);
-        vehicle.setModelID(modelId);
-        vehicle.setCurrentOdometer(currentOdometer);
-        vehicle.setModelYear(year);
-        vehicle.setNickname(nickname);
-        vehicle.setEngine(engine);
-
-        if(valid)
+        if(modelId != null && year != null && currentOdometer != null && nickname != null && engine != null)
         {
+            if(VehicleValidator.odometerValid(currentOdometer))
+            {
+                odometerValid = true;
+            }
+            else
+            {
+                errorList.add("Odometer must be a number between 0 and 5 million");
+            }
+            if(VehicleValidator.nicknameValid(nickname))
+            {
+                nicknameValid = true;
+            }
+            else
+            {
+                errorList.add("Vehicle nickname cannot exceed 20 characters");
+            }
+            if(VehicleValidator.engineValid(engine))
+            {
+                engineValid = true;
+            }
+            else
+            {
+                errorList.add("Engine description cannot exceed 20 characters");
+            }
+        }
+        else
+        {
+            errorList.add("All fields marked with * are required");
+        }
+
+        if(odometerValid && nicknameValid && engineValid)
+        {
+            vehicle.setUserID(userId);
+            vehicle.setModelID(Integer.parseInt(modelId));
+            vehicle.setCurrentOdometer(Integer.parseInt(currentOdometer));
+            vehicle.setModelYear(Integer.parseInt(year));
+            vehicle.setNickname(nickname);
+            vehicle.setEngine(engine);
+
             jpaApi.em().persist(vehicle);
 
             JsonNode serviceTypeIDs = request.get("services");
@@ -122,7 +157,6 @@ public class VehicleController extends Controller
     @BodyParser.Of(BodyParser.Json.class)
     public Result updateVehicle()
     {
-        //TODO: form validation
         boolean valid = true;
 
         List<String> errorList = new ArrayList<>();

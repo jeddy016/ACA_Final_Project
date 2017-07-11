@@ -56,12 +56,6 @@ angular.module('pitStop').controller('newVehicleController', ['$scope', '$http',
     $scope.addVehicle = function (){
         var valid = true;
 
-        if($scope.make == -1 || $scope.model == null || $scope.year == null || $scope.odometerReading == null || $scope.nickname == null)
-        {
-            valid = false;
-            $scope.error = true;
-        };
-
         if(valid) {
             $scope.selectedServices = [];
 
@@ -91,9 +85,9 @@ angular.module('pitStop').controller('newVehicleController', ['$scope', '$http',
                     $scope.goTo('/home');
                 }
                 else {
-                    $scope.loginErrors = [];
+                    $scope.errorList = [];
                     response.data.forEach(function(error) {
-                        $scope.loginErrors.push(error);
+                        $scope.errorList.push(error);
                     });
                 };
             });
