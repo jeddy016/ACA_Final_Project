@@ -39,7 +39,7 @@ public class ServiceController extends Controller
                 "st.rec_miles_interval as recMilesInterval, " +
                 "s.miles_til_due as milesTilDue FROM service s " +
                 "JOIN service_type st ON st.service_type_id = s.service_type_id " +
-                "WHERE vehicle_id = :vehicleID " +
+                "WHERE vehicle_id = :vehicleID AND tracked = 1 " +
                 "ORDER BY s.miles_til_due", ServiceDetail.class)
                 .setParameter("vehicleID", vehicleID)
                 .getResultList();
