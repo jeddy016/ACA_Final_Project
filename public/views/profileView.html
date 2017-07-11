@@ -1,12 +1,11 @@
 <div class="page-wrapper">
 
-    <label class="form-modal-label signed-up-link" ng-if="formID == 'new-user-form'">Already signed up?<a class="detail" ng-click="goTo('/')"><span>Log-in</span></a></label>
-
     <div class="form-modal">
         <form id= "{{formID}}" method="POST" ng-submit="updateProfile()">
             <h1 class="modal-heading">{{title}}</h1>
 
             <hr class="modal-hr">
+            <span class="userError" ng-repeat="error in errorList">**{{error}}<br></span>
 
             <div class="row">
 
@@ -20,16 +19,6 @@
                     <input class="modal-input" type="text" ng-model="user.lastName" required>
                 </div>
 
-                <div class="col-md-6">
-                    <label class ="form-modal-label">Cell Number</label><br>
-                    <input class="modal-input" type="text" ng-model="user.phoneNumber" required>
-                </div>
-
-                <div class="col-md-6">
-                    <label class ="form-modal-label">Zip</label><br>
-                    <input class="modal-input" type="text" ng-model="user.zipCode">
-                </div>
-
                 <div class="col-md-12">
                     <label class="text-message-label form-modal-label">Enable email reminders?</label><br>
                     <label class="radio-inline form-modal-label"><input class="modal-input" type="radio" ng-value="1" name="optradio" ng-click="showTextOptions()" ng-model="user.notificationsOptIn"> Yes</label>
@@ -41,7 +30,7 @@
                 <div class="col-md-12" ng-show="textOptionsVisible">
 
                     <label class="form-modal-label">How many miles in advance should we remind you of service events?</label>
-                    <input type="number" class="modal-input interval-input" name="text-interval" ng-model="user.notificationsDaysAhead"/>
+                    <input type="number" class="modal-input interval-input" name="text-interval" ng-model="user.notificationsMilesAhead"/>
                 </div>
             </div>
             <button type="submit" class= "btn modal-submit-btn" form= "{{formID}}">Done</button>

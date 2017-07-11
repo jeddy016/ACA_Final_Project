@@ -146,8 +146,8 @@ public class UserController extends Controller
     @BodyParser.Of(BodyParser.Json.class)
     public Result updateProfile()
     {
-        //TODO: form validation
-        boolean valid = true;
+        boolean namesValid = false;
+        boolean milesValid = false;
         List<String> errorList = new ArrayList<>();
 
         JsonNode request = request().body().asJson();
@@ -155,35 +155,41 @@ public class UserController extends Controller
         int id = Integer.parseInt(session().get("userId"));
         String firstName = request.findPath("firstName").textValue();
         String lastName = request.findPath("lastName").textValue();
-        long phoneNumber = request.findPath("phoneNumber").asLong();
-        int zipCode = request.findPath("zipCode").asInt();
         int notificationsOptIn = request.findPath("notificationsOptIn").asInt();
-        int notificationsHour = request.findPath("notificationsHour").asInt();
-        int notificationsDaysAhead = request.findPath("notificationsDaysAhead").asInt();
+        String notificationsMilesAhead = request.findPath("notificationsMilesAhead").asText();
 
-        Logger.debug("" + notificationsOptIn);
+        if (NewUser.nameValid(firstName) && NewUser.nameValid(lastName))
+        {
+            namesValid = true;
+        }
+        else
+        {
+            errorList.add("Names cannot contain special characters or exceed 20 characters");
+        }
 
-        if(valid)
+        if(NewUser.milesValid(notificationsMilesAhead))
+        {
+            milesValid = true;
+        }
+        else
+        {
+            errorList.add("Please enter a number between 1 and 65,000 miles. Default 100");
+        }
+
+        if(namesValid && milesValid)
         {
             jpaApi.em().createQuery("UPDATE User u SET " +
                     "u.firstName = :firstName, " +
                     "u.lastName = :lastName, " +
-                    "u.phoneNumber = :phoneNumber, " +
-                    "u.zipCode = :zipCode, " +
                     "u.notificationsOptIn = :notificationsOptIn, " +
-                    "u.notificationsHour = :notificationsHour, " +
-                    "u.notificationsDaysAhead = :notificationsDaysAhead " +
+                    "u.notificationsMilesAhead = :notificationsMilesAhead " +
                     "WHERE u.userID = :id")
                     .setParameter("firstName", firstName)
                     .setParameter("id", id)
                     .setParameter("lastName", lastName)
-                    .setParameter("phoneNumber", phoneNumber)
-                    .setParameter("zipCode", zipCode)
                     .setParameter("notificationsOptIn", notificationsOptIn)
-                    .setParameter("notificationsHour", notificationsHour)
-                    .setParameter("notificationsDaysAhead", notificationsDaysAhead)
+                    .setParameter("notificationsMilesAhead", Integer.parseInt(notificationsMilesAhead))
                     .executeUpdate();
-
             return ok(Json.toJson("success"));
         }
         else

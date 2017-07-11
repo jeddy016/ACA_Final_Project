@@ -180,3 +180,8 @@ h2 {
     text-align: center;
 }
 
+.userError {
+    font-weight: bold;
+    font-size: 16px;
+    color: orange;
+}
