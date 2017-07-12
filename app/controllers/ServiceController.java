@@ -1,6 +1,5 @@
 package controllers;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import models.*;
@@ -182,6 +181,7 @@ public class ServiceController extends Controller
     @Transactional
     public Result updateIntervals() throws Exception
     {
+        boolean valid = true;
         JsonNode request = request().body().asJson();
         ObjectMapper mapper = new ObjectMapper();
 
@@ -189,15 +189,45 @@ public class ServiceController extends Controller
 
         for(Interval interval : intervals)
         {
-            int id = interval.getServiceID();
-            int serviceInterval = interval.getInterval();
+            boolean intervalValid = false;
+            String serviceInterval = interval.getMiles();
 
-            jpaApi.em().createQuery("UPDATE Service s SET s.milesInterval = :interval WHERE service_id = :id")
-                    .setParameter("id", id)
-                    .setParameter("interval", serviceInterval)
-                    .executeUpdate();
+            try
+            {
+                int intervalTest = Integer.parseInt(serviceInterval);
+
+                if(intervalTest > 0 && intervalTest <= 200000)
+                {
+                    intervalValid = true;
+                }
+                else
+                {
+                    valid = false;
+                    break;
+                }
+            }catch (NumberFormatException e)
+            {
+                Logger.error("Miles entered not a number");
+                valid = false;
+                break;
+            }
+
+            if(intervalValid)
+            {
+                int id = interval.getServiceID();
+
+                jpaApi.em().createQuery("UPDATE Service s SET s.milesInterval = :interval WHERE service_id = :id")
+                        .setParameter("id", id)
+                        .setParameter("interval", Integer.parseInt(serviceInterval))
+                        .executeUpdate();
+            }
         }
 
-        return ok(Json.toJson("Intervals updated"));
+        if(valid)
+        {
+            return ok(Json.toJson("success"));
+        }
+
+        return ok(Json.toJson("Intervals must be between 1 and 200,000 miles"));
     }
 }

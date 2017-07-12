@@ -249,7 +249,10 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
             data: JSON.stringify(data)
         })
         .then(function(response) {
-            console.log(response.data);
+            if(response.data != "success"){
+                $scope.getServices();
+                alert(response.data);
+            }
         });
     };
 

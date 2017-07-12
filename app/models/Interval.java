@@ -4,10 +4,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
         "serviceID",
@@ -20,7 +16,7 @@ public class Interval
     private int serviceID;
 
     @JsonProperty("interval")
-    private int interval;
+    private String miles;
 
 
     public int getServiceID()
@@ -33,13 +29,13 @@ public class Interval
         this.serviceID = serviceID;
     }
 
-    public int getInterval()
+    public String getMiles()
     {
-        return interval;
+        return miles;
     }
 
-    public void setInterval(int interval)
+    public void setMiles(String miles)
     {
-        this.interval = interval;
+        this.miles = miles;
     }
 }
