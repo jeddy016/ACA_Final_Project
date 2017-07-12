@@ -48,6 +48,9 @@ GET     /getCostByService           controllers.StatsController.getCostByService
 POST    /setUserLocation            controllers.LocationController.setUserLocation
 GET    /getUserLocation            controllers.LocationController.getUserLocation
 
+#Email Test
+GET     /emailTest                  controllers.EmailController.test
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 

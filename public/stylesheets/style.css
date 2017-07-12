@@ -3,6 +3,7 @@ html, body, .page-container {
     height: 100%;
     width: 100%;
     margin: 0;
+    overflow-x: hidden;
     background: #232323;
     border-radius: 0 !important;
 }
@@ -11,7 +12,7 @@ html, body, .page-container {
     z-index: 2;
     position: fixed;
     background-color: black;
-    width: 100vw !important;
+    width: 100% !important;
     border-bottom: 1px solid #00BCD4;
     border-radius: 0 !important;
 }
@@ -98,7 +99,7 @@ h2 {
 .form-modal {
     position: absolute;
     display: table;
-    height: 65vh;
+    height: 45vh;
     width: 40vw;
     padding: 1%;
     background-color: #0092a5;
@@ -184,4 +185,13 @@ h2 {
     font-weight: bold;
     font-size: 16px;
     color: orange;
+}
+
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+/* optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
 }

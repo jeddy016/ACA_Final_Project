@@ -45,14 +45,21 @@ public class LoginController extends Controller
 
         if(valid)
         {
-            User user = jpaApi.em().createQuery("SELECT u FROM User u WHERE u.email = :email AND u.password = :password", User.class)
-                    .setParameter("email", email)
-                    .setParameter("password", password)
-                    .getSingleResult();
+            try
+            {
+                User user = jpaApi.em().createQuery("SELECT u FROM User u WHERE u.email = :email AND u.password = :password", User.class)
+                        .setParameter("email", email)
+                        .setParameter("password", password)
+                        .getSingleResult();
 
-            session().put("userId", "" + user.getUserID());
+                session().put("userId", "" + user.getUserID());
 
-            return ok(Json.toJson("success"));
+                return ok(Json.toJson("success"));
+            }catch(Exception e)
+            {
+                errorList.add("- Email or Password incorrect");
+                return ok(Json.toJson(errorList));
+            }
         }
         else
         {

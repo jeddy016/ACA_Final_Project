@@ -12,3 +12,4 @@ libraryDependencies += cache
 libraryDependencies += javaWs
 libraryDependencies += "org.hibernate" % "hibernate-core" % "5.2.5.Final"
 libraryDependencies += "org.mariadb.jdbc" % "mariadb-java-client" % "1.5.7"
+libraryDependencies += "com.amazonaws" % "aws-java-sdk" % "1.11.160"
