@@ -42,7 +42,7 @@ angular.module('pitStop').controller('newUserController', ['$scope', '$http', fu
          })
         .then(function(response) {
             if(response.data == 'success'){
-                $scope.goTo('/home');
+                $scope.goTo('/newVehicle');
             }
             else {
             $scope.errorList = [];
