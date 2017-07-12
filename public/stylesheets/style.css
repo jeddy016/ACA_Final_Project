@@ -3,7 +3,6 @@ html, body, .page-container {
     height: 100%;
     width: 100%;
     margin: 0;
-    overflow-x: hidden;
     background: #232323;
     border-radius: 0 !important;
 }
