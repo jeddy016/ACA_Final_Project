@@ -3,7 +3,7 @@ import java.io.IOException;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailServiceClient;
@@ -12,7 +12,6 @@ import com.amazonaws.services.simpleemail.model.Content;
 import com.amazonaws.services.simpleemail.model.Destination;
 import com.amazonaws.services.simpleemail.model.Message;
 import com.amazonaws.services.simpleemail.model.SendEmailRequest;
-import models.AWS;
 import play.mvc.Result;
 
 import static play.mvc.Results.ok;
@@ -47,7 +46,8 @@ public class EmailController
             AWSCredentials credentials = null;
             try
             {
-                credentials = new BasicAWSCredentials(AWS.ACCESS_KEY, AWS.SECRET_ACCESS_KEY);
+                credentials = new ProfileCredentialsProvider().getCredentials();
+
             } catch (Exception e)
             {
                 throw new AmazonClientException(
