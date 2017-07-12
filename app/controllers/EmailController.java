@@ -12,6 +12,7 @@ import com.amazonaws.services.simpleemail.model.Content;
 import com.amazonaws.services.simpleemail.model.Destination;
 import com.amazonaws.services.simpleemail.model.Message;
 import com.amazonaws.services.simpleemail.model.SendEmailRequest;
+import models.AWS;
 import play.mvc.Result;
 
 import static play.mvc.Results.ok;
@@ -46,25 +47,20 @@ public class EmailController
             AWSCredentials credentials = null;
             try
             {
-                credentials = new BasicAWSCredentials("AKIAJ3FNWH35YSVCHPNQ", "ECDZevd6l1cO6A4lMG5t1QhRaEAWRvwg3mdnIIVq");
+                credentials = new BasicAWSCredentials(AWS.ACCESS_KEY, AWS.SECRET_ACCESS_KEY);
             } catch (Exception e)
             {
                 throw new AmazonClientException(
                         "Cannot load the credentials from the credential profiles file. " +
                                 "Please make sure that your credentials file is at the correct " +
-                                "location (~/.aws/credentials), and is in valid format.",
-                        e);
+                                "location (~/.aws/credentials), and is in valid format.", e);
             }
 
             // Instantiate an Amazon SES client, which will make the service call with the supplied AWS credentials.
             AmazonSimpleEmailServiceClient client = new AmazonSimpleEmailServiceClient(credentials);
 
-            // Choose the AWS region of the Amazon SES endpoint you want to connect to. Note that your production
-            // access status, sending limits, and Amazon SES identity-related settings are specific to a given
-            // AWS region, so be sure to select an AWS region in which you set up Amazon SES. Here, we are using
-            // the US East (N. Virginia) region. Examples of other regions that Amazon SES supports are US_WEST_2
-            // and EU_WEST_1. For a complete list, see http://docs.aws.amazon.com/ses/latest/DeveloperGuide/regions.html
-            Region REGION = Region.getRegion(Regions.US_EAST_2);
+            // Choose the AWS region of the Amazon SES endpoint you want to connect to.
+            Region REGION = Region.getRegion(Regions.US_EAST_1);
             client.setRegion(REGION);
 
             // Send the email.
