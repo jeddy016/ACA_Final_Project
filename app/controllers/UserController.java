@@ -87,7 +87,9 @@ public class UserController extends Controller
         String firstName = request.findPath("firstName").textValue();
         String lastName = request.findPath("lastName").textValue();
         int notificationsOptIn = request.findPath("notificationsOptIn").asInt();
-        String notificationsMilesAhead = request.findPath("notificationsMilesAhead").textValue();
+        String notificationsMilesAhead = request.findPath("notificationsMilesAhead").asText();
+
+        Logger.debug(notificationsMilesAhead);
 
         if (NewUser.nameValid(firstName) && NewUser.nameValid(lastName))
         {

@@ -35,6 +35,7 @@ public class VehicleDetail
     @Column
     private int modelID;
 
+
     public int getId()
     {
         return id;
@@ -124,4 +125,5 @@ public class VehicleDetail
     {
         this.modelID = modelID;
     }
+
 }

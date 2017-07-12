@@ -79,6 +79,8 @@ public class NewUser
         {
             int mileTest = Integer.parseInt(miles);
 
+            Logger.debug(""+ mileTest);
+
             if(mileTest > 0 && mileTest <= MAX_MILES)
             {
                 valid = true;

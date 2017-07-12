@@ -29,10 +29,6 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
 
     $scope.deletePassword = $scope.deletePassword;
 
-    $scope.costByMonthValues = [];
-    $scope.serviceLabels = [];
-    $scope.serviceValues = [];
-
     $http({
         method: 'GET',
         url: '/getVehicles'
@@ -113,6 +109,10 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
                     })
                     .then(function(response) {
                         $scope.vehicleServices = response.data;
+                        $scope.getAggValues();
+                        $scope.getCostByMonth();
+                        $scope.getCostByService();
+                        $scope.getNextDue();
                     });
                 });
             }
@@ -123,73 +123,79 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
     };
 
     $scope.logService = function() {
-        $scope.odometerDifference = $scope.serviceOdometer - $scope.selectedVehicle.currentOdometer;
-        $scope.selectedVehicle.currentOdometer = $scope.serviceOdometer;
 
-         $scope.data = {
-            vehicleID: $scope.selectedVehicle.id,
-            serviceID: $scope.selectedService,
-            date: $scope.formattedDate = $filter('date')($scope.dt, "yyyy-MM-dd"),
-            odometer: $scope.serviceOdometer,
-            shop: $scope.shop,
-            partsCost: $scope.partsCost,
-            laborCost: $scope.laborCost,
-            totalCost: $scope.totalCost,
-            odometerDifference: $scope.odometerDifference
-        };
+        if($scope.serviceOdometer >= $scope.selectedVehicle.currentOdometer){
+            $scope.odometerDifference = $scope.serviceOdometer - $scope.selectedVehicle.currentOdometer;
+            $scope.selectedVehicle.currentOdometer = $scope.serviceOdometer;
 
-        $http({
-            method: 'POST',
-            url: '/logService',
-            data: JSON.stringify($scope.data)
-        })
-        .then(function(response) {
-            if(response.data == "service logged") {
-                $scope.updatedReading = $scope.serviceOdometer;
-                $scope.updateOdometer();
-                $scope.getServices();
-                $scope.getAggValues();
-                $scope.getCostByMonth();
-                $scope.getCostByService();
-
-                $scope.selectedService = null;
-                $scope.serviceOdometer = null;
-                $scope.shop = null;
-                $scope.partsCost = null;
-                $scope.laborCost = null;
-                $scope.totalCost = null;
-            }
-            else {
-                console.log(response.data);
+             $scope.data = {
+                vehicleID: $scope.selectedVehicle.id,
+                serviceID: $scope.selectedService,
+                date: $scope.formattedDate = $filter('date')($scope.dt, "yyyy-MM-dd"),
+                odometer: $scope.serviceOdometer,
+                shop: $scope.shop,
+                partsCost: $scope.partsCost,
+                laborCost: $scope.laborCost,
+                totalCost: $scope.totalCost,
+                odometerDifference: $scope.odometerDifference
             };
-        });
+
+            $http({
+                method: 'POST',
+                url: '/logService',
+                data: JSON.stringify($scope.data)
+            })
+            .then(function(response) {
+                if(response.data == "service logged") {
+                    $scope.updatedReading = $scope.serviceOdometer;
+                    $scope.updateOdometer();
+                    $scope.getServices();
+                    $scope.getAggValues();
+                    $scope.getCostByMonth();
+                    $scope.getCostByService();
+
+                    $scope.selectedService = null;
+                    $scope.serviceOdometer = null;
+                    $scope.shop = null;
+                    $scope.partsCost = null;
+                    $scope.laborCost = null;
+                    $scope.totalCost = null;
+                }
+                else {
+                    console.log(response.data);
+                };
+            });
+        }
+        else {
+            alert("New Reading must be a number higher than or equal to Current Odometer and less than 5 million miles");
+        }
     };
 
     $scope.updateOdometer = function(){
-            $scope.id = $scope.selectedVehicle.id;
+        $scope.id = $scope.selectedVehicle.id;
 
-            var data= {
-                vehicleID : $scope.id,
-                reading : $scope.updatedReading
-            };
-            $http({
-                method: 'POST',
-                url: '/updateOdometer',
-                data: JSON.stringify(data)
-            })
-            .then(function(response) {
-               if(response.data == 'error'){
-                    alert("New Reading must be a number higher than Current Odometer and less than 5 million miles");
-               }
-               else {
-                   $scope.vehicleServices.forEach(function(service){
-                       $scope.selectedVehicle.currentOdometer = $scope.updatedReading;
-                       service.milesTilDue -= response.data;
-                       $scope.getNextDue();
-                   });
-               };
-            });
+        var data= {
+            vehicleID : $scope.id,
+            reading : $scope.updatedReading
         };
+        $http({
+            method: 'POST',
+            url: '/updateOdometer',
+            data: JSON.stringify(data)
+        })
+        .then(function(response) {
+           if(response.data == 'error'){
+                alert("New Reading must be a number higher than Current Odometer and less than 5 million miles");
+           }
+           else {
+               $scope.vehicleServices.forEach(function(service){
+                   $scope.selectedVehicle.currentOdometer = $scope.updatedReading;
+                   service.milesTilDue -= response.data;
+                   $scope.getNextDue();
+               });
+           };
+        });
+    };
 
     $scope.getCostByMonth = function() {
         $http({

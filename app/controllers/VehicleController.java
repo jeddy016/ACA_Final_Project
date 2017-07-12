@@ -58,7 +58,7 @@ public class VehicleController extends Controller
                 "FROM vehicle v " +
                 "JOIN vehicle_model mo ON v.vehicle_model_id = mo.vehicle_model_id " +
                 "JOIN vehicle_make ma ON mo.vehicle_make_id = ma.vehicle_make_id "  +
-                "WHERE user_id = :id " +
+                "WHERE user_id = :id AND v.tracked = 1 " +
                 "ORDER BY v.vehicle_nickname", VehicleDetail.class)
                 .setParameter("id", userId)
                 .getResultList();
@@ -126,6 +126,7 @@ public class VehicleController extends Controller
             vehicle.setModelYear(Integer.parseInt(year));
             vehicle.setNickname(nickname);
             vehicle.setEngine(engine);
+            vehicle.setTracked(1);
 
             jpaApi.em().persist(vehicle);
 
@@ -219,11 +220,9 @@ public class VehicleController extends Controller
 
         if(valid)
         {
-            Logger.debug(id + "");
-
-            jpaApi.em().createNativeQuery("DELETE FROM completed_services WHERE vehicle_id = :id").setParameter("id", id).executeUpdate();
-            jpaApi.em().createNativeQuery("DELETE FROM service WHERE vehicle_id = :id").setParameter("id", id).executeUpdate();
-            jpaApi.em().createNativeQuery("DELETE FROM vehicle WHERE vehicle_id = :id").setParameter("id", id).executeUpdate();
+            /*jpaApi.em().createNativeQuery("DELETE FROM completed_service WHERE vehicle_id = :id").setParameter("id", id).executeUpdate();*/
+            jpaApi.em().createQuery("UPDATE Service s SET s.tracked = 2 WHERE vehicle_id = :id").setParameter("id", id).executeUpdate();
+            jpaApi.em().createNativeQuery("UPDATE Vehicle v SET v.tracked = 2 WHERE vehicle_id = :id").setParameter("id", id).executeUpdate();
 
             response = "success";
         }

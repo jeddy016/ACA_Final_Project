@@ -29,6 +29,9 @@ public class Vehicle
     @Column(name = "engine")
     private String engine;
 
+    @Column(name = "tracked")
+    private int tracked;
+
 
     public int getVehicleID()
     {
@@ -98,5 +101,15 @@ public class Vehicle
     public void setEngine(String engine)
     {
         this.engine = engine;
+    }
+
+    public int getTracked()
+    {
+        return tracked;
+    }
+
+    public void setTracked(int tracked)
+    {
+        this.tracked = tracked;
     }
 }

@@ -2,8 +2,6 @@ angular.module('pitStop').controller('newUserController', ['$scope', '$http', fu
 
     $scope.firstName = $scope.firstName;
     $scope.firstName = $scope.lastName;
-    $scope.phoneNumber = $scope.phoneNumber;
-    $scope.zipCode = $scope.zipCode;
     $scope.notificationsOptIn = $scope.notificationsOptIn;
     $scope.notificationsMilesAhead = $scope.notificationsMilesAhead;
 
@@ -34,7 +32,7 @@ angular.module('pitStop').controller('newUserController', ['$scope', '$http', fu
             firstName: $scope.firstName,
             lastName: $scope.lastName,
             notificationsOptIn: $scope.notificationsOptIn,
-            notificationsDaysAhead: $scope.notificationsMilesAhead
+            notificationsMilesAhead: $scope.notificationsMilesAhead
         }
 
         $http({
