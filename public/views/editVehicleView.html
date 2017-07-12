@@ -8,19 +8,19 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <label class ="form-modal-label">Make</label><br>
+                    <label class ="form-modal-label">*Make</label><br>
                     <select name = "make-select" class="modal-input modal-select" ng-model="vehicle.makeID" ng-change="getModels()"
                             ng-options="make.id as make.name for make in makeList" required>
                     </select>
                 </div>
                 <div class="col-md-6">
-                    <label class ="form-modal-label">Model</label><br>
+                    <label class ="form-modal-label">*Model</label><br>
                     <select required class="modal-input modal-select" ng-model="vehicle.modelID"
                             ng-options="model.id as model.name for model in modelList" >
                     </select>
                 </div>
                 <div class="col-md-6">
-                    <label class ="form-modal-label">Year</label><br>
+                    <label class ="form-modal-label">*Year</label><br>
                     <select class="modal-input modal-select" ng-model="vehicle.modelYear" ng-options="year as year for year in years" required>
                     </select>
                 </div>
@@ -29,11 +29,11 @@
                     <input class="modal-input" type="text" ng-model="vehicle.engine">
                 </div>
                 <div class="col-md-6">
-                    <label class ="form-modal-label">Odometer</label><br>
+                    <label class ="form-modal-label">*Odometer</label><br>
                     <input class="modal-input" type="text" ng-model="vehicle.currentOdometer" required>
                 </div>
                 <div class="col-md-6">
-                    <label class ="form-modal-label">Nickname</label><br>
+                    <label class ="form-modal-label">*Nickname</label><br>
                     <input class="modal-input" type="text" ng-model="vehicle.nickname" required>
                 </div>
             </div>
