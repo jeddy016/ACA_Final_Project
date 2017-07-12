@@ -1,4 +1,4 @@
-angular.module('pitStop').controller('indexController', ['$scope', '$rootScope', '$location', '$http', function($scope, $rootScope, $location, $http) {
+angular.module('pitStop').controller('indexController', ['$scope', '$rootScope', '$location', '$http', '$document', function($scope, $rootScope, $location, $http, $document) {
 
     $rootScope.location = null;
 
@@ -35,4 +35,11 @@ angular.module('pitStop').controller('indexController', ['$scope', '$rootScope',
             $scope.menuShowHide();
         });
     };
+
+    //Prevent backspace key from acting as navigation
+    $document.on('keydown', function(e){
+      if(e.which === 8 && ( e.target.nodeName !== "INPUT" && e.target.nodeName !== "SELECT" ) ){ // you can add others here inside brackets.
+          e.preventDefault();
+      }
+    });
 }])

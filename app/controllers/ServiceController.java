@@ -9,11 +9,14 @@ import play.db.jpa.Transactional;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
+import validators.LogServiceValidator;
 
 import javax.inject.Inject;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -113,29 +116,62 @@ public class ServiceController extends Controller
     public Result logService() throws Exception
     {
         JsonNode request = request().body().asJson();
-        boolean valid = true;
+
+        List<String> errorList = new ArrayList<>();
+        boolean dateValid = false;
+        boolean shopValid = false;
+        boolean costsValid = false;
+        boolean odometerValid = false;
+
         JsonNode response = null;
 
         int vehicleID = request.findPath("vehicleID").asInt();
         int serviceID = request.findPath("serviceID").asInt();
         String shop = request.findPath("shop").textValue();
-        BigDecimal partsCost = new BigDecimal(request.findPath("partsCost").textValue());
-        BigDecimal laborCost = new BigDecimal(request.findPath("laborCost").textValue());
-        BigDecimal totalCost = new BigDecimal(request.findPath("totalCost").textValue());
+        String partsCost = request.findPath("partsCost").textValue();
+        String laborCost = request.findPath("laborCost").textValue();
+        String totalCost = request.findPath("totalCost").textValue();
         String date = request.findPath("date").textValue();
         int odometerDifference = request.findPath("odometerDifference").asInt();
 
-        if(valid)
+        if(LogServiceValidator.dateValid(date))
+        {
+            dateValid = true;
+        }
+        else
+        {
+            errorList.add("Service date must be in the format YYYY/mm/dd and cannot be in the future");
+        }
+
+        if(LogServiceValidator.shopValid(shop))
+        {
+            shopValid = true;
+        }
+        else
+        {
+            errorList.add(" Shop name cannot exceed 80 characters");
+        }
+
+        if(LogServiceValidator.costsValid(totalCost, laborCost, partsCost))
+        {
+            costsValid = true;
+        }
+        else
+        {
+            errorList.add(" Dollar amounts must be numbers less than $100,000. Total cannot be less than parts & labor combined");
+        }
+
+        if(dateValid && shopValid && costsValid)
         {
             CompletedService service = new CompletedService();
 
-            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            Date serviceDate = formatter.parse(date);
+            //DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            LocalDate serviceDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
             service.setCompletedServiceDate(serviceDate);
-            service.setLaborCost(laborCost);
-            service.setPartsCost(partsCost);
-            service.setTotalCost(totalCost);
+            service.setLaborCost(new BigDecimal(laborCost).setScale(2, BigDecimal.ROUND_HALF_UP));
+            service.setPartsCost(new BigDecimal(partsCost).setScale(2, BigDecimal.ROUND_HALF_UP));
+            service.setTotalCost(new BigDecimal(totalCost).setScale(2, BigDecimal.ROUND_HALF_UP));
             service.setShop(shop);
             service.setVehicleID(vehicleID);
             service.setServiceID(serviceID);
@@ -157,7 +193,7 @@ public class ServiceController extends Controller
         }
         else
         {
-            response= Json.toJson("Error logging service");
+            response= Json.toJson(errorList);
         }
         return ok(response);
     }

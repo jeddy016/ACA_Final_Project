@@ -162,7 +162,8 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
                     $scope.totalCost = null;
                 }
                 else {
-                    console.log(response.data);
+                    alert(response.data);
+                    $scope.serviceOdometer = $scope.selectedVehicle.currentOdometer;
                 };
             });
         }

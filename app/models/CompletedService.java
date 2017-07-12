@@ -3,7 +3,7 @@ package models;
 import javax.persistence.*;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "completed_service")
@@ -29,7 +29,7 @@ public class CompletedService
     private String shop;
 
     @Column(name = "service_date")
-    private Date date;
+    private LocalDate date;
 
     @Column(name = "total_cost")
     private BigDecimal totalCost;
@@ -71,12 +71,12 @@ public class CompletedService
         this.shop = shop;
     }
 
-    public Date getCompletedServiceDate()
+    public LocalDate getCompletedServiceDate()
     {
         return date;
     }
 
-    public void setCompletedServiceDate(Date date)
+    public void setCompletedServiceDate(LocalDate date)
     {
         this.date = date;
     }
