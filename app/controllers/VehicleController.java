@@ -160,31 +160,53 @@ public class VehicleController extends Controller
     @BodyParser.Of(BodyParser.Json.class)
     public Result updateVehicle()
     {
-        boolean valid = true;
+        boolean nicknameValid = false;
+        boolean engineValid = false;
 
         List<String> errorList = new ArrayList<>();
         JsonNode request = request().body().asJson();
 
         int vehicleId = request.findPath("id").asInt();
-        int modelId = request.findPath("modelID").asInt();
-        int year = request.findPath("modelYear").asInt();
-        int currentOdometer = request.findPath("currentOdometer").asInt();
+        String modelId = request.findPath("modelID").asText();
+        String year = request.findPath("modelYear").asText();
         String nickname = request.findPath("nickname").textValue();
         String engine = request.findPath("engine").textValue();
 
-        if(valid)
+        if(modelId != null && year != null && nickname != null && engine != null)
+        {
+            if(VehicleValidator.nicknameValid(nickname))
+            {
+                nicknameValid = true;
+            }
+            else
+            {
+                errorList.add("Vehicle nickname cannot exceed 20 characters");
+            }
+            if(VehicleValidator.engineValid(engine))
+            {
+                engineValid = true;
+            }
+            else
+            {
+                errorList.add("Engine description cannot exceed 20 characters");
+            }
+        }
+        else
+        {
+            errorList.add("All fields marked with * are required");
+        }
+
+        if(nicknameValid && engineValid)
         {
             jpaApi.em().createQuery("UPDATE Vehicle v SET " +
-                    "v.currentOdometer = :reading, " +
                     "v.modelID = :modelID, " +
                     "v.modelYear = :modelYear, " +
                     "v.nickname = :nickname, " +
                     "v.engine = :engine " +
                     "WHERE v.vehicleID = :id")
-                    .setParameter("reading", currentOdometer)
                     .setParameter("id", vehicleId)
-                    .setParameter("modelID", modelId)
-                    .setParameter("modelYear", year)
+                    .setParameter("modelID", Integer.parseInt(modelId))
+                    .setParameter("modelYear", Integer.parseInt(year))
                     .setParameter("nickname", nickname)
                     .setParameter("engine", engine)
                     .executeUpdate();

@@ -20,6 +20,8 @@ import java.util.List;
 public class OdometerController extends Controller
 {
     private final JPAApi jpaApi;
+    private final int MAX_MILES = 5000000;
+
 
     @Inject
     public OdometerController(JPAApi jpaApi)
@@ -32,7 +34,6 @@ public class OdometerController extends Controller
     public Result updateOdometer()
     {
         boolean valid = false;
-        final int MAX_MILES = 5000000;
         JsonNode request = request().body().asJson();
 
         int vehicleID = request.findPath("vehicleID").asInt();

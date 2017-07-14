@@ -165,7 +165,6 @@ public class ServiceController extends Controller
         {
             CompletedService service = new CompletedService();
 
-            //DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             LocalDate serviceDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
             service.setCompletedServiceDate(serviceDate);
