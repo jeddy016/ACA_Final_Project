@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 import com.amazonaws.AmazonClientException;
@@ -42,7 +43,14 @@ public class EmailController extends Controller
 
         for(User user : users)
         {
-            boolean alreadyNotified = false;
+            boolean alreadyNotified = true;
+
+            LocalDate today = LocalDate.now();
+
+            if(!today.getMonth().equals(user.getLastNotified().getMonth()))
+            {
+                alreadyNotified = false;
+            }
 
             if(!alreadyNotified)
             {
@@ -53,19 +61,28 @@ public class EmailController extends Controller
 
                 List<EmailDetail> emailDetails = jpaApi.em().createNativeQuery("SELECT v.vehicle_nickname as vehicleName, s.service_id as id, st.type_name as serviceName, s.miles_til_due as milesTilDue FROM service_type st JOIN service s ON st.service_type_id = s.service_type_id JOIN vehicle v ON v.vehicle_id = s.vehicle_id JOIN user u ON u.user_id = v.user_id WHERE v.user_id = :id AND s.tracked = 1 AND (s.miles_til_due <= u.notifications_miles_ahead) ORDER BY s.miles_til_due", EmailDetail.class).setParameter("id", user.getUserID()).getResultList();
 
-                body.append("Here are the services coming up in " + user.getNotificationsMilesAhead() + " miles:\n\n\n");
-
-                for(EmailDetail detail : emailDetails)
+                if(emailDetails.size() > 0)
                 {
-                    body.append(detail.getVehicleName() + ":  " + detail.getServiceName() + " in " + detail.getMilesTilDue() + " miles. \n\n");
+                    body.append("Here are the services coming up in " + user.getNotificationsMilesAhead() + " miles:\n\n\n");
+
+                    for (EmailDetail detail : emailDetails)
+                    {
+                        body.append(detail.getVehicleName() + ":  " + detail.getServiceName() + " in " + detail.getMilesTilDue() + " miles. \n\n");
+                    }
+
+                    body.append("\n\n**To change the services you see in these reminders, click the \"Edit Vehicle\" button found on your dashboard and select the services you wish to track. You can change how many miles in advance you would like to receive reminders for services from the Edit Profile screen.");
+                }
+                else
+                {
+                    body.append("You have no vehicles due for service in " + user.getNotificationsMilesAhead() + " miles.");
+                    body.append("\n\n**To change the services you see in these reminders, click the \"Edit Vehicle\" button found on your dashboard and select the services you wish to track. You can change how many miles in advance you would like to receive reminders for services from the Edit Profile screen.");
                 }
 
-                body.append("\n\n**To change the services you see in these reminders, click the \"Edit Vehicle\" button found on your dashboard and select the services you wish to track. You can change how many miles in advance you would like to receive reminders for services from the Edit Profile screen." );
-
                 sendEmail(from, to, body.toString(), subject);
+
+                user.setLastNotified(today);
             }
         }
-
         return ok("success");
     }
 

@@ -1,6 +1,7 @@
 package models;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "User")
@@ -28,6 +29,9 @@ public class User
 
     @Column(name = "notifications_miles_ahead")
     private int notificationsMilesAhead;
+
+    @Column(name = "last_notified")
+    private LocalDate lastNotified;
 
     public int getUserID()
     {
@@ -97,5 +101,15 @@ public class User
     public void setNotificationsMilesAhead(int notificationsDaysAhead)
     {
         this.notificationsMilesAhead = notificationsDaysAhead;
+    }
+
+    public LocalDate getLastNotified()
+    {
+        return lastNotified;
+    }
+
+    public void setLastNotified(LocalDate lastNotified)
+    {
+        this.lastNotified = lastNotified;
     }
 }

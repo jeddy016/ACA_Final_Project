@@ -12,6 +12,8 @@ import play.mvc.Result;
 import validators.NewUser;
 
 import javax.inject.Inject;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -112,6 +114,9 @@ public class UserController extends Controller
         if(namesValid && milesValid)
         {
             User user = new User();
+            LocalDate date = LocalDate.now();
+            //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            //String formattedDate = date.format(formatter);
 
             user.setEmail(email);
             user.setPassword(password);
@@ -119,6 +124,7 @@ public class UserController extends Controller
             user.setLastName(lastName);
             user.setNotificationsMilesAhead(Integer.parseInt(notificationsMilesAhead));
             user.setNotificationsOptIn(notificationsOptIn);
+            user.setLastNotified(date);
 
             jpaApi.em().persist(user);
 

@@ -121,7 +121,6 @@ public class ServiceController extends Controller
         boolean dateValid = false;
         boolean shopValid = false;
         boolean costsValid = false;
-        boolean odometerValid = false;
 
         JsonNode response = null;
 
