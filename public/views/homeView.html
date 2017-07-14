@@ -193,7 +193,6 @@
 
                  <div class="row schedule-row" ng-show="historyVisible">
                      <div class="col-md-2 center" ng-show="historyVisible">
-                         <label class="schedule-label"></label>
                      </div>
                      <div class="col-md-2">
                          <label class="schedule-label">Date</label><br>
@@ -235,6 +234,7 @@
                          </div>
                      </div>
                  </div>
+                 <button class="btn edit-btn export-btn" ng-click="exportHistory()" ng-show="historyVisible">Export</button>
              </div>
         </div>
         <div class="row charts-container" ng-controller="chartsController">

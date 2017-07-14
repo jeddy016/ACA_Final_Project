@@ -57,6 +57,7 @@ div {
     margin-top: 2vh !important;
 }
 
+
 .log-service-row {
     padding: 0 !important;
     width: 34% !important;
@@ -488,4 +489,19 @@ label {
 
 .align-left {
     text-align: left !important;
+}
+
+.export-link {
+    margin-left: .5vw;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.export-btn {
+    width: auto !important;
+    float: right !important;
+    margin: 1vh;
 }

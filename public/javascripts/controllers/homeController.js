@@ -257,6 +257,14 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         });
     };
 
+    $scope.exportHistory = function() {
+        $http({
+            method: 'GET',
+            url: '/exportToCSV',
+            params: {"vehicleID": $scope.selectedVehicle.id}
+        });
+    };
+
     /*$scope.showAll = function() {
         $scope.overviewVisible = true;
         $scope.snapshotVisible = true;

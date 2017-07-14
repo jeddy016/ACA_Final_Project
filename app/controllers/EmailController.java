@@ -77,7 +77,6 @@ public class EmailController extends Controller
                     body.append("You have no vehicles due for service in " + user.getNotificationsMilesAhead() + " miles.");
                     body.append("\n\n**To change the services you see in these reminders, click the \"Edit Vehicle\" button found on your dashboard and select the services you wish to track. You can change how many miles in advance you would like to receive reminders for services from the Edit Profile screen.");
                 }
-
                 sendEmail(from, to, body.toString(), subject);
 
                 user.setLastNotified(today);

@@ -10,6 +10,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 
 import javax.inject.Inject;
+import java.io.IOException;
 import java.util.List;
 
 public class CompletedServiceController extends Controller
@@ -33,6 +34,22 @@ public class CompletedServiceController extends Controller
                 .getResultList();
 
         return ok(Json.toJson(completedServices));
+    }
+
+    @Transactional
+    public Result exportHistoryToCSV() throws IOException
+    {
+        int vehicleID = Integer.parseInt(request().getQueryString("vehicleID"));
+
+        List<CompletedServiceDetail> services = jpaApi.em().createNativeQuery("SELECT cs.completed_service_id as id, st.type_name as name, cs.service_date as date, cs.total_cost as totalCost, cs.labor_cost as laborCost, cs.parts_cost as partsCost, cs.shop as shop FROM completed_service cs JOIN service s ON s.service_id = cs.service_id  JOIN service_type st ON s.service_type_id = st.service_type_id WHERE cs.vehicle_id = :id ORDER BY cs.service_date", CompletedServiceDetail.class)
+                .setParameter("id",vehicleID)
+                .getResultList();
+
+        CSVController.writeCSVFile("serviceHistory.csv", services);
+
+        Runtime.getRuntime().exec("\"C:\\Program Files (x86)\\OpenOffice 4\\program\\scalc.exe\" serviceHistory.csv");
+
+        return ok("success");
     }
 }
 

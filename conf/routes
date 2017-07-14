@@ -38,6 +38,7 @@ POST    /updateIntervals            controllers.ServiceController.updateInterval
 
 #Completed Service
 GET     /getCompletedServices       controllers.CompletedServiceController.getCompletedServices
+GET     /exportToCSV               controllers.CompletedServiceController.exportHistoryToCSV
 
 #Stats
 GET     /getTotalAndAVG             controllers.StatsController.getTotalAndAVG
