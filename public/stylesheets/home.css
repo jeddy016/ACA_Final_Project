@@ -9,6 +9,10 @@ div {
     border-radius: 3px;
 }
 
+.negative {
+    color: red !important;
+}
+
 .add-vehicle {
     margin-top: 1%;
     color: white;
@@ -49,7 +53,7 @@ div {
 
 .service-schedule-row {
     float: left;
-    width: 59% !important;
+    width: 61% !important;
     margin-top: 2vh !important;
 }
 
@@ -374,7 +378,7 @@ label {
 
 .schedule-label {
     color: white;
-    font-size: 19px;
+    font-size: 17px;
     font-family: 'Roboto', sans-serif;
     text-align: left !important:
 }

@@ -48,7 +48,7 @@
                     <div class="col-md-5 service-column">
                         <p class="spotlight-detail"><label>Engine:</label> {{selectedVehicle.engine}}</p>
                         <p class="spotlight-detail"><label>Next Service:</label> {{vehicleServices[0].name}}</p>
-                        <p class="spotlight-detail"><label>Miles until Due:</label> {{vehicleServices[0].milesTilDue | number}}</p>
+                        <p class="spotlight-detail" ng-style="negativeValue(vehicleServices[0].milesTilDue)"><label>Miles until Due:</label> {{vehicleServices[0].milesTilDue | number}}</p>
                     </div>
                     <div class="col-md-3 odometerColumn nested">
                         <div class = "col-md-12 overview">
@@ -91,18 +91,18 @@
                  </div>
 
                  <div class = "row  schedule-row" ng-show="scheduleVisible">
-                     <div class="col-md-3">
+                     <div class="col-md-4">
                          <label class="schedule-label"></label>
                      </div>
                      <div class="col-md-3 center">
                          <label class="schedule-label">Miles until Due</label>
                      </div>
-                     <div class="col-md-3 center">
+                     <div class="col-md-2 center">
                          <label class="schedule-label">Interval</label>
                          <span class="schedule-edit" ng-show="!inputsVisible" ng-click="intervalsShowHide($event)">Edit</span>
                          <span class="schedule-edit" ng-show="inputsVisible" ng-click="intervalsShowHide($event)">Cancel</span>
                      </div>
-                     <div class="col-md-3 center">
+                     <div class="col-md-2 center">
                          <label class="schedule-label">Recommended</label><br>
                      </div>
                  </div>
@@ -110,19 +110,19 @@
 
                  <div class="row" ng-repeat="service in vehicleServices" ng-show="scheduleVisible">
                      <div class = "row">
-                         <div class="col-md-3">
+                         <div class="col-md-4">
                              <label class="service-label schedule-data">{{ service.name }}</label>
                          </div>
                          <div class="col-md-3 data-col">
-                             <label class="schedule-data">{{ service.milesTilDue | number }}</label>
+                             <label class="schedule-data" ng-style="negativeValue(service.milesTilDue)">{{ service.milesTilDue | number }}</label>
                          </div>
-                         <div class="col-md-3 data-col">
+                         <div class="col-md-2 data-col">
                              <form id="interval-form">
                              <label class="schedule-data" ng-show="!inputsVisible">{{ service.milesInterval | number }}</label>
                              <input type="text" class ="interval-input" ng-show="inputsVisible" placeholder=" {{service.milesInterval}}" ng-model="service.milesInterval" />
                              </form>
                          </div>
-                         <div class="col-md-3 data-col">
+                         <div class="col-md-2 data-col">
                              <label class="schedule-data">{{ service.recMilesInterval | number }}</label>
                          </div>
                      </div>

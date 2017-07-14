@@ -406,4 +406,13 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         return '';
       }
 
+      $scope.negativeValue=function(myValue){
+        var num = parseInt(myValue);
+
+        if(num < 0){
+          var css = { 'color':'red' };
+          return css;
+        }
+      }
+
 }])
