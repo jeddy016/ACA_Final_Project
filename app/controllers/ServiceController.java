@@ -148,7 +148,7 @@ public class ServiceController extends Controller
         }
         else
         {
-            errorList.add("Shop name cannot exceed 80 characters");
+            errorList.add("Shop name required and cannot exceed 80 characters");
         }
 
         if(LogServiceValidator.costsValid(totalCost, laborCost, partsCost))

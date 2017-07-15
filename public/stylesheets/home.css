@@ -57,7 +57,6 @@ div {
     margin-top: 2vh !important;
 }
 
-
 .log-service-row {
     padding: 0 !important;
     width: 34% !important;
@@ -354,7 +353,7 @@ label {
     margin-bottom: 3vh !important;
 }
 
-.chart1 {
+#chart1 {
     float: left;
     padding: 1%;
     width: 49% !important;
@@ -362,7 +361,7 @@ label {
     background: #181818;
 }
 
-.chart2 {
+#chart2 {
     float: right;
     padding: 1%;
     width: 49% !important;
@@ -503,5 +502,5 @@ label {
 .export-btn {
     width: auto !important;
     float: right !important;
-    margin: 1vh;
+    margin: 2vh;
 }

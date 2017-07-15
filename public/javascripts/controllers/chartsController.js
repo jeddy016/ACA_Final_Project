@@ -6,33 +6,38 @@ Chart.defaults.global.defaultFontColor = "white";
 //Update charts when selectedVechicle changes//
 $scope.$watch('completedServices', function() {
 
+document.getElementById("chart1").innerHTML = '&nbsp;';
+document.getElementById("chart1").innerHTML = '<canvas id="totalByMonth"></canvas>';
+
+var data1 = {
+   labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+   datasets: [{
+       label: 'Total Maintenance Cost',
+       data: $scope.costByMonthValues,
+       backgroundColor: [
+           'rgba(251, 161, 0, 1)',
+           'rgba(251, 161, 0, 1)',
+           'rgba(251, 161, 0, 1)',
+           'rgba(251, 161, 0, 1)',
+           'rgba(251, 161, 0, 1)',
+           'rgba(251, 161, 0, 1)',
+           'rgba(251, 161, 0, 1)',
+           'rgba(251, 161, 0, 1)',
+           'rgba(251, 161, 0, 1)',
+           'rgba(251, 161, 0, 1)',
+           'rgba(251, 161, 0, 1)',
+           'rgba(251, 161, 0, 1)'
+       ]
+   }]
+};
+
 var ctx = document.getElementById("totalByMonth");
 ctx.height= 455;
 ctx.width= 650;
 var drawTotalByMonthChart = function () {
     var totalByMonthChart = new Chart(ctx, {
         type: 'bar',
-        data: {
-            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-            datasets: [{
-                label: 'Total Maintenance Cost',
-                data: $scope.costByMonthValues,
-                backgroundColor: [
-                    'rgba(251, 161, 0, 1)',
-                    'rgba(251, 161, 0, 1)',
-                    'rgba(251, 161, 0, 1)',
-                    'rgba(251, 161, 0, 1)',
-                    'rgba(251, 161, 0, 1)',
-                    'rgba(251, 161, 0, 1)',
-                    'rgba(251, 161, 0, 1)',
-                    'rgba(251, 161, 0, 1)',
-                    'rgba(251, 161, 0, 1)',
-                    'rgba(251, 161, 0, 1)',
-                    'rgba(251, 161, 0, 1)',
-                    'rgba(251, 161, 0, 1)'
-                ]
-            }]
-        },
+        data: data1,
         options: {
             scales: {
                 yAxes: [{
@@ -69,15 +74,6 @@ var drawTotalByMonthChart = function () {
             }
         }
 })};
-
-//Destroy old chart and replace with new values
-if (typeof totalByMonthChart != 'undefined') {
-         totalByMonthChart.destroy();
-         drawTotalByMonthChart();
-}
-else {
-    drawTotalByMonthChart();
-}
 
 /*var totalByCarData = [];
 $scope.vehicles.forEach(function(vehicle){
@@ -143,14 +139,14 @@ else {
 }*/
 
 
-var serviceData = [];
-var serviceLabels = [];
+document.getElementById("chart2").innerHTML = '&nbsp;';
+document.getElementById("chart2").innerHTML = '<canvas id="totalByService"></canvas>';
 
 var ctx3 = document.getElementById("totalByService");
 ctx3.height = 175;
 ctx3.width = 250;
 
-data = {
+var data2 = {
     datasets: [{
         data: $scope.serviceValues,
         backgroundColor: [
@@ -169,11 +165,10 @@ data = {
     labels: $scope.serviceLabels
 };
 
-
 var drawTotalByServiceChart = function() {
     totalByServiceChart = new Chart(ctx3, {
     type: "doughnut",
-    data: data,
+    data: data2,
     options: {
         title: {
             display: true,
@@ -199,14 +194,8 @@ var drawTotalByServiceChart = function() {
     }
 })};
 
-//Destroy old chart and replace with new values
-if (typeof totalByServiceChart != 'undefined') {
-         totalByServiceChart.destroy();
-         drawTotalByServiceChart();
-}
-else {
-    drawTotalByServiceChart();
-}
+drawTotalByMonthChart();
+drawTotalByServiceChart();
 
 });
 
