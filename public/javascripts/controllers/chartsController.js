@@ -18,18 +18,18 @@ var drawTotalByMonthChart = function () {
                 label: 'Total Maintenance Cost',
                 data: $scope.costByMonthValues,
                 backgroundColor: [
-                    'rgba(134, 195, 50, 1)',
-                    'rgba(134, 195, 50, 1)',
-                    'rgba(134, 195, 50, 1)',
-                    'rgba(134, 195, 50, 1)',
-                    'rgba(134, 195, 50, 1)',
-                    'rgba(134, 195, 50, 1)',
-                    'rgba(134, 195, 50, 1)',
-                    'rgba(134, 195, 50, 1)',
-                    'rgba(134, 195, 50, 1)',
-                    'rgba(134, 195, 50, 1)',
-                    'rgba(134, 195, 50, 1)',
-                    'rgba(134, 195, 50, 1)'
+                    'rgba(251, 161, 0, 1)',
+                    'rgba(251, 161, 0, 1)',
+                    'rgba(251, 161, 0, 1)',
+                    'rgba(251, 161, 0, 1)',
+                    'rgba(251, 161, 0, 1)',
+                    'rgba(251, 161, 0, 1)',
+                    'rgba(251, 161, 0, 1)',
+                    'rgba(251, 161, 0, 1)',
+                    'rgba(251, 161, 0, 1)',
+                    'rgba(251, 161, 0, 1)',
+                    'rgba(251, 161, 0, 1)',
+                    'rgba(251, 161, 0, 1)'
                 ]
             }]
         },
@@ -154,15 +154,15 @@ data = {
     datasets: [{
         data: $scope.serviceValues,
         backgroundColor: [
-            'rgba(251, 161, 0, 0.75)',
-            'rgba(94, 180, 217, 0.75)',
             'rgba(134, 195, 50, 0.7)',
+            'rgba(94, 180, 217, 0.75)',
+            'rgba(251, 161, 0, 0.75)',
             'rgba(220, 9, 9, 0.75)'
         ],
         borderColor: [
-            '#ff9a1f',
-            '#33c2ff',
             '#97ff05',
+            '#33c2ff',
+            '#ff9a1f',
             'rgba(255, 10, 10, 1)'
         ]
     }],

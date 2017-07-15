@@ -186,7 +186,7 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         })
         .then(function(response) {
            if(response.data == 'error'){
-                alert("New Reading should be a number higher than Current Odometer and less than 5 million miles");
+                alert("New odometer reading should be a number higher than the current reading and less than 5 million miles");
            }
            else {
                $scope.vehicleServices.forEach(function(service){

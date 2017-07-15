@@ -15,7 +15,7 @@
         <div class="col-md-7 glance-column" ng-show="snapshotVisible">
             <p class="detail"><label>Next Vehicle Due for Service:</label> {{ nextDue.vehicleName }}</p>
             <p class="detail"><label>Next Service Due:</label> {{ nextDue.serviceName }}</p>
-            <p class="detail"><label>Miles until Due:</label> {{ nextDue.milesTilDue | number}} </p>
+            <p class="detail" ng-style="negativeValue(nextDue.milesTilDue)"><label>Miles until Due:</label> {{ nextDue.milesTilDue | number}} </p>
         </div>
         <div class="col-md-5 glance-column" ng-show="snapshotVisible">
             <p class="detail" ng-model="totalYTD"><label>Total Cost YTD:</label> {{aggValues.totalCost | currency }} </p>

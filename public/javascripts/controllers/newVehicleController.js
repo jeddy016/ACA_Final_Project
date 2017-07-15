@@ -9,15 +9,15 @@ angular.module('pitStop').controller('newVehicleController', ['$scope', '$http',
     $scope.makeList = [];
     $scope.serviceTypes = [];
 
-    $scope.serviceTypes = [
+     $scope.serviceTypes = [
         {id: 1, name: "Oil Change", checked: false},
         {id: 2, name: "Replace Air Filter", checked: false},
-        {id: 3, name: "Trans Fluid Change", checked: false},
-        {id: 4, name: "Replace Coolant", checked: false},
-        {id: 5, name: "Change Brake Pads", checked: false},
-        {id: 6, name: "Change Spark Plugs", checked: false},
+        {id: 3, name: "Change Trans Fluid", checked: false},
+        {id: 4, name: "Change Coolant", checked: false},
+        {id: 5, name: "Replace Brake Pads", checked: false},
+        {id: 6, name: "Replace Spark Plugs", checked: false},
         {id: 7, name: "Change Brake Fluid", checked: false},
-        {id: 8, name: "Change Power Steering Fluid", checked: false},
+        {id: 8, name: "Change Fuel Filter", checked: false},
         {id: 9, name: "Change Washer Fluid", checked: false},
         {id: 10, name: "Replace Engine Belts", checked: false},
         {id: 11, name: "Rotate Tires", checked: false},

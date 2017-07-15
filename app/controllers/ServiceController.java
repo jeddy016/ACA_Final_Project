@@ -139,7 +139,7 @@ public class ServiceController extends Controller
         }
         else
         {
-            errorList.add("Service date must be in the format YYYY/mm/dd and cannot be in the future");
+            errorList.add(" Service date must be in the format YYYY/mm/dd and cannot be in the future");
         }
 
         if(LogServiceValidator.shopValid(shop))
@@ -148,7 +148,7 @@ public class ServiceController extends Controller
         }
         else
         {
-            errorList.add(" Shop name cannot exceed 80 characters");
+            errorList.add("Shop name cannot exceed 80 characters");
         }
 
         if(LogServiceValidator.costsValid(totalCost, laborCost, partsCost))
@@ -157,7 +157,7 @@ public class ServiceController extends Controller
         }
         else
         {
-            errorList.add(" Dollar amounts must be numbers less than $100,000. Total cannot be less than parts & labor combined");
+            errorList.add("Dollar amounts must be numbers less than $100k. Total cannot be less than parts & labor combined");
         }
 
         if(dateValid && shopValid && costsValid)
@@ -191,7 +191,10 @@ public class ServiceController extends Controller
         }
         else
         {
-            response= Json.toJson(errorList);
+            response= Json.toJson(errorList.toString()
+                    .replace(",", "\n")
+                    .replace("[", "")
+                    .replace("]",""));
         }
         return ok(response);
     }
