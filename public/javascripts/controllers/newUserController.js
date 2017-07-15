@@ -1,5 +1,14 @@
 angular.module('pitStop').controller('newUserController', ['$scope', '$http', function($scope, $http) {
 
+    $http({
+        method: 'GET',
+        url: '/checkForUser'
+    })
+    .then(function successCallback() {},
+        function errorCallback() {
+            $scope.goTo('/');
+    });
+
     $scope.firstName = $scope.firstName;
     $scope.firstName = $scope.lastName;
     $scope.notificationsOptIn = $scope.notificationsOptIn;
@@ -21,12 +30,6 @@ angular.module('pitStop').controller('newUserController', ['$scope', '$http', fu
     console.log($scope.notificationsHour)
 
     $scope.addUser = function(){
-        if($scope.notificationsHour < 12 && $scope.amPm == 2){
-            $scope.notificationsHour = parseInt($scope.notificationsHour) + 12;
-        }
-        if($scope.notificationsHour == 12 && $scope.amPm == 1){
-            $scope.notificationsHour = 24;
-        }
 
         $scope.user = {
             firstName: $scope.firstName,

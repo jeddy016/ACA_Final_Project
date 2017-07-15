@@ -18,7 +18,7 @@ angular.module('pitStop').controller('profileController', ['$scope', '$http', fu
         method: 'GET',
         url: '/getUser'
      })
-    .then(function(response) {
+    .then(function successCallback(response) {
         $scope.user = response.data;
         if ($scope.user.notificationsOptIn == 1) {
             $scope.textOptionsVisible = true;
@@ -26,6 +26,8 @@ angular.module('pitStop').controller('profileController', ['$scope', '$http', fu
         else {
             $scope.textOptionsVisible = false;
         }
+    }, function errorCallback(){
+        $scope.goTo('/');
     })
 
     $scope.updateProfile = function() {

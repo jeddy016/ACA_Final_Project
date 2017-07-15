@@ -1,6 +1,7 @@
 
 #Route to login page if URL query string is empty
 GET     /                           controllers.AppController.index(any = "none")
+GET     /checkForUser               controllers.AppController.checkForUser
 
 #Login
 POST    /login                      controllers.LoginController.authenticate

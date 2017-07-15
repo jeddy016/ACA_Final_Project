@@ -1,5 +1,14 @@
 angular.module('pitStop').controller('findServiceController', ['$scope', '$rootScope', '$http', '$window', function($scope, $rootScope, $http, $window) {
 
+$http({
+    method: 'GET',
+    url: '/checkForUser'
+})
+.then(function successCallback() {},
+    function errorCallback() {
+        $scope.goTo('/');
+});
+
 $scope.placeIDs = [];
 $scope.placeDetails = [];
 

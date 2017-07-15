@@ -1,5 +1,15 @@
 angular.module('pitStop').controller('homeController', ['$scope', '$window', '$http', '$route', '$rootScope', '$filter', function($scope, $window, $http, $route, $rootScope, $filter) {
 
+    $http({
+        method: 'GET',
+        url: '/checkForUser'
+    })
+    .then(function successCallback() {
+        $scope.getVehicles();
+    },function errorCallback() {
+        $scope.goTo('/');
+    });
+
     $scope.snapshotVisible = true;
     $scope.spotlightVisible = true;
     $scope.scheduleVisible = false;
@@ -28,21 +38,21 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
 
     $scope.deletePassword = $scope.deletePassword;
 
-    $http({
-        method: 'GET',
-        url: '/getVehicles'
-    })
-    .then(function successCallback(response) {
-        $scope.vehicles = response.data;
-        $scope.selectedVehicle = $scope.vehicles[0];
-        $scope.getServices();
-        $scope.getNextDue();
-        $scope.getAggValues();
-        $scope.getCostByMonth();
-        $scope.getCostByService();
-    }, function errorCallback() {
-        $scope.goTo('/');
-    });
+    $scope.getVehicles = function() {
+        $http({
+            method: 'GET',
+            url: '/getVehicles'
+        })
+        .then(function(response) {
+            $scope.vehicles = response.data;
+            $scope.selectedVehicle = $scope.vehicles[0];
+            $scope.getServices();
+            $scope.getNextDue();
+            $scope.getAggValues();
+            $scope.getCostByMonth();
+            $scope.getCostByService();
+        });
+    };
 
     $scope.getNextDue = function() {
         $http({

@@ -12,4 +12,16 @@ public class AppController extends Controller
     {
         return ok(views.html.index.render());
     }
+
+    public Result checkForUser()
+    {
+        String id = session().get("userId");
+
+        if(id == null)
+        {
+            return internalServerError();
+        }
+
+        return ok("user logged in");
+    }
 }

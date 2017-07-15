@@ -1,5 +1,15 @@
 angular.module('pitStop').controller('editVehicleController', ['$scope', '$routeParams', '$http', function($scope, $routeParams, $http) {
 
+    $http({
+        method: 'GET',
+        url: '/checkForUser'
+    })
+    .then(function successCallback() {
+        $scope.getVehicle();
+    },function errorCallback() {
+        $scope.goTo('/');
+    });
+
 	$scope.vehicleID = $routeParams.vehicle_id;
 	$scope.vehicle = $scope.vehicle;
 	$scope.years = [];
@@ -20,17 +30,19 @@ angular.module('pitStop').controller('editVehicleController', ['$scope', '$route
         {id: 12, name: "Tune-Up", checked: false}
     ]
 
-    $http({
-        method: 'GET',
-        url: '/getVehicle',
-        params: {"vehicleID": $scope.vehicleID}
-    })
-    .then(function(response) {
-        $scope.vehicle = response.data;
-        $scope.getYears();
-        $scope.getMakes();
-        $scope.getTrackedServices();
-    });
+    $scope.getVehicle = function() {
+        $http({
+            method: 'GET',
+            url: '/getVehicle',
+            params: {"vehicleID": $scope.vehicleID}
+        })
+        .then(function successCallback(response) {
+            $scope.vehicle = response.data;
+            $scope.getYears();
+            $scope.getMakes();
+            $scope.getTrackedServices();
+        });
+    }
 
     $scope.getMakes = function() {
         $http({

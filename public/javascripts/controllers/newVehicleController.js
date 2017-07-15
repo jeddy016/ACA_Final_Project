@@ -1,5 +1,14 @@
 angular.module('pitStop').controller('newVehicleController', ['$scope', '$http', function($scope, $http) {
 
+    $http({
+        method: 'GET',
+        url: '/checkForUser'
+    })
+    .then(function successCallback() {},
+        function errorCallback() {
+            $scope.goTo('/');
+    });
+
     $scope.error = false;
 	$scope.year = $scope.year;
 	$scope.engine = $scope.engine;
