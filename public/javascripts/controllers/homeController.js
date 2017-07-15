@@ -5,7 +5,6 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
     $scope.scheduleVisible = false;
     $scope.inputsVisible = false;
     $scope.logVisible = false;
-    $scope.chartsVisible = false;
     $scope.passwordErrorVisible = false;
     $scope.historyVisible = false;
 
@@ -33,7 +32,7 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         method: 'GET',
         url: '/getVehicles'
     })
-    .then(function(response) {
+    .then(function successCallback(response) {
         $scope.vehicles = response.data;
         $scope.selectedVehicle = $scope.vehicles[0];
         $scope.getServices();
@@ -41,6 +40,8 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         $scope.getAggValues();
         $scope.getCostByMonth();
         $scope.getCostByService();
+    }, function errorCallback() {
+        $scope.goTo('/');
     });
 
     $scope.getNextDue = function() {
@@ -317,7 +318,6 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
     };
 
     $scope.odometerHide= function(vehicle) {
-        var index = $scope.vehicles.indexOf(vehicle);
         $scope.selectedVehicle.odometerIsVisible = false;
 
         if($scope.selectedVehicle.currentOdometer != $scope.newOdometerReading) {
