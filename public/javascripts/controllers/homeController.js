@@ -414,6 +414,13 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         return '';
       }
 
+      $scope.inactive = function(rowActive) {
+        if(rowActive == false) {
+            var css = { 'background-color':'#9C9C9C' };
+            return css;
+        }
+      }
+
       $scope.negativeValue=function(myValue){
         var num = parseInt(myValue);
 

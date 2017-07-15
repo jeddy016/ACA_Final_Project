@@ -173,7 +173,7 @@ log-service-container {
 }
 
 .spotlight-detail {
-    font-size: 20px;
+    font-size: 18px;
     margin: 0 !important;
 }
 
@@ -403,7 +403,7 @@ label {
 .schedule-data {
     margin: 0 !important;
     color: #00BCD4;
-    font-size: 17px;
+    font-size: 16px;
 }
 
 .data-col{
@@ -412,7 +412,7 @@ label {
 
 .service-label {
     color: white;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .interval-btn {
@@ -455,7 +455,7 @@ label {
 .overview {
     height: 33px !important;
     text-align: left;
-    background-color: #00BCD4 !important;
+    background-color: #00BCD4;
     border-radius: 0 !important;
 }
 
