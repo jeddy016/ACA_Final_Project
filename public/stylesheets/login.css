@@ -104,3 +104,7 @@ label {
     margin: 0 !important;
     padding-right: 100px;
 }
+
+.input {
+    width: 12vw;
+}

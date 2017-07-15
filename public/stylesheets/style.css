@@ -7,6 +7,10 @@ html, body, .page-container {
     border-radius: 0 !important;
 }
 
+a {
+    cursor: pointer;
+}
+
 .header {
     z-index: 2;
     position: fixed;
