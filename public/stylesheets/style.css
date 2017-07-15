@@ -194,3 +194,15 @@ h2 {
 ::-webkit-scrollbar-thumb {
     background: #FF0000;
 }
+
+.edit-btn,
+.edit-btn:visited {
+    width: 9.9vw !important;
+    background-color: black;
+    border: 1px solid #00BCD4 !important;
+    font-family: 'Roboto', sans-serif;
+    color: white !important;
+    -webkit-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
+    box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
+}

@@ -42,6 +42,7 @@ angular.module('pitStop').config(function ($routeProvider, $locationProvider, $q
 
         .when('/profile', {
             templateUrl: 'assets/views/profileView.html',
-            controller: 'profileController'
+            controller: 'profileController',
+            css: 'assets/stylesheets/newUser.css'
         })
 });

@@ -50,3 +50,10 @@ input::-webkit-inner-spin-button {
     font-size: 20px;
     font-family: 'Days One', sans-serif;
 }
+
+.edit-btn,
+.edit-btn:visited {
+    margin-top: 3vh;
+    margin-left: 1vw;
+    width: auto !important;
+}
