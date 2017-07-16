@@ -52,7 +52,7 @@ POST    /setUserLocation            controllers.LocationController.setUserLocati
 GET     /getUserLocation            controllers.LocationController.getUserLocation
 
 #Email
-POST    /sendEmails                 controllers.EmailController.assembleEmails
+POST    /sendEmails                 controllers.EmailController.sendEmails
 
 #Daemon
 GET     /daemonStart                controllers.DaemonController.start()
