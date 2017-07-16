@@ -465,6 +465,7 @@ label {
 
 .modal-label {
     color: black;
+    text-shadow: none !important;
 }
 
 .modal-close {
