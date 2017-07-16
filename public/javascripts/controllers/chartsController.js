@@ -75,69 +75,6 @@ var drawTotalByMonthChart = function () {
         }
 })};
 
-/*var totalByCarData = [];
-$scope.vehicles.forEach(function(vehicle){
-    if(vehicle.id != 0){
-        totalByCarData.push(vehicle.totalCostYTD);
-    }
-})
-var ctx2 = document.getElementById("totalByCar");
-ctx2.height = 325;
-ctx2.width = 400;
-var drawTotalByVehicleChart = function() {
-    var totalByVehicleChart = new Chart(ctx2, {
-        type: "doughnut",
-        data: {
-            labels: ["Farm truck", "Bike", "Kiley"],
-            datasets: [{
-                label: 'Total Maintenance Cost',
-                data: totalByCarData,
-                backgroundColor: [
-                    'rgba(251, 161, 0, 0.75)',
-                    'rgba(94, 180, 217, 0.75)',
-                    'rgba(134, 195, 50, 0.7)'
-                ],
-                borderColor: [
-                    '#ff9a1f',
-                    '#33c2ff',
-                    '#97ff05'
-                ]
-            }]
-        },
-        options: {
-            title: {
-                display: true,
-                text: "Total Maintenance Cost YTD by Vehicle",
-                fontSize: 20,
-                fontFamily: "'Roboto', 'sans-serif'",
-                fontColor: 'white'
-            },
-            legend: {
-                display: true,
-                position: 'bottom'
-            },
-            pieceLabel: {
-                        mode: 'percentage',
-                        fontSize: 15,
-                        fontColor: 'white',
-                        fontFamily: "Roboto",
-                        position: 'inside',
-                        format: function (value) {
-                                return '$' + value;
-                        }
-             }
-        }
-})};
-
-//Destroy old chart and replace with new values
-if (typeof totalByVehicleChart != 'undefined') {
-         totalByVehicleChart.destroy();
-         drawTotalByVehicleChart();
-}
-else {
-    drawTotalByVehicleChart();
-}*/
-
 
 document.getElementById("chart2").innerHTML = '&nbsp;';
 document.getElementById("chart2").innerHTML = '<canvas id="totalByService"></canvas>';

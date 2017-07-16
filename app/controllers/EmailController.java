@@ -59,23 +59,42 @@ public class EmailController extends Controller
                 String subject= "PitStop Monthly Update";
                 StringBuilder body = new StringBuilder();
 
-                List<EmailDetail> emailDetails = jpaApi.em().createNativeQuery("SELECT v.vehicle_nickname as vehicleName, s.service_id as id, st.type_name as serviceName, s.miles_til_due as milesTilDue FROM service_type st JOIN service s ON st.service_type_id = s.service_type_id JOIN vehicle v ON v.vehicle_id = s.vehicle_id JOIN user u ON u.user_id = v.user_id WHERE v.user_id = :id AND s.tracked = 1 AND (s.miles_til_due <= u.notifications_miles_ahead) ORDER BY s.miles_til_due", EmailDetail.class).setParameter("id", user.getUserID()).getResultList();
+                List<EmailDetail> emailDetails = jpaApi.em().createNativeQuery("SELECT v.vehicle_nickname as vehicleName, s.service_id as id, st.type_name as serviceName, s.miles_til_due as milesTilDue FROM service_type st JOIN service s ON st.service_type_id = s.service_type_id JOIN vehicle v ON v.vehicle_id = s.vehicle_id JOIN user u ON u.user_id = v.user_id WHERE v.user_id = :id AND s.tracked = 1 AND (s.miles_til_due <= u.notifications_miles_ahead) ORDER BY v.vehicle_nickname", EmailDetail.class).setParameter("id", user.getUserID()).getResultList();
 
                 if(emailDetails.size() > 0)
                 {
-                    body.append("Here are the services coming up in " + user.getNotificationsMilesAhead() + " miles:\n\n\n");
+                    String vehicle = "";
+                    body.append("<h2>Here are the services coming up in " + user.getNotificationsMilesAhead() + " miles:</h2>");
 
                     for (EmailDetail detail : emailDetails)
                     {
-                        body.append(detail.getVehicleName() + ":  " + detail.getServiceName() + " in " + detail.getMilesTilDue() + " miles. \n\n");
+                        if(!detail.getVehicleName().equals(vehicle))
+                        {
+                            vehicle = detail.getVehicleName();
+
+                            body.append("<h4>" + detail.getVehicleName() + ": </h4>");
+
+                            if(Integer.parseInt(detail.getMilesTilDue()) > 0)
+                            {
+                                body.append("<p>" + detail.getServiceName() + " in " + detail.getMilesTilDue() + " miles. </p>");
+                            }
+                            else
+                            {
+                                body.append("<p>" + detail.getServiceName() + " overdue by " + (-1 * Integer.parseInt(detail.getMilesTilDue())) + " miles. </p>");
+                            }
+                        }
+                        else
+                        {
+                            body.append("<p>" + detail.getServiceName() + " in " + detail.getMilesTilDue() + " miles. </p>");
+                        }
                     }
 
-                    body.append("\n\n**To change the services you see in these reminders, click the \"Edit Vehicle\" button found on your dashboard and select the services you wish to track. You can change how many miles in advance you would like to receive reminders for services from the Edit Profile screen.");
+                    body.append("<br><br><br><p>**To change the services you see in these reminders, click the \"Edit Vehicle\" button found on your dashboard and select the services you wish to track. You can change how many miles in advance you would like to receive reminders for services from the Edit Profile screen.</p>");
                 }
                 else
                 {
-                    body.append("You have no vehicles due for service in " + user.getNotificationsMilesAhead() + " miles.");
-                    body.append("\n\n**To change the services you see in these reminders, click the \"Edit Vehicle\" button found on your dashboard and select the services you wish to track. You can change how many miles in advance you would like to receive reminders for services from the Edit Profile screen.");
+                    body.append("<h1> You have no vehicles due for service in " + user.getNotificationsMilesAhead() + " miles.</h1>");
+                    body.append("<br><br><br><p>**To change the services you see in these reminders, click the \"Edit Vehicle\" button found on your dashboard and select the services you wish to track. You can change how many miles in advance you would like to receive reminders for services from the Edit Profile screen.</p>");
                 }
                 sendEmail(from, to, body.toString(), subject);
 
@@ -93,7 +112,7 @@ public class EmailController extends Controller
         // Create the subject and body of the message.
         Content subjectLine = new Content().withData(subject);
         Content textBody = new Content().withData(body);
-        Body bodyContent = new Body().withText(textBody);
+        Body bodyContent = new Body().withHtml(textBody);  //.withText(textBody);
 
         // Create a message with the specified subject and body.
         Message message = new Message().withSubject(subjectLine).withBody(bodyContent);

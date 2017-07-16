@@ -1,6 +1,7 @@
-
 #Route to login page if URL query string is empty
 GET     /                           controllers.AppController.index(any = "none")
+
+#Route to login if user enters a valid URL but is not logged in
 GET     /checkForUser               controllers.AppController.checkForUser
 
 #Login
@@ -55,6 +56,7 @@ POST    /sendEmails                 controllers.EmailController.assembleEmails
 
 #Daemon
 GET     /daemonStart                controllers.DaemonController.start()
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
