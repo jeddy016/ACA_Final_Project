@@ -244,6 +244,12 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
                 $scope.serviceLabels.push(val[0]);
                 $scope.serviceValues.push(val[1]);
             });
+
+            function sortNumber(a,b) {
+                return b - a;
+            }
+
+            $scope.serviceValues.sort(sortNumber);
         });
     };
 
@@ -435,7 +441,7 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         var num = parseInt(myValue);
 
         if(num < 0){
-          var css = { 'color':'red' };
+          var css = { 'color':'#E30613' };
           return css;
         }
       }

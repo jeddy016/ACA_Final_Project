@@ -1,7 +1,7 @@
 angular.module('pitStop').controller('chartsController', ['$scope', '$route', function($scope, $route) {
 
 Chart.defaults.global.defaultFontFamily = "Roboto";
-Chart.defaults.global.defaultFontColor = "white";
+Chart.defaults.global.defaultFontColor = "#F7F7F7";
 
 //Update charts when selectedVechicle changes//
 $scope.$watch('completedServices', function() {
@@ -15,18 +15,18 @@ var data1 = {
        label: 'Total Maintenance Cost',
        data: $scope.costByMonthValues,
        backgroundColor: [
-           'rgba(251, 161, 0, 1)',
-           'rgba(251, 161, 0, 1)',
-           'rgba(251, 161, 0, 1)',
-           'rgba(251, 161, 0, 1)',
-           'rgba(251, 161, 0, 1)',
-           'rgba(251, 161, 0, 1)',
-           'rgba(251, 161, 0, 1)',
-           'rgba(251, 161, 0, 1)',
-           'rgba(251, 161, 0, 1)',
-           'rgba(251, 161, 0, 1)',
-           'rgba(251, 161, 0, 1)',
-           'rgba(251, 161, 0, 1)'
+           '#6F2F9D',
+           '#006DBE',
+           '#FC0000',
+           '#00AE4F',
+           '#00AEED',
+           '#6F2F9D',
+           '#006DBE',
+           '#FC0000',
+           '#001F5F',
+           '#00AEED',
+           '#6F2F9D',
+           '#006DBE'
        ]
    }]
 };
@@ -150,16 +150,15 @@ var data2 = {
     datasets: [{
         data: $scope.serviceValues,
         backgroundColor: [
-            'rgba(134, 195, 50, 0.7)',
-            'rgba(94, 180, 217, 0.75)',
-            'rgba(251, 161, 0, 0.75)',
-            'rgba(220, 9, 9, 0.75)'
+            '#006FB9',
+            '#6F2F9F',
+            '#00AEED',
+            '#FC0000',
+            '#00AE4D',
+            '#001F5F'
         ],
-        borderColor: [
-            '#97ff05',
-            '#33c2ff',
-            '#ff9a1f',
-            'rgba(255, 10, 10, 1)'
+        borderWidth: [
+            0, 0, 0, 0, 0
         ]
     }],
     labels: $scope.serviceLabels
@@ -180,17 +179,7 @@ var drawTotalByServiceChart = function() {
         legend: {
             display: true,
             position: 'right'
-        },
-        pieceLabel: {
-            mode: 'value',
-            fontSize: 15,
-            fontColor: 'white',
-            fontFamily: "Roboto",
-            position: 'inside',
-            format: function (value) {
-                    return '$' + value;
-            }
-         }
+        }
     }
 })};
 

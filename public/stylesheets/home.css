@@ -15,7 +15,7 @@ div {
 
 .add-vehicle {
     margin-top: 1%;
-    color: white;
+    color: #F7F7F7;
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
 }
@@ -95,7 +95,7 @@ log-service-container {
     height: auto;
     width: 15vw !important;
     font-size: 18px;
-    background: white;
+    background: #F7F7F7;
     text-align: center;
     font-family: 'Roboto', sans-serif;
     color: #1F1F1F;
@@ -177,7 +177,7 @@ log-service-container {
 }
 
 .odo-detail {
-    color: white !important;
+    color: #F7F7F7 !important;
     margin-top: 6vh !important;
     margin-bottom: 0 !important;
     font-size: 30px !important;
@@ -192,13 +192,14 @@ log-service-container {
 
 .update:hover {
     text-decoration: underline;
-    color: white !important;
+    color: #F7F7F7 !important;
 }
 
 label {
-    color: white;
+    color: #F7F7F7;
     padding-right: 1%;
     margin-bottom: 1% !important;
+    text-shadow: -1px 1px 3px #000000;
 }
 
 .btn {
@@ -222,7 +223,7 @@ label {
 .odo-submit:hover,
  .odo-submit:focus {
     background-color: #00BCD4;
-    color: white !important;
+    color: #F7F7F7 !important;
 }
 
 .edit-btn,
@@ -230,7 +231,7 @@ label {
     width: 9.9vw !important;
     background-color: black;
     border: 1px solid #00BCD4 !important;
-    color: white !important;
+    color: #F7F7F7 !important;
     -webkit-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
     box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
@@ -238,7 +239,7 @@ label {
 
 .edit-btn:hover {
     background-color: #00BCD4;
-    color: white !important;
+    color: #F7F7F7 !important;
 }
 
 .odo-update {
@@ -260,13 +261,13 @@ label {
 .log-service-btn,
 .log-service-btn:visited {
     background-color: #00BCD4;
-    color: white !important;
+    color: #F7F7F7 !important;
 }
 
 .log-service-btn:hover,
  .log-service-btn:focus {
     background-color: #00BCD4;
-    color: white !important;
+    color: #F7F7F7 !important;
 }
 
 .chart {
@@ -280,7 +281,8 @@ label {
     font-size: 19px !important;
     height: 30px !important;
     font-family: 'Roboto', sans-serif;
-    color: black !important;
+    color: #F7F7F7;
+    text-shadow: -1px 1px 3px #000000;
 }
 
 .vehicle-edit {
@@ -293,19 +295,19 @@ label {
 }
 
 .vehicle-edit:hover {
-    color: white !important;
+    color: #F7F7F7 !important;
 }
 
 .service-nearby-link {
     font-size: 17px;
     font-family: 'Roboto', sans-serif;
-    color: white;
+    color: #F7F7F7;
     cursor: pointer;
     text-decoration: underline;
 }
 
 .service-nearby-link:hover {
-    color: white;
+    color: #F7F7F7;
 }
 
 .all-control {
@@ -314,7 +316,7 @@ label {
     margin-top: 10vh;
     margin-left: 2vw;
     margin-bottom: 2vh;
-    color: white !important;
+    color: #F7F7F7 !important;
     font-size: 20px;
 }
 
@@ -345,7 +347,7 @@ label {
 .form-control:focus {
     box-shadow: none;
     outline: none;
-    border: 1px solid white;
+    border: 1px solid #F7F7F7;
 }
 
 .charts-container {
@@ -377,10 +379,11 @@ label {
 }
 
 .schedule-label {
-    color: white;
+    color: #F7F7F7;
     font-size: 17px;
     font-family: 'Roboto', sans-serif;
-    text-align: left !important:
+    text-align: left !important;
+    text-shadow: -1px 1px 3px #000000;
 }
 
 .schedule-edit {
@@ -394,7 +397,7 @@ label {
 }
 
 .schedule-hr {
-    color: white;
+    color: #F7F7F7;
     margin-bottom: 1vh !important;
     margin-top: 0 !important;
 }
@@ -410,8 +413,9 @@ label {
 }
 
 .service-label {
-    color: white;
+    color: #F7F7F7;
     font-size: 15px;
+    text-shadow: -1px 1px 3px #000000;
 }
 
 .interval-btn {
@@ -444,6 +448,7 @@ label {
 .log-label {
     margin-top: 1vh;
     color: #00BCD4;
+    text-shadow: -1px 1px 3px #000000;
 }
 
 .chart1, .chart2 {
@@ -454,7 +459,7 @@ label {
 .overview {
     height: 33px !important;
     text-align: left;
-    background-color: #00BCD4;
+    background-color: #009bb7;
     border-radius: 0 !important;
 }
 
@@ -492,7 +497,7 @@ label {
 
 .export-link {
     margin-left: .5vw;
-    color: white;
+    color: #F7F7F7;
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
     cursor: pointer;
