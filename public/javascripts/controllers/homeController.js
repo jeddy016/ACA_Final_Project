@@ -245,11 +245,7 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
                 $scope.serviceValues.push(val[1]);
             });
 
-            function sortNumber(a,b) {
-                return b - a;
-            }
 
-            $scope.serviceValues.sort(sortNumber);
         });
     };
 
@@ -289,13 +285,13 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         });
     };
 
-    /*$scope.showAll = function() {
+    $scope.showAll = function() {
         $scope.overviewVisible = true;
         $scope.snapshotVisible = true;
         $scope.spotlightVisible = true;
         $scope.scheduleVisible = true;
         $scope.logVisible = true;
-        $scope.chartsVisible = true;
+        $scope.historyVisible = true;
     };
     $scope.hideAll = function() {
         $scope.overviewVisible = false;
@@ -303,8 +299,8 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         $scope.spotlightVisible = false;
         $scope.scheduleVisible = false;
         $scope.logVisible = false;
-        $scope.chartsVisible = false;
-    };*/
+        $scope.historyVisible = false;
+    };
 
     $scope.overviewShowHide = function() {
         $scope.overviewVisible == true ? $scope.overviewVisible = false : $scope.overviewVisible = true;
