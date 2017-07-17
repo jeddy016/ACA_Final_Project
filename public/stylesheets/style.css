@@ -105,9 +105,9 @@ h2 {
     height: 45vh;
     width: 40vw;
     padding: 1%;
-    border: 2px solid #666666;
+    border: 2px solid #00BCD4;
     background: #181818;
-    border-radius: 3px;
+    border-radius: 4px;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
@@ -210,3 +210,4 @@ h2 {
     -moz-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
     box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
 }
+

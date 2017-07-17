@@ -6,7 +6,7 @@
 #map {
     position: fixed !important;
     right: 1%;
-    top: 27%;
+    top: 23%;
     height: 500px;
     width: 700px;
     background-color: #1F1F1F;
@@ -47,4 +47,13 @@ a {
     float: right;
     color: #00BCD4;
     font-size: 18px;
+}
+
+.service-site:hover {
+    color: white;
+}
+
+.service-site:focus, .service-site:visited {
+    color: #00BCD4;
+    text-decoration: none;
 }
