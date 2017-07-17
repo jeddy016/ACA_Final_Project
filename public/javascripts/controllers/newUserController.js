@@ -1,14 +1,5 @@
 angular.module('pitStop').controller('newUserController', ['$scope', '$http', function($scope, $http) {
 
-    $http({
-        method: 'GET',
-        url: '/checkForUser'
-    })
-    .then(function successCallback() {},
-        function errorCallback() {
-            $scope.goTo('/');
-    });
-
     $scope.firstName = $scope.firstName;
     $scope.firstName = $scope.lastName;
     $scope.notificationsOptIn = $scope.notificationsOptIn;

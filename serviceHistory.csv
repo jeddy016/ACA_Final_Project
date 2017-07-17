@@ -1,0 +1,23 @@
+name,date,totalCost,partsCost,laborCost,shop
+Oil Change,2016-02-26,68.25,18.78,47.00,Pennsoil
+Coolant Replacement,2016-03-25,20.63,3.25,15.00,WalMart
+Tire Rotation,2016-04-25,28.50,0.00,25.67,Jiffy Lube
+Air Filter Replacement,2016-04-28,37.91,21.90,10.78,WalMart
+Oil Change,2016-05-09,64.68,15.50,45.00,Jiffy Lube
+Coolant Replacement,2016-06-03,20.63,3.25,15.00,WalMart
+Tire Rotation,2016-07-17,28.50,0.00,25.67,Jiffy Lube
+Oil Change,2016-08-16,68.25,18.78,47.00,Pennsoil
+Coolant Replacement,2016-09-19,20.63,3.25,15.00,WalMart
+Tire Rotation,2016-10-31,28.57,0.00,25.67,Jiffy Lube
+Oil Change,2016-11-03,64.68,15.50,45.00,Jiffy Lube
+Tire Rotation,2016-12-01,28.50,0.00,25.67,Jiffy Lube
+Coolant Replacement,2016-12-07,18.99,3.50,13.00,Pennsoil
+Oil Change,2017-01-27,68.25,18.78,47.00,Pennsoil
+Coolant Replacement,2017-02-01,20.63,3.25,15.00,WalMart
+Tire Rotation,2017-02-25,28.50,0.00,25.67,Jiffy Lube
+Coolant Replacement,2017-04-19,18.99,3.50,13.00,Pennsoil
+Oil Change,2017-04-19,64.68,15.50,45.00,Jiffy Lube
+Air Filter Replacement,2017-06-02,37.98,21.90,10.78,WalMart
+Coolant Replacement,2017-06-30,20.67,3.25,15.07,WalMart
+Tire Rotation,2017-07-15,28.57,0.00,25.67,Jiffy Lube
+Oil Change,2017-07-15,64.68,15.50,45.00,Jiffy Lube

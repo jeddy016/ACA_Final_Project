@@ -91,32 +91,33 @@ public class UserController extends Controller
         int notificationsOptIn = request.findPath("notificationsOptIn").asInt();
         String notificationsMilesAhead = request.findPath("notificationsMilesAhead").asText();
 
-        Logger.debug(notificationsMilesAhead);
-
-        if (NewUser.nameValid(firstName) && NewUser.nameValid(lastName))
+        if (firstName != null && lastName != null)
         {
-            namesValid = true;
+            if (NewUser.nameValid(firstName) && NewUser.nameValid(lastName))
+            {
+                namesValid = true;
+            } else
+            {
+                errorList.add("Names cannot contain special characters or exceed 20 characters");
+            }
+
+            if (NewUser.milesValid(notificationsMilesAhead))
+            {
+                milesValid = true;
+            } else
+            {
+                errorList.add("Please enter a number between 1 and 65,000 miles. Default 100");
+            }
         }
         else
         {
-            errorList.add("Names cannot contain special characters or exceed 20 characters");
-        }
-
-        if(NewUser.milesValid(notificationsMilesAhead))
-        {
-            milesValid = true;
-        }
-        else
-        {
-            errorList.add("Please enter a number between 1 and 65,000 miles. Default 100");
+            errorList.add("Fields marked with * are required");
         }
 
         if(namesValid && milesValid)
         {
             User user = new User();
             LocalDate date = LocalDate.now();
-            //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            //String formattedDate = date.format(formatter);
 
             user.setEmail(email);
             user.setPassword(password);
