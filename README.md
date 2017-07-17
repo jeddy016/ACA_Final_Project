@@ -6,7 +6,7 @@ PitStop is a maintenance tracking app for all of your vehicles
   - Export your service history as a CSV file
   - Find shops nearby
   
-![dashboardexample](https://user-images.githubusercontent.com/24253287/28281541-152ca460-6aed-11e7-8921-e1ac6dc95205.JPG)
+![dashboardexample](https://user-images.githubusercontent.com/24253287/28283602-ca629988-6af3-11e7-83fa-d5d037313656.JPG)
 
 An example of a user's dashboard
 
