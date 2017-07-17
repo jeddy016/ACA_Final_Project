@@ -10,7 +10,7 @@ PitStop is a maintenance tracking app for all of your vehicles
 
 An example of a user's dashboard
 
-![dashboardexample2](https://user-images.githubusercontent.com/24253287/28281559-2320f544-6aed-11e7-8df2-bba6211de30b.JPG)
+![dashboardexample2](https://user-images.githubusercontent.com/24253287/28284940-7adceeea-6af8-11e7-9fab-6f616d11a209.JPG)
 
 Another example of the many things you can see and do from the Dashboard
 
