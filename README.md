@@ -1,1 +1,19 @@
-This is my final project for Arkansas Coding Academy. The back-end is written in Java using the Play framework. For the front-end I went with AngularJS 1.
+# PitStop
+
+PitStop is a maintenance tracking app for all of your vehicles
+
+  - Monthly email reminders for service events
+  - Export your service history as a CSV file
+  - Find shops nearby
+
+### Tech
+I used the following resources to build PitStop:
+
+* Java
+* MySQL/MariaDB
+* Play Framework
+* Amazon AWS Email Service
+* Super CSV
+* AngularJS
+* HTML/CSS
+* Twitter Bootstrap
