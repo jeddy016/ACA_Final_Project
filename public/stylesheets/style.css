@@ -105,9 +105,9 @@ h2 {
     height: 45vh;
     width: 40vw;
     padding: 1%;
-    background-color: #009bb7;
+    border: 2px solid #666666;
+    background: #181818;
     border-radius: 3px;
-    border: 2px solid #00BCD4;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
@@ -128,7 +128,7 @@ h2 {
 
 .modal-heading {
     font-family: 'Days One', sans-serif;
-	color: white;
+	color: #00BCD4;
 }
 
 .form-modal-label {

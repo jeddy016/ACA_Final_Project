@@ -309,6 +309,10 @@ label {
     text-shadow: -1px 1px 3px #000000;
 }
 
+.all-chevron {
+    color: #00BCD4;
+}
+
 .separator {
     cursor: default;
 }
@@ -319,6 +323,7 @@ label {
     padding-right: 1vw;
     font-size: 20px;
     margin-left: .1%;
+    color: black !important;
 }
 
 .spotlight-expand {
