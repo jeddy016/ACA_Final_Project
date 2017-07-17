@@ -506,3 +506,9 @@ label {
     float: right;
     margin-top: 1vh;
 }
+
+.odo-cancel {
+    text-decoration: underline;
+    margin-left: 1%;
+    cursor: pointer;
+}

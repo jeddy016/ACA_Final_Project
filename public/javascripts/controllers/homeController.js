@@ -17,6 +17,7 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
     $scope.logVisible = false;
     $scope.passwordErrorVisible = false;
     $scope.historyVisible = false;
+    $scope.odometerVisible = false;
 
     $scope.nextDue = {};
     $scope.aggValues = {};
@@ -331,13 +332,12 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         $scope.chartsVisible == true ? $scope.chartsVisible = false : $scope.chartsVisible = true;
     };
 
-    $scope.odometerShow= function(vehicle) {
-        var index = $scope.vehicles.indexOf(vehicle);
-        $scope.selectedVehicle.odometerIsVisible = true;
+    $scope.odometerShow= function() {
+        $scope.odometerVisible = true;
     };
 
-    $scope.odometerHide= function(vehicle) {
-        $scope.selectedVehicle.odometerIsVisible = false;
+    $scope.odometerHide= function() {
+        $scope.odometerVisible = false;
 
         if($scope.selectedVehicle.currentOdometer != $scope.newOdometerReading) {
             $scope.selectedVehicle.currentOdometer = $scope.selectedVehicle.currentOdometer;

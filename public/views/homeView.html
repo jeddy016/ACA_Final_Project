@@ -57,15 +57,16 @@
                             <label class="section-label">Current Odometer</label>
                         </div>
 
-                        <h4 class="detail odo-detail" ng-show="!selectedVehicle.odometerIsVisible">{{selectedVehicle.currentOdometer | number}} mi</h4>
+                        <h4 class="detail odo-detail" ng-show="!odometerVisible">{{selectedVehicle.currentOdometer | number}} mi</h4>
                         <label>
-                            <button class="btn edit-btn odo-update" ng-click = "odometerShow(selectedVehicle)" ng-show="!selectedVehicle.odometerIsVisible">Update</button>
+                            <button class="btn edit-btn odo-update" ng-click = "odometerShow()" ng-show="!odometerVisible">Update</button>
                         </label>
 
-                        <form id="odometer-form" ng-show="selectedVehicle.odometerIsVisible" ng-submit="updateOdometer()">
-                            <input class="odometer-input" size="6" ng-model="updatedReading" placeholder="{{selectedVehicle.currentOdometer}}">
+                        <form id="odometer-form" ng-show="odometerVisible" ng-submit="updateOdometer()">
+                            <input class="odometer-input" size="6" ng-model="updatedReading">
                             <br>
-                            <button class="btn edit-btn odo-update odo-submit" type="submit" form="odometer-form" ng-click="odometerHide(selectedVehicle)">Save</button>
+                            <button class="btn edit-btn odo-update odo-submit" type="submit" form="odometer-form" ng-click="odometerHide()">Save</button>
+                            <label class="odo-cancel" ng-click="odometerHide()">Cancel</label>
                         </form>
                     </div>
                 </div>
