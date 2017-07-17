@@ -282,6 +282,13 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         });
     };
 
+    $scope.emailTest = function(){
+        $http({
+            method: 'GET',
+            url: '/emailTest'
+        });
+    };
+
     /*$scope.showAll = function() {
         $scope.overviewVisible = true;
         $scope.snapshotVisible = true;

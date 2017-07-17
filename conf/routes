@@ -53,6 +53,7 @@ GET     /getUserLocation            controllers.LocationController.getUserLocati
 
 #Email
 POST    /sendEmails                 controllers.EmailController.sendEmails
+GET     /emailTest                  controllers.EmailController.sendEmails
 
 #Daemon
 GET     /daemonStart                controllers.DaemonController.start()

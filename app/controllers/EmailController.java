@@ -53,12 +53,12 @@ public class EmailController extends Controller
                 String from = "jeddy016@gmail.com";
                 String to= user.getEmail();
                 String subject= "PitStop Monthly Update";
-                String body = formatBody(emailDetails, user.getNotificationsMilesAhead());
+                String body = formatBody(emailDetails, user.getNotificationsMilesAhead(), user.getFirstName());
 
                 send(from, to, body, subject);
 
-                //TODO un-comment this
-                //user.setLastNotified(today);
+               //TODO: un-comment this line in production to only email users once a month
+               // user.setLastNotified(today);
             }
         }
         return ok("success");
@@ -116,16 +116,19 @@ public class EmailController extends Controller
         }
     }
 
-    private static String formatBody(List<EmailDetail> emailDetails, int notificationsMilesAhead)
+    private static String formatBody(List<EmailDetail> emailDetails, int notificationsMilesAhead, String name)
     {
         StringBuilder body = new StringBuilder();
+
+
+
 
         if(emailDetails.size() > 0)
         {
             String vehicle = "";
-            body.append("<head><style> h2 {color: red;} </style></head><body>");
+            body.append("<html><head><style> body {height: 100%; width: 100%;} table {height: 100%; width: 100%; background: #232323; padding: 15px; border: 2px solid #00BCD4} h1, p { color: #00BCD4;} h4, h2, a { color: white !important; font-family: sans-serif;} h1 {text-align: center; margin: 2px !important; font-family: sans-serif; font-size: 50px;} h2 {font-size: 20px; text-align: center;} h4 {font-size: 18px; text-decoration: underline;} p {margin-left: 5px; font-size: 16px} a {text-decoration: none !important;} </style></head><body><table>");
 
-            body.append("<h2>Here are the services coming up in " + notificationsMilesAhead + " miles:</h2>");
+            body.append("<a href='http://localhost:9000'><h1>PitStop</h1></a> <h2>Hello " + name +  "! Here is your monthly vehicle maintenance update: </h2>");
 
             for (EmailDetail detail : emailDetails)
             {
@@ -155,7 +158,7 @@ public class EmailController extends Controller
             body.append("<h1> You have no vehicles due for service in " + notificationsMilesAhead + " miles.</h1>");
         }
 
-        body.append("<br><br><br><p>**To change the services you see in these reminders, click the \"Edit Vehicle\" button found on your dashboard and select the services you wish to track. You can change how many miles in advance you would like to receive reminders for services from the Edit Profile screen.</p></body>");
+        body.append("<br><br><br><p>**To change the services you see in these reminders, click the \"Edit Vehicle\" button found on your dashboard and select the services you wish to track. You can change how many miles in advance you would like to receive reminders for services from the Edit Profile screen.</p></table></body></html>");
 
         return body.toString();
     }

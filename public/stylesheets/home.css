@@ -478,3 +478,9 @@ label {
     float: right !important;
     margin: 2vh;
 }
+
+.email-link {
+    color: white;
+    float: right;
+    margin-top: 1vh;
+}
