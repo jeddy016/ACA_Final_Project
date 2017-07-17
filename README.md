@@ -29,6 +29,8 @@ I used the following resources to build PitStop:
 * MySQL/MariaDB
 * Play Framework
 * Amazon AWS Email Service
+* Google Places API
+* Google Maps API
 * Super CSV
 * AngularJS
 * HTML/CSS
