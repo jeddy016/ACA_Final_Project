@@ -9,7 +9,9 @@ import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
+import com.amazonaws.services.simpleemail.AmazonSimpleEmailService;
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailServiceClient;
+import com.amazonaws.services.simpleemail.AmazonSimpleEmailServiceClientBuilder;
 import com.amazonaws.services.simpleemail.model.Body;
 import com.amazonaws.services.simpleemail.model.Content;
 import com.amazonaws.services.simpleemail.model.Destination;
@@ -66,44 +68,22 @@ public class EmailController extends Controller
 
     private static void send(String from, String to, String body, String subject) throws IOException
     {
-        // Construct an object to contain the recipient address.
         Destination destination = new Destination().withToAddresses(new String[]{to});
 
-        // Create the subject and body of the message.
         Content subjectLine = new Content().withData(subject);
         Content textBody = new Content().withData(body);
-        Body bodyContent = new Body().withHtml(textBody);  //.withText(textBody);
+        Body bodyContent = new Body().withHtml(textBody);
 
-        // Create a message with the specified subject and body.
         Message message = new Message().withSubject(subjectLine).withBody(bodyContent);
 
-        // Assemble the email.
         SendEmailRequest request = new SendEmailRequest().withSource(from).withDestination(destination).withMessage(message);
 
         try
         {
             System.out.println("Attempting to send an email through Amazon SES by using the AWS SDK for Java...");
 
-            AWSCredentials credentials = null;
-
-            try
-            {
-                credentials = new ProfileCredentialsProvider().getCredentials();
-
-            } catch (Exception e)
-            {
-                throw new AmazonClientException(
-                        "Cannot load the credentials from the credential profiles file. " +
-                        "Please make sure that your credentials file is at the correct " +
-                        "location (~/.aws/credentials), and is in valid format.", e);
-            }
-
             // Instantiate an Amazon SES client, which will make the service call with the supplied AWS credentials.
-            AmazonSimpleEmailServiceClient client = new AmazonSimpleEmailServiceClient(credentials);
-
-            // Choose the AWS region of the Amazon SES endpoint you want to connect to.
-            Region REGION = Region.getRegion(Regions.US_EAST_1);
-            client.setRegion(REGION);
+            AmazonSimpleEmailService client = AmazonSimpleEmailServiceClientBuilder.standard().withCredentials(new ProfileCredentialsProvider()).withRegion(Regions.US_EAST_1).build();
 
             // Send the email.
             client.sendEmail(request);
@@ -120,13 +100,10 @@ public class EmailController extends Controller
     {
         StringBuilder body = new StringBuilder();
 
-
-
-
         if(emailDetails.size() > 0)
         {
             String vehicle = "";
-            body.append("<html><head><style> body {height: 100%; width: 100%;} table {height: 100%; width: 100%; background: #232323; padding: 15px; border: 2px solid #00BCD4} h1, p { color: #00BCD4;} h4, h2, a { color: white !important; font-family: sans-serif;} h1 {text-align: center; margin: 2px !important; font-family: sans-serif; font-size: 50px;} h2 {font-size: 20px; text-align: center;} h4 {font-size: 18px; text-decoration: underline;} p {margin-left: 5px; font-size: 16px} a {text-decoration: none !important;} </style></head><body><table>");
+            body.append("<html><head><style> body {height: 100%; width: 100%;} table {height: 100%; width: 100%; background: #232323; padding: 15px; border: 2px solid #00BCD4} h1, p { color: #00BCD4;} h4, h2, a { color: white !important; font-family: sans-serif;} h1 {text-align: center; margin: 2px !important; font-family: sans-serif; font-size: 50px; text-shadow: -2px 1px 3px #000000;} h2 {font-size: 20px; text-align: center; text-shadow: -2px 1px 3px #000000;} h4 {font-size: 18px; text-decoration: underline; text-shadow: -2px 1px 3px #000000;} p {margin-left: 5px; font-size: 16px; text-shadow: -2px 1px 3px #000000;} a {text-decoration: none !important;} </style></head><body><table>");
 
             body.append("<a href='http://localhost:9000'><h1>PitStop</h1></a> <h2>Hello " + name +  "! Here is your monthly vehicle maintenance update: </h2>");
 
