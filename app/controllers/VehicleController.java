@@ -95,7 +95,7 @@ public class VehicleController extends Controller
             }
             else
             {
-                errorList.add("Odometer must be a number between 0 and 5 million");
+                errorList.add("Odometer reading must be a number greater than 1 and less than 2 million");
             }
             if(VehicleValidator.nicknameValid(nickname))
             {

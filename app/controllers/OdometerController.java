@@ -20,7 +20,7 @@ import java.util.List;
 public class OdometerController extends Controller
 {
     private final JPAApi jpaApi;
-    private final int MAX_MILES = 5000000;
+    private final int MAX_MILES = 2000000;
 
 
     @Inject
