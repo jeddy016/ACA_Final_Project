@@ -21,8 +21,14 @@ public class User
     @Column(name = "user_email")
     private String email;
 
-    @Column(name = "password")
-    private String password;
+    /*@Column(name = "password")
+    private String password;*/
+
+    @Column(name="password")
+    private byte[] password;
+
+    @Column(name="salt")
+    private byte[] salt;
 
     @Column(name = "notifications_opt_in")
     private int notificationsOptIn;
@@ -73,14 +79,24 @@ public class User
         this.email = email;
     }
 
-    public String getPassword()
+    public byte[] getPassword()
     {
         return password;
     }
 
-    public void setPassword(String password)
+    public void setPassword(byte[] password)
     {
         this.password = password;
+    }
+
+    public byte[] getSalt()
+    {
+        return salt;
+    }
+
+    public void setSalt(byte[] salt)
+    {
+        this.salt = salt;
     }
 
     public int getNotificationsOptIn()

@@ -1,6 +1,7 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import models.Password;
 import models.User;
 import play.Logger;
 import play.db.jpa.Transactional;
@@ -77,7 +78,7 @@ public class UserController extends Controller
 
     @Transactional
     @BodyParser.Of(BodyParser.Json.class)
-    public Result addUser()
+    public Result addUser() throws Exception
     {
         boolean namesValid = false;
         boolean milesValid = false;
@@ -119,13 +120,17 @@ public class UserController extends Controller
             User user = new User();
             LocalDate date = LocalDate.now();
 
+            byte[] salt = Password.getNewSalt();
+            byte[] hashedPassword = Password.hashPassword(password.toCharArray(), salt);
+
             user.setEmail(email);
-            user.setPassword(password);
+            user.setPassword(hashedPassword);
             user.setFirstName(firstName);
             user.setLastName(lastName);
             user.setNotificationsMilesAhead(Integer.parseInt(notificationsMilesAhead));
             user.setNotificationsOptIn(notificationsOptIn);
             user.setLastNotified(date);
+            user.setSalt(salt);
 
             jpaApi.em().persist(user);
 

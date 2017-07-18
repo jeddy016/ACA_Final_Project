@@ -232,7 +232,7 @@ public class VehicleController extends Controller
                 .setParameter("id", userID)
                 .getSingleResult();
 
-        String password = user.getPassword();
+        byte[] password = user.getPassword();
         String inputPassword = request.findPath("password").textValue();
 
         if(password.equals(inputPassword))
