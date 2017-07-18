@@ -3,7 +3,7 @@
 
     <div class = "col-md-8" id= "title-column">
         <h1>PitStop</h1>
-        <p>Schedule reminders for service requirements, track maintenance costs for all of your vehicles,
+        <p>Receive reminders for service requirements, track maintenance costs for all of your vehicles,
             and even find the nearest shop. <p>
     </div>
 
@@ -21,14 +21,14 @@
         <h3>Sign Up</h3>
             <form id = "sign-up" ng-submit="signUpValidate()" class="form" name="sign-up-form">
                 <label>Email</label><br>
-                <input type="text" name = "newEmail" ng-model="newEmail" ng-focus="hidePwdReqs()" size ="30" required autofocus><br>
+                <input name = "newEmail" class="form-control" ng-model="newEmail" ng-focus="hidePwdReqs()" required autofocus><br>
                 <label>Password</label><br>
-                <input type="password" ng-model= "newPassword" ng-focus="showPwdReqs()" size ="30" required><br>
+                <input type="password" class="form-control" ng-model= "newPassword" ng-focus="showPwdReqs()" required><br>
                 <p class="pwd-reqs" ng-show="reqsVisible">**Password must be at least 8 characters long and contain a number.</p>
                 <label>Confirm Password</label><br>
-                <input type="password" name = "confirmPassword" ng-model="confirmPassword" ng-focus="hidePwdReqs()" size ="30" required><br>
+                <input type="password" class="form-control" name = "confirmPassword" ng-model="confirmPassword" ng-focus="hidePwdReqs()" required><br>
                 <span class="login-error" ng-repeat="error in newUserErrors track by $index">{{error}}</span>
-                <button type="submit" class= "btn new-user-submit" form="sign-up">Submit</button>
+                <button class="btn new-user-submit" form="sign-up">Submit</button>
             </form>
     </div>
 </div>
