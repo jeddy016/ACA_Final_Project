@@ -106,14 +106,17 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         })
         .then(function(response){
             if(response.data == "success") {
-                $http({
+                $scope.getVehicles();
+                $('#deleteModal').modal('toggle');
+
+                /*$http({
                     method: 'GET',
                     url: '/getVehicles'
                 })
                 .then(function(response) {
                     $scope.vehicles = response.data;
                     $scope.selectedVehicle = $scope.vehicles[0];
-                    $('#deleteModal').modal('toggle');
+
                     $http({
                         method: 'GET',
                         url: '/getServices',
@@ -126,7 +129,7 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
                         $scope.getCostByService();
                         $scope.getNextDue();
                     });
-                });
+                });*/
             }
             else {
                 $scope.passwordErrorVisible = true;
