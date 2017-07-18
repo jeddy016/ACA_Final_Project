@@ -65,7 +65,7 @@
                         <form id="odometer-form" ng-show="odometerVisible" ng-submit="updateOdometer()">
                             <input class="odometer-input" size="6" ng-model="updatedReading">
                             <br>
-                            <button class="btn edit-btn odo-update odo-submit" type="submit" form="odometer-form" ng-click="odometerHide()">Save</button>
+                            <button class="btn edit-btn odo-update odo-submit" form="odometer-form" ng-click="odometerHide()">Save</button>
                             <label class="odo-cancel" ng-click="odometerHide()">Cancel</label>
                         </form>
                     </div>

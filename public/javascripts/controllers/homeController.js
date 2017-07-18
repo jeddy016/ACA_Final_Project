@@ -206,6 +206,7 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
                    service.milesTilDue -= response.data;
                    $scope.getNextDue();
                });
+               $scope.updatedReading = "";
            };
         });
     };
