@@ -18,6 +18,7 @@ import validators.*;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class VehicleController extends Controller
@@ -222,35 +223,25 @@ public class VehicleController extends Controller
     @Transactional
     public Result deleteVehicle(Integer id)
     {
-        boolean valid = false;
-        String response = "";
+        String response = "fail";
 
         int userID = Integer.parseInt(session().get("userId"));
         JsonNode request = request().body().asJson();
+        String inputPassword = request.findPath("password").textValue();
 
         User user = jpaApi.em().createQuery("SELECT u FROM User u WHERE userID = :id", User.class)
                 .setParameter("id", userID)
                 .getSingleResult();
 
+        byte[] hashedPassword = Password.hashPassword(inputPassword.toCharArray(), user.getSalt());
         byte[] password = user.getPassword();
-        String inputPassword = request.findPath("password").textValue();
 
-        if(password.equals(inputPassword))
+        if(Arrays.equals(hashedPassword, password))
         {
-            valid = true;
-        }
-
-        if(valid)
-        {
-            /*jpaApi.em().createNativeQuery("DELETE FROM completed_service WHERE vehicle_id = :id").setParameter("id", id).executeUpdate();*/
             jpaApi.em().createQuery("UPDATE Service s SET s.tracked = 2 WHERE vehicle_id = :id").setParameter("id", id).executeUpdate();
             jpaApi.em().createNativeQuery("UPDATE Vehicle v SET v.tracked = 2 WHERE vehicle_id = :id").setParameter("id", id).executeUpdate();
 
             response = "success";
-        }
-        else
-        {
-            response = "fail";
         }
 
         return ok(Json.toJson(response));
