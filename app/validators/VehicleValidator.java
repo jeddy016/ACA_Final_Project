@@ -44,11 +44,14 @@ public class VehicleValidator
 
     public static boolean engineValid(String engine)
     {
-        boolean valid = false;
+        boolean valid = true;
 
-        if(engine != null && engine.length() <= MAX_LENGTH_ENGINE)
+        if(engine != null)
         {
-            valid = true;
+            if (engine.length() > MAX_LENGTH_ENGINE)
+            {
+                valid = false;
+            }
         }
 
         return valid;

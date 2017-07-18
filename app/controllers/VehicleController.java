@@ -87,7 +87,7 @@ public class VehicleController extends Controller
         String nickname = request.findPath("nickname").textValue();
         String engine = request.findPath("engine").textValue();
 
-        if(modelId != null && year != null && currentOdometer != null && nickname != null && engine != null)
+        if(modelId != null && year != null && currentOdometer != null && nickname != null)
         {
             if(VehicleValidator.odometerValid(currentOdometer))
             {
@@ -173,7 +173,7 @@ public class VehicleController extends Controller
         String nickname = request.findPath("nickname").textValue();
         String engine = request.findPath("engine").textValue();
 
-        if(modelId != null && year != null && nickname != null && engine != null)
+        if(modelId != null && year != null && nickname != null)
         {
             if(VehicleValidator.nicknameValid(nickname))
             {

@@ -12,7 +12,7 @@ import java.util.Date;
 public class LogServiceValidator
 {
 
-    private static final int SHOP_MAX_LENGTH = 80;
+    private static final int SHOP_MAX_LENGTH = 40;
     private static BigDecimal COST_MAX_VALUE = new BigDecimal(99999.99);
 
     public static boolean dateValid(String date)
