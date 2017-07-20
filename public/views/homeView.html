@@ -9,7 +9,7 @@
         <label class="all-control"  ng-click="showAll()"><i class="fa fa-chevron-down all-chevron"></i>Expand All</label>
     </div>
 
-    <div class="row snapshot-row" ng-controller="snapShotController">
+    <div class="row snapshot-row">
         <div class = "col-md-12 overview">
             <label class="section-label">At a Glance</label>
             <label class="section-label expand" ng-show="!snapshotVisible" ng-click="snapshotShowHide()"> <i class="fa fa-chevron-down"></i></label>
@@ -122,7 +122,7 @@
                          <div class="col-md-2 data-col">
                              <form id="interval-form">
                              <label class="schedule-data" ng-show="!inputsVisible">{{ service.milesInterval | number }}</label>
-                             <input type="text" class ="interval-input" ng-show="inputsVisible" placeholder=" {{service.milesInterval}}" ng-model="service.milesInterval" />
+                             <input class ="interval-input" ng-show="inputsVisible" placeholder=" {{service.milesInterval}}" ng-model="service.milesInterval" />
                              </form>
                          </div>
                          <div class="col-md-2 data-col">
@@ -132,7 +132,7 @@
                  </div>
                  <div class="row" ng-show="scheduleVisible">
                      <div class="col-md-12">
-                         <button type="submit" form="interval-form" class="btn edit-btn interval-btn" ng-show="inputsVisible" ng-click="updateIntervals(); intervalsShowHide($event)">Save</button>
+                         <button form="interval-form" class="btn edit-btn interval-btn" ng-show="inputsVisible" ng-click="updateIntervals(); intervalsShowHide($event)">Save</button>
                      </div>
                  </div>
              </div>
@@ -153,36 +153,36 @@
 
                          <div class="col-md-6">
                              <label class ="schedule-label log-label">Date (YYYY/mm/dd)</label><br>
-                             <input type="text" ng-click="open1()" class="log-input" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                             <input ng-click="open1()" class="log-input" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
                          </div>
 
                          <div class="col-md-6">
                              <label class ="schedule-label log-label">Shop</label><br>
-                             <input class="log-input" ng-model="shop" type="text" />
+                             <input class="log-input" ng-model="shop" />
                          </div>
 
                          <div class="col-md-6">
                              <label class ="schedule-label log-label">Total Cost</label><br>
-                             <input class="log-input" ng-model="totalCost" type="text" min="1" step="any" />
+                             <input class="log-input" ng-model="totalCost" min="1" step="any" />
                          </div>
 
                          <div class="col-md-6">
                              <label class ="schedule-label log-label">Labor Cost</label><br>
-                             <input type="text" ng-model="laborCost" class="log-input" />
+                             <input ng-model="laborCost" class="log-input" />
                          </div>
 
                          <div class="col-md-6">
                              <label class ="schedule-label log-label">Parts Cost</label><br>
-                             <input type="text" ng-model="partsCost" class="log-input"  />
+                             <input ng-model="partsCost" class="log-input"  />
                          </div>
 
                          <div class="col-md-6">
                              <label class ="schedule-label log-label">Odometer</label><br>
-                             <input class="log-input" ng-model="serviceOdometer" type="text" />
+                             <input class="log-input" ng-model="serviceOdometer" />
                          </div>
 
                          <div class="col-md-3 log-service-save">
-                             <button type="submit" class= "btn edit-btn" form="log-service">Save</button>
+                             <button class= "btn edit-btn" form="log-service">Save</button>
                          </div>
                      </form>
                  </div>
@@ -251,7 +251,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -267,7 +267,7 @@
                      </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-danger" form="delete-form">Delete</button>
+                    <button class="btn btn-danger" form="delete-form">Delete</button>
                 </div>
                 </form>
             </div>

@@ -5,74 +5,64 @@
     <base href="/">
     <title>Pit Stop</title>
     <meta name="viewport" content="width=device-width">
-    <!--libraries & Plugins-->
     <script src= "../assets/libs/angular.min.js"></script>
-    <script src= "../assets/libs/angular-animate.min.js"></script>
     <script src= "../assets/libs/angularRoute.min.js"></script>
-    <script src= "https://use.fontawesome.com/3d943843e1.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
     <script src= "../assets/javascripts/app.module.js"></script>
     <script src= "../assets/javascripts/app.config.js"></script>
-    <script src='../assets/libs/angular-css.js'></script>
-    <!--CSS/Bootstrap-->
+    <script src= "../assets/javascripts/index.js"></script>
+    <script src= "https://use.fontawesome.com/3d943843e1.js"></script>
     <link rel="stylesheet" type="text/css" href="../assets/stylesheets/style.css">
     <link href="https://fonts.googleapis.com/css?family=Days+One|Roboto" rel="stylesheet">
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 </head>
-
 <body>
-
-<div class="menu-container">
-    <a href="" ng-click="menuShowHide()" ng-show="!menuVisible"><i class="fa fa-bars" aria-hidden="true"></i></a>
-    <a href="" ng-click="menuShowHide()" ng-show="menuVisible"><i class="fa fa-times menu-exit" aria-hidden="true"></i></a>
-    <div class="menu" ng-show="menuVisible">
-        <div class="row menu-row">
-            <div class="col-md-12 menu-col" ng-click="goTo('/home'); menuShowHide()">
-                <h2 class="menu-text">DASHBOARD</h2>
+    <div class="menu-container">
+        <a href="" ng-click="menuShowHide()" ng-show="!menuVisible"><i class="fa fa-bars"></i></a>
+        <a href="" ng-click="menuShowHide()" ng-show="menuVisible"><i class="fa fa-times menu-exit"></i></a>
+        <div class="menu" ng-show="menuVisible">
+            <div class="row menu-row">
+                <div class="col-md-12 menu-col" ng-click="goTo('/home'); menuShowHide()">
+                    <h2 class="menu-text">DASHBOARD</h2>
+                </div>
             </div>
-        </div>
-        <div class="row menu-row">
-            <div class="col-md-12 menu-col" ng-click="goTo('/findService'); menuShowHide()">
-                <h2 class="menu-text">FIND SERVICE NEARBY</h2>
+            <div class="row menu-row">
+                <div class="col-md-12 menu-col" ng-click="goTo('/findService'); menuShowHide()">
+                    <h2 class="menu-text">FIND SERVICE NEARBY</h2>
+                </div>
             </div>
-        </div>
-        <div class="row menu-row">
-            <div class="col-md-12 menu-col" ng-click="goTo('/profile'); menuShowHide()">
-                <h2 class="menu-text">PROFILE & PREFERENCES</h2>
+            <div class="row menu-row">
+                <div class="col-md-12 menu-col" ng-click="goTo('/profile'); menuShowHide()">
+                    <h2 class="menu-text">PROFILE & PREFERENCES</h2>
+                </div>
             </div>
-        </div>
-        <div class="row menu-row">
-            <div class="col-md-12 menu-col" ng-click="logout()">
-                <h2 class="menu-text">LOG OUT</h2>
+            <div class="row menu-row">
+                <div class="col-md-12 menu-col" ng-click="logout()">
+                    <h2 class="menu-text">LOG OUT</h2>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class= "page-container container-flexible">
-    <div ng-view>
-
+    <div class= "page-container container-flexible">
+        <div ng-view>
+        </div>
     </div>
-</div>
 
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-q9rUaYmRxp0xVXzsdY3EB9CZyGFOI1U&libraries=places"></script>
-<script src='../assets/libs/pieceLabel.js'></script>
-<script src='../assets/libs/ui-bootstrap-tpls-2.5.0.min.js'></script>
-<!--controllers-->
-<script src= "../assets/javascripts/controllers/loginController.js"></script>
-<script src= "../assets/javascripts/controllers/homeController.js"></script>
-<script src= "../assets/javascripts/controllers/newVehicleController.js"></script>
-<script src= "../assets/javascripts/controllers/editVehicleController.js"></script>
-<script src= "../assets/javascripts/controllers/findServiceController.js"></script>
-<script src= "../assets/javascripts/controllers/profileController.js"></script>
-<script src= "../assets/javascripts/controllers/servicesController.js"></script>
-<script src= "../assets/javascripts/controllers/snapShotController.js"></script>
-<script src= "../assets/javascripts/controllers/newUserController.js"></script>
-<script src= "../assets/javascripts/controllers/chartsController.js"></script>
-<script src= "../assets/javascripts/index.js"></script>
+    <!--libs-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+    <script src='../assets/libs/angular-css.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-q9rUaYmRxp0xVXzsdY3EB9CZyGFOI1U&libraries=places"></script>
+    <script src='../assets/libs/ui-bootstrap-tpls-2.5.0.min.js'></script>
+    <!--controllers-->
+    <script src= "../assets/javascripts/controllers/loginController.js"></script>
+    <script src= "../assets/javascripts/controllers/homeController.js"></script>
+    <script src= "../assets/javascripts/controllers/newVehicleController.js"></script>
+    <script src= "../assets/javascripts/controllers/editVehicleController.js"></script>
+    <script src= "../assets/javascripts/controllers/findServiceController.js"></script>
+    <script src= "../assets/javascripts/controllers/profileController.js"></script>
+    <script src= "../assets/javascripts/controllers/newUserController.js"></script>
+    <script src= "../assets/javascripts/controllers/chartsController.js"></script>
 </body>
 </html>

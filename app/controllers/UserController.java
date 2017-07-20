@@ -102,7 +102,7 @@ public class UserController extends Controller
                 errorList.add("Names cannot contain special characters or exceed 20 characters");
             }
 
-            if (NewUser.milesValid(notificationsMilesAhead))
+            if (notificationsOptIn == 0 || NewUser.milesValid(notificationsMilesAhead))
             {
                 milesValid = true;
             } else
@@ -127,10 +127,14 @@ public class UserController extends Controller
             user.setPassword(hashedPassword);
             user.setFirstName(firstName);
             user.setLastName(lastName);
-            user.setNotificationsMilesAhead(Integer.parseInt(notificationsMilesAhead));
             user.setNotificationsOptIn(notificationsOptIn);
             user.setLastNotified(date);
             user.setSalt(salt);
+
+            if(user.getNotificationsOptIn() == 1)
+            {
+                user.setNotificationsMilesAhead(Integer.parseInt(notificationsMilesAhead));
+            }
 
             jpaApi.em().persist(user);
 
