@@ -92,7 +92,7 @@ label {
 }
 
 .snapshot-row {
-    width: 70% !important;
+    width: 70.4% !important;
     margin-top: 9vh !important;
     padding: 0 !important;
     display: table;
@@ -103,6 +103,22 @@ label {
     -moz-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
     box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
     background: #181818;
+}
+
+@-moz-document url-prefix() {
+    .snapshot-row {
+        width: 70% !important;
+        margin-top: 9vh !important;
+        padding: 0 !important;
+        display: table;
+        height: auto;
+        color: #00BCD4;
+        border: 1px solid #666666;
+        -webkit-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
+        box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
+        background: #181818;
+    }
 }
 
 .service-schedule-row {

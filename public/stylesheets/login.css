@@ -15,8 +15,9 @@
 }
 
 #login-column {
-    padding-left: 10%;
-    padding-top: 25vh;
+    padding-left: 8%;
+    padding-right: 8%;
+    padding-top: 23vh;
 }
 
 a, a:visited, a:focus {
