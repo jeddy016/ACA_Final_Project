@@ -99,6 +99,7 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
     };
 
     $scope.deleteVehicle = function() {
+        $scope.passwordErrorVisible = false;
         $http({
             method: 'POST',
             url: '/deleteVehicle/' + $scope.selectedVehicle.id,
@@ -107,32 +108,12 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         .then(function(response){
             if(response.data == "success") {
                 $scope.getVehicles();
+                $scope.deletePassword = "";
                 $('#deleteModal').modal('toggle');
-
-                /*$http({
-                    method: 'GET',
-                    url: '/getVehicles'
-                })
-                .then(function(response) {
-                    $scope.vehicles = response.data;
-                    $scope.selectedVehicle = $scope.vehicles[0];
-
-                    $http({
-                        method: 'GET',
-                        url: '/getServices',
-                        params: {"vehicleID": $scope.selectedVehicle.id}
-                    })
-                    .then(function(response) {
-                        $scope.vehicleServices = response.data;
-                        $scope.getAggValues();
-                        $scope.getCostByMonth();
-                        $scope.getCostByService();
-                        $scope.getNextDue();
-                    });
-                });*/
             }
             else {
                 $scope.passwordErrorVisible = true;
+                $scope.deletePassword = "";
             };
         });
     };
@@ -354,7 +335,7 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
 
 //Delete modal//
     $('#deleteModal').on('shown.bs.modal', function () {
-      $('#password').focus()
+      $('#password').focus();
     });
 
 //DatePicker//

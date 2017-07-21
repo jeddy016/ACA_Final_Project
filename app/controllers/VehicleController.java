@@ -233,17 +233,19 @@ public class VehicleController extends Controller
                 .setParameter("id", userID)
                 .getSingleResult();
 
-        byte[] hashedPassword = Password.hashPassword(inputPassword.toCharArray(), user.getSalt());
-        byte[] password = user.getPassword();
-
-        if(Arrays.equals(hashedPassword, password))
+        if(inputPassword != null)
         {
-            jpaApi.em().createQuery("UPDATE Service s SET s.tracked = 2 WHERE vehicle_id = :id").setParameter("id", id).executeUpdate();
-            jpaApi.em().createNativeQuery("UPDATE Vehicle v SET v.tracked = 2 WHERE vehicle_id = :id").setParameter("id", id).executeUpdate();
+            byte[] hashedPassword = Password.hashPassword(inputPassword.toCharArray(), user.getSalt());
+            byte[] password = user.getPassword();
 
-            response = "success";
+            if (Arrays.equals(hashedPassword, password))
+            {
+                jpaApi.em().createQuery("UPDATE Service s SET s.tracked = 2 WHERE vehicle_id = :id").setParameter("id", id).executeUpdate();
+                jpaApi.em().createNativeQuery("UPDATE Vehicle v SET v.tracked = 2 WHERE vehicle_id = :id").setParameter("id", id).executeUpdate();
+
+                response = "success";
+            }
         }
-
         return ok(Json.toJson(response));
     }
 

@@ -8,7 +8,6 @@
         <label class="all-control separator">|</label>
         <label class="all-control"  ng-click="showAll()"><i class="fa fa-chevron-down all-chevron"></i>Expand All</label>
     </div>
-
     <div class="row snapshot-row">
         <div class = "col-md-12 overview">
             <label class="section-label">At a Glance</label>
@@ -25,7 +24,6 @@
             <p class="detail" ng-model="avgCost"><label>AVG Service Cost:</label> {{aggValues.avgCost | currency }} </p>
         </div>
     </div>
-
     <div class="row vehicle-detail-container">
          <div class = "col-md-12 overview">
              <label class="section-label">Vehicle Spotlight</label>
@@ -34,7 +32,6 @@
          </div>
          <div class="vehicle-detail-row" ng-show="spotlightVisible">
              <div class = "row select-row">
-
                  <div class="col-md-12 dropdown-container">
                     <div class="col-md-2 dropdown-col">
                         <select class="form-control vehicle-dropdown" ng-change="getServices(); getCostByMonth(); getCostByService()" ng-model="selectedVehicle" ng-options="vehicle.nickname for vehicle in vehicles">
@@ -70,7 +67,6 @@
                         </form>
                     </div>
                 </div>
-
                 <div class="col-md-3 tools-row nested">
                     <div class="col-md-12 overview inner">
                         <label class="section-label inner-label">Tools</label>
@@ -85,14 +81,12 @@
                     </div>
                 </div>
             </div>
-
              <div class="row service-schedule-row nested">
                  <div class = "col-md-12 overview inner">
                      <label class="section-label inner-label">Maintenance Schedule</label>
                      <label class="inner-label expand" ng-show="!scheduleVisible" ng-click="scheduleShowHide()"> <i class="fa fa-chevron-down"></i></label>
                      <label class="inner-label expand" ng-show="scheduleVisible" ng-click="scheduleShowHide()"> <i class="fa fa-chevron-up"></i></label>
                  </div>
-
                  <div class = "row  schedule-row" ng-show="scheduleVisible">
                      <div class="col-md-4">
                          <label class="schedule-label"></label>
@@ -110,7 +104,6 @@
                      </div>
                  </div>
                  <hr class="schedule-hr" ng-show="scheduleVisible">
-
                  <div class="row" ng-repeat="service in vehicleServices" ng-show="scheduleVisible">
                      <div class = "row">
                          <div class="col-md-4">
@@ -136,7 +129,6 @@
                      </div>
                  </div>
              </div>
-
              <div class="row log-service-container">
                  <div class="col-md-12 log-service-row nested">
                      <div class = "col-md-12 overview inner">
@@ -150,44 +142,36 @@
                              <select class="log-input form-control" ng-model="selectedService" ng-options="service.id as service.name for service in vehicleServices">
                              </select>
                          </div>
-
                          <div class="col-md-6">
                              <label class ="schedule-label log-label">Date (YYYY/mm/dd)</label><br>
                              <input ng-click="open1()" class="log-input form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
                          </div>
-
                          <div class="col-md-6">
                              <label class ="schedule-label log-label">Shop</label><br>
                              <input class="log-input form-control" ng-model="shop" />
                          </div>
-
                          <div class="col-md-6">
                              <label class ="schedule-label log-label">Total Cost</label><br>
                              <input class="log-input form-control" ng-model="totalCost" min="1" step="any" />
                          </div>
-
                          <div class="col-md-6">
                              <label class ="schedule-label log-label">Labor Cost</label><br>
                              <input ng-model="laborCost" class="log-input form-control" />
                          </div>
-
                          <div class="col-md-6">
                              <label class ="schedule-label log-label">Parts Cost</label><br>
                              <input ng-model="partsCost" class="log-input form-control"  />
                          </div>
-
                          <div class="col-md-6">
                              <label class ="schedule-label log-label">Odometer</label><br>
                              <input class="log-input form-control" ng-model="serviceOdometer" />
                          </div>
-
                          <div class="col-md-3 log-service-save">
                              <button class= "btn edit-btn" form="log-service">Save</button>
                          </div>
                      </form>
                  </div>
              </div>
-
              <div class="row service-history-row nested">
                  <div class = "col-md-12 overview inner">
                      <label class="section-label inner-label">Service History</label>
@@ -195,7 +179,6 @@
                      <label class="inner-label expand" ng-show="!historyVisible" ng-click="historyShowHide()"> <i class="fa fa-chevron-down"></i></label>
                      <label class="inner-label expand" ng-show="historyVisible" ng-click="historyShowHide()"> <i class="fa fa-chevron-up"></i></label>
                  </div>
-
                  <button ng-click="exportHistory()" class="btn edit-btn export-btn" ng-show="historyVisible">Export</button>
                  <div class="row schedule-row" ng-show="historyVisible">
                      <div class="col-md-2 center" ng-show="historyVisible">
@@ -217,7 +200,6 @@
                      </div>
                  </div>
                  <hr class="schedule-hr" ng-show="historyVisible">
-
                  <div class="service-history-list schedule-row" ng-repeat="service in completedServices">
                      <div class="row">
                          <div class="col-md-2 align-left" ng-show="historyVisible">
@@ -251,20 +233,17 @@
             </div>
         </div>
     </div>
-
-    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    </button>
                     <h3 class="modal-title" id="exampleModalLabel">Are you sure you want to delete {{selectedVehicle.nickname}}?</h3>
                 </div>
                 <form ng-submit="deleteVehicle()" id="delete-form">
                     <div class="modal-body">
                         <label for="password" class="modal-label">Please enter your password to confirm:</label>
                         <input type="password" id="password" ng-model="deletePassword"/>
-                        <span class="no-match" ng-show="passwordErrorVisible">Password Incorrect</span>
+                        <span class="no-match" ng-show="passwordErrorVisible">password incorrect</span>
                      </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
