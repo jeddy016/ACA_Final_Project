@@ -43,9 +43,7 @@ input::-webkit-inner-spin-button {
     text-align: left;
 }
 
-.edit-btn,
-.edit-btn:visited {
-    margin-top: 3vh;
-    margin-left: 1vw;
+.edit-btn, .edit-btn:focus, .edit-btn:visited {
     width: auto !important;
+    outline: none;
 }

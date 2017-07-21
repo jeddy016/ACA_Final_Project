@@ -200,7 +200,8 @@ h2 {
 }
 
 .edit-btn,
-.edit-btn:visited {
+.edit-btn:visited,
+ .edit-btn:focus {
     width: 9.9vw !important;
     background-color: black;
     border: 1px solid #00BCD4 !important;
@@ -211,6 +212,10 @@ h2 {
     box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
 }
 
+.edit-btn:hover {
+    background-color: #00BCD4;
+    color: black !important;
+}
 
 .profile-wrapper {
     position: absolute;
