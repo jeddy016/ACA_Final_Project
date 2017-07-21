@@ -109,7 +109,7 @@
                          <label class="schedule-label">Recommended</label><br>
                      </div>
                  </div>
-                 <hr class="schedule-hr">
+                 <hr class="schedule-hr" ng-show="scheduleVisible">
 
                  <div class="row" ng-repeat="service in vehicleServices" ng-show="scheduleVisible">
                      <div class = "row">
@@ -216,7 +216,7 @@
                          <label class="schedule-label">Shop</label><br>
                      </div>
                  </div>
-                 <hr class="schedule-hr">
+                 <hr class="schedule-hr" ng-show="historyVisible">
 
                  <div class="service-history-list schedule-row" ng-repeat="service in completedServices">
                      <div class="row">
