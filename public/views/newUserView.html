@@ -4,14 +4,14 @@
         <form id= "new-user-form" method="POST" ng-submit="addUser()">
             <h1 class="modal-heading">Complete Your Profile</h1>
             <hr class="modal-hr">
-            <span class="userError" ng-repeat="error in errorList">**{{error}}<br></span>
+            <span class="userError" ng-repeat="error in errorList">*{{error}}*<br></span>
             <div class="row">
                 <div class="col-md-6">
-                    <label class="form-modal-label">*First Name</label><br>
+                    <label class="form-modal-label">First Name</label><br>
                     <input class="modal-input" ng-model="firstName" >
                 </div>
                 <div class="col-md-6">
-                    <label class ="form-modal-label">*Last Name</label><br>
+                    <label class ="form-modal-label">Last Name</label><br>
                     <input class="modal-input" ng-model="lastName" >
                 </div>
                 <div class="col-md-12">
@@ -27,7 +27,7 @@
                 </div>
             </div>
             <button class= "btn edit-btn" form= "new-user-form">Done</button>
-            <button class= "btn edit-btn" ng-click="goTo('/home')">Cancel</button>
+            <button class= "btn edit-btn" ng-click="goTo('/login')">Cancel</button>
         </form>
     </div>
 </div>

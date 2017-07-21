@@ -261,8 +261,6 @@ angular.module('pitStop').controller('homeController', ['$scope', '$window', '$h
         $scope.vehicleServices.forEach(function(service){
             data.push({serviceID: service.id, interval: service.milesInterval})
         })
-
-        console.log(JSON.stringify(data))
         $http({
             method: 'POST',
             url: '/updateIntervals',

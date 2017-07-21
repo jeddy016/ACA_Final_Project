@@ -37,7 +37,6 @@ angular.module('pitStop').controller('profileController', ['$scope', '$http', fu
             data: JSON.stringify($scope.user)
         })
         .then(function(response) {
-            console.log(response.data)
             if(response.data == 'success'){
                 $scope.goTo('/home');
             }
@@ -46,7 +45,6 @@ angular.module('pitStop').controller('profileController', ['$scope', '$http', fu
                 response.data.forEach(function(error) {
                     $scope.errorList.push(error);
                 });
-                console.log($scope.errorList)
             };
         });
     };

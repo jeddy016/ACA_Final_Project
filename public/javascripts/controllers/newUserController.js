@@ -18,8 +18,6 @@ angular.module('pitStop').controller('newUserController', ['$scope', '$http', fu
             $scope.notificationsOptIn = 1;
     };
 
-    console.log($scope.notificationsHour)
-
     $scope.addUser = function(){
 
         $scope.user = {
@@ -27,7 +25,7 @@ angular.module('pitStop').controller('newUserController', ['$scope', '$http', fu
             lastName: $scope.lastName,
             notificationsOptIn: $scope.notificationsOptIn,
             notificationsMilesAhead: $scope.notificationsMilesAhead
-        }
+        };
 
         $http({
             method: 'POST',
@@ -39,14 +37,12 @@ angular.module('pitStop').controller('newUserController', ['$scope', '$http', fu
                 $scope.goTo('/newVehicle');
             }
             else {
-            $scope.errorList = [];
-            response.data.forEach(function(error) {
-                $scope.errorList.push(error);
-            });
-            console.log(errorList);
+                $scope.errorList = [];
+                response.data.forEach(function(error) {
+                    $scope.errorList.push(error);
+                });
             }
         })
-        console.log($scope.user);
-    }
+    };
 
 }])

@@ -82,6 +82,7 @@ public class UserController extends Controller
     {
         boolean namesValid = false;
         boolean milesValid = false;
+        boolean emailValid = false;
         List<String> errorList = new ArrayList<>();
         JsonNode request = request().body().asJson();
 
@@ -109,13 +110,22 @@ public class UserController extends Controller
             {
                 errorList.add("Please enter a number between 1 and 65,000 miles. Default 100");
             }
+
+            if(!alreadyExists(email))
+            {
+                emailValid = true;
+            }
+            else
+            {
+                errorList.add("A user with the email provided already exists");
+            }
         }
         else
         {
-            errorList.add("Fields marked with * are required");
+            errorList.add("All fields are required");
         }
 
-        if(namesValid && milesValid)
+        if(namesValid && milesValid && emailValid)
         {
             User user = new User();
             LocalDate date = LocalDate.now();

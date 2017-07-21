@@ -95,8 +95,6 @@ angular.module('pitStop').controller('editVehicleController', ['$scope', '$route
     };
 
     $scope.updateVehicle = function(){
-        console.log($scope.vehicle);
-
         $http({
             method: 'POST',
             url: '/updateVehicle',

@@ -7,10 +7,10 @@ import java.util.regex.Pattern;
 
 public class NewUser
 {
-    public static final int MAX_LENGTH_NAME = 20;
-    public static final int MAX_LENGTH_EMAIL = 40;
-    public static final int MAX_LENGTH_PASSWORD = 20;
-    public static final int MAX_MILES = 65000;
+    private static final int MAX_LENGTH_NAME = 20;
+    private static final int MAX_LENGTH_EMAIL = 40;
+    private static final int MAX_LENGTH_PASSWORD = 20;
+    private static final int MAX_MILES = 65000;
 
     public static boolean emailInvalid(String email)
     {
@@ -63,7 +63,7 @@ public class NewUser
         Pattern pattern = Pattern.compile(regx,Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(name);
 
-        if(name != null && name.length() <= MAX_LENGTH_NAME && matcher.find())
+        if(name.length() > 0 && name.length() <= MAX_LENGTH_NAME && matcher.find())
         {
             valid = true;
         }
@@ -78,8 +78,6 @@ public class NewUser
         try
         {
             int mileTest = Integer.parseInt(miles);
-
-            Logger.debug(""+ mileTest);
 
             if(mileTest > 0 && mileTest <= MAX_MILES)
             {

@@ -2,16 +2,13 @@ package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import models.Password;
-import models.User;
 import models.UserID;
-import play.Logger;
 import play.db.jpa.JPAApi;
 import play.db.jpa.Transactional;
 import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
-import validators.Login;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -40,8 +37,6 @@ public class LoginController extends Controller
 
         @SuppressWarnings("unchecked")
         List<UserID> users = jpaApi.em().createNativeQuery("SELECT user_id as ID, password, salt FROM User WHERE user_email = :email", UserID.class).setParameter("email", email).getResultList();
-
-        Logger.debug(users.size() + "");
 
         if (users.size() == 1)
         {

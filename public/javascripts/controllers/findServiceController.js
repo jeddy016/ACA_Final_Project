@@ -80,7 +80,6 @@ $http({
     method: 'GET',
     url: '/getUserLocation'
 }).then(function(response) {
-    console.log(response.data);
     initMap(response.data);
 })
 

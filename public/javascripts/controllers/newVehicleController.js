@@ -63,47 +63,40 @@ angular.module('pitStop').controller('newVehicleController', ['$scope', '$http',
     };
 
     $scope.addVehicle = function (){
-        var valid = true;
+        $scope.selectedServices = [];
 
-        if(valid) {
-            $scope.selectedServices = [];
-
-            $scope.serviceTypes.forEach(function(service){
-                if(service.checked == true){
-                    $scope.selectedServices.push(service.id);
-                };
-            });
-
-            $scope.vehicle = {
-                make: $scope.make,
-                model: $scope.model,
-                year: $scope.year,
-                engine: $scope.engine,
-                odometerReading: $scope.odometerReading,
-                nickname: $scope.nickname,
-                services: $scope.selectedServices
+        $scope.serviceTypes.forEach(function(service){
+            if(service.checked == true){
+                $scope.selectedServices.push(service.id);
             };
+        });
 
-            $http({
-                method: 'POST',
-                url: '/addVehicle',
-                data: JSON.stringify($scope.vehicle)
-            })
-            .then(function(response) {
-                if(response.data == 'success'){
-                    $scope.goTo('/home');
-                }
-                else {
-                    $scope.errorList = [];
-                    response.data.forEach(function(error) {
-                        $scope.errorList.push(error);
-                    });
-                };
-            });
-        }
-        else {
-            console.log("nope");
+        $scope.vehicle = {
+            make: $scope.make,
+            model: $scope.model,
+            year: $scope.year,
+            engine: $scope.engine,
+            odometerReading: $scope.odometerReading,
+            nickname: $scope.nickname,
+            services: $scope.selectedServices
         };
+
+        $http({
+            method: 'POST',
+            url: '/addVehicle',
+            data: JSON.stringify($scope.vehicle)
+        })
+        .then(function(response) {
+            if(response.data == 'success'){
+                $scope.goTo('/home');
+            }
+            else {
+                $scope.errorList = [];
+                response.data.forEach(function(error) {
+                    $scope.errorList.push(error);
+                });
+            };
+        });
     };
 
 }])
