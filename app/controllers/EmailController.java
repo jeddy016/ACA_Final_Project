@@ -41,7 +41,7 @@ public class EmailController extends Controller
     @Transactional
     public Result sendEmails() throws IOException
     {
-        List<User> users = jpaApi.em().createQuery("SELECT u FROM User u WHERE u.notificationsOptIn = 1", User.class).getResultList();
+        List<User> users = jpaApi.em().createQuery("SELECT u FROM User u WHERE u.notificationsOptIn = 2", User.class).getResultList();
 
         for(User user : users)
         {

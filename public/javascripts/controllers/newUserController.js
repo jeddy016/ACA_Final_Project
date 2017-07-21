@@ -10,12 +10,12 @@ angular.module('pitStop').controller('newUserController', ['$scope', '$http', fu
     $scope.times= [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
     $scope.hideTextOptions = function() {
-            $scope.textOptionsVisible = false;
-            $scope.notificationsOptIn = 0;
+        $scope.textOptionsVisible = false;
+        $scope.notificationsOptIn = 1;
     };
     $scope.showTextOptions= function() {
-            $scope.textOptionsVisible= true;
-            $scope.notificationsOptIn = 1;
+        $scope.textOptionsVisible= true;
+        $scope.notificationsOptIn = 2;
     };
 
     $scope.addUser = function(){

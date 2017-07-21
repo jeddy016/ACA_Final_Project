@@ -471,7 +471,7 @@ label {
     margin-top: 0 !important;
 }
 
-.export-btn {
+.export-btn, .export-btn:focus, .export-btn:visited {
     font-size: 14px !important;
     width: auto !important;
     margin-left: 1vw;

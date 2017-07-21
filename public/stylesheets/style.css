@@ -226,7 +226,7 @@ h2 {
 
 .edit-btn,
 .edit-btn:visited,
- .edit-btn:focus {
+.edit-btn:focus {
     width: 9.9vw !important;
     background-color: black;
     border: 1px solid #00BCD4 !important;

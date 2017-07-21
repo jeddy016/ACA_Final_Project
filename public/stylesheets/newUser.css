@@ -32,7 +32,8 @@
 }
 
 .edit-btn,
-.edit-btn:visited {
+.edit-btn:visited,
+ .edit-btn:focus {
     margin-top: 3vh;
     margin-left: 1vw;
     width: auto !important;

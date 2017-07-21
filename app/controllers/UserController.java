@@ -93,22 +93,25 @@ public class UserController extends Controller
         int notificationsOptIn = request.findPath("notificationsOptIn").asInt();
         String notificationsMilesAhead = request.findPath("notificationsMilesAhead").asText();
 
-        if (firstName != null && lastName != null)
+        Logger.debug(notificationsOptIn + "");
+
+        if (firstName != null && lastName != null && notificationsOptIn != 0)
         {
             if (NewUser.nameValid(firstName) && NewUser.nameValid(lastName))
             {
                 namesValid = true;
-            } else
+            }
+            else
             {
                 errorList.add("Names cannot contain special characters or exceed 20 characters");
             }
-
-            if (notificationsOptIn == 0 || NewUser.milesValid(notificationsMilesAhead))
+            if (notificationsOptIn == 1 || NewUser.milesValid(notificationsMilesAhead))
             {
                 milesValid = true;
-            } else
+            }
+            else
             {
-                errorList.add("Please enter a number between 1 and 65,000 miles. Default 100");
+                errorList.add("Notifications interval must be a number between 1 and 65,000 miles");
             }
 
             if(!alreadyExists(email))
@@ -141,7 +144,7 @@ public class UserController extends Controller
             user.setLastNotified(date);
             user.setSalt(salt);
 
-            if(user.getNotificationsOptIn() == 1)
+            if(user.getNotificationsOptIn() == 2)
             {
                 user.setNotificationsMilesAhead(Integer.parseInt(notificationsMilesAhead));
             }
@@ -201,7 +204,7 @@ public class UserController extends Controller
         }
         else
         {
-            errorList.add("Please enter a number between 1 and 65,000 miles. Default 100");
+            errorList.add("Notifications interval must be a number between 1 and 65,000 miles. Default 100");
         }
 
         if(namesValid && milesValid)

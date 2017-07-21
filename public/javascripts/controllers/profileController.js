@@ -20,7 +20,7 @@ angular.module('pitStop').controller('profileController', ['$scope', '$http', fu
      })
     .then(function successCallback(response) {
         $scope.user = response.data;
-        if ($scope.user.notificationsOptIn == 1) {
+        if ($scope.user.notificationsOptIn == 2) {
             $scope.textOptionsVisible = true;
         }
         else {
