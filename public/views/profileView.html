@@ -1,5 +1,4 @@
-<div class="page-wrapper">
-
+<div class="profile-wrapper">
     <div class="form-modal">
         <form id= "{{formID}}" method="POST" ng-submit="updateProfile()">
             <h1 class="modal-heading">{{title}}</h1>
@@ -11,12 +10,12 @@
 
                 <div class="col-md-6">
                     <label class="form-modal-label">*First Name</label><br>
-                    <input class="modal-input" type="text" ng-model="user.firstName" required>
+                    <input class="modal-input" ng-model="user.firstName" required>
                 </div>
 
                 <div class="col-md-6">
                     <label class ="form-modal-label">*Last Name</label><br>
-                    <input class="modal-input" type="text" ng-model="user.lastName" required>
+                    <input class="modal-input" ng-model="user.lastName" required>
                 </div>
 
                 <div class="col-md-12">
@@ -33,7 +32,7 @@
                     <input type="number" class="modal-input interval-input" name="text-interval" ng-model="user.notificationsMilesAhead"/>
                 </div>
             </div>
-            <button type="submit" class= "btn edit-btn" form= "{{formID}}">Submit</button>
+            <button class= "btn edit-btn" form= "{{formID}}">Submit</button>
             <button class= "btn edit-btn" ng-click="goTo('/home')">Cancel</button>
         </form>
     </div>
