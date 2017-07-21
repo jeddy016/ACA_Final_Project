@@ -29,6 +29,7 @@ public class CompletedServiceController extends Controller
         boolean valid;
         int vehicleID = Integer.parseInt(request().getQueryString("vehicleID"));
 
+        @SuppressWarnings("unchecked")
         List<CompletedServiceDetail> completedServices = jpaApi.em().createNativeQuery("SELECT cs.completed_service_id as id, st.type_name as name, cs.service_date as date, cs.total_cost as totalCost, cs.labor_cost as laborCost, cs.parts_cost as partsCost, cs.shop as shop FROM completed_service cs JOIN service s ON s.service_id = cs.service_id  JOIN service_type st ON s.service_type_id = st.service_type_id WHERE cs.vehicle_id = :id ORDER BY cs.service_date", CompletedServiceDetail.class)
                 .setParameter("id",vehicleID)
                 .getResultList();
@@ -41,6 +42,7 @@ public class CompletedServiceController extends Controller
     {
         int vehicleID = Integer.parseInt(request().getQueryString("vehicleID"));
 
+        @SuppressWarnings("unchecked")
         List<CompletedServiceDetail> services = jpaApi.em().createNativeQuery("SELECT cs.completed_service_id as id, st.type_name as name, cs.service_date as date, cs.total_cost as totalCost, cs.labor_cost as laborCost, cs.parts_cost as partsCost, cs.shop as shop FROM completed_service cs JOIN service s ON s.service_id = cs.service_id  JOIN service_type st ON s.service_type_id = st.service_type_id WHERE cs.vehicle_id = :id ORDER BY cs.service_date", CompletedServiceDetail.class)
                 .setParameter("id",vehicleID)
                 .getResultList();

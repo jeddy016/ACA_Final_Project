@@ -42,7 +42,9 @@ public class StatsController extends Controller
 
             return ok(Json.toJson(data));
         }catch(Exception e)
-        {}
+        {
+            Logger.debug("Error getting stats");
+        }
 
         return ok();
     }
@@ -55,13 +57,16 @@ public class StatsController extends Controller
 
         try
         {
+            @SuppressWarnings("unchecked")
             List<Integer> values = jpaApi.em().createNativeQuery("SELECT MONTH(service_date) as month, SUM(total_cost) as total FROM completed_service c JOIN vehicle v on v.vehicle_id = c.vehicle_id WHERE v.vehicle_id = :id AND YEAR(c.service_date) = :year GROUP BY MONTH(c.service_date)")
                     .setParameter("id", vehicleID)
                     .setParameter("year", year)
                     .getResultList();
             return ok(Json.toJson(values));
         }catch(Exception e)
-        {}
+        {
+            Logger.debug("Error getting stats");
+        }
 
         return ok();
     }
@@ -72,6 +77,7 @@ public class StatsController extends Controller
         int vehicleID = Integer.parseInt(request().getQueryString("vehicleID"));
         int year = Calendar.getInstance().get(Calendar.YEAR);
 
+        @SuppressWarnings("unchecked")
         List<CostByService> values = jpaApi.em().createNativeQuery("SELECT st.type_name AS name, SUM(cs.total_cost) AS cost FROM completed_service cs  JOIN service s ON s.service_id = cs.service_id JOIN service_type st ON st.service_type_id = s.service_type_id WHERE cs.vehicle_id = :id AND YEAR(cs.service_date) = :year GROUP BY st.type_name")
                 .setParameter("id", vehicleID)
                 .setParameter("year", year)

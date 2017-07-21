@@ -4,33 +4,26 @@ GET     /                           controllers.AppController.index(any = "none"
 #Route to login if user enters a valid URL but is not logged in
 GET     /checkForUser               controllers.AppController.checkForUser
 
-#Login
 POST    /login                      controllers.LoginController.authenticate
 GET     /logout                     controllers.LoginController.logout
 
-#User
 POST    /signup                     controllers.UserController.signUp
 POST    /addUser                    controllers.UserController.addUser
 POST    /updateProfile              controllers.UserController.updateProfile
 GET     /getUser                    controllers.UserController.getUser
 
-#Vehicle
 GET     /getVehicle                 controllers.VehicleController.getVehicle
 GET     /getVehicles                controllers.VehicleController.getVehicles
 POST    /addVehicle                 controllers.VehicleController.addVehicle
 POST    /updateVehicle              controllers.VehicleController.updateVehicle
 POST    /deleteVehicle/:id          controllers.VehicleController.deleteVehicle(id:Integer)
 
-#Odometer
 POST    /updateOdometer             controllers.OdometerController.updateOdometer
 
-#Make
 GET     /getMakes                   controllers.MakeController.getMakes
 
-#Model
 GET     /getModels                  controllers.ModelController.getModels
 
-#Service
 GET     /getServices                controllers.ServiceController.getServices
 GET     /getTrackedServices         controllers.ServiceController.getTrackedServices
 GET     /getNextDue                 controllers.ServiceController.getNextDue
@@ -38,26 +31,20 @@ POST    /updateTrackedServices/:id  controllers.ServiceController.updateTrackedS
 POST    /logService                 controllers.ServiceController.logService
 POST    /updateIntervals            controllers.ServiceController.updateIntervals
 
-#Completed Service
 GET     /getCompletedServices       controllers.CompletedServiceController.getCompletedServices
-GET     /exportToCSV               controllers.CompletedServiceController.exportHistoryToCSV
+GET     /exportToCSV                controllers.CompletedServiceController.exportHistoryToCSV
 
-#Stats
 GET     /getTotalAndAVG             controllers.StatsController.getTotalAndAVG
 GET     /getTotalCostByMonth        controllers.StatsController.getTotalCostByMonth
 GET     /getCostByService           controllers.StatsController.getCostByService
 
-#User Location
 POST    /setUserLocation            controllers.LocationController.setUserLocation
 GET     /getUserLocation            controllers.LocationController.getUserLocation
 
-#Email
 POST    /sendEmails                 controllers.EmailController.sendEmails
 GET     /emailTest                  controllers.EmailController.sendEmails
 
-#Daemon
 GET     /daemonStart                controllers.DaemonController.start()
-
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

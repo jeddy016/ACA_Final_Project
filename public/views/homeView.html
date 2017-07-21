@@ -54,7 +54,7 @@
                     </div>
                     <div class="col-md-3 odometerColumn nested">
                         <div class = "col-md-12 overview inner">
-                            <label class="section-label">Current Odometer</label>
+                            <label class="section-label inner-label">Odometer</label>
                         </div>
 
                         <h4 class="detail odo-detail" ng-show="!odometerVisible">{{selectedVehicle.currentOdometer | number}} mi</h4>
@@ -73,7 +73,7 @@
 
                 <div class="col-md-3 tools-row nested">
                     <div class="col-md-12 overview inner">
-                        <label class="section-label">Tools</label>
+                        <label class="section-label inner-label">Tools</label>
                     </div>
                     <div class="col-md-6 tools" >
                         <button class="btn edit-btn" ng-click="goToEditPage()">Edit Vehicle</button>
@@ -87,10 +87,10 @@
             </div>
 
              <div class="row service-schedule-row nested">
-                 <div class = "col-md-12 overview inner-2">
-                     <label class="section-label">Maintenance Schedule</label>
-                     <label class="section-label expand" ng-show="!scheduleVisible" ng-click="scheduleShowHide()"> <i class="fa fa-chevron-down"></i></label>
-                     <label class="section-label expand" ng-show="scheduleVisible" ng-click="scheduleShowHide()"> <i class="fa fa-chevron-up"></i></label>
+                 <div class = "col-md-12 overview inner">
+                     <label class="section-label inner-label">Maintenance Schedule</label>
+                     <label class="inner-label expand" ng-show="!scheduleVisible" ng-click="scheduleShowHide()"> <i class="fa fa-chevron-down"></i></label>
+                     <label class="inner-label expand" ng-show="scheduleVisible" ng-click="scheduleShowHide()"> <i class="fa fa-chevron-up"></i></label>
                  </div>
 
                  <div class = "row  schedule-row" ng-show="scheduleVisible">
@@ -114,7 +114,7 @@
                  <div class="row" ng-repeat="service in vehicleServices" ng-show="scheduleVisible">
                      <div class = "row">
                          <div class="col-md-4">
-                             <label class="service-label schedule-data">{{ service.name }}</label>
+                             <label class="service-label">{{ service.name }}</label>
                          </div>
                          <div class="col-md-3 data-col">
                              <label class="schedule-data" ng-style="negativeValue(service.milesTilDue)">{{ service.milesTilDue | number }}</label>
@@ -139,46 +139,46 @@
 
              <div class="row log-service-container">
                  <div class="col-md-12 log-service-row nested">
-                     <div class = "col-md-12 overview inner-2">
-                         <label class="section-label">Log Completed Service</label>
-                         <label class="section-label expand" ng-show="!logVisible" ng-click="logShowHide()"> <i class="fa fa-chevron-down"></i></label>
-                         <label class="section-label expand" ng-show="logVisible" ng-click="logShowHide()"> <i class="fa fa-chevron-up"></i></label>
+                     <div class = "col-md-12 overview inner">
+                         <label class="section-label inner-label">Log Completed Service</label>
+                         <label class="inner-label expand" ng-show="!logVisible" ng-click="logShowHide()"> <i class="fa fa-chevron-down"></i></label>
+                         <label class="inner-label expand" ng-show="logVisible" ng-click="logShowHide()"> <i class="fa fa-chevron-up"></i></label>
                      </div>
                      <form id= "log-service" ng-submit="logService()" ng-show="logVisible">
                          <div class="col-md-6">
                              <label class ="schedule-label log-label">Service</label><br>
-                             <select class="log-input" ng-model="selectedService" ng-options="service.id as service.name for service in vehicleServices">
+                             <select class="log-input form-control" ng-model="selectedService" ng-options="service.id as service.name for service in vehicleServices">
                              </select>
                          </div>
 
                          <div class="col-md-6">
                              <label class ="schedule-label log-label">Date (YYYY/mm/dd)</label><br>
-                             <input ng-click="open1()" class="log-input" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                             <input ng-click="open1()" class="log-input form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
                          </div>
 
                          <div class="col-md-6">
                              <label class ="schedule-label log-label">Shop</label><br>
-                             <input class="log-input" ng-model="shop" />
+                             <input class="log-input form-control" ng-model="shop" />
                          </div>
 
                          <div class="col-md-6">
                              <label class ="schedule-label log-label">Total Cost</label><br>
-                             <input class="log-input" ng-model="totalCost" min="1" step="any" />
+                             <input class="log-input form-control" ng-model="totalCost" min="1" step="any" />
                          </div>
 
                          <div class="col-md-6">
                              <label class ="schedule-label log-label">Labor Cost</label><br>
-                             <input ng-model="laborCost" class="log-input" />
+                             <input ng-model="laborCost" class="log-input form-control" />
                          </div>
 
                          <div class="col-md-6">
                              <label class ="schedule-label log-label">Parts Cost</label><br>
-                             <input ng-model="partsCost" class="log-input"  />
+                             <input ng-model="partsCost" class="log-input form-control"  />
                          </div>
 
                          <div class="col-md-6">
                              <label class ="schedule-label log-label">Odometer</label><br>
-                             <input class="log-input" ng-model="serviceOdometer" />
+                             <input class="log-input form-control" ng-model="serviceOdometer" />
                          </div>
 
                          <div class="col-md-3 log-service-save">
@@ -189,12 +189,14 @@
              </div>
 
              <div class="row service-history-row nested">
-                 <div class = "col-md-12 overview inner-3">
-                     <label class="section-label">Service History</label>
-                     <label class="section-label expand" ng-show="!historyVisible" ng-click="historyShowHide()"> <i class="fa fa-chevron-down"></i></label>
-                     <label class="section-label expand" ng-show="historyVisible" ng-click="historyShowHide()"> <i class="fa fa-chevron-up"></i></label>
+                 <div class = "col-md-12 overview inner">
+                     <label class="section-label inner-label">Service History</label>
+
+                     <label class="inner-label expand" ng-show="!historyVisible" ng-click="historyShowHide()"> <i class="fa fa-chevron-down"></i></label>
+                     <label class="inner-label expand" ng-show="historyVisible" ng-click="historyShowHide()"> <i class="fa fa-chevron-up"></i></label>
                  </div>
 
+                 <button ng-click="exportHistory()" class="btn edit-btn export-btn" ng-show="historyVisible">Export</button>
                  <div class="row schedule-row" ng-show="historyVisible">
                      <div class="col-md-2 center" ng-show="historyVisible">
                      </div>
@@ -219,7 +221,7 @@
                  <div class="service-history-list schedule-row" ng-repeat="service in completedServices">
                      <div class="row">
                          <div class="col-md-2 align-left" ng-show="historyVisible">
-                             <label class="service-label schedule-data">{{service.name}}</label>
+                             <label class="service-label">{{service.name}}</label>
                          </div>
                          <div class="col-md-2" ng-show="historyVisible">
                              <label class="schedule-data">{{service.date | date}}</label><br>
@@ -238,7 +240,6 @@
                          </div>
                      </div>
                  </div>
-                 <button class="btn edit-btn export-btn" ng-click="exportHistory()" ng-show="historyVisible">Export</button>
              </div>
         </div>
         <div class="row charts-container" ng-controller="chartsController" ng-show="spotlightVisible">

@@ -42,7 +42,7 @@ angular.module('pitStop').controller('editVehicleController', ['$scope', '$route
             $scope.getMakes();
             $scope.getTrackedServices();
         });
-    }
+    };
 
     $scope.getMakes = function() {
         $http({
@@ -55,7 +55,7 @@ angular.module('pitStop').controller('editVehicleController', ['$scope', '$route
                 $scope.makeList.push({name: make.name , id: make.vehicleMakeID});
             });
         });
-    }
+    };
 
     $scope.getModels= function() {
         $http({
@@ -130,6 +130,6 @@ angular.module('pitStop').controller('editVehicleController', ['$scope', '$route
             url:'/updateTrackedServices/' + $scope.vehicleID,
             data: JSON.stringify($scope.selectedServices)
         });
-    }
+    };
 
 }])

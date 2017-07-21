@@ -9,8 +9,86 @@ div {
     border-radius: 3px;
 }
 
+.controls-div {
+    width: 25vw;
+    height: 35px;
+    float: left;
+    margin-right: 4%;
+    margin-top: 9vh;
+    padding-left: 1%;
+    padding-top: .18%;
+    border: 1px solid #666666;
+    background: #181818;
+    -webkit-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
+    box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
+}
+
+.all-control {
+    margin: 0 1vh;
+    cursor: pointer;
+    color: #F7F7F7 !important;
+    font-size: 20px;
+    text-shadow: -1px 1px 3px #000000;
+}
+
+label {
+    color: #F7F7F7;
+    padding-right: 1%;
+    margin-bottom: 1% !important;
+}
+
+.section-label {
+    margin-bottom: 0 !important;
+    padding: .30vh 0;
+    margin-top: 0;
+    font-size: 21px !important;
+    height: 30px !important;
+    font-family: 'Roboto', sans-serif;
+    color: #00BCD4 !important;
+}
+
+.btn {
+    margin-top: 1.7vh;
+    border: none !important;
+    font-size: 18px;
+}
+
 .negative {
     color: red !important;
+}
+
+.nested {
+    background-color: #353535 !important;
+}
+
+.inner {
+    background-color: #353535 !important;
+
+}
+
+.inner-label {
+    color: #00BCD4 !important;
+    text-shadow: -1px 1px 3px #000000;
+}
+
+.align-left {
+    text-align: left !important;
+}
+
+.select-label {
+    font-size: 20px;
+}
+
+.service-label {
+    color: #F7F7F7;
+    font-size: 15px;
+    text-shadow: -1px 1px 3px #000000;
+}
+
+.detail {
+    font-size: 17px;
+    margin: 0 !important;
 }
 
 .snapshot-row {
@@ -27,15 +105,6 @@ div {
     background: #181818;
 }
 
-.vehicle-detail-container, .service-schedule-row, .log-service-row, .service-history-row, .odometerColumn {
-    margin-top: 3vh !important;
-    border: 1px solid #666666;
-    background: #181818;
-    -webkit-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
-    box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
-}
-
 .service-schedule-row {
     float: left;
     width: 61% !important;
@@ -49,12 +118,6 @@ div {
     margin-top: 2vh !important;
 }
 
-log-service-container {
-    background: #00BCD4;
-    margin-left: 5vw;
-}
-
-
 .vehicle-detail-row {
     padding: 1vw !important;
 }
@@ -63,8 +126,54 @@ log-service-container {
     margin-top: 5vh !important;
 }
 
-.select-label {
-    font-size: 20px;
+.overview-row {
+    width: 70% !important;
+    margin-top: 3vh;
+    margin-bottom: 0;
+    padding-left: 0;
+    display: table;
+    height: auto;
+    color: #00BCD4;
+}
+
+.overview {
+    height: 33px !important;
+    text-align: left;
+    background-color: #181818;
+    border-radius: 0 !important;
+    border-bottom: 1px solid #00BCD4;
+}
+
+.tools-row {
+    height: 156px !important;
+    margin: -4vh 0 1vh 0;
+    float: right;
+    padding: 0 !important;
+    display: table;
+    height: auto;
+    border: 1px solid #666666;
+    color: #00BCD4;
+    -webkit-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
+    box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
+}
+
+.schedule-row {
+    text-align: center;
+}
+
+.vehicle-detail-container, .service-schedule-row, .log-service-row, .service-history-row, .odometerColumn {
+    margin-top: 3vh !important;
+    border: 1px solid #666666;
+    background: #181818;
+    -webkit-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
+    box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
+}
+
+log-service-container {
+    background: #00BCD4;
+    margin-left: 5vw;
 }
 
 .dropdown-container {
@@ -97,32 +206,12 @@ log-service-container {
     margin-top: -7vh !important;
 }
 
-.overview-row {
-    width: 70% !important;
-    margin-top: 3vh;
-    margin-bottom: 0;
-    padding-left: 0;
-    display: table;
-    height: auto;
-    color: #00BCD4;
+.info-column {
+    padding-left: 0 !important;
 }
 
-.nested {
-    background-color: #353535 !important;
-}
-
-.tools-row {
-    height: 156px !important;
-    margin: -4vh 0 1vh 0;
-    float: right;
-    padding: 0 !important;
-    display: table;
-    height: auto;
-    border: 1px solid #666666;
-    color: #00BCD4;
-    -webkit-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
-    box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
+.glance-column {
+    padding-top: 1%;
 }
 
 .bottom-button-row {
@@ -132,19 +221,6 @@ log-service-container {
 .vehicleInfo {
     display: table-cell;
     vertical-align: middle;
-}
-
-.info-column {
-    padding-left: 0 !important;
-}
-
-.glance-column {
-    padding-top: 1%;
-}
-
-.detail {
-    font-size: 17px;
-    margin: 0 !important;
 }
 
 .spotlight-detail {
@@ -169,19 +245,6 @@ log-service-container {
 .update:hover {
     text-decoration: underline;
     color: #F7F7F7 !important;
-}
-
-label {
-    color: #F7F7F7;
-    padding-right: 1%;
-    margin-bottom: 1% !important;
-
-}
-
-.btn {
-    margin-top: 1.7vh;
-    border: none !important;
-    font-size: 18px;
 }
 
 .odometer-input {
@@ -234,6 +297,12 @@ label {
     margin-bottom: 2vh !important;
 }
 
+.odo-cancel {
+    text-decoration: underline;
+    margin-left: 1%;
+    cursor: pointer;
+}
+
 .log-service-btn,
 .log-service-btn:visited {
     background-color: #00BCD4;
@@ -248,17 +317,6 @@ label {
 
 .chart {
     margin-bottom: 2vh !important;
-}
-
-.section-label {
-    margin-bottom: 0 !important;
-    padding: .30vh 0;
-    margin-top: 0;
-    font-size: 19px !important;
-    height: 30px !important;
-    font-family: 'Roboto', sans-serif;
-    color: black;
-
 }
 
 .vehicle-edit {
@@ -286,35 +344,13 @@ label {
     color: black;
 }
 
-.controls-div {
-    width: 25vw;
-    height: 35px;
-    float: left;
-    margin-right: 4%;
-    margin-top: 9vh;
-    padding-left: 1%;
-    padding-top: .18%;
-    border: 1px solid #666666;
-    background: #181818;
-    -webkit-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
-    box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
-}
-
-.all-control {
-    margin: 0 1vh;
-    cursor: pointer;
-    color: #F7F7F7 !important;
-    font-size: 20px;
-    text-shadow: -1px 1px 3px #000000;
-}
-
 .all-chevron {
     color: #00BCD4;
 }
 
 .separator {
     cursor: default;
+    color: #666666 !important;
 }
 
 .expand {
@@ -323,7 +359,7 @@ label {
     padding-right: 1vw;
     font-size: 20px;
     margin-left: .1%;
-    color: black !important;
+    color: black;
 }
 
 .spotlight-expand {
@@ -369,21 +405,18 @@ label {
 }
 
 .schedule-label {
-    color: #F7F7F7;
+    margin-top: 2vh !important;
+    color: #F7F7F7 !important;
     font-size: 17px;
     font-family: 'Roboto', sans-serif;
     text-align: left !important;
-    text-shadow: -1px 1px 3px #000000;
+    text-shadow: -1px 1px 3px #000000 !important;
 }
 
 .schedule-edit {
     color: #00BCD4;
     cursor: pointer;
     text-decoration: underline;
-}
-
-.schedule-row {
-    text-align: center;
 }
 
 .schedule-hr {
@@ -396,21 +429,18 @@ label {
     margin: 0 !important;
     color: #00BCD4;
     font-size: 16px;
+    text-shadow: -1px 1px 3px #000000;
 }
 
 .data-col{
     text-align: center !important;
 }
 
-.service-label {
-    color: #F7F7F7;
-    font-size: 15px;
-    text-shadow: -1px 1px 3px #000000;
-}
-
 .interval-btn {
     float: right;
     margin: 1vh;
+    width: auto !important;
+    font-size: 17px !important;
 }
 
 .interval-input {
@@ -420,7 +450,11 @@ label {
 
 .log-service-save {
     margin-bottom: 1vh;
-    margin-left: 19vw;
+    margin-left: 25vw;
+}
+
+.log-service-save .edit-btn {
+    width: auto !important;
 }
 
 #log-service {
@@ -428,8 +462,7 @@ label {
 }
 
 .log-input {
-    width: 13vw;
-    height: 3vh;
+
     -webkit-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
     box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
@@ -437,20 +470,13 @@ label {
 
 .log-label {
     margin-top: 1vh;
-    color: #00BCD4;
+    color: #00BCD4 !important;
     text-shadow: -1px 1px 3px #000000;
 }
 
 .chart1, .chart2 {
     margin-top: 2vh !important;
     margin-bottom: 3vh !important;
-}
-
-.overview {
-    height: 33px !important;
-    text-align: left;
-    background-color: #009bb7;
-    border-radius: 0 !important;
 }
 
 .modal-label {
@@ -482,33 +508,19 @@ label {
     color: red;
 }
 
-.align-left {
-    text-align: left !important;
-}
-
-.export-link {
-    margin-left: .5vw;
-    color: #F7F7F7;
-    font-family: 'Roboto', sans-serif;
-    font-weight: bold;
-    cursor: pointer;
-    text-decoration: underline;
+.service-history-row .schedule-label {
+    margin-top: 0 !important;
 }
 
 .export-btn {
+    font-size: 14px !important;
     width: auto !important;
-    float: right !important;
-    margin: 2vh;
+    margin-left: 1vw;
+    margin-bottom: -1vh !important;
 }
 
 .email-link {
     color: white;
     float: right;
     margin-top: 1vh;
-}
-
-.odo-cancel {
-    text-decoration: underline;
-    margin-left: 1%;
-    cursor: pointer;
 }

@@ -4,41 +4,39 @@
             <h1 class="modal-heading">Add a Vehicle</h1>
             <hr class="modal-hr">
             <p class="userError" ng-repeat="error in errorList">{{error}}</p>
-
             <div class="row">
                 <div class="col-md-4">
                     <label class ="form-modal-label">*Make</label><br>
-                    <select name = "make-select" class="modal-input modal-select" ng-model="make" ng-change="getModels()"
+                    <select name = "make-select" class="modal-input modal-select form-control" ng-model="make" ng-change="getModels()"
                             ng-options="make.id as make.name for make in makeList" required>
                     </select>
                 </div>
                 <div class="col-md-4">
                     <label class ="form-modal-label">*Model</label><br>
-                    <select required class="modal-input modal-select" ng-model="model"
+                    <select required class="modal-input modal-select form-control" ng-model="model"
                             ng-options="model.id as model.name for model in modelList" >
                     </select>
                 </div>
                 <div class="col-md-4">
                     <label class ="form-modal-label">*Year</label><br>
-                    <select class="modal-input modal-select" ng-model="year" required>
+                    <select class="modal-input modal-select form-control" ng-model="year" required>
                         <option value="{{year}}" ng-repeat="year in years">{{year}}</option>
                     </select>
 
                 </div>
                 <div class="col-md-4">
                     <label class ="form-modal-label">*Odometer</label><br>
-                    <input class="modal-input" type="text" ng-model="odometerReading">
+                    <input class="modal-input form-control" ng-model="odometerReading">
                 </div>
                 <div class="col-md-4">
                     <label class ="form-modal-label">*Nickname</label><br>
-                    <input class="modal-input" type="text"
+                    <input class="modal-input form-control"
                            ng-model="nickname">
                 </div>
                 <div class="col-md-4">
-                    <label class ="form-modal-label">Engine</label><br>
-                    <input class="modal-input" type="text" ng-model="engine">
+                    <label class ="form-modal-label ">Engine</label><br>
+                    <input class="modal-input form-control" ng-model="engine">
                 </div>
-
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -55,9 +53,8 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class= "btn edit-btn" form="new-vehicle-form">Submit</button>
+            <button class= "btn edit-btn" form="new-vehicle-form">Submit</button>
             <button class= "btn edit-btn" ng-click="goTo('/home')">Cancel</button>
         </form>
-
     </div>
 </div>

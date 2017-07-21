@@ -50,6 +50,7 @@ public class EmailController extends Controller
 
             if(!alreadyNotified)
             {
+                @SuppressWarnings("unchecked")
                 List<EmailDetail> emailDetails = jpaApi.em().createNativeQuery("SELECT v.vehicle_nickname as vehicleName, s.service_id as id, st.type_name as serviceName, s.miles_til_due as milesTilDue FROM service_type st JOIN service s ON st.service_type_id = s.service_type_id JOIN vehicle v ON v.vehicle_id = s.vehicle_id JOIN user u ON u.user_id = v.user_id WHERE v.user_id = :id AND s.tracked = 1 AND (s.miles_til_due <= u.notifications_miles_ahead) ORDER BY v.vehicle_nickname", EmailDetail.class).setParameter("id", user.getUserID()).getResultList();
 
                 String from = "jeddy016@gmail.com";
@@ -68,7 +69,7 @@ public class EmailController extends Controller
 
     private static void send(String from, String to, String body, String subject) throws IOException
     {
-        Destination destination = new Destination().withToAddresses(new String[]{to});
+        Destination destination = new Destination().withToAddresses(to);
 
         Content subjectLine = new Content().withData(subject);
         Content textBody = new Content().withData(body);
@@ -105,7 +106,9 @@ public class EmailController extends Controller
             String vehicle = "";
             body.append("<html><head><style> body {height: 100%; width: 100%;} table {height: 100%; width: 100%; background: #232323; padding: 15px; border: 2px solid #00BCD4} h1, p { color: #00BCD4;} h4, h2, a { color: white !important; font-family: sans-serif;} h1 {text-align: center; margin: 2px !important; font-family: sans-serif; font-size: 50px; text-shadow: -2px 1px 3px #000000;} h2 {font-size: 20px; text-align: center; text-shadow: -2px 1px 3px #000000;} h4 {font-size: 18px; text-decoration: underline; text-shadow: -2px 1px 3px #000000;} p {margin-left: 5px; font-size: 16px; text-shadow: -2px 1px 3px #000000;} a {text-decoration: none !important;} </style></head><body><table>");
 
-            body.append("<a href='http://localhost:9000'><h1>PitStop</h1></a> <h2>Hello " + name +  "! Here is your monthly vehicle maintenance update: </h2>");
+            body.append("<a href='http://localhost:9000'><h1>PitStop</h1></a> <h2>Hello ")
+                    .append(name)
+                    .append("! Here is your monthly vehicle maintenance update: </h2>");
 
             for (EmailDetail detail : emailDetails)
             {
@@ -113,26 +116,36 @@ public class EmailController extends Controller
                 {
                     vehicle = detail.getVehicleName();
 
-                    body.append("<h4>" + detail.getVehicleName() + ": </h4>");
+                    body.append("<h4>")
+                            .append(detail.getVehicleName())
+                            .append(": </h4>");
 
                     if(Integer.parseInt(detail.getMilesTilDue()) > 0)
                     {
-                        body.append("<p>" + detail.getServiceName() + " in " + detail.getMilesTilDue() + " miles. </p>");
+                        body.append("<p>").append(detail.getServiceName()).append(" in ")
+                                .append(detail.getMilesTilDue())
+                                .append(" miles. </p>");
                     }
                     else
                     {
-                        body.append("<p>" + detail.getServiceName() + " overdue by " + (-1 * Integer.parseInt(detail.getMilesTilDue())) + " miles. </p>");
+                        body.append("<p>").append(detail.getServiceName())
+                                .append(" overdue by ")
+                                .append(-1 * Integer.parseInt(detail.getMilesTilDue()))
+                                .append(" miles. </p>");
                     }
                 }
                 else
                 {
-                    body.append("<p>" + detail.getServiceName() + " in " + detail.getMilesTilDue() + " miles. </p>");
+                    body.append("<p>").append(detail.getServiceName())
+                            .append(" in ")
+                            .append(detail.getMilesTilDue())
+                            .append(" miles. </p>");
                 }
             }
         }
         else
         {
-            body.append("<h1> You have no vehicles due for service in " + notificationsMilesAhead + " miles.</h1>");
+            body.append("<h1> You have no vehicles due for service in ").append(notificationsMilesAhead).append(" miles.</h1>");
         }
 
         body.append("<br><br><br><p>**To change the services you see in these reminders, click the \"Edit Vehicle\" button found on your dashboard and select the services you wish to track. You can change how many miles in advance you would like to receive reminders for services from the Edit Profile screen.</p></table></body></html>");

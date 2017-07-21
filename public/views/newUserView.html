@@ -1,40 +1,32 @@
 <div class="page-wrapper">
-
     <label class="form-modal-label signed-up-link">Already signed up?<a class="detail" ng-click="goTo('/')"><span class="login">Login</span></a></label>
-
     <div class="form-modal">
         <form id= "new-user-form" method="POST" ng-submit="addUser()">
             <h1 class="modal-heading">Complete Your Profile</h1>
-
             <hr class="modal-hr">
             <span class="userError" ng-repeat="error in errorList">**{{error}}<br></span>
-
             <div class="row">
-
                 <div class="col-md-6">
                     <label class="form-modal-label">*First Name</label><br>
-                    <input class="modal-input" type="text" ng-model="firstName" >
+                    <input class="modal-input" ng-model="firstName" >
                 </div>
-
                 <div class="col-md-6">
                     <label class ="form-modal-label">*Last Name</label><br>
-                    <input class="modal-input" type="text" ng-model="lastName" >
+                    <input class="modal-input" ng-model="lastName" >
                 </div>
-
                 <div class="col-md-12">
                     <label class="text-message-label form-modal-label">Enable email reminders?</label><br>
                     <label class="radio-inline form-modal-label"><input class="modal-input" type="radio" name="optradio" ng-click="showTextOptions()"> Yes</label>
                     <label class="radio-inline form-modal-label"><input class="modal-input" type="radio" name="optradio" ng-click= "hideTextOptions()" > No</label>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-md-12" ng-show="textOptionsVisible">
                     <label class="form-modal-label">How many miles in advance should we remind you of service events?</label>
                     <input type="number" class="modal-input interval-input" name="text-interval" ng-model="notificationsMilesAhead"/>
                 </div>
             </div>
-            <button type="submit" class= "btn edit-btn" form= "new-user-form">Done</button>
+            <button class= "btn edit-btn" form= "new-user-form">Done</button>
             <button class= "btn edit-btn" ng-click="goTo('/home')">Cancel</button>
         </form>
     </div>

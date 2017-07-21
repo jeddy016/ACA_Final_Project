@@ -56,6 +56,7 @@ public class ServiceController extends Controller
     {
         int vehicleID = Integer.parseInt(request().getQueryString("vehicleID"));
 
+        @SuppressWarnings("unchecked")
         List<Integer> trackedServiceTypes = jpaApi.em().createNativeQuery("SELECT s.service_type_id as id " +
                 "FROM service s " +
                 "JOIN vehicle v ON s.vehicle_id = v.vehicle_id " +
@@ -122,7 +123,7 @@ public class ServiceController extends Controller
         boolean shopValid = false;
         boolean costsValid = false;
 
-        JsonNode response = null;
+        JsonNode response;
 
         int vehicleID = request.findPath("vehicleID").asInt();
         int serviceID = request.findPath("serviceID").asInt();
@@ -210,7 +211,9 @@ public class ServiceController extends Controller
 
             return ok(Json.toJson(data));
         }catch(Exception e)
-        {}
+        {
+            Logger.debug("Error getting next vehicle due for service");
+        }
 
         return ok();
     }
@@ -226,7 +229,6 @@ public class ServiceController extends Controller
 
         for(Interval interval : intervals)
         {
-            boolean intervalValid = false;
             String serviceInterval = interval.getMiles();
 
             try
@@ -235,7 +237,12 @@ public class ServiceController extends Controller
 
                 if(intervalTest > 0 && intervalTest <= 200000)
                 {
-                    intervalValid = true;
+                    int id = interval.getServiceID();
+
+                    jpaApi.em().createQuery("UPDATE Service s SET s.milesInterval = :interval WHERE service_id = :id")
+                            .setParameter("id", id)
+                            .setParameter("interval", Integer.parseInt(serviceInterval))
+                            .executeUpdate();
                 }
                 else
                 {
@@ -247,16 +254,6 @@ public class ServiceController extends Controller
                 Logger.error("Miles entered not a number");
                 valid = false;
                 break;
-            }
-
-            if(intervalValid)
-            {
-                int id = interval.getServiceID();
-
-                jpaApi.em().createQuery("UPDATE Service s SET s.milesInterval = :interval WHERE service_id = :id")
-                        .setParameter("id", id)
-                        .setParameter("interval", Integer.parseInt(serviceInterval))
-                        .executeUpdate();
             }
         }
 

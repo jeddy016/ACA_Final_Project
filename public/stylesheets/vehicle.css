@@ -4,7 +4,8 @@
 }
 
 input[type='number'] {
-    -moz-appearance:textfield;
+    -moz-appearance: textfield;
+    -webkit-appearance: textfield;
 }
 
 input::-webkit-outer-spin-button,
@@ -40,16 +41,6 @@ input::-webkit-inner-spin-button {
 .modal-checkbox-label:nth-child(even) {
     float: right;
     text-align: left;
-}
-
-.error {
-    color: white;
-    text-shadow: -1px -1px 0 red,
-        1px -1px 0 red,
-        -1px 1px 0 red,
-         1px 1px 0 red;
-    font-size: 20px;
-    font-family: 'Days One', sans-serif;
 }
 
 .edit-btn,
