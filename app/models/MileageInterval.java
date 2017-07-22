@@ -6,8 +6,6 @@ import javax.persistence.*;
 @Table(name = "Service_Mileage_Interval")
 public class MileageInterval
 {
-    private static int MAX_LENGTH_INTERVAL = 6;
-
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "mileage_interval_id")

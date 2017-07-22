@@ -10,8 +10,6 @@ import javax.persistence.*;
 @Table(name = "Vehicle_Model")
 public class VehicleModel
 {
-    public static final int MAX_LENGTH_MODEL_NAME = 20;
-
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "vehicle_model_id")

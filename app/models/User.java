@@ -21,9 +21,6 @@ public class User
     @Column(name = "user_email")
     private String email;
 
-    /*@Column(name = "password")
-    private String password;*/
-
     @Column(name="password")
     private byte[] password;
 
@@ -114,9 +111,9 @@ public class User
         return notificationsMilesAhead;
     }
 
-    public void setNotificationsMilesAhead(int notificationsDaysAhead)
+    public void setNotificationsMilesAhead(int notificationsMilesAhead)
     {
-        this.notificationsMilesAhead = notificationsDaysAhead;
+        this.notificationsMilesAhead = notificationsMilesAhead;
     }
 
     public LocalDate getLastNotified()
