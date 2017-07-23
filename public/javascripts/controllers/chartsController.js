@@ -18,17 +18,17 @@ $scope.$watch('completedServices', function() {
            label: 'Total Maintenance Cost',
            data: $scope.costByMonthValues,
            backgroundColor: [
-               '#6F2F9D',
                '#006DBE',
-               '#FC0000',
-               '#00AE4F',
-               '#00AEED',
-               '#6F2F9D',
                '#006DBE',
-               '#FC0000',
-               '#001F5F',
-               '#00AEED',
-               '#6F2F9D',
+               '#006DBE',
+               '#006DBE',
+               '#006DBE',
+               '#006DBE',
+               '#006DBE',
+               '#006DBE',
+               '#006DBE',
+               '#006DBE',
+               '#006DBE',
                '#006DBE'
            ]
        }]

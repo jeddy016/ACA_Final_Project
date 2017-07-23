@@ -46,7 +46,7 @@ label {
     font-size: 21px !important;
     height: 30px !important;
     font-family: 'Roboto', sans-serif;
-    color: #00BCD4 !important;
+    color: black !important;
 }
 
 .btn {
@@ -155,7 +155,7 @@ label {
 .overview {
     height: 33px !important;
     text-align: left;
-    background-color: #181818;
+    background-color: #00BCD4;
     border-radius: 0 !important;
     border-bottom: 1px solid #00BCD4;
 }
@@ -179,7 +179,7 @@ label {
 }
 
 .vehicle-detail-container, .service-schedule-row, .log-service-row, .service-history-row, .odometerColumn {
-    margin-top: 3vh !important;
+    margin-top: 2vh !important;
     border: 1px solid #666666;
     background: #181818;
     -webkit-box-shadow: -4px 4px 4px 0px rgba(0,0,0,0.75);
@@ -197,11 +197,9 @@ label {
 
 .vehicle-dropdown {
     padding: 0 !important;
-    height: auto;
     width: 15vw !important;
     font-size: 18px;
     background: #F7F7F7;
-    text-align: center;
     font-family: 'Roboto', sans-serif;
     color: #1F1F1F;
     font-weight: bold;
@@ -219,6 +217,7 @@ label {
 
 .info-column {
     padding-left: 0 !important;
+    margin-top: 1vh;
 }
 
 .glance-column {
@@ -235,7 +234,7 @@ label {
 }
 
 .spotlight-detail {
-    font-size: 18px;
+    font-size: 20px;
     margin: 0 !important;
 }
 
@@ -357,7 +356,8 @@ label {
     float: left;
     padding: 1%;
     width: 49% !important;
-    margin-top: 0 !important;
+    margin: 0 !important;
+    padding-top: 0 !important;
     background: #181818;
 }
 
@@ -366,6 +366,7 @@ label {
     padding: 1%;
     width: 49% !important;
     margin: 0 !important;
+    padding-top: 0 !important;
     background: #181818;
 }
 
@@ -482,4 +483,13 @@ label {
     color: white;
     float: right;
     margin-top: 1vh;
+}
+
+.icon-col {
+    padding: 0 !important;
+    width: 4vw;
+}
+
+.section-icon {
+    color: white !important;
 }
