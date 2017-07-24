@@ -46,7 +46,7 @@ label {
     font-size: 21px !important;
     height: 30px !important;
     font-family: 'Roboto', sans-serif;
-    color: black !important;
+    color: #00BCD4 !important;
 }
 
 .btn {
@@ -155,7 +155,7 @@ label {
 .overview {
     height: 33px !important;
     text-align: left;
-    background-color: #00BCD4;
+    background-color: #181818;
     border-radius: 0 !important;
     border-bottom: 1px solid #00BCD4;
 }
