@@ -49,7 +49,7 @@ public class OdometerController extends Controller
         {
             int reading = Integer.parseInt(newReading);
 
-            if(reading >= currentReading && reading <= MAX_MILES)
+            if(/*reading >= currentReading*/ reading >= 0 && reading <= MAX_MILES)
             {
                 valid = true;
             }
